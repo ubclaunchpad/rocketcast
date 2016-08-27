@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE6E1D72376600C806C1 /* AppDelegate.swift */; };
+		C80FAE711D72376600C806C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE701D72376600C806C1 /* ViewController.swift */; };
+		C80FAE741D72376600C806C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE721D72376600C806C1 /* Main.storyboard */; };
+		C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */; };
+		C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE781D72376600C806C1 /* Assets.xcassets */; };
+		C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */; };
+		C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE861D72376700C806C1 /* RocketCastTests.swift */; };
+		C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE911D72376700C806C1 /* RocketCastUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C80FAE831D72376700C806C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C80FAE631D72376600C806C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C80FAE6A1D72376600C806C1;
+			remoteInfo = RocketCast;
+		};
+		C80FAE8E1D72376700C806C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C80FAE631D72376600C806C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C80FAE6A1D72376600C806C1;
+			remoteInfo = RocketCast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C80FAE6B1D72376600C806C1 /* RocketCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80FAE6E1D72376600C806C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C80FAE701D72376600C806C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C80FAE731D72376600C806C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C80FAE761D72376600C806C1 /* RocketCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RocketCast.xcdatamodel; sourceTree = "<group>"; };
+		C80FAE781D72376600C806C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C80FAE7B1D72376600C806C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C80FAE7D1D72376600C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C80FAE821D72376600C806C1 /* RocketCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80FAE861D72376700C806C1 /* RocketCastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastTests.swift; sourceTree = "<group>"; };
+		C80FAE881D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80FAE911D72376700C806C1 /* RocketCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastUITests.swift; sourceTree = "<group>"; };
+		C80FAE931D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C80FAE681D72376600C806C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE7F1D72376600C806C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE8A1D72376700C806C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C80FAE621D72376600C806C1 = {
+			isa = PBXGroup;
+			children = (
+				C80FAE6D1D72376600C806C1 /* RocketCast */,
+				C80FAE851D72376700C806C1 /* RocketCastTests */,
+				C80FAE901D72376700C806C1 /* RocketCastUITests */,
+				C80FAE6C1D72376600C806C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C80FAE6C1D72376600C806C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C80FAE6B1D72376600C806C1 /* RocketCast.app */,
+				C80FAE821D72376600C806C1 /* RocketCastTests.xctest */,
+				C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C80FAE6D1D72376600C806C1 /* RocketCast */ = {
+			isa = PBXGroup;
+			children = (
+				C80FAE6E1D72376600C806C1 /* AppDelegate.swift */,
+				C80FAE701D72376600C806C1 /* ViewController.swift */,
+				C80FAE721D72376600C806C1 /* Main.storyboard */,
+				C80FAE781D72376600C806C1 /* Assets.xcassets */,
+				C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */,
+				C80FAE7D1D72376600C806C1 /* Info.plist */,
+				C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */,
+			);
+			path = RocketCast;
+			sourceTree = "<group>";
+		};
+		C80FAE851D72376700C806C1 /* RocketCastTests */ = {
+			isa = PBXGroup;
+			children = (
+				C80FAE861D72376700C806C1 /* RocketCastTests.swift */,
+				C80FAE881D72376700C806C1 /* Info.plist */,
+			);
+			path = RocketCastTests;
+			sourceTree = "<group>";
+		};
+		C80FAE901D72376700C806C1 /* RocketCastUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C80FAE911D72376700C806C1 /* RocketCastUITests.swift */,
+				C80FAE931D72376700C806C1 /* Info.plist */,
+			);
+			path = RocketCastUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C80FAE6A1D72376600C806C1 /* RocketCast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C80FAE961D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCast" */;
+			buildPhases = (
+				C80FAE671D72376600C806C1 /* Sources */,
+				C80FAE681D72376600C806C1 /* Frameworks */,
+				C80FAE691D72376600C806C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketCast;
+			productName = RocketCast;
+			productReference = C80FAE6B1D72376600C806C1 /* RocketCast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C80FAE811D72376600C806C1 /* RocketCastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C80FAE991D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastTests" */;
+			buildPhases = (
+				C80FAE7E1D72376600C806C1 /* Sources */,
+				C80FAE7F1D72376600C806C1 /* Frameworks */,
+				C80FAE801D72376600C806C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C80FAE841D72376700C806C1 /* PBXTargetDependency */,
+			);
+			name = RocketCastTests;
+			productName = RocketCastTests;
+			productReference = C80FAE821D72376600C806C1 /* RocketCastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C80FAE8C1D72376700C806C1 /* RocketCastUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C80FAE9C1D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastUITests" */;
+			buildPhases = (
+				C80FAE891D72376700C806C1 /* Sources */,
+				C80FAE8A1D72376700C806C1 /* Frameworks */,
+				C80FAE8B1D72376700C806C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C80FAE8F1D72376700C806C1 /* PBXTargetDependency */,
+			);
+			name = RocketCastUITests;
+			productName = RocketCastUITests;
+			productReference = C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C80FAE631D72376600C806C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = UBCLaunchPad;
+				TargetAttributes = {
+					C80FAE6A1D72376600C806C1 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					C80FAE811D72376600C806C1 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = C80FAE6A1D72376600C806C1;
+					};
+					C80FAE8C1D72376700C806C1 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = C80FAE6A1D72376600C806C1;
+					};
+				};
+			};
+			buildConfigurationList = C80FAE661D72376600C806C1 /* Build configuration list for PBXProject "RocketCast" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C80FAE621D72376600C806C1;
+			productRefGroup = C80FAE6C1D72376600C806C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C80FAE6A1D72376600C806C1 /* RocketCast */,
+				C80FAE811D72376600C806C1 /* RocketCastTests */,
+				C80FAE8C1D72376700C806C1 /* RocketCastUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C80FAE691D72376600C806C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */,
+				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
+				C80FAE741D72376600C806C1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE801D72376600C806C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE8B1D72376700C806C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C80FAE671D72376600C806C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
+				C80FAE711D72376600C806C1 /* ViewController.swift in Sources */,
+				C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE7E1D72376600C806C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C80FAE891D72376700C806C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C80FAE841D72376700C806C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C80FAE6A1D72376600C806C1 /* RocketCast */;
+			targetProxy = C80FAE831D72376700C806C1 /* PBXContainerItemProxy */;
+		};
+		C80FAE8F1D72376700C806C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C80FAE6A1D72376600C806C1 /* RocketCast */;
+			targetProxy = C80FAE8E1D72376700C806C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C80FAE721D72376600C806C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C80FAE731D72376600C806C1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C80FAE7B1D72376600C806C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C80FAE941D72376700C806C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C80FAE951D72376700C806C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C80FAE971D72376700C806C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RocketCast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C80FAE981D72376700C806C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = RocketCast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C80FAE9A1D72376700C806C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RocketCastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketCast.app/RocketCast";
+			};
+			name = Debug;
+		};
+		C80FAE9B1D72376700C806C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RocketCastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketCast.app/RocketCast";
+			};
+			name = Release;
+		};
+		C80FAE9D1D72376700C806C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RocketCastUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCastUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RocketCast;
+			};
+			name = Debug;
+		};
+		C80FAE9E1D72376700C806C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RocketCastUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCastUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = RocketCast;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C80FAE661D72376600C806C1 /* Build configuration list for PBXProject "RocketCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C80FAE941D72376700C806C1 /* Debug */,
+				C80FAE951D72376700C806C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C80FAE961D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C80FAE971D72376700C806C1 /* Debug */,
+				C80FAE981D72376700C806C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C80FAE991D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C80FAE9A1D72376700C806C1 /* Debug */,
+				C80FAE9B1D72376700C806C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C80FAE9C1D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C80FAE9D1D72376700C806C1 /* Debug */,
+				C80FAE9E1D72376700C806C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C80FAE761D72376600C806C1 /* RocketCast.xcdatamodel */,
+			);
+			currentVersion = C80FAE761D72376600C806C1 /* RocketCast.xcdatamodel */;
+			path = RocketCast.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C80FAE631D72376600C806C1 /* Project object */;
+}
