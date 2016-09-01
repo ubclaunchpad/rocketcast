@@ -10,6 +10,10 @@
 		C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA31C1D77E1AA0089A678 /* PodcastView.xib */; };
 		C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA31E1D77E1C10089A678 /* PodcastView.swift */; };
 		C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */; };
+		C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3221D77E69E0089A678 /* EpisodeController.swift */; };
+		C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA3261D77E70B0089A678 /* EpisodeView.xib */; };
+		C80DA3291D77E7240089A678 /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3281D77E7240089A678 /* EpisodeView.swift */; };
+		C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */; };
 		C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE6E1D72376600C806C1 /* AppDelegate.swift */; };
 		C80FAE711D72376600C806C1 /* PodcastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE701D72376600C806C1 /* PodcastController.swift */; };
 		C80FAE741D72376600C806C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE721D72376600C806C1 /* Main.storyboard */; };
@@ -41,6 +45,10 @@
 		C80DA31C1D77E1AA0089A678 /* PodcastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastView.xib; sourceTree = "<group>"; };
 		C80DA31E1D77E1C10089A678 /* PodcastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
 		C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewDelegate.swift; sourceTree = "<group>"; };
+		C80DA3221D77E69E0089A678 /* EpisodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeController.swift; sourceTree = "<group>"; };
+		C80DA3261D77E70B0089A678 /* EpisodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeView.xib; sourceTree = "<group>"; };
+		C80DA3281D77E7240089A678 /* EpisodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
+		C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewDelegate.swift; sourceTree = "<group>"; };
 		C80FAE6B1D72376600C806C1 /* RocketCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80FAE6E1D72376600C806C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C80FAE701D72376600C806C1 /* PodcastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastController.swift; sourceTree = "<group>"; };
@@ -86,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				C80FAE701D72376600C806C1 /* PodcastController.swift */,
+				C80DA3221D77E69E0089A678 /* EpisodeController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -93,9 +102,8 @@
 		C80DA31A1D77E1710089A678 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C80DA31C1D77E1AA0089A678 /* PodcastView.xib */,
-				C80DA31E1D77E1C10089A678 /* PodcastView.swift */,
-				C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */,
+				C80DA3251D77E6F40089A678 /* EpisodeView */,
+				C80DA3241D77E6E50089A678 /* PodcastView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -105,6 +113,26 @@
 			children = (
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C80DA3241D77E6E50089A678 /* PodcastView */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA31C1D77E1AA0089A678 /* PodcastView.xib */,
+				C80DA31E1D77E1C10089A678 /* PodcastView.swift */,
+				C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */,
+			);
+			name = PodcastView;
+			sourceTree = "<group>";
+		};
+		C80DA3251D77E6F40089A678 /* EpisodeView */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA3261D77E70B0089A678 /* EpisodeView.xib */,
+				C80DA3281D77E7240089A678 /* EpisodeView.swift */,
+				C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */,
+			);
+			name = EpisodeView;
 			sourceTree = "<group>";
 		};
 		C80FAE621D72376600C806C1 = {
@@ -268,6 +296,7 @@
 				C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */,
 				C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */,
 				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
+				C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */,
 				C80FAE741D72376600C806C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,7 +325,10 @@
 				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
 				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
 				C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */,
+				C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */,
+				C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */,
 				C80FAE711D72376600C806C1 /* PodcastController.swift in Sources */,
+				C80DA3291D77E7240089A678 /* EpisodeView.swift in Sources */,
 				C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
