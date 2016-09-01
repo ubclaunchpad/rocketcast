@@ -7,14 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA31C1D77E1AA0089A678 /* PodcastView.xib */; };
+		C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA31E1D77E1C10089A678 /* PodcastView.swift */; };
+		C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */; };
+		C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3221D77E69E0089A678 /* EpisodeController.swift */; };
+		C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA3261D77E70B0089A678 /* EpisodeView.xib */; };
+		C80DA3291D77E7240089A678 /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3281D77E7240089A678 /* EpisodeView.swift */; };
+		C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */; };
+		C80DA32E1D77E86C0089A678 /* PlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA32D1D77E86C0089A678 /* PlayerViewDelegate.swift */; };
+		C80DA3301D77E88E0089A678 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA32F1D77E88E0089A678 /* PlayerView.swift */; };
+		C80DA3321D77E8E90089A678 /* PlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA3311D77E8E90089A678 /* PlayerView.xib */; };
+		C80DA3341D77E9280089A678 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3331D77E9280089A678 /* PlayerController.swift */; };
 		C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE6E1D72376600C806C1 /* AppDelegate.swift */; };
-		C80FAE711D72376600C806C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE701D72376600C806C1 /* ViewController.swift */; };
+		C80FAE711D72376600C806C1 /* PodcastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE701D72376600C806C1 /* PodcastController.swift */; };
 		C80FAE741D72376600C806C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE721D72376600C806C1 /* Main.storyboard */; };
 		C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */; };
 		C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE781D72376600C806C1 /* Assets.xcassets */; };
 		C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */; };
 		C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE861D72376700C806C1 /* RocketCastTests.swift */; };
 		C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE911D72376700C806C1 /* RocketCastUITests.swift */; };
+		D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AC5A41D77EA9900048C17 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +47,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C80DA31C1D77E1AA0089A678 /* PodcastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastView.xib; sourceTree = "<group>"; };
+		C80DA31E1D77E1C10089A678 /* PodcastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
+		C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewDelegate.swift; sourceTree = "<group>"; };
+		C80DA3221D77E69E0089A678 /* EpisodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeController.swift; sourceTree = "<group>"; };
+		C80DA3261D77E70B0089A678 /* EpisodeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeView.xib; sourceTree = "<group>"; };
+		C80DA3281D77E7240089A678 /* EpisodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
+		C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewDelegate.swift; sourceTree = "<group>"; };
+		C80DA32D1D77E86C0089A678 /* PlayerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewDelegate.swift; sourceTree = "<group>"; };
+		C80DA32F1D77E88E0089A678 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		C80DA3311D77E8E90089A678 /* PlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerView.xib; sourceTree = "<group>"; };
+		C80DA3331D77E9280089A678 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		C80FAE6B1D72376600C806C1 /* RocketCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80FAE6E1D72376600C806C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C80FAE701D72376600C806C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C80FAE701D72376600C806C1 /* PodcastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastController.swift; sourceTree = "<group>"; };
 		C80FAE731D72376600C806C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C80FAE761D72376600C806C1 /* RocketCast.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RocketCast.xcdatamodel; sourceTree = "<group>"; };
 		C80FAE781D72376600C806C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +72,7 @@
 		C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80FAE911D72376700C806C1 /* RocketCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastUITests.swift; sourceTree = "<group>"; };
 		C80FAE931D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D09AC5A41D77EA9900048C17 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +100,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C80DA3191D77E1650089A678 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C80FAE701D72376600C806C1 /* PodcastController.swift */,
+				C80DA3221D77E69E0089A678 /* EpisodeController.swift */,
+				C80DA3331D77E9280089A678 /* PlayerController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C80DA31A1D77E1710089A678 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA32C1D77E84B0089A678 /* PlayerView */,
+				C80DA3251D77E6F40089A678 /* EpisodeView */,
+				C80DA3241D77E6E50089A678 /* PodcastView */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C80DA31B1D77E1760089A678 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C80DA3241D77E6E50089A678 /* PodcastView */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA31C1D77E1AA0089A678 /* PodcastView.xib */,
+				C80DA31E1D77E1C10089A678 /* PodcastView.swift */,
+				C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */,
+			);
+			name = PodcastView;
+			sourceTree = "<group>";
+		};
+		C80DA3251D77E6F40089A678 /* EpisodeView */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA3261D77E70B0089A678 /* EpisodeView.xib */,
+				C80DA3281D77E7240089A678 /* EpisodeView.swift */,
+				C80DA32A1D77E7AE0089A678 /* EpisodeViewDelegate.swift */,
+			);
+			name = EpisodeView;
+			sourceTree = "<group>";
+		};
+		C80DA32C1D77E84B0089A678 /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				C80DA32D1D77E86C0089A678 /* PlayerViewDelegate.swift */,
+				C80DA32F1D77E88E0089A678 /* PlayerView.swift */,
+				C80DA3311D77E8E90089A678 /* PlayerView.xib */,
+			);
+			name = PlayerView;
+			sourceTree = "<group>";
+		};
 		C80FAE621D72376600C806C1 = {
 			isa = PBXGroup;
 			children = (
@@ -99,13 +180,16 @@
 		C80FAE6D1D72376600C806C1 /* RocketCast */ = {
 			isa = PBXGroup;
 			children = (
+				C80DA31B1D77E1760089A678 /* Model */,
+				C80DA31A1D77E1710089A678 /* View */,
+				C80DA3191D77E1650089A678 /* Controller */,
 				C80FAE6E1D72376600C806C1 /* AppDelegate.swift */,
-				C80FAE701D72376600C806C1 /* ViewController.swift */,
 				C80FAE721D72376600C806C1 /* Main.storyboard */,
 				C80FAE781D72376600C806C1 /* Assets.xcassets */,
 				C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */,
 				C80FAE7D1D72376600C806C1 /* Info.plist */,
 				C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */,
+				D09AC5A41D77EA9900048C17 /* Constants.swift */,
 			);
 			path = RocketCast;
 			sourceTree = "<group>";
@@ -233,8 +317,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */,
+				C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */,
 				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
+				C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */,
 				C80FAE741D72376600C806C1 /* Main.storyboard in Resources */,
+				C80DA3321D77E8E90089A678 /* PlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +346,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C80DA32E1D77E86C0089A678 /* PlayerViewDelegate.swift in Sources */,
 				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
-				C80FAE711D72376600C806C1 /* ViewController.swift in Sources */,
+				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
+				C80DA3301D77E88E0089A678 /* PlayerView.swift in Sources */,
+				C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */,
+				C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */,
+				C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */,
+				C80FAE711D72376600C806C1 /* PodcastController.swift in Sources */,
+				C80DA3291D77E7240089A678 /* EpisodeView.swift in Sources */,
+				C80DA3341D77E9280089A678 /* PlayerController.swift in Sources */,
 				C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */,
+				D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +582,7 @@
 				C80FAE981D72376700C806C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C80FAE991D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +591,7 @@
 				C80FAE9B1D72376700C806C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C80FAE9C1D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +600,7 @@
 				C80FAE9E1D72376700C806C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
