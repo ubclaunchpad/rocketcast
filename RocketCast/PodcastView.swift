@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 
 class PodcastView: UIView {
-    
     var viewDelegate: PodcastViewDelegate?
+    
+    @IBAction func segueButton(sender: AnyObject) {
+        viewDelegate?.segueToEpisode()
+    }
     
     class func instancefromNib(frame: CGRect) -> PodcastView {
         let view = UINib(nibName: "PodcastView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]

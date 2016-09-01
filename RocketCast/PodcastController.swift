@@ -21,14 +21,22 @@ class PodcastController: UIViewController {
         let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
         view.addSubview(mainView!)
-
+        self.mainView?.viewDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
     }
-
+  
+    
 
 }
-
+extension PodcastController:PodcastViewDelegate {
+    
+    func segueToEpisode() {
+        performSegueWithIdentifier(Segues.segueFromPodcastToEpisode, sender: self)
+    }
+    
+    
+}

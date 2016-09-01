@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 protocol PodcastViewDelegate {
-    
+    func segueToEpisode()
 }

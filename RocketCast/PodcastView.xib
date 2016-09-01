@@ -14,11 +14,22 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-Za-aiK">
                     <rect key="frame" x="53" y="36" width="46" height="30"/>
                     <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="segueButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ou-nA-SrL"/>
+                    </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-bN-elU">
+                    <rect key="frame" x="118" y="267" width="63" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="5b9-bN-elU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="118" id="VAK-f7-AGt"/>
                 <constraint firstItem="5Kv-Za-aiK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="53" id="lr6-Ae-M3H"/>
+                <constraint firstItem="5b9-bN-elU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="267" id="mNd-Ot-g7s"/>
                 <constraint firstItem="5Kv-Za-aiK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="wnx-6b-L2L"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

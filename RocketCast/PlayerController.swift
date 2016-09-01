@@ -21,7 +21,7 @@ class PlayerController: UIViewController {
         let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
-        
+        self.mainView?.viewDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,4 +29,8 @@ class PlayerController: UIViewController {
         
     }
 
+}
+
+extension PlayerController: PlayerViewDelegate {
+    
 }

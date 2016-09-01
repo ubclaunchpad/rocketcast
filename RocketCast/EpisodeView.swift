@@ -11,6 +11,9 @@ import UIKit
 class EpisodeView: UIView {
     var viewDelegate: EpisodeViewDelegate?
     
+    @IBAction func segueToPlayer(sender: AnyObject) {
+        viewDelegate?.segueToPlayer()
+    }
     class func instancefromNib(frame: CGRect) -> EpisodeView {
         let view = UINib(nibName: "EpisodeView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
             as! EpisodeView
