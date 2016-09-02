@@ -26,6 +26,9 @@
 		C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */; };
 		C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE861D72376700C806C1 /* RocketCastTests.swift */; };
 		C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE911D72376700C806C1 /* RocketCastUITests.swift */; };
+		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
+		D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */; };
+		D05CC4D61D791F9C009C4B19 /* PodcastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */; };
 		D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AC5A41D77EA9900048C17 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +75,9 @@
 		C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80FAE911D72376700C806C1 /* RocketCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastUITests.swift; sourceTree = "<group>"; };
 		C80FAE931D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBridge.swift; sourceTree = "<group>"; };
+		D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadBridge.swift; sourceTree = "<group>"; };
+		D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastModel.swift; sourceTree = "<group>"; };
 		D09AC5A41D77EA9900048C17 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +129,9 @@
 		C80DA31B1D77E1760089A678 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
+				D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */,
+				D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -350,9 +359,12 @@
 				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
 				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
 				C80DA3301D77E88E0089A678 /* PlayerView.swift in Sources */,
+				D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */,
 				C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */,
 				C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */,
+				D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */,
 				C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */,
+				D05CC4D61D791F9C009C4B19 /* PodcastModel.swift in Sources */,
 				C80FAE711D72376600C806C1 /* PodcastController.swift in Sources */,
 				C80DA3291D77E7240089A678 /* EpisodeView.swift in Sources */,
 				C80DA3341D77E9280089A678 /* PlayerController.swift in Sources */,

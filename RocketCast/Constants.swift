@@ -8,6 +8,7 @@
 
 import Foundation
 
+typealias URL = String
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
