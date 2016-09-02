@@ -10,5 +10,10 @@ import Foundation
 
 
 class PodcastModel {
+    private var rss: String?
     
+    init (rss: String) {
+        self.rss = rss
+    }
 }
+
