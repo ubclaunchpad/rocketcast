@@ -15,6 +15,9 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        ModelBridge.sharedInstance.downloadPodcast("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
+            
+        }
     }
     
     private func setupView() {
