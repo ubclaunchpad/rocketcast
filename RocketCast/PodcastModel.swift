@@ -10,10 +10,13 @@ import Foundation
 
 
 class PodcastModel {
-    private var rss: String?
+    private var xml: String?
     
-    init (rss: String) {
-        self.rss = rss
+    //podcast info
+    //podcast episodes
+    
+    init (xml: XML) {
+        self.xml = xml
     }
 }
 
