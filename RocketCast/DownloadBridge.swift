@@ -10,27 +10,17 @@
 import Foundation
 
 protocol DownloadBridgeProtocol {
-    func downloadPodcast(url:URL, result:(downloadedPodcast: PodcastModel) -> ())
+    func downloadPodcastXML(url:PodcastURL, result:(podcastXML: XML) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
 
-    func downloadPodcast(url: URL, result: (downloadedPodcast: PodcastModel) -> ()) {
+    func downloadPodcastXML(url: PodcastURL, result: (podcastXML: XML) -> ()) {
         let nsURL = NSURL(string: url)
+        let parser = NSXMLParser(contentsOfURL: nsURL!)
+        print(parser)
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(nsURL!) { data, response, error in
-            if error != nil {
-                print(error)
-                return
-            }
-            print(data.debugDescription)
-            let parser = NSXMLParser(data: data!)
-           
-            if parser.parse() {
-               print(parser)
-            }
-        }
-        task.resume()
-    
+        let xmlParser = XMLParser(url: nsURL!)
+        
         //download it
         //pass the rss data to another object
         // get the authrfrom that object
