@@ -10,11 +10,11 @@
 import Foundation
 
 protocol DownloadBridgeProtocol {
-    func downloadPodcast(url:URL, result:(downloadedPodcast: PodcastModel) -> ())
+    func downloadPodcastXML(url:PodcastURL, result:(podcastXML: XML) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
 
-    func downloadPodcast(url: URL, result: (downloadedPodcast: PodcastModel) -> ()) {
+    func downloadPodcastXML(url: PodcastURL, result: (podcastXML: XML) -> ()) {
         let nsURL = NSURL(string: url)
         let parser = NSXMLParser(contentsOfURL: nsURL!)
         print(parser)

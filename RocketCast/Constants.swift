@@ -8,7 +8,10 @@
 
 import Foundation
 
-typealias URL = String
+typealias PodcastURL = String
+typealias ImageURL = String
+typealias MP3URL = String
+typealias XML = String
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
