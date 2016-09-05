@@ -8,9 +8,12 @@
 
 import Foundation
 
-typealias PodcastURL = String
-typealias ImageURL = String
-typealias MP3URL = String
+typealias PodcastWebURL = String
+typealias ImageWebURL = String
+typealias MP3WebURL = String
+typealias PodcastStorageURL = String
+typealias ImageStorageURL = String
+typealias MP3StorageURL = String
 typealias XML = String
 
 enum  Segues {
