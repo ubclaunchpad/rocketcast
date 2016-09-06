@@ -1,6 +1,3 @@
 language: objective-c
-before_install:
-    - brew update
-    - brew install xctool
-script: xctool test -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulat
+script: xctool test -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator
 
