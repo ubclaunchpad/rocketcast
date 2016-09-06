@@ -1,0 +1,5 @@
+
+language: objective-c
+osx_image: xcode6.4
+script:
+  - xctool test -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator8.4
