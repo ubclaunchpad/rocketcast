@@ -25,7 +25,6 @@
 		C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE781D72376600C806C1 /* Assets.xcassets */; };
 		C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */; };
 		C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE861D72376700C806C1 /* RocketCastTests.swift */; };
-		C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE911D72376700C806C1 /* RocketCastUITests.swift */; };
 		C8D601A51D79380B003512FE /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D601A41D79380B003512FE /* XMLParser.swift */; };
 		C8D601A71D793E05003512FE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D601A61D793E05003512FE /* Log.swift */; };
 		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
@@ -75,7 +74,6 @@
 		C80FAE861D72376700C806C1 /* RocketCastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastTests.swift; sourceTree = "<group>"; };
 		C80FAE881D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C80FAE911D72376700C806C1 /* RocketCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastUITests.swift; sourceTree = "<group>"; };
 		C80FAE931D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8D601A41D79380B003512FE /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		C8D601A61D793E05003512FE /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 		C80FAE901D72376700C806C1 /* RocketCastUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C80FAE911D72376700C806C1 /* RocketCastUITests.swift */,
 				C80FAE931D72376700C806C1 /* Info.plist */,
 			);
 			path = RocketCastUITests;
@@ -393,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
