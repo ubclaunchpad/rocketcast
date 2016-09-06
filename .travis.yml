@@ -1,0 +1,12 @@
+language: objective-c
+notifications:
+  slack:
+    on_success: always
+    on_failure: change
+    rooms:
+      secure: generated-secret
+      
+xcode_project: RocketCast.xcodeproj
+xcode_scheme: RocketCast
+osx_image: xcode7.2
+xcode_sdk: iphonesimulator9.2
