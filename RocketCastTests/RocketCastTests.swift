@@ -22,7 +22,8 @@ class RocketCastTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
+      
+        XCTAssertTrue(false)
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
