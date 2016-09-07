@@ -1,4 +1,4 @@
 language: objective-c
 script:
-  - xctool -workspace RocketCast.xcworkspace -scheme RocketCast -sdk iphonesimulator
-  - xctool test -workspace RocketCast.xcworkspace -scheme RocketCastTests -sdk iphonesimulator
+  - xcodebuild -workspace RocketCast.xcworkspace -scheme RocketCast -sdk iphonesimulator
+  - xcodebuild test -workspace RocketCast.xcworkspace -scheme RocketCastTests -sdk iphonesimulator
