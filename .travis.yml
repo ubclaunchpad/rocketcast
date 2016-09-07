@@ -1,4 +1,8 @@
 language: objective-c
-script:
-  - xcodebuild -workspace RocketCast.xcworkspace -scheme RocketCast -sdk iphonesimulator
-  - xcodebuild test -workspace RocketCast.xcworkspace -scheme RocketCastTests -sdk iphonesimulator
+script: 
+  - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator
+  - xcodebuild test -project RocketCast.xcodeproj -scheme RocketCastTests -sdk iphonesimulator 
+
+
+
+
