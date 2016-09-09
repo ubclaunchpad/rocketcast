@@ -22,7 +22,7 @@ class RocketCastTests: XCTestCase {
     }
     
     func testExample() {
-        XCTAssertTrue(false , "this should fail!!!")
+        XCTAssertTrue(true , "now this should pass")
     }
     
     func testPerformanceExample() {
