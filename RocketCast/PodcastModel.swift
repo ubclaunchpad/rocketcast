@@ -10,13 +10,16 @@ import Foundation
 
 
 class PodcastModel {
-    private var xml: String?
-    
+    private var title: String?
+    private var episodes:[EpisodeModel]?
     //podcast info
     //podcast episodes
     
-    init (xml: XML) {
-        self.xml = xml
+    init (title: String) {
+        self.title = title
     }
+    
+    
+    
 }
 

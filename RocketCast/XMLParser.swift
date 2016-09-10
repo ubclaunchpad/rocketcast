@@ -10,18 +10,21 @@ import Foundation
 
 class XMLParser: NSObject {
     
-    var strXMLData:String = ""
-    var currentElement:String = ""
-    var passData:Bool=false
-    var passName:Bool=false
-    
+    var parser = NSXMLParser()
+    var posts = NSMutableArray()
+    var elements = NSMutableDictionary()
+    var element = NSString()
+    var title1 = NSMutableString()
+    var summary = NSMutableString()
+    var date = NSMutableString()
+    var podcast:PodcastModel?
     
     var url: NSURL?
     var xmlContent:NSDictionary?
     init(url: NSURL) {
         super.init()
         self.url = url
-        self.xmlContent = parseData()
+        parseData()
     }
     
     func getPodcastAuthor() {
@@ -32,70 +35,63 @@ class XMLParser: NSObject {
         
     }
     
-    private func parseData () -> NSDictionary {
-        var parser = NSXMLParser(contentsOfURL: url!)
+    private func parseData () {
+        let parser = NSXMLParser(contentsOfURL: url!)
         parser!.delegate = self
         Log.test("parse is called")
         guard parser!.parse() else {
-            //TODO: error out
-            return NSDictionary()
+            Log.error("Oh shit something went wrong")
+            return
         }
-        
-        return NSDictionary()
     }
 }
 
 extension XMLParser: NSXMLParserDelegate {
-//    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, foundCharacters string: String) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
-//    }
-    
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        currentElement=elementName;
-        if(elementName=="title" || elementName=="lastBuildDate")
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
+        element = elementName
+        if (elementName as NSString).isEqualToString("item")
         {
-            if(elementName=="title"){
-                passName=true;
-                Log.test("\(elementName)")
-            }
-            passData=true;
+            elements = NSMutableDictionary()
+            elements = [:]
+            title1 = NSMutableString()
+            title1 = ""
+            date = NSMutableString()
+            date = ""
+            summary = ""
+            summary = NSMutableString()
         }
     }
+
     
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        currentElement="";
-        if(elementName=="title" || elementName=="lastBuildDate")
-        {
-            if(elementName=="title"){
-                passName=false;
-                Log.test("\(elementName)")
-            }
-            passData=false;
+    func parser(parser: NSXMLParser, foundCharacters string: String)
+    {
+        if element.isEqualToString("title") {
+            title1.appendString(string)
+        } else if element.isEqualToString("pubDate") {
+            date.appendString(string)
+        } else if element.isEqualToString("description") {
+            summary.appendString(string)
         }
     }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if(passName){
-            strXMLData=strXMLData+"\n\n"+string
-        }
-        
-        if(passData)
-        {
-            Log.test(string)
-        }
-    }
-    
+  
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         Log.error("parsing failed")
         NSLog("failure error: %@", parseError)
     }
-}
+    
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
+        if (elementName as NSString).isEqualToString("item") {
+            if !title1.isEqual(nil) {
+                elements.setObject(title1, forKey: "title")
+            }
+            if !date.isEqual(nil) {
+                elements.setObject(date, forKey: "date")
+            }
+            
+            if !summary.isEqual(nil) {
+                elements.setObject(summary, forKey: "description")
+            }
+            posts.addObject(elements)
+        }
+    }
+  }
