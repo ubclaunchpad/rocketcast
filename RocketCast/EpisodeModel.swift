@@ -20,6 +20,9 @@ class EpisodeModel {
         self.description = description
         self.date = date
     }
+    init() {
+        
+    }
     
     
 }
