@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
 <title> QuantumSpark </title>
-<description> A dank podcast </description>
+<itunes:summary> A dank podcast </itunes:summary>
 <itunes:author> James Park </itunes:author>
 <link> http://www.yourserver.com/YourPodcastHomepage/ </link>
 <itunes:image href="JamesPark.jpg" />

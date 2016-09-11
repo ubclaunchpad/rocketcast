@@ -108,7 +108,8 @@ extension XMLParser: NSXMLParserDelegate {
             
             let episode = EpisodeModel(title: episodeTitle as String,
                                        description: summary as String,
-                                       date: date as String)
+                                       date: date as String
+                                            )
             listOfEpisodes.append(episode)
         }
     }
