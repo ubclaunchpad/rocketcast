@@ -20,10 +20,12 @@ class XMLParser: NSObject {
     var episodeAuthor = NSMutableString()
     var episodePublishedDate = NSMutableString()
     var episodeDuration = NSMutableString()
+    var episodeImageURL = NSMutableString()
     
     var podcastTitle = NSMutableString()
     var podcastAuthor = NSMutableString()
     var podcastDescription = NSMutableString()
+    var podcastImageURL = NSMutableString()
     
     var podcast:PodcastModel?
     
@@ -46,7 +48,8 @@ class XMLParser: NSObject {
         podcast = PodcastModel(title: podcastTitle as String,
                                author: podcastAuthor as String,
                                description: podcastDescription as String,
-                               episodes: listOfEpisodes)
+                               episodes: listOfEpisodes,
+                               imageURL: podcastImageURL as ImageWebURL)
     }
     
 }
@@ -60,7 +63,15 @@ extension XMLParser: NSXMLParserDelegate {
             episodeDescription = NSMutableString()
             episodeAuthor = NSMutableString()
             episodeDuration = NSMutableString()
+            episodeImageURL = NSMutableString()
             
+        }
+        if (elementName as NSString).isEqual("itunes:image") {
+            
+            episodeImageURL.appendString(attributeDict["href"]!)
+            if (podcastImageURL.isEqual("")) {
+                podcastImageURL.appendString(attributeDict["href"]!)
+            }
         }
     }
     
@@ -130,12 +141,17 @@ extension XMLParser: NSXMLParserDelegate {
             if (episodeAuthor.isEqual("")) {
                 episodeAuthor = podcastAuthor
             }
+            if (episodeImageURL.isEqual("")) {
+                episodeImageURL = podcastImageURL
+            }
             
             let episode = EpisodeModel(title: episodeTitle as String,
                                        description: episodeDescription as String,
                                        date: episodePublishedDate as String,
                                        author: episodeAuthor as String,
-                                       duration: episodeDuration as String)
+                                       duration: episodeDuration as String,
+                                       imageURL: episodeImageURL as ImageWebURL)
+            
             listOfEpisodes.append(episode)
         }
     }
