@@ -11,15 +11,19 @@ import Foundation
 class XMLParser: NSObject {
     
     var parser = NSXMLParser()
+    var element = NSString()
+    
     var listOfEpisodes = [EpisodeModel]()
+    
     var episodeTitle = NSMutableString()
+    var episodeDescription = NSMutableString()
+    var episodeAuthor = NSMutableString()
+    var date = NSMutableString()
     
     var podcastTitle = NSMutableString()
-    var element = NSString()
-    var author = NSMutableString()
-    var summary = NSMutableString()
-    var date = NSMutableString()
+    var podcastAuthor = NSMutableString()
     var podcastDescription = NSMutableString()
+    
     var podcast:PodcastModel?
     
     
@@ -39,7 +43,7 @@ class XMLParser: NSObject {
         }
         
         podcast = PodcastModel(title: podcastTitle as String,
-                               author: author as String,
+                               author: podcastAuthor as String,
                                description: podcastDescription as String,
                                episodes: listOfEpisodes)
     }
@@ -54,28 +58,43 @@ extension XMLParser: NSXMLParserDelegate {
             episodeTitle = ""
             date = NSMutableString()
             date = ""
-            summary = ""
-            summary = NSMutableString()
+            episodeDescription = NSMutableString()
+            episodeDescription = ""
+            episodeAuthor = NSMutableString()
+            episodeAuthor = ""
+           
         }
     }
     
     
-    func parser(parser: NSXMLParser, foundCharacters string: String)
-    {
-        if element.isEqualToString("title") {
-            episodeTitle.appendString(string)
-            if (podcastTitle.isEqual("")) {
-                podcastTitle.appendString(string)
-            }
-        } else if element.isEqualToString("pubDate") {
-            date.appendString(string)
-        } else if element.isEqualToString("description") {
-            summary.appendString(string)
-        } else if element.isEqualToString("itunes:author") {
-            author.appendString(string)
-        } else if element.isEqualToString("itunes:summary"){
-            podcastDescription.appendString(string)
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+        
+        switch element {
+            case "title":
+                episodeTitle.appendString(string)
+                if (podcastTitle.isEqual("")) {
+                    podcastTitle.appendString(string)
+                }
+            case "itunes:author":
+                episodeAuthor.appendString(string)
+                if (podcastAuthor.isEqual("")) {
+                    podcastAuthor.appendString(string)
+                }
+            case "itunes:summary":
+                podcastDescription.appendString(string)
+            case "pubDate":
+                date.appendString(string)
+            case "dc:creator":
+                episodeAuthor.appendString(string)
+            case "description":
+                episodeDescription.appendString(string)
+                if (podcastDescription.isEqual("")) {
+                     podcastDescription.appendString(string)
+                }
+            
+        default: break
         }
+        
     }
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
@@ -83,7 +102,7 @@ extension XMLParser: NSXMLParserDelegate {
         NSLog("failure error: %@", parseError)
     }
     
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         fillInEpisodes(elementName)
     }
@@ -101,15 +120,19 @@ extension XMLParser: NSXMLParserDelegate {
                 return
             }
             
-            guard !summary.isEqual(nil) else {
+            guard !episodeDescription.isEqual(nil) else {
                 Log.error("Error: No description tag was detected")
                 return
             }
             
+            if (episodeAuthor.isEqual("")) {
+                episodeAuthor = podcastAuthor
+            }
+            
             let episode = EpisodeModel(title: episodeTitle as String,
-                                       description: summary as String,
-                                       date: date as String
-                                            )
+                                       description: episodeDescription as String,
+                                       date: date as String,
+                                       author: episodeAuthor as String)
             listOfEpisodes.append(episode)
         }
     }

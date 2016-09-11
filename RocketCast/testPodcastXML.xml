@@ -16,5 +16,11 @@
 <itunes:author> Jon Mercer </itunes:author>
 <pubDate> Thu, 16 Jun 2005 5:00:00 PST </pubDate>
 <enclosure url="http://www.yourserver.com/podcast_file.mp3" length="3174554" type="audio/mpeg" /> </item>
+<item>
+    <title> Photon </title>
+    <description> lights </description>
+    <itunes:author> Kelvin Chan </itunes:author>
+    <pubDate> Thu, 16 Jun 2005 5:00:00 PST </pubDate>
+    <enclosure url="http://www.yourserver.com/podcast_file.mp3" length="3174554" type="audio/mpeg" /> </item>
 </channel>
 </rss>
