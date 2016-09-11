@@ -22,7 +22,7 @@ enum  Segues {
 
 }
 
-let unwantedStringInTag = ["\n", "\t"]
+let unwantedStringInTag = ["<p>", "</p>", "\t"]
 
 /**
  A log level of debug will print out all levels above it.

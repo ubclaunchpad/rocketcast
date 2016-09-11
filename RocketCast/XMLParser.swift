@@ -18,7 +18,8 @@ class XMLParser: NSObject {
     var episodeTitle = NSMutableString()
     var episodeDescription = NSMutableString()
     var episodeAuthor = NSMutableString()
-    var date = NSMutableString()
+    var episodePublishedDate = NSMutableString()
+    var episodeDuration = NSMutableString()
     
     var podcastTitle = NSMutableString()
     var podcastAuthor = NSMutableString()
@@ -55,43 +56,44 @@ extension XMLParser: NSXMLParserDelegate {
         element = elementName
         if (elementName as NSString).isEqualToString("item") {
             episodeTitle = NSMutableString()
-            episodeTitle = ""
-            date = NSMutableString()
-            date = ""
+            episodePublishedDate = NSMutableString()
             episodeDescription = NSMutableString()
-            episodeDescription = ""
             episodeAuthor = NSMutableString()
-            episodeAuthor = ""
-           
+            episodeDuration = NSMutableString()
+            
         }
     }
     
-    
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        let information = string.stringByRemovingAll(unwantedStringInTag)
+        let information = string.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByRemovingAll(unwantedStringInTag)
+        
         switch element {
-            case "title":
-                episodeTitle.appendString(information)
-                if (podcastTitle.isEqual("")) {
-                    podcastTitle.appendString(information)
-                }
-            case "itunes:author":
-                episodeAuthor.appendString(information)
-                if (podcastAuthor.isEqual("")) {
-                    podcastAuthor.appendString(information)
-                }
-            case "itunes:summary":
+        case "title":
+            episodeTitle.appendString(information)
+            if (podcastTitle.isEqual("")) {
+                podcastTitle.appendString(information)
+            }
+        case "itunes:author":
+            episodeAuthor.appendString(information)
+            if (podcastAuthor.isEqual("")) {
+                podcastAuthor.appendString(information)
+            }
+        case "itunes:summary":
+            if (podcastDescription.isEqual("")) {
                 podcastDescription.appendString(information)
-            case "pubDate":
-                date.appendString(information)
-            case "dc:creator":
-                episodeAuthor.appendString(information)
-            case "description":
-                episodeDescription.appendString(information)
-                if (podcastDescription.isEqual("")) {
-                     podcastDescription.appendString(information)
-                }
-            
+            }
+        case "pubDate":
+            episodePublishedDate.appendString(information)
+        case "dc:creator":
+            episodeAuthor.appendString(information)
+        case "description":
+            episodeDescription.appendString(information)
+            if (podcastDescription.isEqual("")) {
+                podcastDescription.appendString(information)
+            }
+        case "itunes:duration":
+            episodeDuration.appendString(information)
         default: break
         }
         
@@ -115,7 +117,7 @@ extension XMLParser: NSXMLParserDelegate {
                 return
             }
             
-            guard !date.isEqual(nil) else {
+            guard !episodePublishedDate.isEqual(nil) else {
                 Log.error("Error: No date tag was detected")
                 return
             }
@@ -131,8 +133,9 @@ extension XMLParser: NSXMLParserDelegate {
             
             let episode = EpisodeModel(title: episodeTitle as String,
                                        description: episodeDescription as String,
-                                       date: date as String,
-                                       author: episodeAuthor as String)
+                                       date: episodePublishedDate as String,
+                                       author: episodeAuthor as String,
+                                       duration: episodeDuration as String)
             listOfEpisodes.append(episode)
         }
     }

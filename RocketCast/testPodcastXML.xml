@@ -15,12 +15,14 @@
 <description>exploring states of sub</description>
 <itunes:author>Jon Mercer</itunes:author>
 <pubDate>Thu, 16 Jun 2005 5:00:00 PST</pubDate>
+ <itunes:duration>01:07:59</itunes:duration>
 <enclosure url="http://www.yourserver.com/podcast_file.mp3" length="3174554" type="audio/mpeg" /> </item>
 <item>
     <title>Photon</title>
     <description>lights</description>
     <itunes:author>Kelvin Chan</itunes:author>
     <pubDate>Thu, 16 Jun 2005 5:00:00 PST</pubDate>
+     <itunes:duration>12:07:59</itunes:duration>
     <enclosure url="http://www.yourserver.com/podcast_file.mp3" length="3174554" type="audio/mpeg" /> </item>
 </channel>
 </rss>
