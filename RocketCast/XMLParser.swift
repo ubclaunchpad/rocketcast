@@ -12,31 +12,51 @@ class XMLParser: NSObject {
     
     var parser = NSXMLParser()
     var listOfEpisodes = [EpisodeModel]()
-     var episodeTitle = NSMutableString()
-
+    var episodeTitle = NSMutableString()
+    
+    var podcastTitle = NSMutableString()
     var element = NSString()
     var author = NSMutableString()
     var summary = NSMutableString()
     var date = NSMutableString()
+    var podcastDescription = NSMutableString()
     var podcast:PodcastModel?
     
-    var url: NSURL?
-    var xmlContent:NSDictionary?
     init(url: NSURL) {
         super.init()
-        self.url = url
-        parseData()
+        parseData(url)
     }
     
-    private func parseData () {
-        let parser = NSXMLParser(contentsOfURL: url!)
+    init(data: NSData) {
+        super.init()
+        parseData(data)
+        
+    }
+    
+    private func parseData (url:NSURL) {
+        let parser = NSXMLParser(contentsOfURL: url)
         parser!.delegate = self
         Log.test("parse is called")
         guard parser!.parse() else {
             Log.error("Oh shit something went wrong")
             return
         }
+        
+        podcast = PodcastModel(title: podcastTitle as String,
+                               author: author as String,
+                               description: podcastDescription as String,
+                               episodes: listOfEpisodes)
     }
+    
+    private func parseData(data:NSData){
+        let parser = NSXMLParser(data: data)
+        
+        
+    }
+    
+    
+    
+    
 }
 
 extension XMLParser: NSXMLParserDelegate {
@@ -57,12 +77,17 @@ extension XMLParser: NSXMLParserDelegate {
     {
         if element.isEqualToString("title") {
             episodeTitle.appendString(string)
+            if (podcastTitle.isEqual("")) {
+                podcastTitle.appendString(string)
+            }
         } else if element.isEqualToString("pubDate") {
             date.appendString(string)
         } else if element.isEqualToString("description") {
             summary.appendString(string)
         } else if element.isEqualToString("itunes:author") {
             author.appendString(string)
+        } else if element.isEqualToString("itunes:summary"){
+            podcastDescription.appendString(string)
         }
     }
   
@@ -72,23 +97,13 @@ extension XMLParser: NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
-        guard elementName == "channel" else {
-            Log.error ("Error: No channel tag was detected")
-            return
-        }
-        
-        guard !episodeTitle.isEqual(nil) else {
-            Log.error("Error: No title tag was detected")
-            return
-        }
-        
-        
+
         fillInEpisodes(elementName)
     }
     
     func fillInEpisodes (elementName:String) {
         guard elementName == "item" else {
-            Log.error("Error: No item tag was detected")
+            Log.info("This is not an episode tag. Move on to the next tag")
             return
         }
     
@@ -98,7 +113,7 @@ extension XMLParser: NSXMLParserDelegate {
         }
         
         guard !date.isEqual(nil) else {
-            Log.error("Error: No date tag was detected ")
+            Log.error("Error: No date tag was detected")
             return
         }
         

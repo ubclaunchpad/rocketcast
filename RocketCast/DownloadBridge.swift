@@ -32,6 +32,22 @@ extension ModelBridge: DownloadBridgeProtocol {
         
     }
     
+    
+    
+    func downloadPodcastXML(data:NSData, result:(url: PodcastStorageURL) -> ()) {
+    
+        let xmlParser = XMLParser(url: nsURL!)
+        
+        //download it
+        //pass the rss data to another object
+        // get the authrfrom that object
+        //get other info from that object (list of episodes, title of podcast)
+        //put the title, episodes, and author into the POdcastModel
+        
+    }
+    
+    
+    
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ()) {
         //TODO
     }
