@@ -23,7 +23,7 @@ extension ModelBridge: DownloadBridgeProtocol {
     let task = NSURLSession.sharedSession().dataTaskWithURL(podcastURL!) {(data, response, error) in
       
       guard error == nil else {
-        print(error)
+        Log.error(error.debugDescription)
         return
       }
       let XMLString = NSString(data: data!, encoding: NSUTF8StringEncoding)
@@ -33,10 +33,10 @@ extension ModelBridge: DownloadBridgeProtocol {
       let filePath = NSHomeDirectory() + filePathAppend
 
       do {
-        _ = try XMLString!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+        try XMLString!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
         result(url: filePathAppend)
       } catch let error as NSError {
-        print(error.description)
+        Log.error(error.debugDescription)
       }
       
     }

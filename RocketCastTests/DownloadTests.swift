@@ -43,9 +43,9 @@ class DownloadTests: XCTestCase {
       done = true
       
       let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast)
-      print(path)
+      
       if let data = fileMgr.contentsAtPath(path) {
-        print(NSString(data:data, encoding: NSUTF8StringEncoding)!)
+        Log.info(String(data:data, encoding: NSUTF8StringEncoding)!)
       }
     }
     

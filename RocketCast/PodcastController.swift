@@ -16,7 +16,6 @@ class PodcastController: UIViewController {
         super.viewDidLoad()
         setupView()
         ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
-            print("AKFHKEHFJAWLJgeregsegsegrF,HBA")
         }
     }
     
