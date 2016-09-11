@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
-<title> Title of your site </title>
-<description> A description of your podcast show </description>
-<itunes:author>Your Name </itunes:author>
+<title> QuantumSpark </title>
+<description> A dank podcast </description>
+<itunes:author> James Park </itunes:author>
 <link> http://www.yourserver.com/YourPodcastHomepage/ </link>
-<itunes:image href="http://www.yourserver.com/YourPodcastPicture.jpg" />
+<itunes:image href="JamesPark.jpg" />
 <pubDate> Sun, 09 Oct 2005 21:00:00 PST </pubDate>
 <language>en-us</language>
-<copyright> Copyright Year Your_Name </copyright>
+<copyright> Copyright Year JamesPark </copyright>
 
 <item>
-<title> This is just a test </title>
-<description> A description of your podcast episode </description>
-<itunes:author> Your Name </itunes:author>
+<title> Quantum Superposition </title>
+<description> exploring states of sub </description>
+<itunes:author> Jon Mercer </itunes:author>
 <pubDate> Thu, 16 Jun 2005 5:00:00 PST </pubDate>
 <enclosure url="http://www.yourserver.com/podcast_file.mp3" length="3174554" type="audio/mpeg" /> </item>
 </channel>

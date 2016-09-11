@@ -15,12 +15,14 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-//        var url = "http://billburr.libsyn.com/rss"
-       //  let url = NSBundle.mainBundle().pathForResource("testPodcastXML.xml", ofType: "xml")!
-       let data = NSData(contentsOfFile: "testPodcastXML.xml")
-//        ModelBridge.sharedInstance.downloadPodcastXML(url) { (downloadedPodcast) in
-//            
-//        }
+        let url = "http://billburr.libsyn.com/rss"
+        // let data = NSData(contentsOfURL: asdf!)
+        let xmlfilePath = NSBundle.mainBundle().URLForResource("testPodcastXML", withExtension: "xml")!
+        let stringPath = xmlfilePath.absoluteString
+        let data = NSData(contentsOfURL: NSURL(string: stringPath)!)
+        ModelBridge.sharedInstance.downloadPodcastXML(data!) { (downloadedPodcast) in
+            
+        }
     }
     
     private func setupView() {

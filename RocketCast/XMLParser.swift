@@ -22,10 +22,6 @@ class XMLParser: NSObject {
     var podcastDescription = NSMutableString()
     var podcast:PodcastModel?
     
-    init(url: NSURL) {
-        super.init()
-        parseData(url)
-    }
     
     init(data: NSData) {
         super.init()
@@ -33,11 +29,11 @@ class XMLParser: NSObject {
         
     }
     
-    private func parseData (url:NSURL) {
-        let parser = NSXMLParser(contentsOfURL: url)
-        parser!.delegate = self
+    private func parseData (data:NSData) {
+        let parser = NSXMLParser(data: data)
+        parser.delegate = self
         Log.test("parse is called")
-        guard parser!.parse() else {
+        guard parser.parse() else {
             Log.error("Oh shit something went wrong")
             return
         }
@@ -47,15 +43,6 @@ class XMLParser: NSObject {
                                description: podcastDescription as String,
                                episodes: listOfEpisodes)
     }
-    
-    private func parseData(data:NSData){
-        let parser = NSXMLParser(data: data)
-        
-        
-    }
-    
-    
-    
     
 }
 
@@ -71,7 +58,7 @@ extension XMLParser: NSXMLParserDelegate {
             summary = NSMutableString()
         }
     }
-
+    
     
     func parser(parser: NSXMLParser, foundCharacters string: String)
     {
@@ -90,41 +77,39 @@ extension XMLParser: NSXMLParserDelegate {
             podcastDescription.appendString(string)
         }
     }
-  
+    
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         Log.error("parsing failed")
         NSLog("failure error: %@", parseError)
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?){
-
+        
         fillInEpisodes(elementName)
     }
     
     func fillInEpisodes (elementName:String) {
-        guard elementName == "item" else {
-            Log.info("This is not an episode tag. Move on to the next tag")
-            return
-        }
-    
-        guard !episodeTitle.isEqual(nil) else {
-            Log.error("Error: No title tag was detected")
-            return
-        }
         
-        guard !date.isEqual(nil) else {
-            Log.error("Error: No date tag was detected")
-            return
+        if (elementName == "item") {
+            guard !episodeTitle.isEqual(nil) else {
+                Log.error("Error: No title tag was detected")
+                return
+            }
+            
+            guard !date.isEqual(nil) else {
+                Log.error("Error: No date tag was detected")
+                return
+            }
+            
+            guard !summary.isEqual(nil) else {
+                Log.error("Error: No description tag was detected")
+                return
+            }
+            
+            let episode = EpisodeModel(title: episodeTitle as String,
+                                       description: summary as String,
+                                       date: date as String)
+            listOfEpisodes.append(episode)
         }
-        
-        guard !summary.isEqual(nil) else {
-            Log.error("Error: No description tag was detected")
-            return
-        }
-        
-        let episode = EpisodeModel(title: episodeTitle as String,
-                                   description: summary as String,
-                                   date: date as String)
-        listOfEpisodes.append(episode)
     }
-  }
+}

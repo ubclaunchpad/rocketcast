@@ -33,7 +33,7 @@
 		D05CC4D61D791F9C009C4B19 /* PodcastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */; };
 		D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AC5A41D77EA9900048C17 /* Constants.swift */; };
 		D0B6914A1D84ADAA00C3366D /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B691491D84ADAA00C3366D /* EpisodeModel.swift */; };
-		D0B6914C1D852DF500C3366D /* testPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914B1D852DF500C3366D /* testPodcastXML.xml */; };
+		D0B6914E1D85D7CC00C3366D /* testPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,7 @@
 		D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastModel.swift; sourceTree = "<group>"; };
 		D09AC5A41D77EA9900048C17 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0B691491D84ADAA00C3366D /* EpisodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeModel.swift; sourceTree = "<group>"; };
-		D0B6914B1D852DF500C3366D /* testPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testPodcastXML.xml; path = RocketCastTests/testPodcastXML.xml; sourceTree = SOURCE_ROOT; };
+		D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testPodcastXML.xml; path = ../RocketCast/testPodcastXML.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,6 @@
 				C80FAE851D72376700C806C1 /* RocketCastTests */,
 				C80FAE901D72376700C806C1 /* RocketCastUITests */,
 				C80FAE6C1D72376600C806C1 /* Products */,
-				D0B6914B1D852DF500C3366D /* testPodcastXML.xml */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +217,7 @@
 		C80FAE851D72376700C806C1 /* RocketCastTests */ = {
 			isa = PBXGroup;
 			children = (
+				D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */,
 				C80FAE861D72376700C806C1 /* RocketCastTests.swift */,
 				C80FAE881D72376700C806C1 /* Info.plist */,
 			);
@@ -338,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */,
+				D0B6914E1D85D7CC00C3366D /* testPodcastXML.xml in Resources */,
 				C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */,
 				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
 				C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */,
@@ -350,7 +351,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0B6914C1D852DF500C3366D /* testPodcastXML.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
