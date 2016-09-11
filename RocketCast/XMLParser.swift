@@ -68,28 +68,28 @@ extension XMLParser: NSXMLParserDelegate {
     
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        
+        let information = string.stringByRemovingAll(unwantedStringInTag)
         switch element {
             case "title":
-                episodeTitle.appendString(string)
+                episodeTitle.appendString(information)
                 if (podcastTitle.isEqual("")) {
-                    podcastTitle.appendString(string)
+                    podcastTitle.appendString(information)
                 }
             case "itunes:author":
-                episodeAuthor.appendString(string)
+                episodeAuthor.appendString(information)
                 if (podcastAuthor.isEqual("")) {
-                    podcastAuthor.appendString(string)
+                    podcastAuthor.appendString(information)
                 }
             case "itunes:summary":
-                podcastDescription.appendString(string)
+                podcastDescription.appendString(information)
             case "pubDate":
-                date.appendString(string)
+                date.appendString(information)
             case "dc:creator":
-                episodeAuthor.appendString(string)
+                episodeAuthor.appendString(information)
             case "description":
-                episodeDescription.appendString(string)
+                episodeDescription.appendString(information)
                 if (podcastDescription.isEqual("")) {
-                     podcastDescription.appendString(string)
+                     podcastDescription.appendString(information)
                 }
             
         default: break
