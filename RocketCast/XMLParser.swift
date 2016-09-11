@@ -21,6 +21,7 @@ class XMLParser: NSObject {
     var episodePublishedDate = NSMutableString()
     var episodeDuration = NSMutableString()
     var episodeImageURL = NSMutableString()
+    var episodeMP3URL = NSMutableString()
     
     var podcastTitle = NSMutableString()
     var podcastAuthor = NSMutableString()
@@ -64,15 +65,20 @@ extension XMLParser: NSXMLParserDelegate {
             episodeAuthor = NSMutableString()
             episodeDuration = NSMutableString()
             episodeImageURL = NSMutableString()
+            episodeMP3URL = NSMutableString()
             
         }
         if (elementName as NSString).isEqual("itunes:image") {
-            
             episodeImageURL.appendString(attributeDict["href"]!)
             if (podcastImageURL.isEqual("")) {
                 podcastImageURL.appendString(attributeDict["href"]!)
             }
         }
+        
+        if(elementName as NSString).isEqual("enclosure") {
+            episodeMP3URL.appendString(attributeDict["url"]!)
+        }
+        
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
@@ -128,6 +134,11 @@ extension XMLParser: NSXMLParserDelegate {
                 return
             }
             
+            guard !episodeMP3URL.isEqual(nil) else {
+                Log.error("Error: No mp3 url")
+                return
+            }
+            
             guard !episodePublishedDate.isEqual(nil) else {
                 Log.error("Error: No date tag was detected")
                 return
@@ -137,7 +148,7 @@ extension XMLParser: NSXMLParserDelegate {
                 Log.error("Error: No description tag was detected")
                 return
             }
-            
+        
             if (episodeAuthor.isEqual("")) {
                 episodeAuthor = podcastAuthor
             }
@@ -150,7 +161,8 @@ extension XMLParser: NSXMLParserDelegate {
                                        date: episodePublishedDate as String,
                                        author: episodeAuthor as String,
                                        duration: episodeDuration as String,
-                                       imageURL: episodeImageURL as ImageWebURL)
+                                       imageURL: episodeImageURL as ImageWebURL,
+                                       mp3URL:  episodeMP3URL as MP3WebURL)
             
             listOfEpisodes.append(episode)
         }
