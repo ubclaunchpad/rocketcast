@@ -11,16 +11,17 @@ import Foundation
 import UIKit
 
 protocol DownloadBridgeProtocol {
-    func downloadPodcastXML(rssData:NSData, result:(url: PodcastStorageURL) -> ())
+    func downloadPodcastXML(rssData:NSData, result:(podcast: PodcastModel) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
     func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
 
-    func downloadPodcastXML(rssData:NSData, result:(url: PodcastStorageURL) -> ()) {
+    func downloadPodcastXML(rssData:NSData, result:(podcast: PodcastModel) -> ()) {
             
-        _ = XMLParser(data: rssData)
+        let xmlParser = XMLParser(data: rssData)
         
+        result(podcast: xmlParser.getPodcast())
         //download it
         //pass the rss data to another object
         // get the authrfrom that object

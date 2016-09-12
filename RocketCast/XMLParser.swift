@@ -53,6 +53,10 @@ class XMLParser: NSObject {
                                imageURL: podcastImageURL as ImageWebURL)
     }
     
+    func getPodcast () -> PodcastModel {
+        return podcast!
+    }
+    
 }
 
 extension XMLParser: NSXMLParserDelegate {

@@ -35,6 +35,7 @@
 		D0B6914A1D84ADAA00C3366D /* EpisodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B691491D84ADAA00C3366D /* EpisodeModel.swift */; };
 		D0B6914E1D85D7CC00C3366D /* testPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */; };
 		D0B691501D85FB9A00C3366D /* DefaultLibraryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6914F1D85FB9A00C3366D /* DefaultLibraryExtensions.swift */; };
+		D0B691521D86131C00C3366D /* XMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B691511D86131C00C3366D /* XMLParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		D0B691491D84ADAA00C3366D /* EpisodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeModel.swift; sourceTree = "<group>"; };
 		D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testPodcastXML.xml; path = ../RocketCast/testPodcastXML.xml; sourceTree = "<group>"; };
 		D0B6914F1D85FB9A00C3366D /* DefaultLibraryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLibraryExtensions.swift; sourceTree = "<group>"; };
+		D0B691511D86131C00C3366D /* XMLParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				D0B6914D1D85D7CC00C3366D /* testPodcastXML.xml */,
 				C80FAE861D72376700C806C1 /* RocketCastTests.swift */,
 				C80FAE881D72376700C806C1 /* Info.plist */,
+				D0B691511D86131C00C3366D /* XMLParserTests.swift */,
 			);
 			path = RocketCastTests;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0B691521D86131C00C3366D /* XMLParserTests.swift in Sources */,
 				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

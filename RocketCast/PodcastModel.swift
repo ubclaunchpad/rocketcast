@@ -10,11 +10,11 @@ import Foundation
 
 
 class PodcastModel {
-    private var title: String?
-    private var author: String?
-    private var description: String?
-    private var episodes:[EpisodeModel]?
-    private var imageURL:ImageWebURL?
+    var title: String?
+    var author: String?
+    var description: String?
+    var episodes:[EpisodeModel]?
+    var imageURL:ImageWebURL?
     
     init (title: String, author:String, description: String, episodes:[EpisodeModel], imageURL:ImageWebURL) {
         self.title = title
