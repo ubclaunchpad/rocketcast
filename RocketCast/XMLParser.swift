@@ -10,51 +10,32 @@ import Foundation
 
 class XMLParser: NSObject {
     
-    var parser = NSXMLParser()
     var element = NSString()
     
-    var listOfEpisodes = [EpisodeModel]()
-    
-    var episodeTitle = NSMutableString()
-    var episodeDescription = NSMutableString()
-    var episodeAuthor = NSMutableString()
-    var episodePublishedDate = NSMutableString()
-    var episodeDuration = NSMutableString()
-    var episodeImageURL = NSMutableString()
-    var episodeMP3URL = NSMutableString()
-    
-    var podcastTitle = NSMutableString()
-    var podcastAuthor = NSMutableString()
-    var podcastDescription = NSMutableString()
-    var podcastImageURL = NSMutableString()
-    
-    var podcast:PodcastModel?
-    
-    
-    init(data: NSData) {
+    var podcast = PodcastModel()
+
+    init(url: String) {
         super.init()
-        parseData(data)
+        if let data = NSData(contentsOfURL:NSURL(string: url)!) {
+            parseData(data)
+        } else {
+            Log.error("There's nothing in the data")
+        }
         
     }
     
     private func parseData (data:NSData) {
         let parser = NSXMLParser(data: data)
         parser.delegate = self
-        Log.test("parse is called")
         guard parser.parse() else {
             Log.error("Oh shit something went wrong")
             return
         }
         
-        podcast = PodcastModel(title: podcastTitle as String,
-                               author: podcastAuthor as String,
-                               description: podcastDescription as String,
-                               episodes: listOfEpisodes,
-                               imageURL: podcastImageURL as ImageWebURL)
     }
     
-    func getPodcast () -> PodcastModel {
-        return podcast!
+    func getGeneratedPodcast () -> PodcastModel {
+        return podcast
     }
     
 }
@@ -62,27 +43,26 @@ class XMLParser: NSObject {
 extension XMLParser: NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
+        
         if (elementName as NSString).isEqualToString("item") {
-            episodeTitle = NSMutableString()
-            episodePublishedDate = NSMutableString()
-            episodeDescription = NSMutableString()
-            episodeAuthor = NSMutableString()
-            episodeDuration = NSMutableString()
-            episodeImageURL = NSMutableString()
-            episodeMP3URL = NSMutableString()
-            
+            podcast.episodes.append(EpisodeModel())
         }
         if (elementName as NSString).isEqual("itunes:image") {
-            episodeImageURL.appendString(attributeDict["href"]!)
-            if (podcastImageURL.isEqual("")) {
-                podcastImageURL.appendString(attributeDict["href"]!)
+            
+            if (podcast.imageURL.isEmpty) {
+                podcast.imageURL = attributeDict["href"]!
+            } else if var tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.imageURL = attributeDict["href"]!
+                podcast.episodes.append(tempEpisode)
             }
         }
         
         if(elementName as NSString).isEqual("enclosure") {
-            episodeMP3URL.appendString(attributeDict["url"]!)
+            if var tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.mp3URL = attributeDict["url"]!
+                podcast.episodes.append(tempEpisode)
+            }
         }
-        
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
@@ -91,84 +71,67 @@ extension XMLParser: NSXMLParserDelegate {
         
         switch element {
         case "title":
-            episodeTitle.appendString(information)
-            if (podcastTitle.isEqual("")) {
-                podcastTitle.appendString(information)
+            if ((podcast.title.isEqual(""))) {
+                podcast.title.appendString(information)
+            } else if let tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.title.appendString(information)
+                podcast.episodes.append(tempEpisode)
             }
         case "itunes:author":
-            episodeAuthor.appendString(information)
-            if (podcastAuthor.isEqual("")) {
-                podcastAuthor.appendString(information)
+            if (podcast.author.isEqual("")) {
+                podcast.author.appendString(information)
+            } else if let tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.author.appendString(information)
+                self.podcast.episodes.append(tempEpisode)
             }
         case "itunes:summary":
-            if (podcastDescription.isEqual("")) {
-                podcastDescription.appendString(information)
+            if (podcast.description.isEqual("")) {
+                podcast.description.appendString(information)
             }
         case "pubDate":
-            episodePublishedDate.appendString(information)
+            if  let tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.date.appendString(information)
+                podcast.episodes.append(tempEpisode)
+            }
         case "dc:creator":
-            episodeAuthor.appendString(information)
+            if let  tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.author.appendString(information)
+                podcast.episodes.append(tempEpisode)
+            }
         case "description":
-            episodeDescription.appendString(information)
-            if (podcastDescription.isEqual("")) {
-                podcastDescription.appendString(information)
+            if (podcast.description.isEqual("")) {
+                podcast.description.appendString(information)
+            }else if  let  tempEpisode = podcast.episodes.popLast() {
+                tempEpisode.description.appendString(information)
+                podcast.episodes.append(tempEpisode)
             }
         case "itunes:duration":
-            episodeDuration.appendString(information)
+            if let tempEpisode = podcast.episodes.popLast(){
+                tempEpisode.duration.appendString(information)
+                podcast.episodes.append(tempEpisode)
+            }
         default: break
         }
         
     }
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
-        Log.error("parsing failed")
-        NSLog("failure error: %@", parseError)
+        Log.error("parsing failed: " + parseError.description)
     }
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if (elementName == "item") {
+            if var tempEpisode = podcast.episodes.popLast() {
+                if tempEpisode.author.isEqual("") {
+                    tempEpisode.author = podcast.author
+                }
+                podcast.episodes.append(tempEpisode)
+            }
+        }
         
-        fillInEpisodes(elementName)
     }
     
-    func fillInEpisodes (elementName:String) {
-        
-        if (elementName == "item") {
-            guard !episodeTitle.isEqual(nil) else {
-                Log.error("Error: No title tag was detected")
-                return
-            }
-            
-            guard !episodeMP3URL.isEqual(nil) else {
-                Log.error("Error: No mp3 url")
-                return
-            }
-            
-            guard !episodePublishedDate.isEqual(nil) else {
-                Log.error("Error: No date tag was detected")
-                return
-            }
-            
-            guard !episodeDescription.isEqual(nil) else {
-                Log.error("Error: No description tag was detected")
-                return
-            }
-        
-            if (episodeAuthor.isEqual("")) {
-                episodeAuthor = podcastAuthor
-            }
-            if (episodeImageURL.isEqual("")) {
-                episodeImageURL = podcastImageURL
-            }
-            
-            let episode = EpisodeModel(title: episodeTitle as String,
-                                       description: episodeDescription as String,
-                                       date: episodePublishedDate as String,
-                                       author: episodeAuthor as String,
-                                       duration: episodeDuration as String,
-                                       imageURL: episodeImageURL as ImageWebURL,
-                                       mp3URL:  episodeMP3URL as MP3WebURL)
-            
-            listOfEpisodes.append(episode)
-        }
-    }
+    
 }
+
+

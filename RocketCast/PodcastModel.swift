@@ -8,23 +8,17 @@
 
 import Foundation
 
-
-class PodcastModel {
-    var title: String?
-    var author: String?
-    var description: String?
-    var episodes:[EpisodeModel]?
-    var imageURL:ImageWebURL?
+struct PodcastModel {
     
-    init (title: String, author:String, description: String, episodes:[EpisodeModel], imageURL:ImageWebURL) {
-        self.title = title
-        self.author = author
-        self.description = description
-        self.episodes = episodes
-        self.imageURL = imageURL
+    var title = NSMutableString()
+    var author = NSMutableString()
+    var description = NSMutableString()
+    var episodes = [EpisodeModel]()
+    var imageURL = ImageWebURL()
+    
+    init () {
+        
     }
-    
-    
     
 }
 

@@ -15,9 +15,7 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        let url = "http://atp.fm/rss"
-        let data = NSData(contentsOfURL:      NSURL(string: url)!)
-        ModelBridge.sharedInstance.downloadPodcastXML(data!) { (downloadedPodcast) in
+        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
             
         }
     }
