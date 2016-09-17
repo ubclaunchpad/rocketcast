@@ -22,6 +22,7 @@ enum  Segues {
 
 }
 
+
 struct xmlKeyTags {
     static let episodeTag = "item"
     static let podcastImage = "itunes:image"
@@ -37,6 +38,10 @@ struct xmlKeyTags {
     static let duration = "itunes:duration"
     static let unwantedStringInTag = ["<p>", "</p>", "\t"]
 }
+
+let stringsToRemove = ["http://", "/", "."]
+
+
 /**
  A log level of debug will print out all levels above it.
  So a log level of WARN will print out WARN, ERROR, and TEST

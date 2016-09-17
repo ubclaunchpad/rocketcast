@@ -20,4 +20,5 @@ extension String {
         subStrings.map { resultString = resultString.stringByReplacingOccurrencesOfString($0, withString: "") }
         return resultString
     }
+    
 }
