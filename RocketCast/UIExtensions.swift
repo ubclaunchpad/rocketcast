@@ -11,6 +11,8 @@ import UIKit
 
 //Using this to extend various UI elements such UIButton, UIImage
 
+
+//got from stackoverflow: http://stackoverflow.com/questions/24231680/loading-downloading-image-from-url-on-swift
 extension UIImageView {
     public func imageFromUrl(urlString: String) {
         if let url = NSURL(string: urlString) {
