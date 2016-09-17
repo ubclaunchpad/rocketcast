@@ -12,15 +12,21 @@ import Foundation
 struct EpisodeModel {
     
 
-    var title = NSMutableString()
-    var description = NSMutableString()
-    var date = NSMutableString()
-    var author = NSMutableString()
-    var duration = NSMutableString()
-    var imageURL = ImageWebURL()
-    var mp3URL = MP3WebURL()
+    var title:NSMutableString?
+    var description:NSMutableString?
+    var date:NSMutableString?
+    var author:NSMutableString?
+    var duration:NSMutableString?
+    var imageURL:ImageWebURL?
+    var mp3URL:MP3WebURL?
     
     init() {
-        
+        title = ""
+        description = ""
+        date = ""
+        author = ""
+        duration = ""
+        imageURL = ""
+        mp3URL = ""
     }
 }

@@ -22,8 +22,21 @@ enum  Segues {
 
 }
 
-let unwantedStringInTag = ["<p>", "</p>", "\t"]
-
+struct xmlKeyTags {
+    static let episodeTag = "item"
+    static let podcastImage = "itunes:image"
+    static let imageLink = "href"
+    static let startTagMP3URL = "enclosure"
+    static let mp3URL = "url"
+    static let title = "title"
+    static let description = "itunes:summary"
+    static let author = "itunes:author"
+    static let publishedDate = "pubDate"
+    static let authorEpisodeTagTwo = "dc:creator"
+    static let descriptionTagTwo = "description"
+    static let duration = "itunes:duration"
+    static let unwantedStringInTag = ["<p>", "</p>", "\t"]
+}
 /**
  A log level of debug will print out all levels above it.
  So a log level of WARN will print out WARN, ERROR, and TEST

@@ -10,14 +10,18 @@ import Foundation
 
 struct PodcastModel {
     
-    var title = NSMutableString()
-    var author = NSMutableString()
-    var description = NSMutableString()
-    var episodes = [EpisodeModel]()
-    var imageURL = ImageWebURL()
+    var title:NSMutableString?
+    var author:NSMutableString?
+    var description:NSMutableString?
+    var episodes:[EpisodeModel]?
+    var imageURL:ImageWebURL?
     
     init () {
-        
+        title = ""
+        author = ""
+        description = ""
+        episodes = [EpisodeModel]()
+        imageURL = ""
     }
     
 }

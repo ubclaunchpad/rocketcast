@@ -23,7 +23,7 @@ extension ModelBridge: DownloadBridgeProtocol {
         let parser = NSXMLParser(contentsOfURL: nsURL!)
         print(parser)
         
-        let xmlParser = XMLParser(url: url)
+        _ = XMLParser(url: url)
         
     
         //download it

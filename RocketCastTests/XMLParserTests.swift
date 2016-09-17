@@ -36,10 +36,10 @@ class XMLParserTests: XCTestCase {
         XCTAssertEqual(normalPodcastXML.title,  acutalPodcast.title)
         XCTAssertEqual(normalPodcastXML.description, acutalPodcast.description)
         XCTAssertEqual(normalPodcastXML.imageURL, acutalPodcast.imageURL)
-        XCTAssertEqual(expectedEpisodes.count, acutalPodcast.episodes.count)
+        XCTAssertEqual(expectedEpisodes.count, acutalPodcast.episodes!.count)
         
         for index in 0...(expectedEpisodes.count-1) {
-            compareEpisode(expectedEpisodes[index], actualEpisode: acutalPodcast.episodes[index])
+            compareEpisode(expectedEpisodes[index], actualEpisode: acutalPodcast.episodes![index])
         }
     }
     
@@ -52,7 +52,7 @@ class XMLParserTests: XCTestCase {
         XCTAssertEqual(noEpisodesPodcastXML.title,  acutalPodcast.title)
         XCTAssertEqual(noEpisodesPodcastXML.description, acutalPodcast.description)
         XCTAssertEqual(noEpisodesPodcastXML.imageURL, acutalPodcast.imageURL)
-        XCTAssertEqual(0, acutalPodcast.episodes.count)
+        XCTAssertEqual(0, acutalPodcast.episodes!.count)
     }
     
     
@@ -66,10 +66,10 @@ class XMLParserTests: XCTestCase {
         XCTAssertEqual(noAuthorForEpisodesPodcastXML.title,  acutalPodcast.title)
         XCTAssertEqual(noAuthorForEpisodesPodcastXML.description, acutalPodcast.description)
         XCTAssertEqual(noAuthorForEpisodesPodcastXML.imageURL, acutalPodcast.imageURL)
-        XCTAssertEqual(expectedEpisodes.count, acutalPodcast.episodes.count)
+        XCTAssertEqual(expectedEpisodes.count, acutalPodcast.episodes!.count)
         
         for index in 0...(expectedEpisodes.count-1) {
-            compareEpisode(expectedEpisodes[index], actualEpisode: acutalPodcast.episodes[index])
+            compareEpisode(expectedEpisodes[index], actualEpisode: acutalPodcast.episodes![index])
         }
     }
     
