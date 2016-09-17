@@ -102,66 +102,66 @@ class DownloadTests: XCTestCase {
         waitUntil(6) {done}
     }
     
-    func testDownloadPodcastMp3() {
-        // Test real mp3
+    func testDownloadPodcastAudio() {
+        // Test real audio
         var done = false
         var url = "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3"
         let fileMgr = NSFileManager.defaultManager()
         
-        ModelBridge.sharedInstance.downloadMp3(url) { (downloadedPodcast) in
+        ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
             done = true
             
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
-            print(path)
+            
             if let data = fileMgr.contentsAtPath(path) {
                 XCTAssertEqual(data.length, 2002733)
             }
-        }
+        })
         
         waitUntil(6) {done}
         done = false
         
         url = "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=C13A2C3C-F951-4C81-BF7B323A1D0C5A28"
         
-        ModelBridge.sharedInstance.downloadMp3(url) { (downloadedPodcast) in
+        ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
             done = true
             
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
-            print(path)
+            
             if let data = fileMgr.contentsAtPath(path) {
                 XCTAssertEqual(data.length, 1623175)
             }
-        }
+        })
         
         waitUntil(6) {done}
     }
     
-    func testDownloadRandomStringMp3() {
+    func testDownloadRandomStringAudio() {
         // Testing a random string
         var done = false
         let url = "fawefwefaw"
         
-        ModelBridge.sharedInstance.downloadMp3(url) { (downloadedMp3) in
+        ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
             done = true
-            XCTAssertNil(downloadedMp3)
-        }
+            XCTAssertNil(downloadedPodcast)
+        })
         
         waitUntil(6) {done}
     }
     
-    func testDownloadNonMp3() {
+    func testDownloadNonAudio() {
         // Testing a random non podcast link
         var done = false
         let url = "http://www.google.ca/"
         
-        ModelBridge.sharedInstance.downloadMp3(url) { (downloadedMp3) in
+        ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
             done = true
-            XCTAssertNil(downloadedMp3)
-        }
+            XCTAssertNil(downloadedPodcast)
+        })
         
         waitUntil(6) {done}
     }

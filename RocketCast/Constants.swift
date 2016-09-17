@@ -10,10 +10,10 @@ import Foundation
 
 typealias PodcastWebURL = String
 typealias ImageWebURL = String
-typealias MP3WebURL = String
+typealias AudioWebURL = String
 typealias PodcastStorageURL = String
 typealias ImageStorageURL = String
-typealias MP3StorageURL = String
+typealias AudioStorageURL = String
 typealias XML = String
 
 enum  Segues {

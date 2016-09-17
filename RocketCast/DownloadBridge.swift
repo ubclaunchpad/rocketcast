@@ -14,7 +14,7 @@ import AVFoundation
 protocol DownloadBridgeProtocol {
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL?) -> ())
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
     
@@ -60,10 +60,10 @@ extension ModelBridge: DownloadBridgeProtocol {
         //TODO
     }
     
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL?) -> ()) {
-        let mp3URL = NSURL(string: url)
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
+        let audioURL = NSURL(string: url)
         
-        let audioAsset = AVAsset(URL: mp3URL!)
+        let audioAsset = AVAsset(URL: audioURL!)
         
         guard audioAsset.playable && audioAsset.readable else {
             Log.error("File at given URL cannot be read or played")
@@ -71,7 +71,7 @@ extension ModelBridge: DownloadBridgeProtocol {
             return
         }
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(mp3URL!) {(data, response, error) in
+        let task = NSURLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
