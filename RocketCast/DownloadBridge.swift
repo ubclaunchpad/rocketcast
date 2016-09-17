@@ -9,11 +9,12 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 protocol DownloadBridgeProtocol {
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ())
+    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
     
@@ -59,23 +60,31 @@ extension ModelBridge: DownloadBridgeProtocol {
         //TODO
     }
     
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ()) {
+    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL?) -> ()) {
         let mp3URL = NSURL(string: url)
+        
+        let audioAsset = AVAsset(URL: mp3URL!)
+        
+        guard audioAsset.playable && audioAsset.readable else {
+            Log.error("File at given URL cannot be read or played")
+            result(url: nil)
+            return
+        }
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(mp3URL!) {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
+                result(url: nil)
                 return
             }
-            let XMLString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             
-            let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove)).mp3"
+            let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove))"
             
             let filePath = NSHomeDirectory() + filePathAppend
             
             do {
-                try XMLString!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+                try data!.writeToFile(filePath, atomically: true)
                 result(url: filePathAppend)
             } catch let error as NSError {
                 Log.error(error.debugDescription)
