@@ -8,15 +8,21 @@
 
 import Foundation
 
-
-class PodcastModel {
-    private var xml: String?
+struct PodcastModel {
     
-    //podcast info
-    //podcast episodes
+    var title:NSMutableString?
+    var author:NSMutableString?
+    var description:NSMutableString?
+    var episodes:[EpisodeModel]?
+    var imageURL:ImageWebURL?
     
-    init (xml: XML) {
-        self.xml = xml
+    init () {
+        title = ""
+        author = ""
+        description = ""
+        episodes = [EpisodeModel]()
+        imageURL = ""
     }
+    
 }
 
