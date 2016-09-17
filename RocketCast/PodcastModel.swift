@@ -10,7 +10,7 @@ import Foundation
 
 struct PodcastModel {
     
-    var title:NSMutableString?
+   var title:NSMutableString?
     var author:NSMutableString?
     var description:NSMutableString?
     var episodes:[EpisodeModel]?
