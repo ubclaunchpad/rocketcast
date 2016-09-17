@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5218FAEB1D84BE850070AE62 /* DefaultLibraryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5218FAEA1D84BE850070AE62 /* DefaultLibraryExtensions.swift */; };
+		5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246CF081D84A6FF00ABF027 /* DownloadTests.swift */; };
 		C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA31C1D77E1AA0089A678 /* PodcastView.xib */; };
 		C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA31E1D77E1C10089A678 /* PodcastView.swift */; };
 		C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5218FAEA1D84BE850070AE62 /* DefaultLibraryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLibraryExtensions.swift; sourceTree = "<group>"; };
+		5246CF081D84A6FF00ABF027 /* DownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
 		C80DA31C1D77E1AA0089A678 /* PodcastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastView.xib; sourceTree = "<group>"; };
 		C80DA31E1D77E1C10089A678 /* PodcastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
 		C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				C8D601A61D793E05003512FE /* Log.swift */,
 				D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */,
+				5218FAEA1D84BE850070AE62 /* DefaultLibraryExtensions.swift */,
 				C8D601A41D79380B003512FE /* XMLParser.swift */,
 				D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */,
 				D378A7B21D8DD4BD00830A53 /* UIExtensions.swift */,
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				C80FAE861D72376700C806C1 /* RocketCastTests.swift */,
+				5246CF081D84A6FF00ABF027 /* DownloadTests.swift */,
 				C80FAE881D72376700C806C1 /* Info.plist */,
 			);
 			path = RocketCastTests;
@@ -382,6 +388,7 @@
 				C80DA3341D77E9280089A678 /* PlayerController.swift in Sources */,
 				C80FAE6F1D72376600C806C1 /* AppDelegate.swift in Sources */,
 				D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */,
+				5218FAEB1D84BE850070AE62 /* DefaultLibraryExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
+				5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
