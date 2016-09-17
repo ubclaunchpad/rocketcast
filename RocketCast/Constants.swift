@@ -22,6 +22,9 @@ enum  Segues {
 
 }
 
+
+let stringsToRemove = ["http://", "/", "."]
+
 /**
  A log level of debug will print out all levels above it.
  So a log level of WARN will print out WARN, ERROR, and TEST
