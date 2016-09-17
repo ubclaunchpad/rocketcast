@@ -56,7 +56,29 @@ extension ModelBridge: DownloadBridgeProtocol {
   }
   
   func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ()) {
-    //TODO
+    let mp3URL = NSURL(string: url)
+    
+    let task = NSURLSession.sharedSession().dataTaskWithURL(mp3URL!) {(data, response, error) in
+        
+        guard error == nil else {
+            Log.error(error.debugDescription)
+            return
+        }
+        let XMLString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+        
+        let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove)).mp3"
+        
+        let filePath = NSHomeDirectory() + filePathAppend
+        
+        do {
+            try XMLString!.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+            result(url: filePathAppend)
+        } catch let error as NSError {
+            Log.error(error.debugDescription)
+        }
+        
+    }
+    task.resume()
   }
   
 }
