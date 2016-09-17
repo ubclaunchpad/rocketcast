@@ -11,6 +11,8 @@ import UIKit
 class EpisodeView: UIView {
     var viewDelegate: EpisodeViewDelegate?
     
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBAction func segueToPlayer(sender: AnyObject) {
         viewDelegate?.segueToPlayer()
     }
