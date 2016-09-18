@@ -12,6 +12,7 @@ import UIKit
 import AVFoundation
 
 protocol DownloadBridgeProtocol {
+   
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
     func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
@@ -48,6 +49,7 @@ extension ModelBridge: DownloadBridgeProtocol {
         task.resume()
         
         
+    
         //download it
         //pass the rss data to another object
         // get the authrfrom that object
