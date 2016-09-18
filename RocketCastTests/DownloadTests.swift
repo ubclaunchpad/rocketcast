@@ -105,6 +105,7 @@ class DownloadTests: XCTestCase {
     func testDownloadPodcastAudio() {
         // Test real audio
         var done = false
+        
         var url = "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3"
         let fileMgr = NSFileManager.defaultManager()
         
