@@ -18,7 +18,7 @@ struct EpisodeModel {
     var author:NSMutableString?
     var duration:NSMutableString?
     var imageURL:ImageWebURL?
-    var mp3URL:MP3WebURL?
+    var audioURL:AudioWebURL?
     
     init() {
         title = ""
@@ -27,6 +27,6 @@ struct EpisodeModel {
         author = ""
         duration = ""
         imageURL = ""
-        mp3URL = ""
+        audioURL = ""
     }
 }

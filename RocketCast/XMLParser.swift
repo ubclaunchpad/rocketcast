@@ -57,9 +57,9 @@ extension XMLParser: NSXMLParserDelegate {
             }
         }
         
-        if(elementName as NSString).isEqual(xmlKeyTags.startTagMP3URL) {
+        if(elementName as NSString).isEqual(xmlKeyTags.startTagAudioURL) {
             if var tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.mp3URL = attributeDict[xmlKeyTags.mp3URL]!
+                tempEpisode.audioURL = attributeDict[xmlKeyTags.audioURL]!
                 podcast.episodes?.append(tempEpisode)
             }
         }
