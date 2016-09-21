@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
+    <channel>
+        <title>testPod</title>
+        <itunes:summary>A podcast</itunes:summary>
+        <itunes:author>James Park</itunes:author>
+        <link>http://www.yourserver.com/YourPodcastHomepage/</link>
+        <itunes:image href="JamesPark.jpg" />
+        <pubDate> Sun, 09 Oct 2005 21:00:00 PST </pubDate>
+        <language>en-us</language>
+        <copyright> Copyright Year JamesPark </copyright>
+    </channel>
+</rss>

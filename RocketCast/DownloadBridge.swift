@@ -11,19 +11,44 @@ import Foundation
 import UIKit
 
 protocol DownloadBridgeProtocol {
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL) -> ())
+   
+    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
     func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
-
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL) -> ()) {
-        let nsURL = NSURL(string: url)
-        let parser = NSXMLParser(contentsOfURL: nsURL!)
-        print(parser)
+    
+    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ()) {
+        let podcastURL = NSURL(string: url)
         
-        let xmlParser = XMLParser(url: nsURL!)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(podcastURL!) {(data, response, error) in
+            
+            guard error == nil else {
+                Log.error(error.debugDescription)
+                result(url: nil)
+                return
+            }
+            guard let XMLString = NSString(data: data!, encoding: NSUTF8StringEncoding) else {
+                result(url: nil)
+                return
+            }
+            
+            let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove)).xml"
+            
+            let filePath = NSHomeDirectory() + filePathAppend
+            
+            do {
+                try XMLString.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
+                result(url: filePathAppend)
+            } catch let error as NSError {
+                Log.error(error.debugDescription)
+            }
+            
+        }
+        task.resume()
         
+        
+    
         //download it
         //pass the rss data to another object
         // get the authrfrom that object
