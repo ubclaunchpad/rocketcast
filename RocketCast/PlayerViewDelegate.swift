@@ -9,5 +9,9 @@
 import UIKit
 
 protocol PlayerViewDelegate {
+    func playPodcast()
+    func pausePodcast()
+    func stopPodcast()
     
+    func setUpPlayer()
 }

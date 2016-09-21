@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
+    var audioPlayer: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,24 @@ class PlayerController: UIViewController {
 
 }
 
+// reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
+    func playPodcast() {
+        if !audioPlayer.playing {
+            audioPlayer.play()
+        }
+    }
+    
+    func pausePodcast() {
+        audioPlayer.pause()
+    }
+    
+    func stopPodcast() {
+        audioPlayer.stop()
+    }
+    
+    func setUpPlayer() {
+        // set up audioPlayer with proper podcast episode
+    }
     
 }
