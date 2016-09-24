@@ -58,7 +58,7 @@ class EpisodeUITests: XCTestCase {
 
         XCTAssert(episodeTable.staticTexts["How to Cook Podcast"].exists)
         XCTAssert(episodeTable.staticTexts["NodeJS Development Podcast"].exists)
-        XCTAssert(episodeTable.staticTexts["iOS Development Podcast"].exists)
+        XCTAssert(episodeTable.staticTexts["iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"].exists)
         
     }
     

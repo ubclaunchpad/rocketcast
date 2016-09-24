@@ -13,7 +13,7 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var EpisodeTable: UITableView!
     
-    private var episodes:[EpisodeModel] = [EpisodeModel(setTitle: "iOS Development Podcast"), EpisodeModel(setTitle: "How to Cook Podcast"), EpisodeModel(setTitle: "NodeJS Development Podcast")]
+    private var episodes:[EpisodeModel] = [EpisodeModel(setTitle: "iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"), EpisodeModel(setTitle: "How to Cook Podcast"), EpisodeModel(setTitle: "NodeJS Development Podcast")]
     
     @IBAction func segueToPlayer(sender: AnyObject) {
         viewDelegate?.segueToPlayer()
@@ -53,7 +53,11 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 68
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
 }

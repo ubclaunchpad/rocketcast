@@ -20,7 +20,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="518" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0a-an-CCo">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0a-an-CCo">
                         <rect key="frame" x="28" y="20" width="422" height="19"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                         <color key="textColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -29,7 +29,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="u0a-an-CCo" secondAttribute="bottom" constant="20" id="8Gu-nW-Ee7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="u0a-an-CCo" secondAttribute="trailing" constant="60" id="f5x-kR-etb"/>
                     <constraint firstItem="u0a-an-CCo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="hUy-4a-I0E"/>
+                    <constraint firstItem="u0a-an-CCo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="12" id="swL-hR-rt8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

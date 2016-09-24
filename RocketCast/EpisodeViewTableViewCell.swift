@@ -18,6 +18,7 @@ class EpisodeViewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //episodeHeader?.lineBreakMode = NSLineBreakMode.ByWordWrapping
     }
     
     func setEpisodeHeaderText(setHeader: NSMutableString) {

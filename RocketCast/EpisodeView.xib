@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,14 +12,23 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-4e-oz5">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-4e-oz5">
                     <rect key="frame" x="231" y="44" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="segueToPlayer:" destination="iN0-l3-epB" eventType="touchUpInside" id="5IK-gD-0Ha"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-t3-vC8">
+                    <rect key="frame" x="98" y="251" width="75" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="jaL-mh-Th7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
                     <rect key="frame" x="0.0" y="305" width="320" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -32,21 +42,19 @@
                         </mask>
                     </variation>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-t3-vC8">
-                    <rect key="frame" x="16" y="166" width="75" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="75" id="jaL-mh-Th7"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="shX-bq-jX4" secondAttribute="bottom" constant="135" id="0uP-ty-pYG"/>
                 <constraint firstItem="shX-bq-jX4" firstAttribute="top" secondItem="gPx-t3-vC8" secondAttribute="bottom" constant="33" id="2g7-kW-Jp3"/>
-                <constraint firstItem="gPx-t3-vC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="166" id="bqv-Iw-y4h"/>
-                <constraint firstItem="gPx-t3-vC8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="hiU-0x-4E8"/>
+                <constraint firstAttribute="trailing" secondItem="IWU-4e-oz5" secondAttribute="trailing" constant="43" id="91U-b9-B4T"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BoJ-Q5-pa6"/>
+                <constraint firstItem="gPx-t3-vC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="251" id="Mwi-Ah-Bn8"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TdQ-sR-cGY"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.3" id="ZIw-Cg-qlo"/>
+                <constraint firstItem="IWU-4e-oz5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="d9D-qq-YBf"/>
+                <constraint firstAttribute="trailing" secondItem="shX-bq-jX4" secondAttribute="trailing" id="mcc-HA-JQA"/>
+                <constraint firstItem="gPx-t3-vC8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="98" id="vJF-rL-yWj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
