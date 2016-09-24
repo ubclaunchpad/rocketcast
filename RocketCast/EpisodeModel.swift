@@ -29,4 +29,14 @@ struct EpisodeModel {
         imageURL = ""
         mp3URL = ""
     }
+    
+    init(setTitle: NSMutableString) {
+        title = setTitle
+        description = ""
+        date = ""
+        author = ""
+        duration = ""
+        imageURL = ""
+        mp3URL = ""
+    }
 }

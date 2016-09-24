@@ -8,10 +8,12 @@
 
 import UIKit
 
-class EpisodeView: UIView {
+class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     var viewDelegate: EpisodeViewDelegate?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var EpisodeTable: UITableView!
+    
+    private var episodes:[EpisodeModel] = [EpisodeModel(setTitle: "iOS Development Podcast"), EpisodeModel(setTitle: "How to Cook Podcast"), EpisodeModel(setTitle: "NodeJS Development Podcast")]
     
     @IBAction func segueToPlayer(sender: AnyObject) {
         viewDelegate?.segueToPlayer()
@@ -20,7 +22,38 @@ class EpisodeView: UIView {
         let view = UINib(nibName: "EpisodeView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
             as! EpisodeView
         view.frame = frame
+        view.EpisodeTable.delegate = view
+        view.EpisodeTable.dataSource = view
+        view.EpisodeTable.allowsSelection = true
+        view.EpisodeTable.separatorStyle = UITableViewCellSeparatorStyle.None
+        view.EpisodeTable.backgroundColor = UIColor.clearColor()
+        view.EpisodeTable.opaque = false
         return view
+    }
+    
+    // returns an approiate number of rows depending on the section
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return  episodes.count
+    }
+    
+    // Iiterates over every episode and creates a respective TableViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let nib_name = UINib(nibName: "EpisodeViewTableViewCell", bundle:nil)
+        tableView.registerNib(nib_name, forCellReuseIdentifier: "episodeviewCell")
+        let cell = self.EpisodeTable.dequeueReusableCellWithIdentifier("episodeviewCell", forIndexPath: indexPath) as! EpisodeViewTableViewCell
+        
+        cell.backgroundColor = UIColor.clearColor()
+        cell.setEpisodeHeaderText(episodes[indexPath.row].title!)
+
+        cell.tag = 1000 + indexPath.row
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 68
     }
 
 }
