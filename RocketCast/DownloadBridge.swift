@@ -64,7 +64,6 @@ extension ModelBridge: DownloadBridgeProtocol {
     
     func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
         let audioURL = NSURL(string: url)
-        
         let audioAsset = AVAsset(URL: audioURL!)
         
         guard audioAsset.playable && audioAsset.readable else {
@@ -82,7 +81,6 @@ extension ModelBridge: DownloadBridgeProtocol {
             }
             
             let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove))"
-            
             let filePath = NSHomeDirectory() + filePathAppend
             
             do {
