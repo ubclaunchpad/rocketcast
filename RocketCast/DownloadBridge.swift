@@ -11,6 +11,8 @@ import Foundation
 import UIKit
 import AVFoundation
 
+
+
 protocol DownloadBridgeProtocol {
    
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
@@ -59,7 +61,21 @@ extension ModelBridge: DownloadBridgeProtocol {
     }
     
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ()) {
-        //TODO
+        let urlString = String(url)
+        let url = NSURL(string: urlString)
+        var destinationPath = " "
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            if let data = NSData(contentsOfURL: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
+                dispatch_async(dispatch_get_main_queue(), {
+                    let image = UIImage(data: data)
+                    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+                    destinationPath = documentsPath + urlString.stringByRemovingAll(stringsToRemove)+".png"
+                    UIImageJPEGRepresentation(image!,1.0)!.writeToFile(destinationPath, atomically: true)
+                    result(url: destinationPath)
+                });
+            }
+        }
     }
     
     func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
