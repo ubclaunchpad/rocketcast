@@ -19,7 +19,12 @@ typealias XML = String
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
   static let segueFromEpisodeToPlayer = "segueFromEpisodeToPlayer"
+}
 
+
+enum EpisodeViewConstants {
+    static let cellViewNibName = "EpisodeViewTableViewCell"
+    static let cellViewIdentifier = "episodeviewCell"
 }
 
 

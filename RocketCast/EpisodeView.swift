@@ -39,14 +39,14 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     // Iiterates over every episode and creates a respective TableViewCell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let nib_name = UINib(nibName: "EpisodeViewTableViewCell", bundle:nil)
-        tableView.registerNib(nib_name, forCellReuseIdentifier: "episodeviewCell")
-        let cell = self.EpisodeTable.dequeueReusableCellWithIdentifier("episodeviewCell", forIndexPath: indexPath) as! EpisodeViewTableViewCell
+        let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
+        tableView.registerNib(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
+        let cell = self.EpisodeTable.dequeueReusableCellWithIdentifier(EpisodeViewConstants.cellViewIdentifier, forIndexPath: indexPath) as! EpisodeViewTableViewCell
         
         cell.backgroundColor = UIColor.clearColor()
         cell.setEpisodeHeaderText(episodes[indexPath.row].title!)
 
-        cell.tag = 1000 + indexPath.row
+        cell.tag = indexPath.row
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
         
