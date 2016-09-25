@@ -7,21 +7,26 @@
 //
 
 import Foundation
+import CoreData
 
 class XMLParser: NSObject {
     
     var element = String()
+    let coreData = CoreDataHelper()
+    var podcast:Podcast?
+    var tmpEpisode:Episode?
     
-    var podcast = PodcastModel()
-
+    
     init(url: String) {
         super.init()
         if let data = NSData(contentsOfURL:NSURL(string: url)!) {
+            
+            podcast = NSEntityDescription.insertNewObjectForEntityForName("Podcast",
+                                          inManagedObjectContext: coreData.managedObjectContext) as? Podcast
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
         }
-        
     }
     
     private func parseData (data:NSData) {
@@ -31,13 +36,10 @@ class XMLParser: NSObject {
             Log.error("Oh shit something went wrong. OS parser failed")
             return
         }
-        
+
+       coreData.saveContext()
     }
-    
-    func getGeneratedPodcast () -> PodcastModel {
-        return podcast
-    }
-    
+ 
 }
 
 extension XMLParser: NSXMLParserDelegate {
@@ -45,72 +47,70 @@ extension XMLParser: NSXMLParserDelegate {
         element = elementName
         
         if (elementName as NSString).isEqualToString(xmlKeyTags.episodeTag) {
-            podcast.episodes?.append(EpisodeModel())
+            tmpEpisode = NSEntityDescription.insertNewObjectForEntityForName("Episode", inManagedObjectContext: coreData.managedObjectContext) as? Episode
         }
+        
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
-            
-            if (podcast.imageURL!.isEmpty) {
-                podcast.imageURL = attributeDict[xmlKeyTags.imageLink]!
-            } else if var tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.imageURL = attributeDict[xmlKeyTags.imageLink]!
-                podcast.episodes?.append(tempEpisode)
+            if (podcast!.imageURL == nil) {
+                podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+            } else  {
+                tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
             }
         }
         
         if(elementName as NSString).isEqual(xmlKeyTags.startTagMP3URL) {
-            if var tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.mp3URL = attributeDict[xmlKeyTags.mp3URL]!
-                podcast.episodes?.append(tempEpisode)
-            }
+            tmpEpisode!.mp3URL = attributeDict[xmlKeyTags.mp3URL]!
         }
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         let information = string.stringByTrimmingCharactersInSet(
             NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByRemovingAll(xmlKeyTags.unwantedStringInTag)
-    
-        switch element {
-        case xmlKeyTags.title:
-            if ((podcast.title!.isEqual(""))) {
-                podcast.title!.appendString(information)
-            } else if let tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.title!.appendString(information)
-                podcast.episodes?.append(tempEpisode)
+        if (!information.isEmpty){
+            switch element {
+            case xmlKeyTags.title:
+                if podcast!.title != nil {
+                    if tmpEpisode != nil {
+                        tmpEpisode!.title = information
+                    }
+                } else  {
+                    podcast!.title = information
+                }
+            case xmlKeyTags.author:
+                if podcast!.author == nil {
+                    podcast!.author = information
+                } else {
+                    tmpEpisode!.author = information
+                }
+            case xmlKeyTags.description:
+                if podcast!.summary == nil {
+                    podcast!.summary = information
+                }
+            case xmlKeyTags.publishedDate:
+                if tmpEpisode != nil {
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = dateFormatString
+                    let date = dateFormatter.dateFromString(information)
+                    tmpEpisode!.date = date
+                }
+            case xmlKeyTags.authorEpisodeTagTwo:
+                if tmpEpisode != nil {
+                    tmpEpisode!.author = information
+                }
+            case xmlKeyTags.descriptionTagTwo:
+                if podcast!.summary == nil {
+                    podcast!.summary = information
+                }else {
+                    if tmpEpisode != nil {
+                        tmpEpisode!.summary = information
+                    }
+                }
+            case xmlKeyTags.duration:
+                
+                tmpEpisode!.duration = information
+
+            default: break
             }
-        case xmlKeyTags.author:
-            if (podcast.author!.isEqual("")) {
-                podcast.author!.appendString(information)
-            } else if let tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.author!.appendString(information)
-                self.podcast.episodes?.append(tempEpisode)
-            }
-        case xmlKeyTags.description:
-            if (podcast.description!.isEqual("")) {
-                podcast.description!.appendString(information)
-            }
-        case xmlKeyTags.publishedDate:
-            if  let tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.date!.appendString(information)
-                podcast.episodes?.append(tempEpisode)
-            }
-        case xmlKeyTags.authorEpisodeTagTwo:
-            if let  tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.author!.appendString(information)
-                podcast.episodes?.append(tempEpisode)
-            }
-        case xmlKeyTags.descriptionTagTwo:
-            if (podcast.description!.isEqual("")) {
-                podcast.description!.appendString(information)
-            }else if  let  tempEpisode = podcast.episodes?.popLast() {
-                tempEpisode.description!.appendString(information)
-                podcast.episodes?.append(tempEpisode)
-            }
-        case xmlKeyTags.duration:
-            if let tempEpisode = podcast.episodes?.popLast(){
-                tempEpisode.duration!.appendString(information)
-                podcast.episodes?.append(tempEpisode)
-            }
-        default: break
         }
         
     }
@@ -121,12 +121,14 @@ extension XMLParser: NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName == xmlKeyTags.episodeTag) {
-            if var tempEpisode = podcast.episodes?.popLast() {
-                if tempEpisode.author!.isEqual("") {
-                    tempEpisode.author = podcast.author!
-                }
-                podcast.episodes?.append(tempEpisode)
+            if tmpEpisode!.author == nil {
+                tmpEpisode!.author = podcast!.author!
             }
+            tmpEpisode!.podcastTitle = podcast!.title
+            
+            let episodes = podcast!.episodes!.mutableCopy() as! NSMutableSet
+            episodes.addObject(tmpEpisode!)
+            podcast!.episodes = episodes.copy() as? NSSet
         }
         
     }

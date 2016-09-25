@@ -22,6 +22,7 @@ enum  Segues {
 
 }
 
+let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss ZZ"
 
 struct xmlKeyTags {
     static let episodeTag = "item"
@@ -41,6 +42,11 @@ struct xmlKeyTags {
 
 let stringsToRemove = ["http://", "/", "."]
 
+
+enum EntityName {
+    static let Podcast = "Podcast"
+    static let Episode = "Episode"
+}
 
 /**
  A log level of debug will print out all levels above it.
