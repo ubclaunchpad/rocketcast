@@ -51,6 +51,25 @@ extension PlayerController: PlayerViewDelegate {
     
     func setUpPlayer() {
         // set up audioPlayer with proper podcast episode
+        
+        /*
+         let path = NSBundle.mainBundle().pathForResource("\(trackId)", ofType: "mp3")
+         
+         if let path = path {
+            let mp3URL = NSURL(fileURLWithPath: path)
+         
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOfURL: mp3URL)
+                audioPlayer.play()
+         
+                NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(PlayerViewController.updateProgressView), userInfo: nil, repeats: true)
+                progressView.setProgress(Float(audioPlayer.currentTime/audioPlayer.duration), animated: false)
+         
+            } catch let error as NSError {
+                Log.error(error.localizedDescription)
+            }
+         }
+         */
     }
     
 }
