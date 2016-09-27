@@ -99,6 +99,31 @@ class DownloadTests: XCTestCase {
         waitUntil(6) {done}
     }
     
+    func testDownloadImageNil() {
+        var done = false
+        let brokenUrl = "blablac"
+        ModelBridge.sharedInstance.downloadImage(brokenUrl) { (downloadedImage) in
+            done = true
+            let imageFromPath = UIImage(contentsOfFile: downloadedImage)
+            XCTAssertNil(imageFromPath)
+        }
+        waitUntil(6) {done}
+    }
+    
+    func testDownloadImage() {
+        var done = false
+        let urlTestImage = "http://www.apple.com/euro/ios/ios8/a/generic/images/og.png"
+        ModelBridge.sharedInstance.downloadImage(urlTestImage) { (downloadedImage) in
+            done = true
+            let imageFromPath = UIImage(contentsOfFile: downloadedImage)
+            XCTAssertEqual(1200,(imageFromPath?.size.width))
+            XCTAssertEqual(630,(imageFromPath?.size.height))
+        }
+        waitUntil(6) {done}
+    }
+    
+    
+    
     private func waitUntil(timeout: NSTimeInterval, predicate:(Void -> Bool)) {
         let timeoutTime = NSDate(timeIntervalSinceNow: timeout).timeIntervalSinceReferenceDate
         
