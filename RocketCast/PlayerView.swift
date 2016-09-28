@@ -29,10 +29,15 @@ class PlayerView: UIView {
         return view
     }
     
+    // viewDidLoad for views
     override func willMoveToSuperview(newSuperview: UIView?) {
-        // viewDidLoad for views
-        
         viewDelegate?.setUpPlayer()
+        titleLabel.text = viewDelegate?.getEpisodeTitle()
+        descriptionView.text = viewDelegate?.getEpisodeDesc()
+        
+        viewDelegate?.getEpisodeImage({ (image) in
+            self.imageView.image = image
+        })
     }
     
 }

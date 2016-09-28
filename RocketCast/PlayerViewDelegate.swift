@@ -12,6 +12,9 @@ protocol PlayerViewDelegate {
     func playPodcast()
     func pausePodcast()
     func stopPodcast()
-    
     func setUpPlayer()
+    
+    func getEpisodeTitle() -> String
+    func getEpisodeDesc() -> String
+    func getEpisodeImage(result: (image: UIImage) -> ())
 }
