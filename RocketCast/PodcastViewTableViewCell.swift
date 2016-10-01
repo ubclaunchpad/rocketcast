@@ -29,9 +29,6 @@ class PodcastViewTableViewCell: UITableViewCell {
         podcastName.text = setPodcastName as String
     }
     
-    //TODO: set image
-    //func setPodcastImage(podcastsImage: )
-    
     func setPodcastDescriptionText(setPodcastDescription: NSMutableString) {
         podcastDescription.text = setPodcastDescription as String
     }

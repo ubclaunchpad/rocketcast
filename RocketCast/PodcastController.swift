@@ -30,11 +30,10 @@ class PodcastController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -42,11 +41,8 @@ class PodcastController: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    
         let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-    
         cell.textLabel?.text = (podcasts[indexPath.row] as! String)
-        
         return cell
     }
   
@@ -57,8 +53,6 @@ extension PodcastController:PodcastViewDelegate {
     func segueToEpisode() {
         performSegueWithIdentifier(Segues.segueFromPodcastToEpisode, sender: self)
     }
-    
-    
 }
 
 

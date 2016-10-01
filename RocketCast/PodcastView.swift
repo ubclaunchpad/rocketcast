@@ -17,10 +17,6 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var podcastList: UITableView!
     
-    //    private var answers: [Answer] = []
-    //    private var correctAnswer: AnswerText = ""
-    //    private var totalNumberOfAnswers: Int = 0
-    
     private var podcasts: [PodcastModel] = [
         PodcastModel(setTitle: "Programming Courses", setDescription: "oh yeah man le'ts learn some programming! YOu all rock and you know it!!!"),
         PodcastModel(setTitle: "Science podcast", setDescription: "asdfwer. If you were a scientist you'd be able to tell something about those letters.... bla bla bla testing with really long description v = ir and shit yo"),
@@ -49,27 +45,19 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         tableView.registerNib(podcastCell, forCellReuseIdentifier: "podcastCell")
         let cell = self.podcastList.dequeueReusableCellWithIdentifier("podcastCell", forIndexPath: indexPath) as! PodcastViewTableViewCell
         
-        
         cell.backgroundColor = UIColor.clearColor()
         cell.setPodcastNameText(podcasts[indexPath.row].title!)
         cell.setPodcastDescriptionText(podcasts[indexPath.row].description!)
-        //cell.setPodcastImage(podcasts[indexPath.row].imageURL)
-        
-        // set image / description?
 
         cell.tag = indexPath.row
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        return cell
-        
-        //cell.setAnswerText(answer.answerText)
-        
+        return cell        
     }
     
-        // returns an approiate number of rows depending on the section
+    // returns an approiate number of rows depending on the section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  podcasts.count
     }
-
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -78,6 +66,5 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-    
 
 }
