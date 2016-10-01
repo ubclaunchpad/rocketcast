@@ -37,6 +37,6 @@ struct EpisodeModel {
         author = ""
         duration = ""
         imageURL = ""
-        mp3URL = ""
+        audioURL = ""
     }
 }
