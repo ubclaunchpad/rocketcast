@@ -89,7 +89,7 @@ class XMLParserTests: XCTestCase {
         XCTAssertEqual(expectedEpisode["author"], actualEpisode.author)
         XCTAssertEqual(expectedEpisode["date"], actualEpisode.date)
         XCTAssertEqual(expectedEpisode["image"], actualEpisode.imageURL)
-        XCTAssertEqual(expectedEpisode["mp3"], actualEpisode.mp3URL)
+        XCTAssertEqual(expectedEpisode["audio"], actualEpisode.audioURL)
     }
     
     

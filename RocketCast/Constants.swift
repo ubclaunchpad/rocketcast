@@ -10,16 +10,21 @@ import Foundation
 
 typealias PodcastWebURL = String
 typealias ImageWebURL = String
-typealias MP3WebURL = String
+typealias AudioWebURL = String
 typealias PodcastStorageURL = String
 typealias ImageStorageURL = String
-typealias MP3StorageURL = String
+typealias AudioStorageURL = String
 typealias XML = String
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
   static let segueFromEpisodeToPlayer = "segueFromEpisodeToPlayer"
+}
 
+
+enum EpisodeViewConstants {
+    static let cellViewNibName = "EpisodeViewTableViewCell"
+    static let cellViewIdentifier = "episodeviewCell"
 }
 
 
@@ -27,8 +32,8 @@ struct xmlKeyTags {
     static let episodeTag = "item"
     static let podcastImage = "itunes:image"
     static let imageLink = "href"
-    static let startTagMP3URL = "enclosure"
-    static let mp3URL = "url"
+    static let startTagAudioURL = "enclosure"
+    static let audioURL = "url"
     static let title = "title"
     static let description = "itunes:summary"
     static let author = "itunes:author"

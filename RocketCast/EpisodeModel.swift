@@ -18,10 +18,20 @@ struct EpisodeModel {
     var author:NSMutableString?
     var duration:NSMutableString?
     var imageURL:ImageWebURL?
-    var mp3URL:MP3WebURL?
+    var audioURL:AudioWebURL?
     
     init() {
         title = ""
+        description = ""
+        date = ""
+        author = ""
+        duration = ""
+        imageURL = ""
+        audioURL = ""
+    }
+    
+    init(setTitle: NSMutableString) {
+        title = setTitle
         description = ""
         date = ""
         author = ""

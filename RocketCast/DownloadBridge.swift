@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 
 
@@ -16,7 +17,7 @@ protocol DownloadBridgeProtocol {
    
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ())
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
     
@@ -77,8 +78,35 @@ extension ModelBridge: DownloadBridgeProtocol {
         }
     }
     
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ()) {
-        //TODO
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
+        let audioURL = NSURL(string: url)
+        let audioAsset = AVAsset(URL: audioURL!)
+        
+        guard audioAsset.playable && audioAsset.readable else {
+            Log.error("File at given URL cannot be read or played")
+            result(url: nil)
+            return
+        }
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
+            
+            guard error == nil else {
+                Log.error(error.debugDescription)
+                result(url: nil)
+                return
+            }
+            
+            let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove))"
+            let filePath = NSHomeDirectory() + filePathAppend
+            
+            do {
+                try data!.writeToFile(filePath, atomically: true)
+                result(url: filePathAppend)
+            } catch let error as NSError {
+                Log.error(error.debugDescription)
+            }
+            
+        }
+        task.resume()
     }
-    
 }
