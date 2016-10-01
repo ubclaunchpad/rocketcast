@@ -34,10 +34,7 @@ class PlayerView: UIView {
         viewDelegate?.setUpPlayer()
         titleLabel.text = "Test Title"
         descriptionView.text = "Test Description"
-        
-//        viewDelegate?.getEpisodeImage({ (image) in
-//            self.imageView.image = image
-//        })
+
     }
     
 }
