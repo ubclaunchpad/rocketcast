@@ -64,6 +64,8 @@ extension PlayerController: PlayerViewDelegate {
          
             do {
                 audioPlayer = try AVAudioPlayer(contentsOfURL: mp3URL)
+                
+                audioPlayer.prepareToPlay()
                 audioPlayer.play()
          
             } catch let error as NSError {
