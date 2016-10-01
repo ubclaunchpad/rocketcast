@@ -57,7 +57,7 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func setUpPlayer() {
-         let path = NSBundle.mainBundle().pathForResource(episode?.mp3URL, ofType: "mp3")
+         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
          
          if let path = path {
             let mp3URL = NSURL(fileURLWithPath: path)
