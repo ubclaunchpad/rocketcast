@@ -32,12 +32,12 @@ class PlayerView: UIView {
     // viewDidLoad for views
     override func willMoveToSuperview(newSuperview: UIView?) {
         viewDelegate?.setUpPlayer()
-        titleLabel.text = viewDelegate?.getEpisodeTitle()
-        descriptionView.text = viewDelegate?.getEpisodeDesc()
+        titleLabel.text = "Test Title"
+        descriptionView.text = "Test Description"
         
-        viewDelegate?.getEpisodeImage({ (image) in
-            self.imageView.image = image
-        })
+//        viewDelegate?.getEpisodeImage({ (image) in
+//            self.imageView.image = image
+//        })
     }
     
 }

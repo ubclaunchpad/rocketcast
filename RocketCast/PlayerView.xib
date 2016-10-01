@@ -15,14 +15,14 @@
                     <rect key="frame" x="95" y="431" width="30" height="30"/>
                     <state key="normal" title="Play"/>
                     <connections>
-                        <action selector="playButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="bfF-yy-lVX"/>
+                        <action selector="playButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="RlU-wJ-2xs"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5P-VY-pJl">
                     <rect key="frame" x="194" y="431" width="32" height="30"/>
                     <state key="normal" title="Stop"/>
                     <connections>
-                        <action selector="stopButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="VBb-Og-GIM"/>
+                        <action selector="stopButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="bXv-2c-92Y"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Us-7a-6An">
@@ -31,6 +31,12 @@
                         <constraint firstAttribute="height" constant="128" id="rxa-g6-f6F"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-m1-IHm">
+                    <rect key="frame" x="45" y="94" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gqI-aa-uCa">
                     <rect key="frame" x="40" y="272" width="240" height="128"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,12 +44,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-m1-IHm">
-                    <rect key="frame" x="45" y="94" width="42" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -63,10 +63,9 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
-                <outlet property="description" destination="gqI-aa-uCa" id="EvF-DA-OkM"/>
-                <outlet property="descriptionView" destination="gqI-aa-uCa" id="AGF-lx-P5n"/>
-                <outlet property="imageView" destination="9Us-7a-6An" id="ZAS-6j-hj0"/>
-                <outlet property="titleLabel" destination="XFf-m1-IHm" id="39E-PZ-sxD"/>
+                <outlet property="descriptionView" destination="gqI-aa-uCa" id="kwR-OA-AA0"/>
+                <outlet property="imageView" destination="9Us-7a-6An" id="U51-g4-MsZ"/>
+                <outlet property="titleLabel" destination="XFf-m1-IHm" id="2AQ-Ws-S5P"/>
             </connections>
         </view>
     </objects>
