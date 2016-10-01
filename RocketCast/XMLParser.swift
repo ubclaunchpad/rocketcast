@@ -10,92 +10,128 @@ import Foundation
 
 class XMLParser: NSObject {
     
-    var strXMLData:String = ""
-    var currentElement:String = ""
-    var passData:Bool=false
-    var passName:Bool=false
+    var element = String()
     
-    
-    var url: NSURL?
-    var xmlContent:NSDictionary?
-    init(url: NSURL) {
+    var podcast = PodcastModel()
+
+    init(url: String) {
         super.init()
-        self.url = url
-        self.xmlContent = parseData()
-    }
-    
-    func getPodcastAuthor() {
-        
-    }
-    
-    func getPodcastTitle() {
-        
-    }
-    
-    private func parseData () -> NSDictionary {
-        var parser = NSXMLParser(contentsOfURL: url!)
-        parser!.delegate = self
-        Log.test("parse is called")
-        guard parser!.parse() else {
-            //TODO: error out
-            return NSDictionary()
+        if let data = NSData(contentsOfURL:NSURL(string: url)!) {
+            parseData(data)
+        } else {
+            Log.error("There's nothing in the data from url:\(url)")
         }
         
-        return NSDictionary()
     }
+    
+    private func parseData (data:NSData) {
+        let parser = NSXMLParser(data: data)
+        parser.delegate = self
+        guard parser.parse() else {
+            Log.error("Oh shit something went wrong. OS parser failed")
+            return
+        }
+        
+    }
+    
+    func getGeneratedPodcast () -> PodcastModel {
+        return podcast
+    }
+    
 }
 
 extension XMLParser: NSXMLParserDelegate {
-//    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, foundCharacters string: String) {
-//    }
-//    
-//    func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
-//    }
-    
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        currentElement=elementName;
-        if(elementName=="title" || elementName=="lastBuildDate")
-        {
-            if(elementName=="title"){
-                passName=true;
-                Log.test("\(elementName)")
-            }
-            passData=true;
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
+        element = elementName
+        
+        if (elementName as NSString).isEqualToString(xmlKeyTags.episodeTag) {
+            podcast.episodes?.append(EpisodeModel())
         }
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        currentElement="";
-        if(elementName=="title" || elementName=="lastBuildDate")
-        {
-            if(elementName=="title"){
-                passName=false;
-                Log.test("\(elementName)")
+        if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
+            
+            if (podcast.imageURL!.isEmpty) {
+                podcast.imageURL = attributeDict[xmlKeyTags.imageLink]!
+            } else if var tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                podcast.episodes?.append(tempEpisode)
             }
-            passData=false;
+        }
+        
+        if(elementName as NSString).isEqual(xmlKeyTags.startTagAudioURL) {
+            if var tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.audioURL = attributeDict[xmlKeyTags.audioURL]!
+                podcast.episodes?.append(tempEpisode)
+            }
         }
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if(passName){
-            strXMLData=strXMLData+"\n\n"+string
+        let information = string.stringByTrimmingCharactersInSet(
+            NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByRemovingAll(xmlKeyTags.unwantedStringInTag)
+    
+        switch element {
+        case xmlKeyTags.title:
+            if ((podcast.title!.isEqual(""))) {
+                podcast.title!.appendString(information)
+            } else if let tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.title!.appendString(information)
+                podcast.episodes?.append(tempEpisode)
+            }
+        case xmlKeyTags.author:
+            if (podcast.author!.isEqual("")) {
+                podcast.author!.appendString(information)
+            } else if let tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.author!.appendString(information)
+                self.podcast.episodes?.append(tempEpisode)
+            }
+        case xmlKeyTags.description:
+            if (podcast.description!.isEqual("")) {
+                podcast.description!.appendString(information)
+            }
+        case xmlKeyTags.publishedDate:
+            if  let tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.date!.appendString(information)
+                podcast.episodes?.append(tempEpisode)
+            }
+        case xmlKeyTags.authorEpisodeTagTwo:
+            if let  tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.author!.appendString(information)
+                podcast.episodes?.append(tempEpisode)
+            }
+        case xmlKeyTags.descriptionTagTwo:
+            if (podcast.description!.isEqual("")) {
+                podcast.description!.appendString(information)
+            }else if  let  tempEpisode = podcast.episodes?.popLast() {
+                tempEpisode.description!.appendString(information)
+                podcast.episodes?.append(tempEpisode)
+            }
+        case xmlKeyTags.duration:
+            if let tempEpisode = podcast.episodes?.popLast(){
+                tempEpisode.duration!.appendString(information)
+                podcast.episodes?.append(tempEpisode)
+            }
+        default: break
         }
         
-        if(passData)
-        {
-            Log.test(string)
-        }
     }
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
-        Log.error("parsing failed")
-        NSLog("failure error: %@", parseError)
+        Log.error("parsing failed: " + parseError.description)
     }
+    
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if (elementName == xmlKeyTags.episodeTag) {
+            if var tempEpisode = podcast.episodes?.popLast() {
+                if tempEpisode.author!.isEqual("") {
+                    tempEpisode.author = podcast.author!
+                }
+                podcast.episodes?.append(tempEpisode)
+            }
+        }
+        
+    }
+    
+    
 }
+
+
