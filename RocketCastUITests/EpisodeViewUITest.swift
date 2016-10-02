@@ -27,7 +27,7 @@ class EpisodeUITests: XCTestCase {
         var exists = NSPredicate(format: "exists == true")
         
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
         XCTAssert(startScreen.exists)
         
         app.buttons["Button"].tap()
@@ -37,7 +37,7 @@ class EpisodeUITests: XCTestCase {
         exists = NSPredicate(format: "exists == true")
         
         expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
     }
