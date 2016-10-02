@@ -22,22 +22,22 @@ class EpisodeUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
         
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-        
-        
         //Test 1: Check we arrive at Home Screen
         let startScreen = self.app.staticTexts["Podcast"]
-        let exists = NSPredicate(format: "exists == true")
-        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
+        var exists = NSPredicate(format: "exists == true")
         
-        waitForExpectationsWithTimeout(5, handler: nil)
+        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
         XCTAssert(startScreen.exists)
+        
+        app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen
         let episodeScreen = self.app.staticTexts["Episodes"]
-        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
-        app.buttons["Button"].tap()
-        waitForExpectationsWithTimeout(5, handler: nil)
+        exists = NSPredicate(format: "exists == true")
+        
+        expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
     }
