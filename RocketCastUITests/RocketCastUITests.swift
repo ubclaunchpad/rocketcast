@@ -33,17 +33,18 @@ class RocketCastUITests: XCTestCase {
     
     func testSegueToViews() {
         let startScreen = self.app.staticTexts["Podcast"]
-        let exists = NSPredicate(format: "exists == true")
+        var exists = NSPredicate(format: "exists == true")
         
         //Test 1: Check we arrive at Home Screen
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
         
         waitForExpectationsWithTimeout(5, handler: nil)
         XCTAssert(startScreen.exists)
-                self.app.buttons["Button"].tap()
+        self.app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen
         let episodesScreen = self.app.staticTexts["Episodes"]
+        exists = NSPredicate(format: "exists == true")
         
         expectationForPredicate(exists, evaluatedWithObject: episodesScreen, handler: nil)
 
