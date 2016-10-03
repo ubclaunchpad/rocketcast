@@ -68,6 +68,11 @@ class DownloadTests: XCTestCase {
         
         waitUntil(6) {done}
     }
+
+    func testSubscribeToPodcast() {
+        // Test whether we can check for new episodes from real podcasts
+    }
+
     
     func testDownloadRandomString() {
         // Testing a random string

@@ -15,6 +15,8 @@ struct PodcastModel {
     var description:NSMutableString?
     var episodes:[EpisodeModel]?
     var imageURL:ImageWebURL?
+    var podcastURL:PodcastWebURL?
+    var timer:NSTimer?
     
     init () {
         title = ""

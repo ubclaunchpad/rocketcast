@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246CF081D84A6FF00ABF027 /* DownloadTests.swift */; };
+		84890A6B1DA1D2C500816D8A /* SubscribeBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84890A6A1DA1D2C500816D8A /* SubscribeBridge.swift */; };
 		84C603201D972E5A009C73A7 /* EpisodeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */; };
 		84C603221D972E9E009C73A7 /* EpisodeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */; };
 		84C603241D9735F1009C73A7 /* EpisodeViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C603231D9735F1009C73A7 /* EpisodeViewUITest.swift */; };
@@ -68,6 +69,7 @@
 
 /* Begin PBXFileReference section */
 		5246CF081D84A6FF00ABF027 /* DownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
+		84890A6A1DA1D2C500816D8A /* SubscribeBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeBridge.swift; sourceTree = "<group>"; };
 		84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeViewTableViewCell.xib; sourceTree = "<group>"; };
 		84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewTableViewCell.swift; sourceTree = "<group>"; };
 		84C603231D9735F1009C73A7 /* EpisodeViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewUITest.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				D05CC4D51D791F9C009C4B19 /* PodcastModel.swift */,
 				D0B691491D84ADAA00C3366D /* EpisodeModel.swift */,
 				D007E3F51D8DDEE600070123 /* DefaultLibraryExtensions.swift */,
+				84890A6A1DA1D2C500816D8A /* SubscribeBridge.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 			files = (
 				C80DA32E1D77E86C0089A678 /* PlayerViewDelegate.swift in Sources */,
 				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
+				84890A6B1DA1D2C500816D8A /* SubscribeBridge.swift in Sources */,
 				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
 				C80DA3301D77E88E0089A678 /* PlayerView.swift in Sources */,
 				D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */,
