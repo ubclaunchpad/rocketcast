@@ -25,7 +25,7 @@ struct testPodcastNoAuthorsForEpisodes {
           "date": "2016-09-13 05:05:59 +0000",
           "duration" : "01:03:52",
           "image" : "http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg",
-          "mp3" : "http://traffic.libsyn.com/billburr/MMPC_9-12-16.mp3"]
+          "audio" : "http://traffic.libsyn.com/billburr/MMPC_9-12-16.mp3"]
     
     
     private let expectedEpisode2:[String:String] =
@@ -35,7 +35,7 @@ struct testPodcastNoAuthorsForEpisodes {
           "date": "2016-09-08 21:28:15 +0000",
           "duration" : "01:07:59",
           "image" : "http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg",
-          "mp3" : "http://traffic.libsyn.com/billburr/TAMMP_9-8-16.mp3"]
+          "audio" : "http://traffic.libsyn.com/billburr/TAMMP_9-8-16.mp3"]
     
     var expectedEpisodes = [[String:String]]()
     

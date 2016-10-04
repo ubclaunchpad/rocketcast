@@ -24,7 +24,7 @@ struct testNormalPodcastXML {
           "date": "2016-09-22 19:40:49 +0000",
           "duration" : "01:07:59",
           "image" : "JONMERCER.jpg",
-          "mp3" : "http://www.yourserver.com/podcast_fileONE.mp3"]
+          "audio" : "http://www.yourserver.com/podcast_fileONE.mp3"]
     
     
     private let expectedEpisode2:[String:String] =
@@ -34,7 +34,7 @@ struct testNormalPodcastXML {
           "date": "2016-09-21 19:40:49 +0000",
           "duration" : "12:07:59",
           "image" : "KELVINCHAN.jpg",
-          "mp3" : "http://www.yourserver.com/podcast_fileTWO.mp3"]
+          "audio" : "http://www.yourserver.com/podcast_fileTWO.mp3"]
     
     var expectedEpisodes = [[String:String]]()
     

@@ -9,12 +9,15 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+
+
 
 protocol DownloadBridgeProtocol {
    
     func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ())
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
     
@@ -58,11 +61,52 @@ extension ModelBridge: DownloadBridgeProtocol {
     }
     
     func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ()) {
-        //TODO
+        let urlString = String(url)
+        let url = NSURL(string: urlString)
+        var destinationPath = " "
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            if let data = NSData(contentsOfURL: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
+                dispatch_async(dispatch_get_main_queue(), {
+                    let image = UIImage(data: data)
+                    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+                    destinationPath = documentsPath + urlString.stringByRemovingAll(stringsToRemove)+".png"
+                    UIImageJPEGRepresentation(image!,1.0)!.writeToFile(destinationPath, atomically: true)
+                    result(url: destinationPath)
+                });
+            }
+        }
     }
     
-    func downloadMp3(url: MP3WebURL, result:(url: MP3StorageURL) -> ()) {
-        //TODO
+    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
+        let audioURL = NSURL(string: url)
+        let audioAsset = AVAsset(URL: audioURL!)
+        
+        guard audioAsset.playable && audioAsset.readable else {
+            Log.error("File at given URL cannot be read or played")
+            result(url: nil)
+            return
+        }
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
+            
+            guard error == nil else {
+                Log.error(error.debugDescription)
+                result(url: nil)
+                return
+            }
+            
+            let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove))"
+            let filePath = NSHomeDirectory() + filePathAppend
+            
+            do {
+                try data!.writeToFile(filePath, atomically: true)
+                result(url: filePathAppend)
+            } catch let error as NSError {
+                Log.error(error.debugDescription)
+            }
+            
+        }
+        task.resume()
     }
-    
 }

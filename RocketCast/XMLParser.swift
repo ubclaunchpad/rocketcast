@@ -58,8 +58,8 @@ extension XMLParser: NSXMLParserDelegate {
             }
         }
         
-        if(elementName as NSString).isEqual(xmlKeyTags.startTagMP3URL) {
-            tmpEpisode!.mp3URL = attributeDict[xmlKeyTags.mp3URL]!
+        if(elementName as NSString).isEqual(xmlKeyTags.startTagAudioURL) {
+            tmpEpisode!.audioURL = attributeDict[xmlKeyTags.audioURL]!
         }
     }
     

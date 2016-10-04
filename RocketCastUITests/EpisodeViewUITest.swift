@@ -8,10 +8,10 @@
 
 import XCTest
 
-class RocketCastUITests: XCTestCase {
+class EpisodeUITests: XCTestCase {
     
-    let app = XCUIApplication()
-        
+    private var app = XCUIApplication()
+    
     override func setUp() {
         super.setUp()
         
@@ -21,17 +21,7 @@ class RocketCastUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    
-    func testSegueToViews() {
+        
         //Test 1: Check we arrive at Home Screen
         let startScreen = self.app.staticTexts["Podcast"]
         var exists = NSPredicate(format: "exists == true")
@@ -50,16 +40,26 @@ class RocketCastUITests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
-        
-        //Test 3: Check we arrive at End Screen
-        let notExists = NSPredicate(format: "exists == false")
-        
-        expectationForPredicate(notExists, evaluatedWithObject: episodeScreen, handler: nil)
-        self.app.buttons["Button"].tap()
-        waitForExpectationsWithTimeout(10, handler: nil)
-        
-        XCTAssert(!episodeScreen.exists)
     }
+    
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
+    
+    func testTableViewCells() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let episodeTable = self.app.tables
+        
+        let cells = episodeTable.cells
+        XCTAssertEqual(cells.count, 3, "found instead: \(cells.debugDescription)")
 
+        XCTAssert(episodeTable.staticTexts["How to Cook Podcast"].exists)
+        XCTAssert(episodeTable.staticTexts["NodeJS Development Podcast"].exists)
+        XCTAssert(episodeTable.staticTexts["iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"].exists)
+        
+    }
     
 }

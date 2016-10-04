@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -27,15 +28,38 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
+                    <rect key="frame" x="0.0" y="305" width="320" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="4yk-5b-Ctz"/>
+                        <constraint firstAttribute="width" constant="240" id="8mQ-MH-9uE"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="4yk-5b-Ctz"/>
+                            <exclude reference="8mQ-MH-9uE"/>
+                        </mask>
+                    </variation>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="shX-bq-jX4" secondAttribute="bottom" constant="135" id="0uP-ty-pYG"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="top" secondItem="gPx-t3-vC8" secondAttribute="bottom" constant="33" id="2g7-kW-Jp3"/>
                 <constraint firstAttribute="trailing" secondItem="IWU-4e-oz5" secondAttribute="trailing" constant="43" id="91U-b9-B4T"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BoJ-Q5-pa6"/>
                 <constraint firstItem="gPx-t3-vC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="251" id="Mwi-Ah-Bn8"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TdQ-sR-cGY"/>
+                <constraint firstItem="shX-bq-jX4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.3" id="ZIw-Cg-qlo"/>
                 <constraint firstItem="IWU-4e-oz5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="d9D-qq-YBf"/>
+                <constraint firstAttribute="trailing" secondItem="shX-bq-jX4" secondAttribute="trailing" id="mcc-HA-JQA"/>
                 <constraint firstItem="gPx-t3-vC8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="98" id="vJF-rL-yWj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="EpisodeTable" destination="shX-bq-jX4" id="V5O-R9-kmz"/>
+            </connections>
         </view>
     </objects>
 </document>

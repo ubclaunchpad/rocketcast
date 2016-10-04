@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,28 +12,37 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-Za-aiK">
-                    <rect key="frame" x="53" y="36" width="46" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-Za-aiK">
+                    <rect key="frame" x="27" y="17" width="46" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="segueButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ou-nA-SrL"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-bN-elU">
-                    <rect key="frame" x="118" y="267" width="63" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Podcasts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrz-dm-V8G">
+                    <rect key="frame" x="125" y="26" width="71" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-3r-6mG">
+                    <rect key="frame" x="14" y="61" width="292" height="499"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="5b9-bN-elU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="118" id="VAK-f7-AGt"/>
-                <constraint firstItem="5Kv-Za-aiK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="53" id="lr6-Ae-M3H"/>
-                <constraint firstItem="5b9-bN-elU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="267" id="mNd-Ot-g7s"/>
-                <constraint firstItem="5Kv-Za-aiK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="wnx-6b-L2L"/>
+                <constraint firstItem="5Kv-Za-aiK" firstAttribute="bottom" secondItem="Wrz-dm-V8G" secondAttribute="bottom" id="7fX-bR-jdU"/>
+                <constraint firstItem="Wrz-dm-V8G" firstAttribute="leading" secondItem="5Kv-Za-aiK" secondAttribute="trailing" constant="51" id="jNc-bA-PqI"/>
+                <constraint firstItem="Wrz-dm-V8G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pPf-Pt-dlL"/>
+                <constraint firstItem="5Kv-Za-aiK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="sJA-eq-33T"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="podcastList" destination="QaG-3r-6mG" id="jks-dA-New"/>
+                <outlet property="viewTitle" destination="Wrz-dm-V8G" id="Mu5-jA-nDG"/>
+            </connections>
+            <point key="canvasLocation" x="254" y="11"/>
         </view>
     </objects>
 </document>

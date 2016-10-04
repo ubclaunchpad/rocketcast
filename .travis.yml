@@ -4,5 +4,5 @@ xcode_project: RocketCast.xcodeproj
 xcode_scheme: RocketCast
 xcode_sdk: iphonesimulator9.3
 script:
-  - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator
+  - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator  
   - xcodebuild test -project RocketCast.xcodeproj -scheme RocketCastTests -sdk iphonesimulator

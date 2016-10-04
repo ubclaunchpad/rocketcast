@@ -112,7 +112,7 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(expectedEpisode["author"], episode.author)
         XCTAssertEqual(expectedEpisode["date"], episode.date?.description)
         XCTAssertEqual(expectedEpisode["image"], episode.imageURL)
-        XCTAssertEqual(expectedEpisode["mp3"], episode.mp3URL)
+        XCTAssertEqual(expectedEpisode["audio"], episode.audioURL)
     }
     
 }
