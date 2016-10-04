@@ -17,11 +17,6 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var podcastList: UITableView!
     
-    private var podcasts: [PodcastModel] = [
-        PodcastModel(setTitle: "Programming Courses", setDescription: "oh yeah man le'ts learn some programming! YOu all rock and you know it!!!"),
-        PodcastModel(setTitle: "Science podcast", setDescription: "asdfwer. If you were a scientist you'd be able to tell something about those letters.... bla bla bla testing with really long description v = ir and shit yo"),
-        PodcastModel(setTitle: "you are not so smart", setDescription: "youa re not smarth at all! Can't even spell!")]
-    
     @IBAction func segueButton(sender: AnyObject) {
         viewDelegate?.segueToEpisode()
     }
@@ -46,9 +41,7 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = self.podcastList.dequeueReusableCellWithIdentifier("podcastCell", forIndexPath: indexPath) as! PodcastViewTableViewCell
         
         cell.backgroundColor = UIColor.clearColor()
-        cell.setPodcastNameText(podcasts[indexPath.row].title!)
-        cell.setPodcastDescriptionText(podcasts[indexPath.row].description!)
-
+    
         cell.tag = indexPath.row
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell        
@@ -56,7 +49,7 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     // returns an approiate number of rows depending on the section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  podcasts.count
+        return  1
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

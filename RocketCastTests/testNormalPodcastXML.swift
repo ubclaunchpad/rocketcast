@@ -12,7 +12,7 @@ struct testNormalPodcastXML {
     
     let fileName = "testNormalPodcastXML"
     
-    let title = "QuantumSpark"
+    let title = "QuantumSpark's podcast"
     let author = "James Park"
     let description = "A dank podcast"
     let imageURL = "JamesPark.jpg"
@@ -21,7 +21,7 @@ struct testNormalPodcastXML {
         [ "title" : "Quantum Superposition",
           "description": "exploring states of particles",
           "author" : "Jon Mercer",
-          "date": "Thu, 16 Jun 2005 5:00:00 PST",
+          "date": "2016-09-22 19:40:49 +0000",
           "duration" : "01:07:59",
           "image" : "JONMERCER.jpg",
           "audio" : "http://www.yourserver.com/podcast_fileONE.mp3"]
@@ -31,7 +31,7 @@ struct testNormalPodcastXML {
         [ "title" : "Photon",
           "description": "lights",
           "author" : "Kelvin Chan",
-          "date": "Fri, 17 Jun 2005 5:00:00 PST",
+          "date": "2016-09-21 19:40:49 +0000",
           "duration" : "12:07:59",
           "image" : "KELVINCHAN.jpg",
           "audio" : "http://www.yourserver.com/podcast_fileTWO.mp3"]

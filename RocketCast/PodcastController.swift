@@ -7,18 +7,22 @@
 //
 
 import UIKit
-
+import CoreData
 class PodcastController: UIViewController {
     
     var podcasts = []
     
     var mainView: PodcastView?
-    
+    let CoreData = CoreDataHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
         }
+        
+        
+        //_ = XMLParser(url:"http://billburr.libsyn.com/rss")
+        
     }
     
     private func setupView() {
@@ -27,7 +31,7 @@ class PodcastController: UIViewController {
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -45,7 +49,6 @@ class PodcastController: UIViewController {
         cell.textLabel?.text = (podcasts[indexPath.row] as! String)
         return cell
     }
-  
 }
 
 extension PodcastController:PodcastViewDelegate {
@@ -54,27 +57,3 @@ extension PodcastController:PodcastViewDelegate {
         performSegueWithIdentifier(Segues.segueFromPodcastToEpisode, sender: self)
     }
 }
-
-
-//
-//extension EpisodeController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-//        
-//        cell.textLabel?.text = episodes[indexPath.row]
-//        
-//        return cell
-//    }
-//}
