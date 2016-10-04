@@ -10,6 +10,8 @@ import UIKit
 
 class PodcastController: UIViewController {
     
+    var podcasts = []
+    
     var mainView: PodcastView?
     
     override func viewDidLoad() {
@@ -28,17 +30,51 @@ class PodcastController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        cell.textLabel?.text = (podcasts[indexPath.row] as! String)
+        return cell
     }
   
-    
-
 }
+
 extension PodcastController:PodcastViewDelegate {
     
     func segueToEpisode() {
         performSegueWithIdentifier(Segues.segueFromPodcastToEpisode, sender: self)
     }
-    
-    
 }
+
+
+//
+//extension EpisodeController: UITableViewDelegate, UITableViewDataSource {
+//    
+//    
+//    
+//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
+//    
+//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        
+//        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+//        
+//        cell.textLabel?.text = episodes[indexPath.row]
+//        
+//        return cell
+//    }
+//}
