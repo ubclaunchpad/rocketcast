@@ -18,6 +18,11 @@ struct PodcastModel {
     var imageURL:ImageWebURL?
 
     init() {
+        title = ""
+        author = ""
+        description = ""
+        episodes = [EpisodeModel]()
+        imageURL = ""
         
     }
     
