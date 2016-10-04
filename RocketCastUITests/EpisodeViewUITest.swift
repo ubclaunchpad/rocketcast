@@ -29,7 +29,7 @@ class EpisodeUITests: XCTestCase {
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
         waitForExpectationsWithTimeout(10, handler: nil)
         XCTAssert(startScreen.exists)
-        
+        XCTAssert(app.buttons["Button"].exists)
         app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen
