@@ -57,27 +57,3 @@ extension PodcastController:PodcastViewDelegate {
         performSegueWithIdentifier(Segues.segueFromPodcastToEpisode, sender: self)
     }
 }
-
-
-//
-//extension EpisodeController: UITableViewDelegate, UITableViewDataSource {
-//    
-//    
-//    
-//    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
-//    
-//    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-//        
-//        cell.textLabel?.text = episodes[indexPath.row]
-//        
-//        return cell
-//    }
-//}
