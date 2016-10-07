@@ -6,3 +6,5 @@ xcode_sdk: iphonesimulator9.3
 script:
   - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator  
   - xcodebuild test -project RocketCast.xcodeproj -scheme RocketCastTests -sdk iphonesimulator
+notifications:
+  slack: ubclaunchpad:9yrC0XnC8DqCSlAJbLewhEPG
