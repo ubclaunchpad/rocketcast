@@ -21,6 +21,7 @@ class RocketCastUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
+        sleep(1)
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -32,32 +33,39 @@ class RocketCastUITests: XCTestCase {
     
     
     func testSegueToViews() {
-        let startScreen = self.app.staticTexts["Podcast"]
-        var exists = NSPredicate(format: "exists == true")
+        
+        //Test 1: Check we arrive at Home Screen
+        let startScreen = app.staticTexts["Podcast"]
+        let button = app.buttons["Button"]
+        let exists = NSPredicate(format: "exists == true")
         
         //Test 1: Check we arrive at Home Screen
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
+        waitForExpectationsWithTimeout(20, handler: nil)
         
-        waitForExpectationsWithTimeout(10, handler: nil)
         XCTAssert(startScreen.exists)
-        self.app.buttons["Button"].tap()
+        XCTAssert(app.buttons["Button"].exists)
+        
+        //Go to next screen
+        app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen
-        let episodesScreen = self.app.staticTexts["Episodes"]
-        exists = NSPredicate(format: "exists == true")
+        let episodeScreen = self.app.staticTexts["Episodes"]
         
-        expectationForPredicate(exists, evaluatedWithObject: episodesScreen, handler: nil)
-
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
+        waitForExpectationsWithTimeout(20, handler: nil)
         
-        XCTAssert(episodesScreen.exists)
-
+        XCTAssert(episodeScreen.exists)
+        XCTAssert(app.buttons["Button"].exists)
+        
+        //Go to next screen
+        app.buttons["Button"].tap()
+        
         //Test 3: Check we arrive at End Screen
         let notExists = NSPredicate(format: "exists == false")
         
-        expectationForPredicate(notExists, evaluatedWithObject: episodesScreen, handler: nil)
-        self.app.buttons["Button"].tap()
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectationForPredicate(notExists, evaluatedWithObject: episodeScreen, handler: nil)
+        waitForExpectationsWithTimeout(20, handler: nil)
         
         XCTAssert(!episodesScreen.exists)
     }
