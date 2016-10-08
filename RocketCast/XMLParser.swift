@@ -17,12 +17,11 @@ class XMLParser: NSObject {
     var tmpEpisode:Episode?
     
     
-    init(url: String) {
+    init(url: String, podcastUrl: PodcastWebURL) {
         super.init()
         if let data = NSData(contentsOfURL:NSURL(string: url)!) {
-            
-            podcast = NSEntityDescription.insertNewObjectForEntityForName("Podcast",
-                                          inManagedObjectContext: coreData.managedObjectContext) as? Podcast
+            podcast = coreData.createOrUpdatePodcast(podcastUrl)
+            podcast!.url = podcastUrl
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -54,7 +53,9 @@ extension XMLParser: NSXMLParserDelegate {
             if (podcast!.imageURL == nil) {
                 podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
             } else  {
-                tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                if(tmpEpisode != nil){
+                    tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                }
             }
         }
         
@@ -79,7 +80,7 @@ extension XMLParser: NSXMLParserDelegate {
             case xmlKeyTags.author:
                 if podcast!.author == nil {
                     podcast!.author = information
-                } else {
+                } else if tmpEpisode != nil {
                     tmpEpisode!.author = information
                 }
             case xmlKeyTags.description:
@@ -124,7 +125,7 @@ extension XMLParser: NSXMLParserDelegate {
             if tmpEpisode!.author == nil {
                 tmpEpisode!.author = podcast!.author!
             }
-            tmpEpisode!.podcastTitle = podcast!.title
+            tmpEpisode!.podcastUrl = podcast!.url
             
             let episodes = podcast!.episodes!.mutableCopy() as! NSMutableSet
             episodes.addObject(tmpEpisode!)

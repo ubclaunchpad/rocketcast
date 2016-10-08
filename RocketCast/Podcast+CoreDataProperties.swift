@@ -19,5 +19,6 @@ extension Podcast {
     @NSManaged var summary: String?
     @NSManaged var imageURL: String?
     @NSManaged var episodes: NSSet?
+    @NSManaged var url: PodcastWebURL?
 
 }

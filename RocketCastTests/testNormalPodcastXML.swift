@@ -16,6 +16,7 @@ struct testNormalPodcastXML {
     let author = "James Park"
     let description = "A dank podcast"
     let imageURL = "JamesPark.jpg"
+    let url = "http://www.yourserver.com/podcast.xml"
     
    private let expectedEpisode1:[String:String] =
         [ "title" : "Quantum Superposition",

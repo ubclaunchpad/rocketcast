@@ -17,6 +17,8 @@ struct testPodcastNoAuthorsForEpisodes {
     let author = "Bill Burr"
     let description = "Bill Burr rants about relationship advice, sports and the Illuminati."
     let imageURL = "http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg"
+    let url = "http://www.billburr.com/podcast.xml"
+
     
     private let expectedEpisode1:[String:String] =
         [ "title" : "Monday Morning Podcast 9-12-16",

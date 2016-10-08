@@ -98,13 +98,39 @@ class CoreDataHelper {
             Log.error("Error deleting objects: " + error.localizedDescription)
         }
     }
+
+    func createOrUpdatePodcast (podcastUrl: String) -> Podcast? {
+        var podcast:Podcast?
+        let request = NSFetchRequest(entityName: EntityName.Podcast)
+        if (podcastUrl != "") {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl)
+        }
+        
+        
+        var wasError:Bool = false
+        do {
+            if let podcasts = try self.managedObjectContext.executeFetchRequest(request) as? [Podcast] {
+                podcast = podcasts.first
+            }
+        }
+        catch let _ as NSError {
+            wasError = true
+        }
     
+        if(podcast == nil || wasError){
+            podcast = NSEntityDescription.insertNewObjectForEntityForName("Podcast",
+                                                                          inManagedObjectContext: self.managedObjectContext) as? Podcast
+        }
+        
+        return podcast
+
+    }
     
-    func deletePodcast (podcastTitle: String) {
+    func deletePodcast (podcastUrl: PodcastWebURL) {
         let podcastRequest = NSFetchRequest(entityName: EntityName.Podcast)
-        podcastRequest.predicate = NSPredicate(format:"title = %@", podcastTitle)
+        podcastRequest.predicate = NSPredicate(format:"url = %@", podcastUrl)
         let episodeRequest = NSFetchRequest(entityName: EntityName.Episode)
-        episodeRequest.predicate = NSPredicate(format:"podcastTitle = %@", podcastTitle)
+        episodeRequest.predicate = NSPredicate(format:"podcastUrl = %@", podcastUrl)
         
         do {
             let podcastResults = try self.managedObjectContext.executeFetchRequest(podcastRequest) as! [Podcast]
@@ -125,22 +151,22 @@ class CoreDataHelper {
         }
     }
     
-    func getPodcast (podcastTitle: String?) -> Podcast? {
+    func getPodcast (podcastUrl: PodcastWebURL?) -> Podcast? {
         var podcast:Podcast?
         let request = NSFetchRequest(entityName: EntityName.Podcast)
-        if (podcastTitle != nil) {
-            request.predicate = NSPredicate(format:"title = %@", podcastTitle!)
+        if (podcastUrl != "") {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl!)
         }
         
         do {
             if let podcasts = try self.managedObjectContext.executeFetchRequest(request) as? [Podcast] {
                 podcast = podcasts.first
+
             }
         }
         catch let error as NSError {
             Log.error("Error in getting podcasts: " + error.localizedDescription)
         }
-        
         return podcast
     }
     
