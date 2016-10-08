@@ -21,7 +21,7 @@ class RocketCastUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
-        sleep(1)
+        sleep(2)
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -35,11 +35,10 @@ class RocketCastUITests: XCTestCase {
     func testSegueToViews() {
         
         //Test 1: Check we arrive at Home Screen
-        let startScreen = app.staticTexts["Podcast"]
+        let startScreen = app.staticTexts["Podcasts"]
         let button = app.buttons["Button"]
         let exists = NSPredicate(format: "exists == true")
         
-        //Test 1: Check we arrive at Home Screen
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
         waitForExpectationsWithTimeout(20, handler: nil)
         
@@ -53,21 +52,18 @@ class RocketCastUITests: XCTestCase {
         let episodeScreen = self.app.staticTexts["Episodes"]
         
         expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(20, handler: nil)
+        waitForExpectationsWithTimeout(10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
-        XCTAssert(app.buttons["Button"].exists)
-        
-        //Go to next screen
-        app.buttons["Button"].tap()
         
         //Test 3: Check we arrive at End Screen
         let notExists = NSPredicate(format: "exists == false")
         
         expectationForPredicate(notExists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(20, handler: nil)
+        self.app.buttons["Button"].tap()
+        waitForExpectationsWithTimeout(10, handler: nil)
         
-        XCTAssert(!episodesScreen.exists)
+        XCTAssert(!episodeScreen.exists)
     }
 
     

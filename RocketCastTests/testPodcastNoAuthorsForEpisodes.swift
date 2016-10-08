@@ -22,7 +22,7 @@ struct testPodcastNoAuthorsForEpisodes {
         [ "title" : "Monday Morning Podcast 9-12-16",
           "description": "Bill rambles about football, strip clubs and quitting on stage.",
           "author" : "Bill Burr",
-          "date": "Mon, 12 Sep 2016 05:05:59 +0000",
+          "date": "2016-09-13 05:05:59 +0000",
           "duration" : "01:03:52",
           "image" : "http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg",
           "audio" : "http://traffic.libsyn.com/billburr/MMPC_9-12-16.mp3"]
@@ -32,7 +32,7 @@ struct testPodcastNoAuthorsForEpisodes {
         [ "title" : "Thursday Afternoon Monday Morning Podcast 9-8-16",
           "description": "Bill rambles about Sully, The East Side Comedy Club and having 9 kids.",
           "author" : "Bill Burr",
-          "date": "Thu, 08 Sep 2016 21:28:15 +0000",
+          "date": "2016-09-08 21:28:15 +0000",
           "duration" : "01:07:59",
           "image" : "http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg",
           "audio" : "http://traffic.libsyn.com/billburr/TAMMP_9-8-16.mp3"]

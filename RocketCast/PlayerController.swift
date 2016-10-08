@@ -13,14 +13,14 @@ class PlayerController: UIViewController {
     
     var mainView: PlayerView?
     var audioPlayer: AVAudioPlayer!
-    var episode: EpisodeModel?
+    var episode: Episode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         
         //TODO: call this from performSegue function in EpisodeController not here!
-        let seguedEpisode = EpisodeModel()
+        let seguedEpisode = Episode()
         setUpPodcast(seguedEpisode);
     }
     
@@ -35,7 +35,7 @@ class PlayerController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setUpPodcast(episodeToPlay: EpisodeModel) {
+    func setUpPodcast(episodeToPlay: Episode) {
         episode = episodeToPlay
     }
 }

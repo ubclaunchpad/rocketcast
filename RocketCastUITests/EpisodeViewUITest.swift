@@ -24,13 +24,13 @@ class EpisodeUITests: XCTestCase {
         sleep(1)
         
         //Test 1: Check we arrive at Home Screen
-        let startScreen = self.app.staticTexts["Podcast"]
+        let startScreen = self.app.staticTexts["Podcasts"]
         var exists = NSPredicate(format: "exists == true")
         
         expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
         waitForExpectationsWithTimeout(10, handler: nil)
         XCTAssert(startScreen.exists)
-        
+        XCTAssert(app.buttons["Button"].exists)
         app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen

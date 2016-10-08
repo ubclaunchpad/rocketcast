@@ -13,8 +13,6 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var EpisodeTable: UITableView!
     
-    private var episodes:[EpisodeModel] = [EpisodeModel(setTitle: "iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"), EpisodeModel(setTitle: "How to Cook Podcast"), EpisodeModel(setTitle: "NodeJS Development Podcast")]
-    
     @IBAction func segueToPlayer(sender: AnyObject) {
         viewDelegate?.segueToPlayer()
     }
@@ -33,7 +31,7 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     // returns an approiate number of rows depending on the section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  episodes.count
+        return  1
     }
     
     // Iiterates over every episode and creates a respective TableViewCell
@@ -44,8 +42,7 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = self.EpisodeTable.dequeueReusableCellWithIdentifier(EpisodeViewConstants.cellViewIdentifier, forIndexPath: indexPath) as! EpisodeViewTableViewCell
         
         cell.backgroundColor = UIColor.clearColor()
-        cell.setEpisodeHeaderText(episodes[indexPath.row].title!)
-
+        
         cell.tag = indexPath.row
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
