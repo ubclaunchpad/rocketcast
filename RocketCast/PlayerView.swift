@@ -22,6 +22,9 @@ class PlayerView: UIView {
         viewDelegate?.pausePodcast()
     }
     
+    @IBAction func changeSpeed(sender: UIButton) {
+        viewDelegate?.changeSpeed(sender.tag)
+    }
     class func instancefromNib(frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
             as! PlayerView

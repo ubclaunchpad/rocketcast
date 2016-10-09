@@ -15,6 +15,8 @@ class PlayerController: UIViewController {
     var audioPlayer: AVAudioPlayer!
     var episode: Episode?
     
+    let speedRates: [Float] = [1,2,3]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -22,6 +24,7 @@ class PlayerController: UIViewController {
         //TODO: call this from performSegue function in EpisodeController not here!
         let seguedEpisode = Episode()
         setUpPodcast(seguedEpisode);
+        setUpPlayer()
     }
     
     private func setupView() {
@@ -57,21 +60,33 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func setUpPlayer() {
-         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
-         
-         if let path = path {
-            let mp3URL = NSURL(fileURLWithPath: path)
-         
+        let fileMgr = NSFileManager.defaultManager()
+        
+        // Run the tests in DownloadTests.swift in order for this play
+        let path = NSHomeDirectory().stringByAppendingString("/Documents/wwwscientificamericancompodcastpodcastmp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3")
+
+        let file = fileMgr.contentsAtPath(path)
+        // Uncomment when episode.audioURL is accessible
+//         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
+//         if let path = path {
+//         let mp3URL = NSURL(fileURLWithPath: path)
+        
             do {
-                audioPlayer = try AVAudioPlayer(contentsOfURL: mp3URL)
+                audioPlayer = try AVAudioPlayer(data: file!)
                 
                 audioPlayer.prepareToPlay()
-                audioPlayer.play()
+                audioPlayer.enableRate = true
+//                audioPlayer.rate = 2.0
+//                audioPlayer.play()
          
             } catch let error as NSError {
                 Log.error(error.localizedDescription)
             }
-         }
+//         }
+    }
+    
+    func changeSpeed(rateTag: Int) {
+        audioPlayer.rate = speedRates[rateTag]
     }
     
     func getEpisodeTitle() -> String {
