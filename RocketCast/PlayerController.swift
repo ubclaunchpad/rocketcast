@@ -76,8 +76,6 @@ extension PlayerController: PlayerViewDelegate {
                 
                 audioPlayer.prepareToPlay()
                 audioPlayer.enableRate = true
-//                audioPlayer.rate = 2.0
-//                audioPlayer.play()
          
             } catch let error as NSError {
                 Log.error(error.localizedDescription)
