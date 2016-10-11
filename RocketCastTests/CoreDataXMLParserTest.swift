@@ -107,7 +107,7 @@ class CoreDataXMLParserTest: XCTestCase {
     }
     
     
-    fileprivate func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
+   func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
         XCTAssertEqual(expectedEpisode["title"], episode.title)
         XCTAssertEqual(expectedEpisode["description"], episode.summary)
         XCTAssertEqual(expectedEpisode["author"], episode.author)

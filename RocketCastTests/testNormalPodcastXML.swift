@@ -17,7 +17,7 @@ struct testNormalPodcastXML {
     let description = "A dank podcast"
     let imageURL = "JamesPark.jpg"
     
-   fileprivate let expectedEpisode1:[String:String] =
+let expectedEpisode1:[String:String] =
         [ "title" : "Quantum Superposition",
           "description": "exploring states of particles",
           "author" : "Jon Mercer",
@@ -27,7 +27,7 @@ struct testNormalPodcastXML {
           "audio" : "http://www.yourserver.com/podcast_fileONE.mp3"]
     
     
-    fileprivate let expectedEpisode2:[String:String] =
+ let expectedEpisode2:[String:String] =
         [ "title" : "Photon",
           "description": "lights",
           "author" : "Kelvin Chan",
