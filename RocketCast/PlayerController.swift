@@ -24,8 +24,8 @@ class PlayerController: UIViewController {
         setUpPodcast(seguedEpisode);
     }
     
-    private func setupView() {
-        let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+    fileprivate func setupView() {
+        let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -35,7 +35,7 @@ class PlayerController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setUpPodcast(episodeToPlay: Episode) {
+    func setUpPodcast(_ episodeToPlay: Episode) {
         episode = episodeToPlay
     }
 }
@@ -43,7 +43,7 @@ class PlayerController: UIViewController {
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
     func playPodcast() {
-        if !audioPlayer.playing {
+        if !audioPlayer.isPlaying {
             audioPlayer.play()
         }
     }
@@ -57,13 +57,13 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func setUpPlayer() {
-         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
+         let path = Bundle.main.path(forResource: episode?.audioURL, ofType: "mp3")
          
          if let path = path {
-            let mp3URL = NSURL(fileURLWithPath: path)
+            let mp3URL = URL(fileURLWithPath: path)
          
             do {
-                audioPlayer = try AVAudioPlayer(contentsOfURL: mp3URL)
+                audioPlayer = try AVAudioPlayer(contentsOf: mp3URL)
                 
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
@@ -92,7 +92,7 @@ extension PlayerController: PlayerViewDelegate {
         return (episode?.description)! as String
     }
     
-    func getEpisodeImage(result: (image: UIImage) -> ()) {
+    func getEpisodeImage(_ result: (_ image: UIImage) -> ()) {
         guard episode != nil else {
             Log.error("episode should not have been nil")
             return

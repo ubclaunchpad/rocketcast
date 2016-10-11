@@ -10,6 +10,7 @@ import XCTest
 import CoreData
 @testable import RocketCast
 
+@available(iOS 10.0, *)
 class CoreDataXMLParserTest: XCTestCase {
     
     
@@ -24,9 +25,9 @@ class CoreDataXMLParserTest: XCTestCase {
     }
     
     func testParseNormalXML() {
-        let xmlfilePath = NSBundle.mainBundle().URLForResource(normalPodcastXML.fileName, withExtension: "xml")!
+        let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = XMLParser(url:  stringPath)
+        _ = RocketCast.XMLParser(url:  stringPath)
         let currentSize =  coreData.getPodcastCount()
         let podcast = coreData.getPodcast(normalPodcastXML.title)
         let expectedEpisodes = normalPodcastXML.expectedEpisodes
@@ -34,14 +35,14 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(self.normalPodcastXML.description, podcast!.summary)
         XCTAssertEqual(self.normalPodcastXML.imageURL, podcast!.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
-        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sort({ $0.date!.compare($1.date!) == NSComparisonResult.OrderedDescending })
+        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
         var index = 0
         for episode in episodes {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
             index+=1
         }
         
-        _ = XMLParser(url: stringPath)
+        _ = RocketCast.XMLParser(url: stringPath)
         XCTAssert(currentSize == coreData.getPodcastCount())
         coreData.deletePodcast((podcast?.title)!)
     
@@ -49,9 +50,9 @@ class CoreDataXMLParserTest: XCTestCase {
     
     
     func testParseXMLWithNoEpisodes() {
-        let xmlfilePath = NSBundle.mainBundle().URLForResource(noEpisodesPodcastXML.fileName, withExtension: "xml")!
+        let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = XMLParser(url: stringPath)
+        _ = RocketCast.XMLParser(url: stringPath)
         
         let podcast = coreData.getPodcast(noEpisodesPodcastXML.title)
         XCTAssertEqual(noEpisodesPodcastXML.title,  podcast!.title)
@@ -64,9 +65,9 @@ class CoreDataXMLParserTest: XCTestCase {
     }
     
     func testParseXMLNoAuthorsForEpisodes() {
-        let xmlfilePath = NSBundle.mainBundle().URLForResource(noAuthorForEpisodesPodcastXML.fileName, withExtension: "xml")!
+        let xmlfilePath = Bundle.main.url(forResource: noAuthorForEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = XMLParser(url:  stringPath)
+        _ = RocketCast.XMLParser(url:  stringPath)
         let currentSize =  coreData.getPodcastCount()
         let podcast = coreData.getPodcast(noAuthorForEpisodesPodcastXML.title)
         let expectedEpisodes = noAuthorForEpisodesPodcastXML.expectedEpisodes
@@ -76,7 +77,7 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(noAuthorForEpisodesPodcastXML.imageURL, podcast!.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
         
-        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sort({ $0.date!.compare($1.date!) == NSComparisonResult.OrderedDescending })
+        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
         
         var index = 0
         for episode in episodes {
@@ -84,7 +85,7 @@ class CoreDataXMLParserTest: XCTestCase {
             index+=1
         }
         
-        _ = XMLParser(url: stringPath)
+        _ = RocketCast.XMLParser(url: stringPath)
         XCTAssert(currentSize == coreData.getPodcastCount())
         coreData.deletePodcast((podcast?.title)!)
 
@@ -100,13 +101,13 @@ class CoreDataXMLParserTest: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
     
     
-    private func compareValues(episode: Episode,expectedEpisode:[String:String]) {
+    fileprivate func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
         XCTAssertEqual(expectedEpisode["title"], episode.title)
         XCTAssertEqual(expectedEpisode["description"], episode.summary)
         XCTAssertEqual(expectedEpisode["author"], episode.author)
