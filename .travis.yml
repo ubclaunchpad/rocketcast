@@ -2,7 +2,7 @@ language: objective-c
 osx_image : xcode8
 xcode_project: RocketCast.xcodeproj
 xcode_scheme: RocketCast
-xcode_sdk: iphonesimulator9.3
+xcode_sdk: iphonesimulator10
 script:
   - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator  
   - xcodebuild test -project RocketCast.xcodeproj -scheme RocketCastTests -sdk iphonesimulator
