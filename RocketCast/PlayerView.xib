@@ -45,7 +45,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V52-kW-kql">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V52-kW-kql">
                     <rect key="frame" x="145" y="486" width="30" height="30"/>
                     <state key="normal" title="2x"/>
                     <state key="selected">
@@ -55,7 +55,7 @@
                         <action selector="changeSpeed:" destination="iN0-l3-epB" eventType="touchUpInside" id="yYf-vF-ygA"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv8-YH-faA">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv8-YH-faA">
                     <rect key="frame" x="209" y="486" width="30" height="30"/>
                     <state key="normal" title="3x"/>
                     <state key="selected">
@@ -65,7 +65,7 @@
                         <action selector="changeSpeed:" destination="iN0-l3-epB" eventType="touchUpInside" id="cEA-dy-M6K"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mI-51-oQX">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mI-51-oQX">
                     <rect key="frame" x="81" y="486" width="30" height="30"/>
                     <state key="normal" title="1x"/>
                     <state key="selected">

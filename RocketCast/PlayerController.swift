@@ -15,7 +15,11 @@ class PlayerController: UIViewController {
     var audioPlayer: AVAudioPlayer!
     var episode: Episode?
     
-    let speedRates: [Float] = [1,2,3]
+    enum speedRates {
+        static let single:Float = 1
+        static let double:Float = 2
+        static let triple:Float = 3
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,7 +88,19 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func changeSpeed(rateTag: Int) {
-        audioPlayer.rate = speedRates[rateTag]
+        switch rateTag {
+        case Int(speedRates.single):
+            audioPlayer.rate = speedRates.single
+            break
+        case Int(speedRates.double):
+            audioPlayer.rate = speedRates.double
+            break
+        case Int(speedRates.triple):
+            audioPlayer.rate = speedRates.triple
+            break
+        default:
+            break
+        }
     }
     
     func getEpisodeTitle() -> String {
