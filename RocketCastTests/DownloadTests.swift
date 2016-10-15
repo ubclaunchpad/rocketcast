@@ -109,7 +109,7 @@ class DownloadTests: XCTestCase {
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory() + downloadedPodcast!
-            
+            print(path)
             if let data = fileMgr.contents(atPath: path) {
                 XCTAssertEqual(data.count, 198658)
             }

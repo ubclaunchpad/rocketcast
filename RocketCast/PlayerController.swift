@@ -67,7 +67,7 @@ extension PlayerController: PlayerViewDelegate {
         let fileMgr = FileManager.default
         
         // Run the tests in DownloadTests.swift in order for this play
-        let path = NSHomeDirectory() + "/Documents/wwwscientificamericancompodcastpodcastmp3?fileId=C13A2C3C-F951-4C81-BF7B323A1D0C5A28"
+        let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
 
         let file = fileMgr.contents(atPath: path)
         // Uncomment when episode.audioURL is accessible
