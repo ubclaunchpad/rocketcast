@@ -25,7 +25,7 @@ class DownloadTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
@@ -34,18 +34,19 @@ class DownloadTests: XCTestCase {
         // Test real podcasts
         var done = false
         let url = "http://billburr.libsyn.com/rss"
-        let fileMgr = NSFileManager.defaultManager()
+        let fileMgr = FileManager.default
         
         ModelBridge.sharedInstance.downloadPodcastXML(url) { (downloadedPodcast) in
             done = true
             
             XCTAssertNotNil(downloadedPodcast)
             
-            let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
-            if let data = fileMgr.contentsAtPath(path) {
-                let xmlString = String(data:data, encoding: NSUTF8StringEncoding)!
+            let path = NSHomeDirectory() + downloadedPodcast!
+            print(path)
+            if let data = fileMgr.contents(atPath: path) {
+                let xmlString = String(data:data, encoding: String.Encoding.utf8)!
                 Log.info(xmlString)
-                XCTAssertTrue(xmlString.containsString("xml") && xmlString.containsString("xml"))
+                XCTAssertTrue(xmlString.contains("xml") && xmlString.contains("xml"))
             }
         }
         waitUntil(6) {done}
@@ -57,12 +58,12 @@ class DownloadTests: XCTestCase {
             
             XCTAssertNotNil(downloadedPodcast)
             
-            let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
+            let path = NSHomeDirectory() + downloadedPodcast!
             
-            if let data = fileMgr.contentsAtPath(path) {
-                let xmlString = String(data:data, encoding: NSUTF8StringEncoding)!
+            if let data = fileMgr.contents(atPath: path) {
+                let xmlString = String(data:data, encoding: String.Encoding.utf8)!
                 Log.info(xmlString)
-                XCTAssertTrue(xmlString.containsString("xml") && xmlString.containsString("xml"))
+                XCTAssertTrue(xmlString.contains("xml") && xmlString.contains("xml"))
             }
         }
         
@@ -99,18 +100,18 @@ class DownloadTests: XCTestCase {
         // Test real audio
         var done = false
         
-        var url = "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3"
-        let fileMgr = NSFileManager.defaultManager()
+        var url = "https://ia902508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3"
+        let fileMgr = FileManager.default
         
         ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
             done = true
             
             XCTAssertNotNil(downloadedPodcast)
             
-            let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
+            let path = NSHomeDirectory() + downloadedPodcast!
             
-            if let data = fileMgr.contentsAtPath(path) {
-                XCTAssertEqual(data.length, 2002733)
+            if let data = fileMgr.contents(atPath: path) {
+                XCTAssertEqual(data.count, 198658)
             }
         })
         
@@ -124,10 +125,10 @@ class DownloadTests: XCTestCase {
             
             XCTAssertNotNil(downloadedPodcast)
             
-            let path = NSHomeDirectory().stringByAppendingString(downloadedPodcast!)
+            let path = NSHomeDirectory() + downloadedPodcast!
             
-            if let data = fileMgr.contentsAtPath(path) {
-                XCTAssertEqual(data.length, 1623175)
+            if let data = fileMgr.contents(atPath: path) {
+                XCTAssertEqual(data.count, 1623175)
             }
         })
         
@@ -183,11 +184,11 @@ class DownloadTests: XCTestCase {
         waitUntil(6) {done}
     }
     
-    private func waitUntil(timeout: NSTimeInterval, predicate:(Void -> Bool)) {
-        let timeoutTime = NSDate(timeIntervalSinceNow: timeout).timeIntervalSinceReferenceDate
+    fileprivate func waitUntil(_ timeout: TimeInterval, predicate:((Void) -> Bool)) {
+        let timeoutTime = Date(timeIntervalSinceNow: timeout).timeIntervalSinceReferenceDate
         
-        while (!predicate() && NSDate.timeIntervalSinceReferenceDate() < timeoutTime) {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate(timeIntervalSinceNow: 5))
+        while (!predicate() && Date.timeIntervalSinceReferenceDate < timeoutTime) {
+            RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 5))
         }
     }
     

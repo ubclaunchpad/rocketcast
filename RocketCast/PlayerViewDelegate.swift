@@ -16,7 +16,8 @@ protocol PlayerViewDelegate {
     
     func getEpisodeTitle() -> String
     func getEpisodeDesc() -> String
-    func getEpisodeImage(result: (image: UIImage) -> ())
     
-    func changeSpeed(rateTag: Int)
+    func changeSpeed(_ rateTag: Int)
+    func getEpisodeImage(_ result: (_ image: UIImage) -> ())
 }
+

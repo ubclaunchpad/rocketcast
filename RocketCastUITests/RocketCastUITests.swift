@@ -39,8 +39,8 @@ class RocketCastUITests: XCTestCase {
         let button = app.buttons["Button"]
         let exists = NSPredicate(format: "exists == true")
         
-        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
-        waitForExpectationsWithTimeout(20, handler: nil)
+        expectation(for: exists, evaluatedWith: startScreen, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
         
         XCTAssert(startScreen.exists)
         XCTAssert(app.buttons["Button"].exists)
@@ -51,17 +51,17 @@ class RocketCastUITests: XCTestCase {
         //Test 2: Check we arrive at Episodes Screen
         let episodeScreen = self.app.staticTexts["Episodes"]
         
-        expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
         
         //Test 3: Check we arrive at End Screen
         let notExists = NSPredicate(format: "exists == false")
         
-        expectationForPredicate(notExists, evaluatedWithObject: episodeScreen, handler: nil)
+        expectation(for: notExists, evaluatedWith: episodeScreen, handler: nil)
         self.app.buttons["Button"].tap()
-        waitForExpectationsWithTimeout(10, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         XCTAssert(!episodeScreen.exists)
     }

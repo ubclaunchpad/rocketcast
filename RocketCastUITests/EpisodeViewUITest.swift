@@ -10,8 +10,13 @@ import XCTest
 
 class EpisodeUITests: XCTestCase {
     
-    private var app = XCUIApplication()
-    
+    fileprivate var app = XCUIApplication()
+    private var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
+                    "#844 - Andreas Antonopoulos",
+                    "#843 - Tony Hinchcliffe",
+                    "#842 - Chris Kresser",
+                    "#841 - Greg Fitzsimmons",
+                    "#840 - Donald Cerrone"]
     override func setUp() {
         super.setUp()
         
@@ -27,8 +32,8 @@ class EpisodeUITests: XCTestCase {
         let startScreen = self.app.staticTexts["Podcasts"]
         var exists = NSPredicate(format: "exists == true")
         
-        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectation(for: exists, evaluatedWith: startScreen, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssert(startScreen.exists)
         XCTAssert(app.buttons["Button"].exists)
         app.buttons["Button"].tap()
@@ -37,8 +42,8 @@ class EpisodeUITests: XCTestCase {
         let episodeScreen = self.app.staticTexts["Episodes"]
         exists = NSPredicate(format: "exists == true")
         
-        expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
     }
@@ -55,11 +60,11 @@ class EpisodeUITests: XCTestCase {
         let episodeTable = self.app.tables
         
         let cells = episodeTable.cells
-        XCTAssertEqual(cells.count, 3, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count,UInt(episodes.count))
+        for episode in episodes {
+        XCTAssert(episodeTable.staticTexts[episode].exists)
 
-        XCTAssert(episodeTable.staticTexts["How to Cook Podcast"].exists)
-        XCTAssert(episodeTable.staticTexts["NodeJS Development Podcast"].exists)
-        XCTAssert(episodeTable.staticTexts["iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"].exists)
+        }
         
     }
     

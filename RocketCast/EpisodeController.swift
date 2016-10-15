@@ -24,8 +24,8 @@ class EpisodeController: UIViewController {
         setupView()
     }
     
-    private func setupView() {
-        let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+    fileprivate func setupView() {
+        let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -41,19 +41,19 @@ extension EpisodeController: UITableViewDelegate, UITableViewDataSource {
     
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return episodes.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
         
-        cell.textLabel?.text = episodes[indexPath.row]
+        cell.textLabel?.text = episodes[(indexPath as NSIndexPath).row]
         
         return cell
     }
@@ -61,6 +61,6 @@ extension EpisodeController: UITableViewDelegate, UITableViewDataSource {
 
 extension EpisodeController: EpisodeViewDelegate{
     func segueToPlayer () {
-        performSegueWithIdentifier(Segues.segueFromEpisodeToPlayer, sender: self)
+        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
 }

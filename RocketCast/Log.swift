@@ -25,10 +25,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func test(logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    static func test(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
         if LogLevel.lvl <= LogLevelChoices.TEST {
-            print("\(NSDate().timeStamp()) TEST  @@@@ in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+            print("\(Date().timeStamp()) TEST  @@@@ in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -45,10 +45,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func error(logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    static func error(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
         if LogLevel.lvl <= LogLevelChoices.ERROR {
-            print("\(NSDate().timeStamp()) ERROR #### in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+            print("\(Date().timeStamp()) ERROR #### in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -65,10 +65,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func warn(logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    static func warn(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
         if LogLevel.lvl <= LogLevelChoices.WARN {
-            print("\(NSDate().timeStamp()) WARN  ###  in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+            print("\(Date().timeStamp()) WARN  ###  in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -85,10 +85,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func info(logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    static func info(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
         if LogLevel.lvl <= LogLevelChoices.INFO {
-            print("\(NSDate().timeStamp()) INFO  ##   in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+            print("\(Date().timeStamp()) INFO  ##   in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -105,10 +105,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func debug(logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    static func debug(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
         if LogLevel.lvl <= LogLevelChoices.DEBUG {
-            print("\(NSDate().timeStamp()) DEBUG #    in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+            print("\(Date().timeStamp()) DEBUG #    in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -126,15 +126,15 @@ enum LogLevelChoices {
 
 class URLUtil {
     
-    static func getNameFromStringPath(stringPath: String) -> String {
+    static func getNameFromStringPath(_ stringPath: String) -> String {
         //URL sees that "+" is a " "
-        let stringPath = stringPath.stringByReplacingOccurrencesOfString(" ", withString: "+")
-        let url = NSURL(string: stringPath)
-        return url!.lastPathComponent!
+        let stringPath = stringPath.replacingOccurrences(of: " ", with: "+")
+        let url = URL(string: stringPath)
+        return url!.lastPathComponent
     }
     
-    static func getNameFromURL(url: NSURL) -> String {
-        return url.lastPathComponent!
+    static func getNameFromURL(_ url: URL) -> String {
+        return url.lastPathComponent
     }
 }
 
@@ -148,45 +148,45 @@ class URLUtil {
 //}
 
 
-extension NSDate {
+extension Date {
     
     func hour() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.Hour, fromDate: self)
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components(.hour, from: self)
         let hour = components.hour
-        return hour
+        return hour!
     }
     
     
     func minute() -> Int {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.Minute, fromDate: self)
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components(.minute, from: self)
         let minute = components.minute
-        return minute
+        return minute!
     }
     
     func timeStamp() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSS"
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self)
     }
     
     func timeStampAMPM() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
-        formatter.AMSymbol = "AM"
-        formatter.PMSymbol = "PM"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
         
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self)
     }
     
     func detailedTimeStamp() -> String {
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a 'on' EEEE, MMM d"
-        formatter.AMSymbol = "AM"
-        formatter.PMSymbol = "PM"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
         
         
-        return formatter.stringFromDate(self)
+        return formatter.string(from: self)
     }
 }

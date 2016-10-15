@@ -31,8 +31,8 @@ class PlayerController: UIViewController {
         setUpPlayer()
     }
     
-    private func setupView() {
-        let viewSize = CGRectMake(0, 0, view.bounds.width, view.bounds.height)
+    fileprivate func setupView() {
+        let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -42,7 +42,7 @@ class PlayerController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setUpPodcast(episodeToPlay: Episode) {
+    func setUpPodcast(_ episodeToPlay: Episode) {
         episode = episodeToPlay
     }
 }
@@ -50,7 +50,7 @@ class PlayerController: UIViewController {
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
     func playPodcast() {
-        if !audioPlayer.playing {
+        if !audioPlayer.isPlaying {
             audioPlayer.play()
         }
     }
@@ -64,12 +64,12 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func setUpPlayer() {
-        let fileMgr = NSFileManager.defaultManager()
+        let fileMgr = FileManager.default
         
         // Run the tests in DownloadTests.swift in order for this play
-        let path = NSHomeDirectory().stringByAppendingString("/Documents/wwwscientificamericancompodcastpodcastmp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3")
+        let path = NSHomeDirectory() + "/Documents/wwwscientificamericancompodcastpodcastmp3?fileId=C13A2C3C-F951-4C81-BF7B323A1D0C5A28"
 
-        let file = fileMgr.contentsAtPath(path)
+        let file = fileMgr.contents(atPath: path)
         // Uncomment when episode.audioURL is accessible
 //         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
 //         if let path = path {
@@ -87,7 +87,7 @@ extension PlayerController: PlayerViewDelegate {
 //         }
     }
     
-    func changeSpeed(rateTag: Int) {
+    func changeSpeed(_ rateTag: Int) {
         switch rateTag {
         case Int(speedRates.single):
             audioPlayer.rate = speedRates.single
@@ -121,7 +121,7 @@ extension PlayerController: PlayerViewDelegate {
         return (episode?.description)! as String
     }
     
-    func getEpisodeImage(result: (image: UIImage) -> ()) {
+    func getEpisodeImage(_ result: (_ image: UIImage) -> ()) {
         guard episode != nil else {
             Log.error("episode should not have been nil")
             return

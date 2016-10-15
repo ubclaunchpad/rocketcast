@@ -14,26 +14,26 @@ class PlayerView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     
-    @IBAction func playButton(sender: AnyObject) {
+    @IBAction func playButton(_ sender: AnyObject) {
         viewDelegate?.playPodcast()
     }
     
-    @IBAction func stopButton(sender: AnyObject) {
+    @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
     }
     
-    @IBAction func changeSpeed(sender: UIButton) {
+    @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)
     }
-    class func instancefromNib(frame: CGRect) -> PlayerView {
-        let view = UINib(nibName: "PlayerView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
+    class func instancefromNib(_ frame: CGRect) -> PlayerView {
+        let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PlayerView
         view.frame = frame
         return view
     }
     
     // viewDidLoad for views
-    override func willMoveToSuperview(newSuperview: UIView?) {
+    override func willMove(toSuperview newSuperview: UIView?) {
         viewDelegate?.setUpPlayer()
         titleLabel.text = "Test Title"
         descriptionView.text = "Test Description"
