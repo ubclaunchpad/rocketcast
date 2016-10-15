@@ -63,6 +63,14 @@ extension PlayerController: PlayerViewDelegate {
         audioPlayer.stop()
     }
     
+    func goForward() {
+        audioPlayer.play(atTime: audioPlayer.currentTime+30)
+    }
+    
+    func goBack() {
+        audioPlayer.play(atTime: audioPlayer.currentTime-30)
+    }
+    
     func setUpPlayer() {
         let fileMgr = FileManager.default
         
