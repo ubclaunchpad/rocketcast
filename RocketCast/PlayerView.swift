@@ -18,15 +18,17 @@ class PlayerView: UIView {
         viewDelegate?.playPodcast()
     }
     
+    
     @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
     }
     @IBAction func backButton(_ sender: AnyObject) {
-        viewDelegate?.goForward()
-    }
-    @IBAction func skipButton(_ sender: AnyObject) {
         viewDelegate?.goBack()
     }
+    @IBAction func skipButton(_ sender: AnyObject) {
+        viewDelegate?.goForward()
+    }
+    
     
     @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)

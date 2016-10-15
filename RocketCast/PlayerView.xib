@@ -72,6 +72,20 @@
                         <action selector="changeSpeed:" destination="iN0-l3-epB" eventType="touchUpInside" id="9ic-kP-EVX"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gr4-Y1-A1o">
+                    <frame key="frameInset" minX="73" minY="483" width="75" height="30"/>
+                    <state key="normal" title="Revert 30s"/>
+                    <connections>
+                        <action selector="backButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="5i2-kq-Kdy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ta-LT-B9D">
+                    <frame key="frameInset" minX="180" minY="483" width="60" height="30"/>
+                    <state key="normal" title="Skip 30s"/>
+                    <connections>
+                        <action selector="skipButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="Iyl-NP-nxG"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -85,11 +99,15 @@
                 <constraint firstItem="9Us-7a-6An" firstAttribute="top" secondItem="XFf-m1-IHm" secondAttribute="bottom" constant="21" id="BRC-X6-ZOs"/>
                 <constraint firstItem="V52-kW-kql" firstAttribute="top" secondItem="8mI-51-oQX" secondAttribute="top" id="DgD-U8-nm3"/>
                 <constraint firstItem="wv8-YH-faA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" multiplier="1.4" id="FvE-Eq-5pc"/>
+                <constraint firstItem="2ta-LT-B9D" firstAttribute="leading" secondItem="gr4-Y1-A1o" secondAttribute="trailing" constant="32" id="MkL-SY-t90"/>
                 <constraint firstItem="9Us-7a-6An" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="NyE-k1-Q97"/>
                 <constraint firstItem="9Us-7a-6An" firstAttribute="leading" secondItem="gqI-aa-uCa" secondAttribute="leading" id="Pkn-ch-Iqp"/>
+                <constraint firstItem="gr4-Y1-A1o" firstAttribute="top" secondItem="eVf-Az-tdd" secondAttribute="bottom" constant="22" id="XJh-UR-jqK"/>
+                <constraint firstItem="gr4-Y1-A1o" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="73" id="bgY-nT-aRb"/>
                 <constraint firstItem="eVf-Az-tdd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="95" id="cYB-W7-ZvA"/>
                 <constraint firstItem="X5P-VY-pJl" firstAttribute="top" secondItem="gqI-aa-uCa" secondAttribute="bottom" constant="31" id="ir1-US-cbe"/>
                 <constraint firstItem="gqI-aa-uCa" firstAttribute="top" secondItem="9Us-7a-6An" secondAttribute="bottom" constant="8" symbolic="YES" id="mSB-9J-2ZL"/>
+                <constraint firstItem="2ta-LT-B9D" firstAttribute="top" secondItem="X5P-VY-pJl" secondAttribute="bottom" constant="22" id="pR2-Vj-1rA"/>
                 <constraint firstItem="9Us-7a-6An" firstAttribute="trailing" secondItem="gqI-aa-uCa" secondAttribute="trailing" id="rVS-lD-DWj"/>
                 <constraint firstItem="X5P-VY-pJl" firstAttribute="leading" secondItem="eVf-Az-tdd" secondAttribute="trailing" constant="69" id="reF-bk-cui"/>
                 <constraint firstItem="XFf-m1-IHm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="vmn-Al-93Z"/>
@@ -98,6 +116,7 @@
             <connections>
                 <outlet property="descriptionView" destination="gqI-aa-uCa" id="kwR-OA-AA0"/>
                 <outlet property="imageView" destination="9Us-7a-6An" id="U51-g4-MsZ"/>
+                <outlet property="skipButton" destination="2ta-LT-B9D" id="OWg-f5-gwu"/>
                 <outlet property="titleLabel" destination="XFf-m1-IHm" id="2AQ-Ws-S5P"/>
             </connections>
         </view>
