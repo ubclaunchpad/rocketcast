@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>QuantumSpark's podcast</title>
+<itunes:summary>A dank podcast</itunes:summary>
+<itunes:author>James Park</itunes:author>
+<link>http://www.yourserver.com/YourPodcastHomepage/</link>
+<itunes:image href="JamesPark.jpg" />
+<pubDate> Sun, 09 Oct 2005 21:00:00 PST </pubDate>
+<language>en-us</language>
+<copyright> Copyright Year JamesPark </copyright>
+<item>
+<title>Quantum Superposition</title>
+<description>exploring states of particles</description>
+<itunes:author>Jon Mercer</itunes:author>
+<pubDate>Thu, 22 Sep 2016 19:40:49 +0000</pubDate>
+ <itunes:duration>01:07:59</itunes:duration>
+    <itunes:image href="JONMERCER.jpg" />
+<enclosure url="http://www.yourserver.com/podcast_fileONE.mp3" length="3174554" type="audio/mpeg" /> </item>
+<item>
+    <title>Photon</title>
+    <description>lights</description>
+    <itunes:author>Kelvin Chan</itunes:author>
+    <pubDate>Wed, 21 Sep 2016 19:40:49 +0000</pubDate>
+     <itunes:duration>12:07:59</itunes:duration>
+     <itunes:image href="KELVINCHAN.jpg" />
+    <enclosure url="http://www.yourserver.com/podcast_fileTWO.mp3" length="3174554" type="audio/mpeg" /> </item>
+</channel>
+</rss>
