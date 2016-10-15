@@ -30,12 +30,4 @@ class PlayerTests: XCTestCase, AVAudioPlayerDelegate {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func playMP3() {
-        PlayerController
-    }
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        <#code#>
-    }
 }

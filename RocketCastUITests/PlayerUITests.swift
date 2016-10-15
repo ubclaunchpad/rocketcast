@@ -34,8 +34,17 @@ class PlayerUITests: XCTestCase {
     }
     
     func testPlay() {
-        XCUIApplication().buttons["Play"].tap()
+        let app = XCUIApplication()
+        let button = app.buttons["Button"]
+        button.tap()
+        button.tap()
+        app.buttons["Play"].tap()
         
+        XCTAssert(app.staticTexts["Playing at 1x"].exists)
+        app.buttons["2x"].tap()
+        XCTAssert(app.staticTexts["Playing at 2x"].exists)
+        app.buttons["3x"].tap()
+        XCTAssert(app.staticTexts["Playing at 3x"].exists)
     }
     func testSpeed() {
         

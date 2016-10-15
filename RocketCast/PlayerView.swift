@@ -14,13 +14,17 @@ class PlayerView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     
+    @IBOutlet weak var statusLabel: UILabel!
+    
     @IBAction func playButton(_ sender: AnyObject) {
         viewDelegate?.playPodcast()
+        statusLabel.text = "Playing at 1x"
     }
     
     
     @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
+        statusLabel.text = "Pause"
     }
     @IBAction func backButton(_ sender: AnyObject) {
         viewDelegate?.goBack()
@@ -32,6 +36,7 @@ class PlayerView: UIView {
     
     @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)
+        statusLabel.text = "Playing at \(sender.tag)x"
     }
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
