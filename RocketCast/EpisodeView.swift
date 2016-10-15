@@ -10,7 +10,13 @@ import UIKit
 
 class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     var viewDelegate: EpisodeViewDelegate?
-    
+    var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
+                    "#844 - Andreas Antonopoulos",
+                    "#843 - Tony Hinchcliffe",
+                    "#842 - Chris Kresser",
+                    "#841 - Greg Fitzsimmons",
+                    "#840 - Donald Cerrone"]
+
     @IBOutlet weak var EpisodeTable: UITableView!
     
     @IBAction func segueToPlayer(_ sender: AnyObject) {
@@ -31,7 +37,7 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     // returns an approiate number of rows depending on the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  1
+        return  episodes.count
     }
     
     // Iiterates over every episode and creates a respective TableViewCell
@@ -40,9 +46,8 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
         let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
         tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
         let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
-        
         cell.backgroundColor = UIColor.clear
-        
+        cell.episodeHeader.text = episodes[indexPath.row]
         cell.tag = (indexPath as NSIndexPath).row
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell

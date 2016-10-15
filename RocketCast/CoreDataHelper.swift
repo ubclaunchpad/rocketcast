@@ -9,141 +9,97 @@
 import Foundation
 import CoreData
 
+@available(iOS 10.0, *)
 class CoreDataHelper {
-    let model = "RocketCast"
-    
-    /*
-     A private property, it holds the location where the Core Data will store the data.
-     It will use the application document directory as the location which is the recommended place to store the data.
-     */
-    fileprivate lazy var applicationDocumentsDirectory: URL = {
-        let urls = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)
-        return urls[urls.count-1]
+
+    lazy var persistentContainer: NSPersistentContainer = {
+ 
+        let container = NSPersistentContainer(name: "RocketCast")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                               fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
     }()
     
-    /*
-     A private property, represents object in the data model, including information on the model's property and its relationship.
-     This is the reason we need to pass in our data model name in this property. As in this case,
-     we name the xcdatamodeld file as "RocketCast.xcdatamodeld" and that's why we pass in the same exact name to managedObjectModel.
-     */
-    fileprivate lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = Bundle.main.url(forResource: self.model, withExtension: "momd")!
-        return NSManagedObjectModel(contentsOf: modelURL)!
-    }()
+    // MARK: - Core Data Saving support
     
-    /*
-     A private property, this coordinator is what makes things work for Core Data.
-     It orchestrated the connection between the managed object model and the persistent store.
-     It is responsible in doing the heavy lifting of handling Core Data implementation.
-     */
-    fileprivate lazy var persistenceStoreCoordinator: NSPersistentStoreCoordinator = {
-        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.appendingPathComponent(self.model)
-        
-        do {
-            let options = [NSMigratePersistentStoresAutomaticallyOption: true]
-            
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
-        }
-        catch {
-            Log.error("Error adding persistence store")
-        }
-        
-        return coordinator
-    }()
-    
-    /*
-     A public property, this is our only accessible property from the Core Data stack.
-     It has to connect to a persistenceStoreCoordinator so we can work with the managedObject in our data store.
-     It also manages the lifecycle of our objects.
-     */
-    lazy var managedObjectContext: NSManagedObjectContext = {
-        var context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = self.persistenceStoreCoordinator
-        return context
-    }()
-    
-    func saveContext() {
-        if managedObjectContext.hasChanges {
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
             do {
-                try managedObjectContext.save()
-                Log.info("Saved a new managed object")
-            }
-            catch let error as NSError {
-                Log.error("Error saving context: " + error.localizedDescription)
-            }
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                            }
         }
     }
     
     func deleteAllManagedObjects () {
-        let episodeRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Episode)
-        let podcastRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Podcast)
+        let moc = self.persistentContainer.viewContext
+        let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
+        let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        var deleteRequest: NSBatchDeleteRequest
+        var deleteResults: NSPersistentStoreResult
         
         do {
-            let episodeResults = try self.managedObjectContext.fetch(episodeRequest) as! [Episode]
+            deleteRequest = NSBatchDeleteRequest(fetchRequest: podcastRequest as! NSFetchRequest<NSFetchRequestResult>)
+            deleteResults = try moc.execute(deleteRequest)
             
-            let podcastResults = try self.managedObjectContext.fetch(podcastRequest) as! [Podcast]
-            
-            for episode in episodeResults {
-                self.managedObjectContext.delete(episode)
-            }
-            
-            for podcast in podcastResults {
-                self.managedObjectContext.delete(podcast)
-            }
-            
-            try self.managedObjectContext.save()
-            
+            deleteRequest = NSBatchDeleteRequest(fetchRequest: episodeRequest as! NSFetchRequest<NSFetchRequestResult>)
+            deleteResults = try moc.execute(deleteRequest)
         } catch let error as NSError {
             Log.error("Error deleting objects: " + error.localizedDescription)
         }
     }
 
     func createOrUpdatePodcast (_ podcastUrl: String) -> Podcast? {
+
         var podcast:Podcast?
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Podcast)
-        if (podcastUrl != "") {
-            request.predicate = NSPredicate(format:"url = %@", podcastUrl)
+        let moc = self.persistentContainer.viewContext
+        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        if (podcastUrl != nil) {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl as! CVarArg)
         }
-        
         
         var wasError:Bool = false
         do {
-            if let podcasts = try self.managedObjectContext.fetch(request) as? [Podcast] {
-                podcast = podcasts.first
-            }
+            let podcasts = try moc.fetch(request)
+            podcast = podcasts.first
+            
         }
         catch let _ as NSError {
             wasError = true
         }
     
         if(podcast == nil || wasError){
-            podcast = NSEntityDescription.insertNewObject(forEntityName: "Podcast",
-                                                                          into: self.managedObjectContext) as? Podcast
+            podcast = Podcast(context: self.persistentContainer.viewContext)
         }
         
         return podcast
-
     }
     
     func deletePodcast (_ podcastUrl: PodcastWebURL) {
-        let podcastRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Podcast)
-        podcastRequest.predicate = NSPredicate(format:"url = %@", podcastUrl)
-        let episodeRequest = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Episode)
-        episodeRequest.predicate = NSPredicate(format:"podcastUrl = %@", podcastUrl)
+        let moc = self.persistentContainer.viewContext
+        let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        podcastRequest.predicate = NSPredicate(format:"url = %@", podcastUrl as CVarArg)
+        let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
+        episodeRequest.predicate = NSPredicate(format:"podcastUrl = %@", podcastUrl as CVarArg)
         
         do {
-            let podcastResults = try self.managedObjectContext.fetch(podcastRequest) as! [Podcast]
+            let podcastResults = try moc.fetch(podcastRequest)
             for podcast in podcastResults {
-                self.managedObjectContext.delete(podcast)
+                moc.delete(podcast)
             }
             
-            let episodeResults = try self.managedObjectContext.fetch(episodeRequest) as! [Episode]
+            let episodeResults = try moc.fetch(episodeRequest)
             for episode in episodeResults {
-                self.managedObjectContext.delete(episode)
+                moc.delete(episode)
             }
             
-            try self.managedObjectContext.save()
             Log.info("Deleted the podtcast")
             
         } catch let error as NSError {
@@ -153,16 +109,16 @@ class CoreDataHelper {
     
     func getPodcast (_ podcastUrl: PodcastWebURL?) -> Podcast? {
         var podcast:Podcast?
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: EntityName.Podcast)
-        if (podcastUrl != "") {
-            request.predicate = NSPredicate(format:"url = %@", podcastUrl!)
+        let moc = self.persistentContainer.viewContext
+        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        if (podcastUrl != nil) {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl as! CVarArg)
         }
         
         do {
-            if let podcasts = try self.managedObjectContext.fetch(request) as? [Podcast] {
-                podcast = podcasts.first
-
-            }
+            let podcasts = try moc.fetch(request)
+            podcast = podcasts.first
+            
         }
         catch let error as NSError {
             Log.error("Error in getting podcasts: " + error.localizedDescription)

@@ -9,7 +9,6 @@
 import XCTest
 import CoreData
 @testable import RocketCast
-
 class CoreDataXMLParserTest: XCTestCase {
     
     
@@ -40,7 +39,7 @@ class CoreDataXMLParserTest: XCTestCase {
         var index = 0
         for episode in episodes {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
-            index+=1
+            index  = index + 1
         }
         
         _ = RocketCast.XMLParser(url: stringPath, podcastUrl: normalPodcastXML.url)
@@ -72,24 +71,24 @@ class CoreDataXMLParserTest: XCTestCase {
         let podcast = coreData.getPodcast(noAuthorForEpisodesPodcastXML.url)
         let expectedEpisodes = noAuthorForEpisodesPodcastXML.expectedEpisodes
         
-        XCTAssertEqual(noAuthorForEpisodesPodcastXML.title,  podcast!.title)
-        XCTAssertEqual(noAuthorForEpisodesPodcastXML.description, podcast!.summary)
-        XCTAssertEqual(noAuthorForEpisodesPodcastXML.imageURL, podcast!.imageURL)
+        XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.title,  podcast!.title)
+        XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.description, podcast!.summary)
+        XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.imageURL, podcast!.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
-        
+
         let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
         
         var index = 0
         for episode in episodes {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
-            index+=1
+            index  = index + 1
         }
         
         _ = RocketCast.XMLParser(url: stringPath, podcastUrl: noAuthorForEpisodesPodcastXML.url)
         XCTAssert(currentSize == coreData.getPodcastCount())
         coreData.deletePodcast(noAuthorForEpisodesPodcastXML.url)
-
     }
+
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.

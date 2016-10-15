@@ -9,10 +9,12 @@
 import Foundation
 import CoreData
 
+@available(iOS 10.0, *)
 class XMLParser: NSObject {
     
     var element = String()
     let coreData = CoreDataHelper()
+    var moc = NSManagedObjectContext()
     var podcast:Podcast?
     var tmpEpisode:Episode?
     
@@ -20,15 +22,14 @@ class XMLParser: NSObject {
     init(url: String, podcastUrl: PodcastWebURL) {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
-            podcast = coreData.createOrUpdatePodcast(podcastUrl)
-            podcast!.url = podcastUrl
+            coreData.createOrUpdatePodcast(url)
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
         }
     }
     
-    fileprivate func parseData (_ data:Data) {
+   func parseData (_ data:Data) {
         let parser = Foundation.XMLParser(data: data)
         parser.delegate = self
         guard parser.parse() else {
@@ -41,12 +42,14 @@ class XMLParser: NSObject {
  
 }
 
+@available(iOS 10.0, *)
 extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
-            tmpEpisode = NSEntityDescription.insertNewObject(forEntityName: "Episode", into: coreData.managedObjectContext) as? Episode
+            
+            tmpEpisode = Episode(context:moc)
         }
         
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
@@ -116,8 +119,8 @@ extension XMLParser: XMLParserDelegate {
         
     }
     
-    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
-        Log.error("parsing failed: " + parseError._description)
+   func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        Log.error("parsing failed: " + parseError.localizedDescription)
     }
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {

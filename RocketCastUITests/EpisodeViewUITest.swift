@@ -11,7 +11,12 @@ import XCTest
 class EpisodeUITests: XCTestCase {
     
     fileprivate var app = XCUIApplication()
-    
+    private var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
+                    "#844 - Andreas Antonopoulos",
+                    "#843 - Tony Hinchcliffe",
+                    "#842 - Chris Kresser",
+                    "#841 - Greg Fitzsimmons",
+                    "#840 - Donald Cerrone"]
     override func setUp() {
         super.setUp()
         
@@ -21,9 +26,10 @@ class EpisodeUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
+        sleep(1)
         
         //Test 1: Check we arrive at Home Screen
-        let startScreen = self.app.staticTexts["Podcast"]
+        let startScreen = self.app.staticTexts["Podcasts"]
         var exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: startScreen, handler: nil)
@@ -54,11 +60,11 @@ class EpisodeUITests: XCTestCase {
         let episodeTable = self.app.tables
         
         let cells = episodeTable.cells
-        XCTAssertEqual(cells.count, 3, "found instead: \(cells.debugDescription)")
+        XCTAssertEqual(cells.count,UInt(episodes.count))
+        for episode in episodes {
+        XCTAssert(episodeTable.staticTexts[episode].exists)
 
-        XCTAssert(episodeTable.staticTexts["How to Cook Podcast"].exists)
-        XCTAssert(episodeTable.staticTexts["NodeJS Development Podcast"].exists)
-        XCTAssert(episodeTable.staticTexts["iOS Development Podcastaeuoaeuoaeuoateoetnoetnotneotneotneotntneoeotnetnotneotneotneotneotneotneotnetnoetnoetnoetno"].exists)
+        }
         
     }
     

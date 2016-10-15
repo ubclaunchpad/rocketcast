@@ -8,20 +8,22 @@
 
 import UIKit
 import CoreData
+@available(iOS 10.0, *)
 class PodcastController: UIViewController {
     
-    var podcasts = [Podcast]()
+    var podcasts = [String]()
     
     var mainView: PodcastView?
     let CoreData = CoreDataHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        ModelBridge.sharedInstance.downloadPodcastXML(url: "http://billburr.libsyn.com/rss") { (downloadedPodcast) in
-        }
+
+//        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
+//        }
+//        
         
-        
-        //_ = XMLParser(url:"http://billburr.libsyn.com/rss")
+    //    _ = XMLParser(url:"http://billburr.libsyn.com/rss")
         
     }
     
@@ -46,11 +48,12 @@ class PodcastController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row] as! String)
+        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row])
         return cell
     }
 }
 
+@available(iOS 10.0, *)
 extension PodcastController:PodcastViewDelegate {
     
     func segueToEpisode() {

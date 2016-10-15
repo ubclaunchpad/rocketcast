@@ -14,6 +14,9 @@ import CoreData
 
 extension Episode {
 
+    @nonobjc public class func fetchRequest () -> NSFetchRequest<Episode> {
+        return NSFetchRequest<Episode>(entityName: "Episode")
+    }
     @NSManaged var title: String?
     @NSManaged var summary: String?
     @NSManaged var date: Date?

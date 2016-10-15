@@ -21,6 +21,7 @@ class RocketCastUITests: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         self.app.launch()
+        sleep(2)
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
@@ -32,19 +33,23 @@ class RocketCastUITests: XCTestCase {
     
     
     func testSegueToViews() {
+        
         //Test 1: Check we arrive at Home Screen
-        let startScreen = self.app.staticTexts["Podcast"]
-        var exists = NSPredicate(format: "exists == true")
+        let startScreen = app.staticTexts["Podcasts"]
+        _ = app.buttons["Button"]
+        let exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: startScreen, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
+        waitForExpectations(timeout: 20, handler: nil)
+        
         XCTAssert(startScreen.exists)
         XCTAssert(app.buttons["Button"].exists)
+        
+        //Go to next screen
         app.buttons["Button"].tap()
         
         //Test 2: Check we arrive at Episodes Screen
         let episodeScreen = self.app.staticTexts["Episodes"]
-        exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
         waitForExpectations(timeout: 10, handler: nil)

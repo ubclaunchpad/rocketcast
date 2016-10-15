@@ -14,6 +14,9 @@ import CoreData
 
 extension Podcast {
 
+    @nonobjc public class func fetchRequest () -> NSFetchRequest<Podcast> {
+        return NSFetchRequest<Podcast>(entityName: "Podcast")
+    }
     @NSManaged var title: String?
     @NSManaged var author: String?
     @NSManaged var summary: String?
@@ -21,4 +24,27 @@ extension Podcast {
     @NSManaged var episodes: NSSet?
     @NSManaged var url: PodcastWebURL?
 
+}
+
+extension Podcast {
+    
+    @objc(addEpisodeObject:)
+    @NSManaged public func addToEpisode(_ value: Episode)
+    
+    @objc(removeEpisodeObject:)
+    @NSManaged public func removeFromEpisode(_ value: Episode)
+    
+    
+    @objc(addEpisode:)
+    @NSManaged public func addToEpisode(_values: NSSet)
+    
+    
+    @objc(removeEpisode:)
+    @NSManaged public func removeFromEpisode(_values: NSSet)
+    
+    
+    
+   
+
+    
 }
