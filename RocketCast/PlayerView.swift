@@ -21,6 +21,12 @@ class PlayerView: UIView {
     @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
     }
+    @IBAction func backButton(_ sender: AnyObject) {
+        viewDelegate?.goForward()
+    }
+    @IBAction func skipButton(_ sender: AnyObject) {
+        viewDelegate?.goBack()
+    }
     
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
