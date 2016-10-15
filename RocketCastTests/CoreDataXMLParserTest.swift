@@ -9,8 +9,6 @@
 import XCTest
 import CoreData
 @testable import RocketCast
-
-@available(iOS 10.0, *)
 class CoreDataXMLParserTest: XCTestCase {
     
     
@@ -24,30 +22,30 @@ class CoreDataXMLParserTest: XCTestCase {
         
     }
     
-//    func testParseNormalXML() {
-//        let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
-//        let stringPath = xmlfilePath.absoluteString
-//        _ = RocketCast.XMLParser(url:  stringPath)
-//        let currentSize =  coreData.getPodcastCount()
-//        let podcast = coreData.getPodcast(normalPodcastXML.title)
-//        let expectedEpisodes = normalPodcastXML.expectedEpisodes
-//        XCTAssertEqual(self.normalPodcastXML.title,  podcast!.title)
-//        XCTAssertEqual(self.normalPodcastXML.description, podcast!.summary)
-//        XCTAssertEqual(self.normalPodcastXML.imageURL, podcast!.imageURL)
-//        XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
-//        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
-//        var index = 0
-//        for episode in episodes {
-//            self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
-//            index+=1
-//        }
-//        
-//        _ = RocketCast.XMLParser(url: stringPath)
-//        XCTAssert(currentSize == coreData.getPodcastCount())
-//        coreData.deletePodcast((podcast?.title)!)
-//    
-//    }
-//    
+    func testParseNormalXML() {
+        let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
+        let stringPath = xmlfilePath.absoluteString
+        _ = RocketCast.XMLParser(url:  stringPath)
+        let currentSize =  coreData.getPodcastCount()
+        let podcast = coreData.getPodcast(normalPodcastXML.title)
+        let expectedEpisodes = normalPodcastXML.expectedEpisodes
+        XCTAssertEqual(self.normalPodcastXML.title,  podcast!.title)
+        XCTAssertEqual(self.normalPodcastXML.description, podcast!.summary)
+        XCTAssertEqual(self.normalPodcastXML.imageURL, podcast!.imageURL)
+        XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
+        let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+        var index = 0
+        for episode in episodes {
+            self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
+            index+=1
+        }
+        
+        _ = RocketCast.XMLParser(url: stringPath)
+        XCTAssert(currentSize == coreData.getPodcastCount())
+        coreData.deletePodcast((podcast?.title)!)
+    
+    }
+//
 //    
 //    func testParseXMLWithNoEpisodes() {
 //        let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
@@ -107,13 +105,13 @@ class CoreDataXMLParserTest: XCTestCase {
 //    }
 //    
 //    
-//   func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
-//        XCTAssertEqual(expectedEpisode["title"], episode.title)
-//        XCTAssertEqual(expectedEpisode["description"], episode.summary)
-//        XCTAssertEqual(expectedEpisode["author"], episode.author)
-//        XCTAssertEqual(expectedEpisode["date"], episode.date?.description)
-//        XCTAssertEqual(expectedEpisode["image"], episode.imageURL)
-//        XCTAssertEqual(expectedEpisode["audio"], episode.audioURL)
-//    }
+   func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
+        XCTAssertEqual(expectedEpisode["title"], episode.title)
+        XCTAssertEqual(expectedEpisode["description"], episode.summary)
+        XCTAssertEqual(expectedEpisode["author"], episode.author)
+        XCTAssertEqual(expectedEpisode["date"], episode.date?.description)
+        XCTAssertEqual(expectedEpisode["image"], episode.imageURL)
+        XCTAssertEqual(expectedEpisode["audio"], episode.audioURL)
+    }
     
 }
