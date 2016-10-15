@@ -15,17 +15,17 @@ import AVFoundation
 
 protocol DownloadBridgeProtocol {
    
-    func downloadPodcastXML(url:PodcastWebURL, result:(_ url: PodcastStorageURL?) -> ())
+    func downloadPodcastXML(url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?)  -> ())
     func downloadImage(url: ImageWebURL, result:(_ url: ImageStorageURL) -> ())
     func downloadAudio(url: AudioWebURL, result:(_ url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
 
     
-   internal func downloadPodcastXML(url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ()) {
+    func downloadPodcastXML(url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ()) {
         let podcastURL = NSURL(string: url)
         
-        let task = URLSession.sharedSession.dataTaskWithURL(podcastURL!) {(data, response, error) in
+        let task = URLSession.sharedSession.dataTaskWithURL(podcastURL! as URL) {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
