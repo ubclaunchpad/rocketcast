@@ -42,7 +42,7 @@ class DownloadTests: XCTestCase {
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory() + downloadedPodcast!
-            print(path)
+            
             if let data = fileMgr.contents(atPath: path) {
                 let xmlString = String(data:data, encoding: String.Encoding.utf8)!
                 Log.info(xmlString)

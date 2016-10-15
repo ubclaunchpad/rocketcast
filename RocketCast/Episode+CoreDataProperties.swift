@@ -24,6 +24,6 @@ extension Episode {
     @NSManaged var imageURL: String?
     @NSManaged var audioURL: String?
     @NSManaged var author:String?
-    @NSManaged var podcastTitle:String?
+    @NSManaged var podcastUrl:String?
 
 }

@@ -17,5 +17,7 @@ struct testPodcastXMLWithNoEpisodes {
     let author = "James Park"
     let description = "A podcast"
     let imageURL = "JamesPark.jpg"
+    let url = "http://www.jamespark.com/podcast.xml"
+
     
 }

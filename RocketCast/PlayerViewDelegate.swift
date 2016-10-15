@@ -20,4 +20,3 @@ protocol PlayerViewDelegate {
     func changeSpeed(_ rateTag: Int)
     func getEpisodeImage(_ result: (_ image: UIImage) -> ())
 }
-

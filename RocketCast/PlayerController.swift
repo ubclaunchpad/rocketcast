@@ -64,6 +64,7 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func setUpPlayer() {
+
         let fileMgr = FileManager.default
         
         // Run the tests in DownloadTests.swift in order for this play
@@ -76,8 +77,7 @@ extension PlayerController: PlayerViewDelegate {
 //         let mp3URL = NSURL(fileURLWithPath: path)
         
             do {
-                audioPlayer = try AVAudioPlayer(data: file!)
-                
+                audioPlayer = try AVAudioPlayer(data: file!)                
                 audioPlayer.prepareToPlay()
                 audioPlayer.enableRate = true
          

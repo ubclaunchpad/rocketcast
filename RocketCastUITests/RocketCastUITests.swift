@@ -36,7 +36,7 @@ class RocketCastUITests: XCTestCase {
         
         //Test 1: Check we arrive at Home Screen
         let startScreen = app.staticTexts["Podcasts"]
-        let button = app.buttons["Button"]
+        _ = app.buttons["Button"]
         let exists = NSPredicate(format: "exists == true")
         
         expectation(for: exists, evaluatedWith: startScreen, handler: nil)

@@ -11,6 +11,7 @@ import CoreData
 
 @available(iOS 10.0, *)
 class CoreDataHelper {
+
     lazy var persistentContainer: NSPersistentContainer = {
  
         let container = NSPersistentContainer(name: "RocketCast")
@@ -38,7 +39,6 @@ class CoreDataHelper {
     }
     
     func deleteAllManagedObjects () {
-        
         let moc = self.persistentContainer.viewContext
         let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
         let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
@@ -51,21 +51,43 @@ class CoreDataHelper {
             
             deleteRequest = NSBatchDeleteRequest(fetchRequest: episodeRequest as! NSFetchRequest<NSFetchRequestResult>)
             deleteResults = try moc.execute(deleteRequest)
-
-
-            
         } catch let error as NSError {
             Log.error("Error deleting objects: " + error.localizedDescription)
         }
     }
+
+    func createOrUpdatePodcast (_ podcastUrl: String) -> Podcast? {
+
+        var podcast:Podcast?
+        let moc = self.persistentContainer.viewContext
+        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        if (podcastUrl != nil) {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl as! CVarArg)
+        }
+        
+        var wasError:Bool = false
+        do {
+            let podcasts = try moc.fetch(request)
+            podcast = podcasts.first
+            
+        }
+        catch let _ as NSError {
+            wasError = true
+        }
     
+        if(podcast == nil || wasError){
+            podcast = Podcast(context: self.persistentContainer.viewContext)
+        }
+        
+        return podcast
+    }
     
-    func deletePodcast (_ podcastTitle: String) {
+    func deletePodcast (_ podcastUrl: PodcastWebURL) {
         let moc = self.persistentContainer.viewContext
         let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        podcastRequest.predicate = NSPredicate(format:"title = %@", podcastTitle as CVarArg)
+        podcastRequest.predicate = NSPredicate(format:"url = %@", podcastUrl as CVarArg)
         let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
-        episodeRequest.predicate = NSPredicate(format:"podcastTitle = %@", podcastTitle as CVarArg)
+        episodeRequest.predicate = NSPredicate(format:"podcastUrl = %@", podcastUrl as CVarArg)
         
         do {
             let podcastResults = try moc.fetch(podcastRequest)
@@ -85,12 +107,12 @@ class CoreDataHelper {
         }
     }
     
-    func getPodcast (_ podcastTitle: String?) -> Podcast? {
+    func getPodcast (_ podcastUrl: PodcastWebURL?) -> Podcast? {
         var podcast:Podcast?
         let moc = self.persistentContainer.viewContext
         let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        if (podcastTitle != nil) {
-            request.predicate = NSPredicate(format:"title = %@", podcastTitle as! CVarArg)
+        if (podcastUrl != nil) {
+            request.predicate = NSPredicate(format:"url = %@", podcastUrl as! CVarArg)
         }
         
         do {
@@ -101,7 +123,6 @@ class CoreDataHelper {
         catch let error as NSError {
             Log.error("Error in getting podcasts: " + error.localizedDescription)
         }
-        
         return podcast
     }
     

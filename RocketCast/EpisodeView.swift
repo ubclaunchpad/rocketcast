@@ -46,7 +46,6 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
         let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
         tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
         let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
-        
         cell.backgroundColor = UIColor.clear
         cell.episodeHeader.text = episodes[indexPath.row]
         cell.tag = (indexPath as NSIndexPath).row

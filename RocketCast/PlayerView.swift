@@ -21,7 +21,7 @@ class PlayerView: UIView {
     @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
     }
-    
+
     @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)
     }

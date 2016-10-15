@@ -25,10 +25,12 @@ class CoreDataXMLParserTest: XCTestCase {
     func testParseNormalXML() {
         let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url:  stringPath)
+        _ = RocketCast.XMLParser(url:  stringPath, podcastUrl: normalPodcastXML.url)
         let currentSize =  coreData.getPodcastCount()
-        let podcast = coreData.getPodcast(normalPodcastXML.title)
+        print("\n\n Current Size: ", String(currentSize))
+        let podcast = coreData.getPodcast(normalPodcastXML.url)
         let expectedEpisodes = normalPodcastXML.expectedEpisodes
+        XCTAssertNotNil(podcast)
         XCTAssertEqual(self.normalPodcastXML.title,  podcast!.title)
         XCTAssertEqual(self.normalPodcastXML.description, podcast!.summary)
         XCTAssertEqual(self.normalPodcastXML.imageURL, podcast!.imageURL)
@@ -40,24 +42,40 @@ class CoreDataXMLParserTest: XCTestCase {
             index  = index + 1
         }
         
-        _ = RocketCast.XMLParser(url: stringPath)
+        _ = RocketCast.XMLParser(url: stringPath, podcastUrl: normalPodcastXML.url)
         XCTAssert(currentSize == coreData.getPodcastCount())
-        coreData.deletePodcast((podcast?.title)!)
-    
+        coreData.deletePodcast(normalPodcastXML.url)
     }
-
-  func testParseXMLNoAuthorsForEpisodes() {
+    
+    
+    func testParseXMLWithNoEpisodes() {
+        let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
+        let stringPath = xmlfilePath.absoluteString
+        _ = RocketCast.XMLParser(url: stringPath, podcastUrl: noEpisodesPodcastXML.url)
+        
+        let podcast = coreData.getPodcast(noEpisodesPodcastXML.url)
+        XCTAssertEqual(noEpisodesPodcastXML.title,  podcast!.title)
+        XCTAssertEqual(noEpisodesPodcastXML.description, podcast!.summary)
+        XCTAssertEqual(noEpisodesPodcastXML.imageURL, podcast!.imageURL)
+        XCTAssertEqual(0, podcast!.episodes!.count)
+        
+        coreData.deletePodcast(noEpisodesPodcastXML.url)
+        
+    }
+    
+    func testParseXMLNoAuthorsForEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noAuthorForEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url:  stringPath)
+        _ = RocketCast.XMLParser(url:  stringPath, podcastUrl: noAuthorForEpisodesPodcastXML.url)
         let currentSize =  coreData.getPodcastCount()
-        let podcast = coreData.getPodcast(noAuthorForEpisodesPodcastXML.title)
+        let podcast = coreData.getPodcast(noAuthorForEpisodesPodcastXML.url)
         let expectedEpisodes = noAuthorForEpisodesPodcastXML.expectedEpisodes
         
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.title,  podcast!.title)
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.description, podcast!.summary)
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.imageURL, podcast!.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast!.episodes?.count)
+
         let episodes = (podcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
         
         var index = 0
@@ -66,25 +84,9 @@ class CoreDataXMLParserTest: XCTestCase {
             index  = index + 1
         }
         
-        _ = RocketCast.XMLParser(url: stringPath)
+        _ = RocketCast.XMLParser(url: stringPath, podcastUrl: noAuthorForEpisodesPodcastXML.url)
         XCTAssert(currentSize == coreData.getPodcastCount())
-        coreData.deletePodcast((podcast?.title)!)
-    }
-    
-    
-    func testParseXMLWithNoEpisodes() {
-        let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
-        let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url: stringPath)
-        
-        let podcast = coreData.getPodcast(noEpisodesPodcastXML.title)
-        XCTAssertEqual(noEpisodesPodcastXML.title,  podcast!.title)
-        XCTAssertEqual(noEpisodesPodcastXML.description, podcast!.summary)
-        XCTAssertEqual(noEpisodesPodcastXML.imageURL, podcast!.imageURL)
-        XCTAssertEqual(0, podcast!.episodes!.count)
-        
-        coreData.deletePodcast(podcast!.title!)
-        
+        coreData.deletePodcast(noAuthorForEpisodesPodcastXML.url)
     }
 
     
@@ -104,7 +106,7 @@ class CoreDataXMLParserTest: XCTestCase {
     }
     
     
-   func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
+    fileprivate func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
         XCTAssertEqual(expectedEpisode["title"], episode.title)
         XCTAssertEqual(expectedEpisode["description"], episode.summary)
         XCTAssertEqual(expectedEpisode["author"], episode.author)

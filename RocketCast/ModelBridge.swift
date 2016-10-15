@@ -10,4 +10,5 @@ import Foundation
 
 class ModelBridge {
     static let sharedInstance = ModelBridge()
+    let queue = DispatchQueue(label: "com.domain.app.timer", attributes: [])
 }

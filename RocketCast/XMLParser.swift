@@ -19,11 +19,10 @@ class XMLParser: NSObject {
     var tmpEpisode:Episode?
     
     
-    init(url: String) {
+    init(url: String, podcastUrl: PodcastWebURL) {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
-          moc = coreData.persistentContainer.viewContext
-            podcast = Podcast(context: moc)
+            coreData.createOrUpdatePodcast(url)
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -42,6 +41,7 @@ class XMLParser: NSObject {
     }
  
 }
+
 @available(iOS 10.0, *)
 extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
@@ -56,7 +56,9 @@ extension XMLParser: XMLParserDelegate {
             if (podcast!.imageURL == nil) {
                 podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
             } else  {
-                tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                if(tmpEpisode != nil){
+                    tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                }
             }
         }
         
@@ -81,7 +83,7 @@ extension XMLParser: XMLParserDelegate {
             case xmlKeyTags.author:
                 if podcast!.author == nil {
                     podcast!.author = information
-                } else {
+                } else if tmpEpisode != nil {
                     tmpEpisode!.author = information
                 }
             case xmlKeyTags.description:
@@ -126,7 +128,7 @@ extension XMLParser: XMLParserDelegate {
             if tmpEpisode!.author == nil {
                 tmpEpisode!.author = podcast!.author!
             }
-            tmpEpisode!.podcastTitle = podcast!.title
+            tmpEpisode!.podcastUrl = podcast!.url
             
             let episodes = podcast!.episodes!.mutableCopy() as! NSMutableSet
             episodes.add(tmpEpisode!)

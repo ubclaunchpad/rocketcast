@@ -20,6 +20,7 @@ protocol DownloadBridgeProtocol {
     func downloadAudio(_ url: AudioWebURL, result:@escaping (_ url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
+
     
     func downloadPodcastXML(_ url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ()) {
         let podcastURL = URL(string: url)
