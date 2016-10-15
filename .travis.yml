@@ -6,5 +6,6 @@ xcode_sdk: iphonesimulator10.0
 script:
   - xcodebuild -project RocketCast.xcodeproj -scheme RocketCast -sdk iphonesimulator  
   - xcodebuild test -project RocketCast.xcodeproj -scheme RocketCastTests -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
+  - xcodebuild test -project RocketCast.xcodeproj  -scheme "RocketCastUITests"  -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.0'
 notifications:
   slack: ubclaunchpad:9yrC0XnC8DqCSlAJbLewhEPG
