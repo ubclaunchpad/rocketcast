@@ -16,5 +16,5 @@ protocol PlayerViewDelegate {
     
     func getEpisodeTitle() -> String
     func getEpisodeDesc() -> String
-    func getEpisodeImage(result: (image: UIImage) -> ())
+    func getEpisodeImage(_ result: (_ image: UIImage) -> ())
 }

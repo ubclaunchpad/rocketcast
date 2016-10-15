@@ -20,7 +20,7 @@ struct testPodcastNoAuthorsForEpisodes {
     let url = "http://www.billburr.com/podcast.xml"
 
     
-    private let expectedEpisode1:[String:String] =
+    fileprivate let expectedEpisode1:[String:String] =
         [ "title" : "Monday Morning Podcast 9-12-16",
           "description": "Bill rambles about football, strip clubs and quitting on stage.",
           "author" : "Bill Burr",
@@ -30,7 +30,7 @@ struct testPodcastNoAuthorsForEpisodes {
           "audio" : "http://traffic.libsyn.com/billburr/MMPC_9-12-16.mp3"]
     
     
-    private let expectedEpisode2:[String:String] =
+    fileprivate let expectedEpisode2:[String:String] =
         [ "title" : "Thursday Afternoon Monday Morning Podcast 9-8-16",
           "description": "Bill rambles about Sully, The East Side Comedy Club and having 9 kids.",
           "author" : "Bill Burr",

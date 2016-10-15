@@ -19,7 +19,7 @@ class XMLParser: NSObject {
     
     init(url: String, podcastUrl: PodcastWebURL) {
         super.init()
-        if let data = NSData(contentsOfURL:NSURL(string: url)!) {
+        if let data = try? Data(contentsOf: URL(string: url)!) {
             podcast = coreData.createOrUpdatePodcast(podcastUrl)
             podcast!.url = podcastUrl
             parseData(data)
@@ -28,8 +28,8 @@ class XMLParser: NSObject {
         }
     }
     
-    private func parseData (data:NSData) {
-        let parser = NSXMLParser(data: data)
+    fileprivate func parseData (_ data:Data) {
+        let parser = Foundation.XMLParser(data: data)
         parser.delegate = self
         guard parser.parse() else {
             Log.error("Oh shit something went wrong. OS parser failed")
@@ -41,12 +41,12 @@ class XMLParser: NSObject {
  
 }
 
-extension XMLParser: NSXMLParserDelegate {
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
+extension XMLParser: XMLParserDelegate {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
         
-        if (elementName as NSString).isEqualToString(xmlKeyTags.episodeTag) {
-            tmpEpisode = NSEntityDescription.insertNewObjectForEntityForName("Episode", inManagedObjectContext: coreData.managedObjectContext) as? Episode
+        if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
+            tmpEpisode = NSEntityDescription.insertNewObject(forEntityName: "Episode", into: coreData.managedObjectContext) as? Episode
         }
         
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
@@ -64,9 +64,9 @@ extension XMLParser: NSXMLParserDelegate {
         }
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        let information = string.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()).stringByRemovingAll(xmlKeyTags.unwantedStringInTag)
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let information = string.trimmingCharacters(
+            in: CharacterSet.whitespacesAndNewlines).stringByRemovingAll(xmlKeyTags.unwantedStringInTag)
         if (!information.isEmpty){
             switch element {
             case xmlKeyTags.title:
@@ -89,9 +89,9 @@ extension XMLParser: NSXMLParserDelegate {
                 }
             case xmlKeyTags.publishedDate:
                 if tmpEpisode != nil {
-                    let dateFormatter = NSDateFormatter()
+                    let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = dateFormatString
-                    let date = dateFormatter.dateFromString(information)
+                    let date = dateFormatter.date(from: information)
                     tmpEpisode!.date = date
                 }
             case xmlKeyTags.authorEpisodeTagTwo:
@@ -116,11 +116,11 @@ extension XMLParser: NSXMLParserDelegate {
         
     }
     
-    func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
-        Log.error("parsing failed: " + parseError.description)
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        Log.error("parsing failed: " + parseError._description)
     }
     
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if (elementName == xmlKeyTags.episodeTag) {
             if tmpEpisode!.author == nil {
                 tmpEpisode!.author = podcast!.author!
@@ -128,7 +128,7 @@ extension XMLParser: NSXMLParserDelegate {
             tmpEpisode!.podcastUrl = podcast!.url
             
             let episodes = podcast!.episodes!.mutableCopy() as! NSMutableSet
-            episodes.addObject(tmpEpisode!)
+            episodes.add(tmpEpisode!)
             podcast!.episodes = episodes.copy() as? NSSet
         }
         

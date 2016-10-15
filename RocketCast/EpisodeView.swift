@@ -13,47 +13,47 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var EpisodeTable: UITableView!
     
-    @IBAction func segueToPlayer(sender: AnyObject) {
+    @IBAction func segueToPlayer(_ sender: AnyObject) {
         viewDelegate?.segueToPlayer()
     }
-    class func instancefromNib(frame: CGRect) -> EpisodeView {
-        let view = UINib(nibName: "EpisodeView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
+    class func instancefromNib(_ frame: CGRect) -> EpisodeView {
+        let view = UINib(nibName: "EpisodeView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! EpisodeView
         view.frame = frame
         view.EpisodeTable.delegate = view
         view.EpisodeTable.dataSource = view
         view.EpisodeTable.allowsSelection = true
-        view.EpisodeTable.separatorStyle = UITableViewCellSeparatorStyle.None
-        view.EpisodeTable.backgroundColor = UIColor.clearColor()
-        view.EpisodeTable.opaque = false
+        view.EpisodeTable.separatorStyle = UITableViewCellSeparatorStyle.none
+        view.EpisodeTable.backgroundColor = UIColor.clear
+        view.EpisodeTable.isOpaque = false
         return view
     }
     
     // returns an approiate number of rows depending on the section
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  1
     }
     
     // Iiterates over every episode and creates a respective TableViewCell
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
-        tableView.registerNib(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
-        let cell = self.EpisodeTable.dequeueReusableCellWithIdentifier(EpisodeViewConstants.cellViewIdentifier, forIndexPath: indexPath) as! EpisodeViewTableViewCell
+        tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
+        let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
         
-        cell.tag = indexPath.row
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.tag = (indexPath as NSIndexPath).row
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 

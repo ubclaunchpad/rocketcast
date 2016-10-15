@@ -15,16 +15,17 @@ import AVFoundation
 
 protocol DownloadBridgeProtocol {
    
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
-    func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
+    func downloadPodcastXML(url:PodcastWebURL, result:(_ url: PodcastStorageURL?) -> ())
+    func downloadImage(url: ImageWebURL, result:(_ url: ImageStorageURL) -> ())
+    func downloadAudio(url: AudioWebURL, result:(_ url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
+
     
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ()) {
+   internal func downloadPodcastXML(url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ()) {
         let podcastURL = NSURL(string: url)
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(podcastURL!) {(data, response, error) in
+        let task = URLSession.sharedSession.dataTaskWithURL(podcastURL!) {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
@@ -60,39 +61,39 @@ extension ModelBridge: DownloadBridgeProtocol {
         
     }
     
-    func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ()) {
+    func downloadImage(url: ImageWebURL, result:(_ url: ImageStorageURL) -> ()) {
         let urlString = String(url)
-        let url = NSURL(string: urlString)
+        let url = NSURL(string: urlString!)
         var destinationPath = " "
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        dispatch_async(dispatch_get_global_queue(DispatchQueue.GlobalQueuePriority.default, 0)) {
             if let data = NSData(contentsOfURL: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
-                dispatch_async(dispatch_get_main_queue(), {
+                dispatch_get_main_queue().asynchronously(execute: {
                     let image = UIImage(data: data)
-                    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-                    destinationPath = documentsPath + urlString.stringByRemovingAll(stringsToRemove)+".png"
+                    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .UserDomainMask, true)[0] as String
+                    destinationPath = documentsPath + urlString?.stringByRemovingAll(stringsToRemove)+".png"
                     UIImageJPEGRepresentation(image!,1.0)!.writeToFile(destinationPath, atomically: true)
-                    result(url: destinationPath)
+                    result(destinationPath)
                 });
             }
         }
     }
     
-    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
+    func downloadAudio(url: AudioWebURL, result:@escaping (_ url: AudioStorageURL?) -> ()) {
         let audioURL = NSURL(string: url)
-        let audioAsset = AVAsset(URL: audioURL!)
+        let audioAsset = AVAsset(URL: audioURL! as URL)
         
         guard audioAsset.playable && audioAsset.readable else {
             Log.error("File at given URL cannot be read or played")
-            result(url: nil)
+            result(nil)
             return
         }
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
+        let task = URLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
-                result(url: nil)
+                result(nil)
                 return
             }
             

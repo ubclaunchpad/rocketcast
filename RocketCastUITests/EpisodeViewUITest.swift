@@ -10,7 +10,7 @@ import XCTest
 
 class EpisodeUITests: XCTestCase {
     
-    private var app = XCUIApplication()
+    fileprivate var app = XCUIApplication()
     
     override func setUp() {
         super.setUp()
@@ -26,8 +26,8 @@ class EpisodeUITests: XCTestCase {
         let startScreen = self.app.staticTexts["Podcast"]
         var exists = NSPredicate(format: "exists == true")
         
-        expectationForPredicate(exists, evaluatedWithObject: startScreen, handler: nil)
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectation(for: exists, evaluatedWith: startScreen, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         XCTAssert(startScreen.exists)
         XCTAssert(app.buttons["Button"].exists)
         app.buttons["Button"].tap()
@@ -36,8 +36,8 @@ class EpisodeUITests: XCTestCase {
         let episodeScreen = self.app.staticTexts["Episodes"]
         exists = NSPredicate(format: "exists == true")
         
-        expectationForPredicate(exists, evaluatedWithObject: episodeScreen, handler: nil)
-        waitForExpectationsWithTimeout(10, handler: nil)
+        expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
+        waitForExpectations(timeout: 10, handler: nil)
         
         XCTAssert(episodeScreen.exists)
     }

@@ -16,7 +16,7 @@ extension Episode {
 
     @NSManaged var title: String?
     @NSManaged var summary: String?
-    @NSManaged var date: NSDate?
+    @NSManaged var date: Date?
     @NSManaged var duration: String?
     @NSManaged var imageURL: String?
     @NSManaged var audioURL: String?
