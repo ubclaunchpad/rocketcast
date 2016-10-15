@@ -21,15 +21,15 @@ class EpisodeViewTableViewCell: UITableViewCell {
         //episodeHeader?.lineBreakMode = NSLineBreakMode.ByWordWrapping
     }
     
-    func setEpisodeHeaderText(setHeader: NSMutableString) {
+    func setEpisodeHeaderText(_ setHeader: NSMutableString) {
         episodeHeader.text = setHeader as String
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         if !selected {
-            episodeHeader.textColor = UIColor.blackColor()
+            episodeHeader.textColor = UIColor.black
         } else {
-            episodeHeader.textColor = UIColor.redColor()
+            episodeHeader.textColor = UIColor.red
         }
         
     }

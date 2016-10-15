@@ -17,46 +17,46 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var podcastList: UITableView!
     
-    @IBAction func segueButton(sender: AnyObject) {
+    @IBAction func segueButton(_ sender: AnyObject) {
         viewDelegate?.segueToEpisode()
     }
     
-    class func instancefromNib(frame: CGRect) -> PodcastView {
-        let view = UINib(nibName: "PodcastView", bundle: nil).instantiateWithOwner(nil, options: nil)[0]
+    class func instancefromNib(_ frame: CGRect) -> PodcastView {
+        let view = UINib(nibName: "PodcastView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PodcastView
         view.frame = frame
         view.podcastList.delegate = view
         view.podcastList.dataSource = view
         view.podcastList.allowsSelection = true
-        view.podcastList.separatorStyle = UITableViewCellSeparatorStyle.None
-        view.podcastList.backgroundColor = UIColor.clearColor()
-        view.podcastList.opaque = false
+        view.podcastList.separatorStyle = UITableViewCellSeparatorStyle.none
+        view.podcastList.backgroundColor = UIColor.clear
+        view.podcastList.isOpaque = false
         return view
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let podcastCell = UINib(nibName: "PodcastViewTableViewCell", bundle: nil)
-        tableView.registerNib(podcastCell, forCellReuseIdentifier: "podcastCell")
-        let cell = self.podcastList.dequeueReusableCellWithIdentifier("podcastCell", forIndexPath: indexPath) as! PodcastViewTableViewCell
+        tableView.register(podcastCell, forCellReuseIdentifier: "podcastCell")
+        let cell = self.podcastList.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! PodcastViewTableViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
     
-        cell.tag = indexPath.row
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.tag = (indexPath as NSIndexPath).row
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell        
     }
     
     // returns an approiate number of rows depending on the section
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  1
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 

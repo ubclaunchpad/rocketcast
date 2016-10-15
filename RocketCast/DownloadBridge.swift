@@ -15,24 +15,24 @@ import AVFoundation
 
 protocol DownloadBridgeProtocol {
    
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ())
-    func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ())
-    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ())
+    func downloadPodcastXML(_ url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ())
+    func downloadImage(_ url: ImageWebURL, result:@escaping (_ url: ImageStorageURL) -> ())
+    func downloadAudio(_ url: AudioWebURL, result:@escaping (_ url: AudioStorageURL?) -> ())
 }
 extension ModelBridge: DownloadBridgeProtocol {
     
-    func downloadPodcastXML(url:PodcastWebURL, result:(url: PodcastStorageURL?) -> ()) {
-        let podcastURL = NSURL(string: url)
+    func downloadPodcastXML(_ url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ()) {
+        let podcastURL = URL(string: url)
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(podcastURL!) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: podcastURL!, completionHandler: {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
-                result(url: nil)
+                result(nil)
                 return
             }
-            guard let XMLString = NSString(data: data!, encoding: NSUTF8StringEncoding) else {
-                result(url: nil)
+            guard let XMLString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) else {
+                result(nil)
                 return
             }
             
@@ -41,13 +41,13 @@ extension ModelBridge: DownloadBridgeProtocol {
             let filePath = NSHomeDirectory() + filePathAppend
             
             do {
-                try XMLString.writeToFile(filePath, atomically: true, encoding: NSUTF8StringEncoding)
-                result(url: filePathAppend)
+                try XMLString.write(toFile: filePath, atomically: true, encoding: String.Encoding.utf8.rawValue)
+                result(filePathAppend)
             } catch let error as NSError {
                 Log.error(error.debugDescription)
             }
             
-        }
+        }) 
         task.resume()
         
         
@@ -60,39 +60,39 @@ extension ModelBridge: DownloadBridgeProtocol {
         
     }
     
-    func downloadImage(url: ImageWebURL, result:(url: ImageStorageURL) -> ()) {
+    func downloadImage(_ url: ImageWebURL, result:@escaping (_ url: ImageStorageURL) -> ()) {
         let urlString = String(url)
-        let url = NSURL(string: urlString)
+        let url = URL(string: urlString!)
         var destinationPath = " "
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            if let data = NSData(contentsOfURL: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
-                dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
+            if let data = try? Data(contentsOf: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
+                DispatchQueue.main.async(execute: {
                     let image = UIImage(data: data)
-                    let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-                    destinationPath = documentsPath + urlString.stringByRemovingAll(stringsToRemove)+".png"
-                    UIImageJPEGRepresentation(image!,1.0)!.writeToFile(destinationPath, atomically: true)
-                    result(url: destinationPath)
+                    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+                    destinationPath = documentsPath + (urlString?.stringByRemovingAll(stringsToRemove))!+".png"
+                    try? UIImageJPEGRepresentation(image!,1.0)!.write(to: URL(fileURLWithPath: destinationPath), options: [.atomic])
+                    result(destinationPath)
                 });
             }
         }
     }
     
-    func downloadAudio(url: AudioWebURL, result:(url: AudioStorageURL?) -> ()) {
-        let audioURL = NSURL(string: url)
-        let audioAsset = AVAsset(URL: audioURL!)
+    func downloadAudio(_ url: AudioWebURL, result:@escaping (_ url: AudioStorageURL?) -> ()) {
+        let audioURL = URL(string: url)
+        let audioAsset = AVAsset(url: audioURL!)
         
-        guard audioAsset.playable && audioAsset.readable else {
+        guard audioAsset.isPlayable && audioAsset.isReadable else {
             Log.error("File at given URL cannot be read or played")
-            result(url: nil)
+            result(nil)
             return
         }
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(audioURL!) {(data, response, error) in
+        let task = URLSession.shared.dataTask(with: audioURL!, completionHandler: {(data, response, error) in
             
             guard error == nil else {
                 Log.error(error.debugDescription)
-                result(url: nil)
+                result(nil)
                 return
             }
             
@@ -100,13 +100,13 @@ extension ModelBridge: DownloadBridgeProtocol {
             let filePath = NSHomeDirectory() + filePathAppend
             
             do {
-                try data!.writeToFile(filePath, atomically: true)
-                result(url: filePathAppend)
+                try data!.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
+                result(filePathAppend)
             } catch let error as NSError {
                 Log.error(error.debugDescription)
             }
             
-        }
+        }) 
         task.resume()
     }
 }

@@ -25,19 +25,19 @@ class PodcastViewTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func setPodcastNameText(setPodcastName: NSMutableString) {
+    func setPodcastNameText(_ setPodcastName: NSMutableString) {
         podcastName.text = setPodcastName as String
     }
     
-    func setPodcastDescriptionText(setPodcastDescription: NSMutableString) {
+    func setPodcastDescriptionText(_ setPodcastDescription: NSMutableString) {
         podcastDescription.text = setPodcastDescription as String
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         if !selected {
-            podcastName.textColor = UIColor.blackColor()
+            podcastName.textColor = UIColor.black
         } else {
-            podcastName.textColor = UIColor.redColor()
+            podcastName.textColor = UIColor.red
         }
 
     }
