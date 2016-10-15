@@ -28,6 +28,9 @@ class PlayerView: UIView {
         viewDelegate?.goBack()
     }
     
+    @IBAction func changeSpeed(_ sender: UIButton) {
+        viewDelegate?.changeSpeed(sender.tag)
+    }
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PlayerView

@@ -42,6 +42,7 @@ class DownloadTests: XCTestCase {
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory() + downloadedPodcast!
+            print(path)
             if let data = fileMgr.contents(atPath: path) {
                 let xmlString = String(data:data, encoding: String.Encoding.utf8)!
                 Log.info(xmlString)
@@ -99,7 +100,7 @@ class DownloadTests: XCTestCase {
         // Test real audio
         var done = false
         
-        var url = "http://www.scientificamerican.com/podcast/podcast.mp3?fileId=14824345-7D79-454F-9A8F30B98EE219F3"
+        var url = "https://ia902508.us.archive.org/5/items/testmp3testfile/mpthreetest.mp3"
         let fileMgr = FileManager.default
         
         ModelBridge.sharedInstance.downloadAudio(url, result: { (downloadedPodcast) in
@@ -108,9 +109,9 @@ class DownloadTests: XCTestCase {
             XCTAssertNotNil(downloadedPodcast)
             
             let path = NSHomeDirectory() + downloadedPodcast!
-            
+            print(path)
             if let data = fileMgr.contents(atPath: path) {
-                XCTAssertEqual(data.count, 2002733)
+                XCTAssertEqual(data.count, 198658)
             }
         })
         
