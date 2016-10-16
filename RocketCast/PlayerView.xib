@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -45,7 +46,6 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V52-kW-kql">
-                    <rect key="frame" x="145" y="486" width="30" height="30"/>
                     <state key="normal" title="2x"/>
                     <state key="selected">
                         <color key="titleColor" white="0.208674569" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,7 +55,6 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv8-YH-faA">
-                    <rect key="frame" x="209" y="486" width="30" height="30"/>
                     <state key="normal" title="3x"/>
                     <state key="selected">
                         <color key="titleColor" white="0.208674569" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,7 +64,6 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mI-51-oQX">
-                    <rect key="frame" x="81" y="486" width="30" height="30"/>
                     <state key="normal" title="1x"/>
                     <state key="selected">
                         <color key="titleColor" white="0.20867456896551725" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,11 +72,18 @@
                         <action selector="changeSpeed:" destination="iN0-l3-epB" eventType="touchUpInside" id="9ic-kP-EVX"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX6-dN-9hS">
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="SegueBack:" destination="iN0-l3-epB" eventType="touchUpInside" id="39Y-g3-MDy"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="X5P-VY-pJl" firstAttribute="top" secondItem="gqI-aa-uCa" secondAttribute="bottom" constant="31" id="16e-Ez-Hhf"/>
                 <constraint firstAttribute="bottom" secondItem="eVf-Az-tdd" secondAttribute="bottom" constant="107" id="2fH-YT-JEn"/>
+                <constraint firstItem="EX6-dN-9hS" firstAttribute="leading" secondItem="XFf-m1-IHm" secondAttribute="trailing" constant="144" id="5LJ-F2-cDT"/>
                 <constraint firstItem="wv8-YH-faA" firstAttribute="top" secondItem="8mI-51-oQX" secondAttribute="top" id="5ch-QH-2gV"/>
                 <constraint firstItem="8mI-51-oQX" firstAttribute="top" secondItem="eVf-Az-tdd" secondAttribute="bottom" constant="25" id="750-kR-K6f"/>
                 <constraint firstItem="V52-kW-kql" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7AI-TK-yCu"/>
@@ -94,6 +99,7 @@
                 <constraint firstItem="XFf-m1-IHm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="94" id="ivR-zc-z8r"/>
                 <constraint firstItem="9Us-7a-6An" firstAttribute="trailing" secondItem="gqI-aa-uCa" secondAttribute="trailing" id="rVS-lD-DWj"/>
                 <constraint firstItem="X5P-VY-pJl" firstAttribute="leading" secondItem="eVf-Az-tdd" secondAttribute="trailing" constant="69" id="reF-bk-cui"/>
+                <constraint firstItem="EX6-dN-9hS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="84" id="toe-F8-FEb"/>
                 <constraint firstItem="XFf-m1-IHm" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="vmn-Al-93Z"/>
                 <constraint firstItem="gqI-aa-uCa" firstAttribute="top" secondItem="9Us-7a-6An" secondAttribute="bottom" constant="8" symbolic="YES" id="wJg-Oy-JJY"/>
             </constraints>
@@ -102,6 +108,7 @@
                 <outlet property="imageView" destination="9Us-7a-6An" id="U51-g4-MsZ"/>
                 <outlet property="titleLabel" destination="XFf-m1-IHm" id="2AQ-Ws-S5P"/>
             </connections>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
 </document>

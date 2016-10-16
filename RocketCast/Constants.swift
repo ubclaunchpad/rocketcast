@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 typealias PodcastWebURL = String
 typealias ImageWebURL = String
@@ -15,10 +16,13 @@ typealias PodcastStorageURL = String
 typealias ImageStorageURL = String
 typealias AudioStorageURL = String
 typealias XML = String
+var audioPlayer = AVAudioPlayer()
+var isPlaying = false
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
   static let segueFromEpisodeToPlayer = "segueFromEpisodeToPlayer"
+  static let segueToBackEpisodes = "segueToBackEpisodes"
 }
 
 

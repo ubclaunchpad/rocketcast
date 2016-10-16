@@ -22,6 +22,9 @@ class PlayerView: UIView {
         viewDelegate?.pausePodcast()
     }
     
+    @IBAction func SegueBack(_ sender: AnyObject) {
+        viewDelegate?.segueBackToEpisodes()
+    }
     @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)
     }

@@ -12,7 +12,6 @@ import AVFoundation
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
-    var audioPlayer: AVAudioPlayer!
     var episode: Episode?
     
     enum speedRates {
@@ -28,7 +27,9 @@ class PlayerController: UIViewController {
         //TODO: call this from performSegue function in EpisodeController not here!
         let seguedEpisode = Episode()
         setUpPodcast(seguedEpisode);
-        setUpPlayer()
+        if (!isPlaying) {
+            setUpPlayer()
+        }
     }
     
     fileprivate func setupView() {
@@ -52,6 +53,7 @@ extension PlayerController: PlayerViewDelegate {
     func playPodcast() {
         if !audioPlayer.isPlaying {
             audioPlayer.play()
+            isPlaying = true
         }
     }
     
@@ -61,30 +63,66 @@ extension PlayerController: PlayerViewDelegate {
     
     func stopPodcast() {
         audioPlayer.stop()
+        isPlaying = false
     }
     
     func setUpPlayer() {
-        let fileMgr = FileManager.default
+        
         
         // Run the tests in DownloadTests.swift in order for this play
-        let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
-
-        let file = fileMgr.contents(atPath: path)
-        // Uncomment when episode.audioURL is accessible
-//         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
-//         if let path = path {
-//         let mp3URL = NSURL(fileURLWithPath: path)
+        //let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
         
+            let fileMgr = FileManager.default
+            let path = NSHomeDirectory() + 	"/Documents/trafficlibsyncombillburrMMPC_9-12-16mp3"
+            let file = fileMgr.contents(atPath: path)
             do {
                 audioPlayer = try AVAudioPlayer(data: file!)
                 
                 audioPlayer.prepareToPlay()
                 audioPlayer.enableRate = true
-         
+                let audioSession = AVAudioSession.sharedInstance()
+                
+                do {
+                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                } catch {
+                    
+                }
+                
+                
             } catch let error as NSError {
                 Log.error(error.localizedDescription)
             }
-//         }
+            
+
+            
+        
+
+//        let file = fileMgr.contents(atPath: path)
+        // Uncomment when episode.audioURL is accessible
+        //         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
+        //         if let path = path {
+        //         let mp3URL = NSURL(fileURLWithPath: path)
+       
+//            do {
+//                audioPlayer = try AVAudioPlayer(contentsOf:url as! URL)
+//                
+//                audioPlayer.prepareToPlay()
+//                audioPlayer.enableRate = true
+//                let audioSession = AVAudioSession.sharedInstance()
+//                
+//                do {
+//                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+//                } catch {
+//                    
+//                }
+//                
+//                
+//            } catch let error as NSError {
+//                Log.error(error.localizedDescription)
+//            }
+//            
+        
+        //         }
     }
     
     func changeSpeed(_ rateTag: Int) {
@@ -129,6 +167,12 @@ extension PlayerController: PlayerViewDelegate {
         
         // download image from episodes imageURL
         // return that image in result
+    }
+    
+    
+    func segueBackToEpisodes() {
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
+        
     }
     
 }
