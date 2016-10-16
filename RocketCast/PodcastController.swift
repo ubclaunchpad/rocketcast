@@ -20,9 +20,9 @@ class PodcastController: UIViewController {
         setupView()
 //        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
 //        }
-//        
         
-    //    _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+        
+//        _ = XMLParser(url:"http://billburr.libsyn.com/rss")
         
     }
     

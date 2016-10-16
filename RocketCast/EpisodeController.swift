@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EpisodeController: UIViewController {
     
@@ -18,15 +19,20 @@ class EpisodeController: UIViewController {
                     "#840 - Donald Cerrone"]
     
     var mainView: EpisodeView?
-    
+    var coreData = CoreDataHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
+        let episode = Episode(context: coreData.persistentContainer.viewContext)
+        mainView?.episodesToView = episode.getAllEpisodes(moc: coreData.persistentContainer.viewContext)
+        
+
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
