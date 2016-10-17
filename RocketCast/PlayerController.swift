@@ -8,12 +8,13 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
-    var episode: Episode?
-    
+    public var recievedEpisode: Episode?
+    var coreData = CoreDataHelper()
     enum speedRates {
         static let single:Float = 1
         static let double:Float = 2
@@ -23,14 +24,27 @@ class PlayerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        //TODO: call this from performSegue function in EpisodeController not here!
-        let seguedEpisode = Episode()
-        setUpPodcast(seguedEpisode);
-        if (!isPlaying) {
-            setUpPlayer()
+        print(recievedEpisode?.title)
+        if let url = recievedEpisode?.doucmentaudioURL {
+            if (!isPlaying) {
+                self.setUpPlayer(webUrl:url)
+            }
+            
+        } else {
+            print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            ModelBridge.sharedInstance.downloadAudio((recievedEpisode?.audioURL)!, result: { (downloadedPodcast) in
+                let episode = self.coreData.getEpisode((self.recievedEpisode?.title)!)
+                episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                self.coreData.saveContext()
+                Log.debug("IsPlaying: \(isPlaying)")
+                 print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                if (!isPlaying) {
+                    self.setUpPlayer(webUrl: downloadedPodcast!)
+                }
+            })
         }
     }
+    
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
@@ -43,9 +57,7 @@ class PlayerController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    func setUpPodcast(_ episodeToPlay: Episode) {
-        episode = episodeToPlay
-    }
+    
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
@@ -59,6 +71,7 @@ extension PlayerController: PlayerViewDelegate {
     
     func pausePodcast() {
         audioPlayer.pause()
+        isPlaying = false
     }
     
     func stopPodcast() {
@@ -66,63 +79,34 @@ extension PlayerController: PlayerViewDelegate {
         isPlaying = false
     }
     
-    func setUpPlayer() {
+    func setUpPlayer(webUrl:String) {
         
         
         // Run the tests in DownloadTests.swift in order for this play
         //let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
         
-            let fileMgr = FileManager.default
-            let path = NSHomeDirectory() + 	"/Documents/trafficlibsyncombillburrMMPC_9-12-16mp3"
-            let file = fileMgr.contents(atPath: path)
+        let fileMgr = FileManager.default
+        let path = NSHomeDirectory() + webUrl
+        let file = fileMgr.contents(atPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(data: file!)
+            
+            audioPlayer.prepareToPlay()
+            audioPlayer.enableRate = true
+            audioPlayer.play()
+            let audioSession = AVAudioSession.sharedInstance()
+            
             do {
-                audioPlayer = try AVAudioPlayer(data: file!)
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            } catch {
                 
-                audioPlayer.prepareToPlay()
-                audioPlayer.enableRate = true
-                let audioSession = AVAudioSession.sharedInstance()
-                
-                do {
-                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                } catch {
-                    
-                }
-                
-                
-            } catch let error as NSError {
-                Log.error(error.localizedDescription)
             }
             
-
             
+        } catch let error as NSError {
+            Log.error(error.localizedDescription)
+        }
         
-
-//        let file = fileMgr.contents(atPath: path)
-        // Uncomment when episode.audioURL is accessible
-        //         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
-        //         if let path = path {
-        //         let mp3URL = NSURL(fileURLWithPath: path)
-       
-//            do {
-//                audioPlayer = try AVAudioPlayer(contentsOf:url as! URL)
-//                
-//                audioPlayer.prepareToPlay()
-//                audioPlayer.enableRate = true
-//                let audioSession = AVAudioSession.sharedInstance()
-//                
-//                do {
-//                    try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-//                } catch {
-//                    
-//                }
-//                
-//                
-//            } catch let error as NSError {
-//                Log.error(error.localizedDescription)
-//            }
-//            
-        
-        //         }
     }
     
     func changeSpeed(_ rateTag: Int) {
@@ -142,25 +126,25 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func getEpisodeTitle() -> String {
-        guard episode != nil else {
+        guard recievedEpisode != nil else {
             Log.error("episode should not have been nil")
             return ""
         }
         
-        return (episode?.title)! as String
+        return (recievedEpisode?.title)! as String
     }
     
     func getEpisodeDesc() -> String {
-        guard episode != nil else {
+        guard recievedEpisode != nil else {
             Log.error("episode should not have been nil")
             return ""
         }
         
-        return (episode?.description)! as String
+        return (recievedEpisode?.description)! as String
     }
     
     func getEpisodeImage(_ result: (_ image: UIImage) -> ()) {
-        guard episode != nil else {
+        guard recievedEpisode != nil else {
             Log.error("episode should not have been nil")
             return
         }

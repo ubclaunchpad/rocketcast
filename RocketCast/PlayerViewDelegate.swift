@@ -12,7 +12,7 @@ protocol PlayerViewDelegate {
     func playPodcast()
     func pausePodcast()
     func stopPodcast()
-    func setUpPlayer()
+    func setUpPlayer(webUrl:String)
     
     func getEpisodeTitle() -> String
     func getEpisodeDesc() -> String

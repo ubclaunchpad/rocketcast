@@ -17,7 +17,7 @@ class EpisodeController: UIViewController {
                     "#842 - Chris Kresser",
                     "#841 - Greg Fitzsimmons",
                     "#840 - Donald Cerrone"]
-    
+    var sendEpisode: Episode?
     var mainView: EpisodeView?
     var coreData = CoreDataHelper()
     override func viewDidLoad() {
@@ -40,6 +40,13 @@ class EpisodeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
+            let viewController: PlayerController = segue.destination as! PlayerController
+            viewController.recievedEpisode = sendEpisode
+        }
     }
 }
 
@@ -69,4 +76,12 @@ extension EpisodeController: EpisodeViewDelegate{
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
+    
+    func setSelectedEpisode (selectedEpisode: Episode) {
+        let url = selectedEpisode.audioURL
+        sendEpisode = selectedEpisode
+        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
+
+    }
+    
 }

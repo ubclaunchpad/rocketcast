@@ -73,5 +73,9 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row])
+    }
+    
 }
 

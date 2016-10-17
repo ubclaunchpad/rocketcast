@@ -10,4 +10,6 @@ import Foundation
 
 protocol EpisodeViewDelegate {
     func segueToPlayer()
+    func setSelectedEpisode(selectedEpisode: Episode)
+    
 }
