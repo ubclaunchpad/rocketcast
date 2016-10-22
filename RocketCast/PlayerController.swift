@@ -81,7 +81,6 @@ extension PlayerController: PlayerViewDelegate {
         audioPlayer.play(atTime: audioPlayer.currentTime-30)
     }
     
-
     func setUpPlayer(webUrl:String) {
         
         // Run the tests in DownloadTests.swift in order for this play
