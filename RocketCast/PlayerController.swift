@@ -64,11 +64,23 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func goForward() {
-        audioPlayer.play(atTime: audioPlayer.currentTime+30)
-    }
+        var time: TimeInterval = audioPlayer.currentTime
+        time += 30.0 // Go forward by 30 seconds
+        if time < audioPlayer.duration{
+            audioPlayer.stop()
+        } else{
+            audioPlayer.currentTime = time
+        }
+}
     
     func goBack() {
-        audioPlayer.play(atTime: audioPlayer.currentTime-30)
+        var time: TimeInterval = audioPlayer.currentTime
+        time -= 30.0 // Go backward by 30 seconds
+        if time < 0.0{
+            audioPlayer.currentTime = 0.0
+        } else{
+            audioPlayer.currentTime = time
+        }
     }
     
     func setUpPlayer() {
