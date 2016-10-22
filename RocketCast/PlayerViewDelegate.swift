@@ -11,6 +11,8 @@ import UIKit
 protocol PlayerViewDelegate {
     func playPodcast()
     func pausePodcast()
+    func goForward()
+    func goBack()
     func stopPodcast()
     func setUpPlayer(webUrl:String)
     
@@ -20,6 +22,9 @@ protocol PlayerViewDelegate {
     func changeSpeed(_ rateTag: Int)
     func getEpisodeImage(_ result: (_ image: UIImage) -> ())
     func segueBackToEpisodes()
-
+    
+    func updateProgressView()
+    func playNextEpisode()
+    func playLastEpisode()
 }
 

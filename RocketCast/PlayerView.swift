@@ -13,20 +13,54 @@ class PlayerView: UIView {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
-    var audioURL:String?
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
     @IBAction func playButton(_ sender: AnyObject) {
         viewDelegate?.playPodcast()
+        statusLabel.text = "Playing at 1x"
     }
+    
+    @IBOutlet weak var slider: UISlider!
     
     @IBAction func stopButton(_ sender: AnyObject) {
         viewDelegate?.pausePodcast()
+        statusLabel.text = "Pause"
+    }
+    @IBAction func backButton(_ sender: AnyObject) {
+        viewDelegate?.goBack()
+    }
+    @IBAction func skipButton(_ sender: AnyObject) {
+        viewDelegate?.goForward()
     }
     
+    @IBAction func changeAudio(_ sender: AnyObject) {
+        print(slider.value)
+        print(slider.maximumValue)
+        if ((slider.value) == (slider.maximumValue)) {
+            viewDelegate?.playNextEpisode()
+        }
+        
+        audioPlayer.stop()
+        audioPlayer.currentTime = TimeInterval(slider.value)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+    }
+    
+   
+    @IBAction func playNextEpisode(_ sender: AnyObject) {
+      viewDelegate?.playNextEpisode()
+    }
+    
+    @IBAction func playLastEpisode(_ sender: AnyObject) {
+        viewDelegate?.playLastEpisode()
+    }
     @IBAction func SegueBack(_ sender: AnyObject) {
         viewDelegate?.segueBackToEpisodes()
     }
     @IBAction func changeSpeed(_ sender: UIButton) {
         viewDelegate?.changeSpeed(sender.tag)
+        statusLabel.text = "Playing at \(sender.tag)x"
     }
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
@@ -36,10 +70,8 @@ class PlayerView: UIView {
         return view
     }
     
-    // viewDidLoad for views
-    override func willMove(toSuperview newSuperview: UIView?) {
-        //viewDelegate?.setUpPlayer()
-        titleLabel.text = "Test Title"
+    func setTitles (title: String) {
+        titleLabel.text = title
         descriptionView.text = "Test Description"
 
     }

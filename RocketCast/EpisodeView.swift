@@ -11,13 +11,7 @@ import CoreData
 
 class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     var viewDelegate: EpisodeViewDelegate?
-//    var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
-//                    "#844 - Andreas Antonopoulos",
-//                    "#843 - Tony Hinchcliffe",
-//                    "#842 - Chris Kresser",
-//                    "#841 - Greg Fitzsimmons",
-//                    "#840 - Donald Cerrone"]
-    
+
     lazy var episodesToView = [Episode]()
     
     @IBOutlet weak var EpisodeTable: UITableView!
@@ -74,7 +68,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row])
+        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row)
     }
     
 }

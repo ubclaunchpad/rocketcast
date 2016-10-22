@@ -22,7 +22,13 @@ class PodcastController: UIViewController {
 //        }
         
 //        
-//        _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+        
+        
+        if (CoreData.getPodcastCount() == 0) {
+            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+
+        }
+        
         
     }
     

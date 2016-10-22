@@ -17,9 +17,9 @@ class EpisodeController: UIViewController {
                     "#842 - Chris Kresser",
                     "#841 - Greg Fitzsimmons",
                     "#840 - Donald Cerrone"]
-    var sendEpisode: Episode?
     var mainView: EpisodeView?
     var coreData = CoreDataHelper()
+    var sendIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +32,7 @@ class EpisodeController: UIViewController {
         let episode = Episode(context: coreData.persistentContainer.viewContext)
         mainView?.episodesToView = episode.getAllEpisodes(moc: coreData.persistentContainer.viewContext)
         
+       currentEpisodeList = episode.getAllEpisodes(moc: coreData.persistentContainer.viewContext)
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -45,7 +46,7 @@ class EpisodeController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             let viewController: PlayerController = segue.destination as! PlayerController
-            viewController.recievedEpisode = sendEpisode
+            viewController.trackId = sendIndex
         }
     }
 }
@@ -77,9 +78,9 @@ extension EpisodeController: EpisodeViewDelegate{
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
-    func setSelectedEpisode (selectedEpisode: Episode) {
+    func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
         let url = selectedEpisode.audioURL
-        sendEpisode = selectedEpisode
+        sendIndex = index
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
 
     }

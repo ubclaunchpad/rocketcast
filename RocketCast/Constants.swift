@@ -25,7 +25,7 @@ enum  Segues {
   static let segueToBackEpisodes = "segueToBackEpisodes"
 }
 
-
+var currentEpisodeList = [Episode]()
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"
