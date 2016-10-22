@@ -125,9 +125,7 @@ class CoreDataHelper {
         return episode
     }
     
-    
     func getPodcastCount () -> NSInteger {
-        let moc = self.persistentContainer.viewContext
         let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
         do {
             let count = try moc.count(for: request)
@@ -139,4 +137,7 @@ class CoreDataHelper {
         
         return -1
     }
+    
+    
+
 }

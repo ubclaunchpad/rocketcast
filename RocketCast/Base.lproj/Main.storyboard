@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -46,7 +46,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="599" y="335"/>
+            <point key="canvasLocation" x="1017" y="334"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -67,10 +67,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5S-R9-oTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1999" y="344"/>
+            <point key="canvasLocation" x="2022" y="334"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Dc-yA-muE"/>
+        <segue reference="sPe-Yf-iBH"/>
     </inferredMetricsTieBreakers>
 </document>

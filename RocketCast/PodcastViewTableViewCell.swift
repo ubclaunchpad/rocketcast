@@ -42,4 +42,26 @@ class PodcastViewTableViewCell: UITableViewCell {
 
     }
     
+    
+    func updateUI(Podcast: Podcast) {
+        //videoTitle.text = PartyRock.videoTitle
+        //TODO: set image from url
+        self.podcastName.text = Podcast.title!
+        self.podcastDescription.text = Podcast.summary!
+        let url = URL(string: Podcast.imageURL!)
+        
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    self.podcastImage.image = UIImage(data: data)
+                }
+            } catch  {
+                //handle ERROR
+            }
+        }
+        
+    }
+
+    
 }

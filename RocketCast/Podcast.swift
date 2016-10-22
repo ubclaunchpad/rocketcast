@@ -11,9 +11,11 @@ import CoreData
 
 
 class Podcast: NSManagedObject {
+    
+    
 
 // Insert code here to add functionality to your managed object subclass
-    func getPodcast (moc: NSManagedObjectContext, byTitle: String)  -> Podcast {
+    func getPodcast (byTitle: String)  -> Podcast {
         let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
         var podcast:Podcast?
         podcastRequest.predicate = NSPredicate(format:"title = %@", (byTitle as? CVarArg)!)
@@ -29,5 +31,30 @@ class Podcast: NSManagedObject {
         
         return podcast!
         
+    }
+    
+    
+    func getAllPodcasts() -> [Podcast] {
+        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        do {
+            let podcasts = try moc.fetch(podcastRequest)
+            return podcasts
+        }
+        catch {
+            fatalError("Error in getting sold history")
+        }
+    }
+    
+    func getPodcastCount () -> NSInteger {
+             let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        do {
+            let count = try moc.count(for: request)
+            return count
+            
+        } catch let error as NSError {
+            Log.error("Error in getting count from podcasts: " + error.localizedDescription)
+        }
+        
+        return -1
     }
 }

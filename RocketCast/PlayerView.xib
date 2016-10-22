@@ -12,9 +12,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Xd-jSQ">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-Xd-jSQ">
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K4c-Rf-Zc4">
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="K4c-Rf-Zc4">
+                            <frame key="frameInset" width="394" height="316"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-m1-IHm">
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -22,10 +23,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Us-7a-6An">
-                                    <frame key="frameInset" minY="41" width="240" height="128"/>
+                                    <frame key="frameInset" minY="40" width="240" height="128"/>
                                 </imageView>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gqI-aa-uCa">
-                                    <frame key="frameInset" minY="189" width="240" height="128"/>
+                                    <frame key="frameInset" minY="188" width="240" height="128"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -33,12 +34,21 @@
                                 </textView>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-im-hAC">
-                            <state key="normal" title="Button"/>
-                            <connections>
-                                <action selector="SegueBack:" destination="iN0-l3-epB" eventType="touchUpInside" id="XZx-RD-2Iz"/>
-                            </connections>
-                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XoW-jf-iAA">
+                            <frame key="frameInset" minX="174" minY="316" width="46" height="239"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-im-hAC">
+                                    <frame key="frameInset" width="46" height="239"/>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="SegueBack:" destination="iN0-l3-epB" eventType="touchUpInside" id="XZx-RD-2Iz"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q2X-XF-ne0">
+                            <frame key="frameInset" minY="556" width="394" height="50"/>
+                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="enc-CJ-AgW">
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVf-Az-tdd">
@@ -64,7 +74,7 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="4IK-lz-ma2">
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="4IK-lz-ma2">
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCR-Gh-l67">
                                     <state key="normal" title="pre ep"/>
@@ -124,9 +134,14 @@
                             </subviews>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="K4c-Rf-Zc4" secondAttribute="trailing" id="44F-Ka-mBl"/>
+                        <constraint firstItem="K4c-Rf-Zc4" firstAttribute="top" secondItem="ZaC-Xd-jSQ" secondAttribute="top" id="Byb-Fc-QWd"/>
+                        <constraint firstItem="K4c-Rf-Zc4" firstAttribute="leading" secondItem="ZaC-Xd-jSQ" secondAttribute="leading" id="v0F-bW-b18"/>
+                    </constraints>
                 </stackView>
                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-7x-GJL">
-                    <frame key="frameInset" minX="14" minY="253" width="347" height="161"/>
+                    <frame key="frameInset" minX="8" minY="352" width="398" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <action selector="changeAudio:" destination="iN0-l3-epB" eventType="valueChanged" id="tbq-BQ-bIJ"/>
