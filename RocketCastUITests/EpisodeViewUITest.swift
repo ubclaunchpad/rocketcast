@@ -11,12 +11,7 @@ import XCTest
 class EpisodeUITests: XCTestCase {
     
     fileprivate var app = XCUIApplication()
-    private var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
-                    "#844 - Andreas Antonopoulos",
-                    "#843 - Tony Hinchcliffe",
-                    "#842 - Chris Kresser",
-                    "#841 - Greg Fitzsimmons",
-                    "#840 - Donald Cerrone"]
+
     override func setUp() {
         super.setUp()
         
@@ -56,16 +51,6 @@ class EpisodeUITests: XCTestCase {
     func testTableViewCells() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        let episodeTable = self.app.tables
-        
-        let cells = episodeTable.cells
-        XCTAssertEqual(cells.count,UInt(episodes.count))
-        for episode in episodes {
-        XCTAssert(episodeTable.staticTexts[episode].exists)
-
-        }
-        
     }
     
 }

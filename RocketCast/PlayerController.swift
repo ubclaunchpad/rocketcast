@@ -8,12 +8,13 @@
 
 import UIKit
 import AVFoundation
+import CoreData
 
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
-    var audioPlayer: AVAudioPlayer!
-    var episode: Episode?
+    var coreData = CoreDataHelper()
+    var trackId = 0
     
     enum speedRates {
         static let single:Float = 1
@@ -24,27 +25,36 @@ class PlayerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        //TODO: call this from performSegue function in EpisodeController not here!
-        let seguedEpisode = Episode()
-        setUpPodcast(seguedEpisode);
-        setUpPlayer()
+        print(currentEpisodeList[trackId].title)
+        if let url = currentEpisodeList[trackId].doucmentaudioURL {
+            self.setUpPlayer(webUrl:url)
+        } else {
+            print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
+                let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                self.coreData.saveContext()
+                Log.debug("IsPlaying: \(isPlaying)")
+                 print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    self.setUpPlayer(webUrl: downloadedPodcast!)
+           
+            })
+        }
     }
+    
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
+        self.mainView?.setTitles(title: (currentEpisodeList[self.trackId].title)!)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func setUpPodcast(_ episodeToPlay: Episode) {
-        episode = episodeToPlay
-    }
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
@@ -62,7 +72,7 @@ extension PlayerController: PlayerViewDelegate {
     func stopPodcast() {
         audioPlayer.stop()
     }
-    
+
     func goForward() {
         audioPlayer.play(atTime: audioPlayer.currentTime+30)
     }
@@ -71,28 +81,34 @@ extension PlayerController: PlayerViewDelegate {
         audioPlayer.play(atTime: audioPlayer.currentTime-30)
     }
     
-    func setUpPlayer() {
-        let fileMgr = FileManager.default
+    func setUpPlayer(webUrl:String) {
         
         // Run the tests in DownloadTests.swift in order for this play
-        let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
-
-        let file = fileMgr.contents(atPath: path)
-        // Uncomment when episode.audioURL is accessible
-//         let path = NSBundle.mainBundle().pathForResource(episode?.audioURL, ofType: "mp3")
-//         if let path = path {
-//         let mp3URL = NSURL(fileURLWithPath: path)
+        //let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
         
+        let fileMgr = FileManager.default
+        let path = NSHomeDirectory() + webUrl
+        let file = fileMgr.contents(atPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(data: file!)
+            
+            audioPlayer.prepareToPlay()
+            audioPlayer.enableRate = true
+            audioPlayer.play()
+            self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+            let audioSession = AVAudioSession.sharedInstance()
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             do {
-                audioPlayer = try AVAudioPlayer(data: file!)
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+            } catch {
                 
-                audioPlayer.prepareToPlay()
-                audioPlayer.enableRate = true
-         
-            } catch let error as NSError {
-                Log.error(error.localizedDescription)
             }
-//         }
+            
+            
+        } catch let error as NSError {
+            Log.error(error.localizedDescription)
+        }
+        
     }
     
     func changeSpeed(_ rateTag: Int) {
@@ -112,25 +128,25 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func getEpisodeTitle() -> String {
-        guard episode != nil else {
+        guard currentEpisodeList[trackId] != nil else {
             Log.error("episode should not have been nil")
             return ""
         }
         
-        return (episode?.title)! as String
+        return (currentEpisodeList[trackId].title)! as String
     }
     
     func getEpisodeDesc() -> String {
-        guard episode != nil else {
+        guard currentEpisodeList[trackId] != nil else {
             Log.error("episode should not have been nil")
             return ""
         }
         
-        return (episode?.description)! as String
+        return (currentEpisodeList[trackId].description) as String
     }
     
     func getEpisodeImage(_ result: (_ image: UIImage) -> ()) {
-        guard episode != nil else {
+        guard currentEpisodeList[trackId] != nil else {
             Log.error("episode should not have been nil")
             return
         }
@@ -138,5 +154,81 @@ extension PlayerController: PlayerViewDelegate {
         // download image from episodes imageURL
         // return that image in result
     }
+    
+    func segueBackToEpisodes() {
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
+    }
+    
+    func updateProgressView(){
+        self.mainView?.slider.value = Float(audioPlayer.currentTime)
+        print(self.mainView?.slider.value)
+        print(self.mainView?.slider.maximumValue)
+        if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
+           (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 5) ) {
+            playNextEpisode()
+        } else {
+            print("Hello")
+        }
+    }
+    
+    func playNextEpisode() {
+        if trackId >= 0 && trackId+1 <= currentEpisodeList.count {
+            
+            trackId += 1
+            
+            self.mainView?.titleLabel.text = currentEpisodeList[trackId].title
+            print(currentEpisodeList[trackId].title)
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+            self.mainView?.slider.setValue(0.0, animated: false)
+            self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+            
+            if let url = currentEpisodeList[trackId].doucmentaudioURL {
+                self.setUpPlayer(webUrl:url)
+            } else {
+                print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
+                    let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                    episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                    self.coreData.saveContext()
+                    Log.debug("IsPlaying: \(isPlaying)")
+                    print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    self.setUpPlayer(webUrl: downloadedPodcast!)
+                    
+                })
+            }
+        }
+    }
+    
+    func playLastEpisode() {
+        if trackId-1 >= 0 && (trackId) < currentEpisodeList.count {
+            
+            trackId -= 1
+            
+            self.mainView?.titleLabel.text = currentEpisodeList[trackId].title
+             print(currentEpisodeList[trackId].title)
+            audioPlayer.stop()
+            audioPlayer.currentTime = 0
+            self.mainView?.slider.setValue(0.0, animated: false)
+            self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+            
+            if let url = currentEpisodeList[trackId].doucmentaudioURL {
+                self.setUpPlayer(webUrl:url)
+            } else {
+                print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
+                    let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                    episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                    self.coreData.saveContext()
+                    Log.debug("IsPlaying: \(isPlaying)")
+                    print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    self.setUpPlayer(webUrl: downloadedPodcast!)
+                    
+                })
+            }
+        }
+
+    }
+
     
 }

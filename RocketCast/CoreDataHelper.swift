@@ -105,6 +105,26 @@ class CoreDataHelper {
         return podcast
     }
     
+    func getEpisode (_ episodeTitle: String?) -> Episode? {
+        var episode:Episode?
+        let moc = self.persistentContainer.viewContext
+        let request:NSFetchRequest<Episode> = Episode.fetchRequest()
+        if (episodeTitle != nil) {
+            request.predicate = NSPredicate(format:"title = %@", episodeTitle as! CVarArg)
+        }
+        
+        do {
+            let episodes = try moc.fetch(request)
+            episode = episodes.first
+            
+        }
+        catch let error as NSError {
+            Log.error("Error in getting podcasts: " + error.localizedDescription)
+        }
+        
+        return episode
+    }
+    
     
     func getPodcastCount () -> NSInteger {
         let moc = self.persistentContainer.viewContext

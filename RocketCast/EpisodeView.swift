@@ -7,16 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
+class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     var viewDelegate: EpisodeViewDelegate?
-    var episodes = ["#845 - TJ Dillashaw, Duane Ludwig & Bas Rutten",
-                    "#844 - Andreas Antonopoulos",
-                    "#843 - Tony Hinchcliffe",
-                    "#842 - Chris Kresser",
-                    "#841 - Greg Fitzsimmons",
-                    "#840 - Donald Cerrone"]
 
+    lazy var episodesToView = [Episode]()
+    
     @IBOutlet weak var EpisodeTable: UITableView!
     
     @IBAction func segueToPlayer(_ sender: AnyObject) {
@@ -36,19 +33,26 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     // returns an approiate number of rows depending on the section
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  episodes.count
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+        return episodesToView.count
+    }
+    
+    
     // Iiterates over every episode and creates a respective TableViewCell
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->  UITableViewCell {
         
         let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
         tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
         let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
         
         cell.backgroundColor = UIColor.clear
-        cell.episodeHeader.text = episodes[indexPath.row]
+        cell.episodeHeader.text = episodesToView[indexPath.row].title
         cell.tag = (indexPath as NSIndexPath).row
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
@@ -62,6 +66,10 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row)
+    }
+    
 }
 

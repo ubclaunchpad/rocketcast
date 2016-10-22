@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EpisodeController: UIViewController {
     
@@ -16,17 +17,23 @@ class EpisodeController: UIViewController {
                     "#842 - Chris Kresser",
                     "#841 - Greg Fitzsimmons",
                     "#840 - Donald Cerrone"]
-    
     var mainView: EpisodeView?
-    
+    var coreData = CoreDataHelper()
+    var sendIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
+        let episode = Episode(context: coreData.persistentContainer.viewContext)
+        mainView?.episodesToView = episode.getAllEpisodes(moc: coreData.persistentContainer.viewContext)
+        
+       currentEpisodeList = episode.getAllEpisodes(moc: coreData.persistentContainer.viewContext)
+
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -34,6 +41,13 @@ class EpisodeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
+            let viewController: PlayerController = segue.destination as! PlayerController
+            viewController.trackId = sendIndex
+        }
     }
 }
 
@@ -63,4 +77,12 @@ extension EpisodeController: EpisodeViewDelegate{
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
+    
+    func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
+        let url = selectedEpisode.audioURL
+        sendIndex = index
+        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
+
+    }
+    
 }

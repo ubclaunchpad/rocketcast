@@ -19,7 +19,7 @@ class CoreDataXMLParserTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        
+        coreData.deleteAllManagedObjects()
     }
     
     func testParseNormalXML() {
@@ -92,7 +92,7 @@ class CoreDataXMLParserTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         // Delete Everything
         super.tearDown()
-        
+        coreData.deleteAllManagedObjects()        
     }
     
     

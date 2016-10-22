@@ -35,16 +35,18 @@ class PlayerUITests: XCTestCase {
     
     func testPlay() {
         let app = XCUIApplication()
-        let button = app.buttons["Button"]
-        button.tap()
-        button.tap()
-        app.buttons["Play"].tap()
+        app.buttons["Button"].tap()
+        app.tables.staticTexts["Monday Morning Podcast 10-17-16"].tap()
+        sleep(10)
         
-        XCTAssert(app.staticTexts["Playing at 1x"].exists)
         app.buttons["2x"].tap()
-        XCTAssert(app.staticTexts["Playing at 2x"].exists)
+         XCTAssert(app.staticTexts["Playing at 2x"].exists)
         app.buttons["3x"].tap()
         XCTAssert(app.staticTexts["Playing at 3x"].exists)
+        app.buttons["1x"].tap()
+        XCTAssert(app.staticTexts["Playing at 1x"].exists)
+        app.buttons["Pause"].tap()
+
     }
     func testSpeed() {
         
