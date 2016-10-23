@@ -11,12 +11,17 @@ import CoreData
 @available(iOS 10.0, *)
 class PodcastController: UIViewController {
     
-    var podcasts = [String]()
+    var podcasts = [Podcast]()
     
     var mainView: PodcastView?
     let CoreData = CoreDataHelper()
+    let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (PodcastHelper.getPodcastCount() == 0) {
+            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+            
+        }
         setupView()
 //        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
 //        }
@@ -24,17 +29,19 @@ class PodcastController: UIViewController {
 //        
         
         
-        if (CoreData.getPodcastCount() == 0) {
-            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-
-        }
-        
         
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
+        let podcastDB = Podcast(context: CoreData.persistentContainer.viewContext)
+        let listOfPodcasts = podcastDB.getAllPodcasts()
+        mainView?.podcastsToView = listOfPodcasts
+        for podcast in listOfPodcasts  {
+            print(podcast.summary)
+        }
+        
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -53,8 +60,17 @@ class PodcastController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row])
+        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row].title!)
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EpisodeController {
+            if let podcast = sender as? Podcast {
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                destination.episodesInPodcast = episodes
+            }
+        }
     }
 }
 
@@ -63,5 +79,10 @@ extension PodcastController:PodcastViewDelegate {
     
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
+    }
+    
+    func setSelectedPodcastAndSegue(selectedPodcast: Podcast) {
+        performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: selectedPodcast)
+        
     }
 }

@@ -10,4 +10,5 @@ import Foundation
 import UIKit
 protocol PodcastViewDelegate {
     func segueToEpisode()
+    func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
 }
