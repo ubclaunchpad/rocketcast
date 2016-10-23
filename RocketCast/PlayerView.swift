@@ -76,5 +76,23 @@ class PlayerView: UIView {
 
     }
     
+    
+    func updateUI (episode: Episode) {
+        self.titleLabel.text = episode.title!
+        self.descriptionView.text = "Simple description of Podcast"
+        let url = URL(string: episode.imageURL!)
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url!)
+                DispatchQueue.main.async {
+                    self.imageView.image = UIImage(data: data)
+                }
+                
+            } catch {
+                //handle error
+            }
+        }
+    }
+    
 }
 
