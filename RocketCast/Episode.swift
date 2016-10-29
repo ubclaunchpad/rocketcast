@@ -14,18 +14,4 @@ class Episode: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
     
-    func getAllEpisodes() -> [Episode] {
-        let episodeRequest: NSFetchRequest<Episode> = Episode.fetchRequest()
-         let sort = NSSortDescriptor(key: "date", ascending:  false)
-        episodeRequest.sortDescriptors = [sort]
-        do {
-            let episodes = try moc.fetch(episodeRequest)
-            return episodes
-        }
-        catch {
-            fatalError("Error in getting sold history")
-        }
-    }
-
-
 }

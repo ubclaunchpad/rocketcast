@@ -29,7 +29,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Episode" positionX="-405" positionY="170" width="128" height="180"/>
+        <element name="Episode" positionX="-405" positionY="170" width="128" height="178"/>
         <element name="Podcast" positionX="-162" positionY="-63" width="128" height="120"/>
     </elements>
 </model>
