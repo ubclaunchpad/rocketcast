@@ -20,7 +20,7 @@ typealias XML = String
 var audioPlayer = AVAudioPlayer()
 var isPlaying = false
 
-//let moc: NSManagedObjectContext = CoreDataHelper().persistentContainer.viewContext
+let moc: NSManagedObjectContext = CoreDataHelper().persistentContainer.viewContext
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
@@ -28,7 +28,7 @@ enum  Segues {
   static let segueToBackEpisodes = "segueToBackEpisodes"
 }
 
-//var currentEpisodeList = [Episode]()
+var currentEpisodeList = [Episode]()
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"

@@ -13,6 +13,7 @@ import CoreData
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
+    var coreData = CoreDataHelper()
     var trackId = 0
     
     enum speedRates {

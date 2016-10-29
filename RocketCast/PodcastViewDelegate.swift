@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 protocol PodcastViewDelegate {
     func segueToEpisode()
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
