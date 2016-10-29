@@ -48,7 +48,8 @@ class PlayerController: UIViewController {
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-        self.mainView?.setTitles(title: (currentEpisodeList[self.trackId].title)!)
+        //self.mainView?.setTitles(title: (currentEpisodeList[self.trackId].title)!)
+        self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
     }
     
     override func didReceiveMemoryWarning() {
