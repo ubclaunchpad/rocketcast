@@ -34,21 +34,47 @@ class PlayerUITests: XCTestCase {
     }
     
     func testPlay() {
-        let app = XCUIApplication()
-        app.buttons["Button"].tap()
-        app.tables.staticTexts["Monday Morning Podcast 10-17-16"].tap()
-        sleep(10)
+        // There are two episodes for this one podcast
         
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Monday Morning Podcast"].tap()
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        sleep(10)
+        // Go to the first episode
+        XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
+        let playButton = app.buttons["Play"]
+        playButton.tap()
+        // Click on the pre-episode should do nothing because this is the first episode
+        app.buttons["pre ep"].tap()
+        XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
+        let pauseButton = app.buttons["Pause"]
+        pauseButton.tap()
+        XCTAssert(app.staticTexts["Pause"].exists)
+        // Test Fast forwarding
+        playButton.tap()
+        XCTAssert(app.staticTexts["Playing at 1x"].exists)
         app.buttons["2x"].tap()
-         XCTAssert(app.staticTexts["Playing at 2x"].exists)
+        XCTAssert(app.staticTexts["Playing at 2x"].exists)
         app.buttons["3x"].tap()
         XCTAssert(app.staticTexts["Playing at 3x"].exists)
         app.buttons["1x"].tap()
         XCTAssert(app.staticTexts["Playing at 1x"].exists)
-        app.buttons["Pause"].tap()
-
+        
+        // Go to the next Episode
+        app.buttons["next ep"].tap()
+        XCTAssert(app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"].exists)
+        sleep(10)
+        // Click on the next episode should do nothing because this is the last episode
+        app.buttons["next ep"].tap()
+        XCTAssert(app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"].exists)
+        app.buttons["pre ep"].tap()
+        XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
+        sleep(10)
+        pauseButton.tap()
+    
     }
-    func testSpeed() {
+    func testSlider() {
         
     }
 }

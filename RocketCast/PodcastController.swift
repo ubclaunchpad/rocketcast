@@ -18,10 +18,15 @@ class PodcastController: UIViewController {
     let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (PodcastHelper.getPodcastCount() == 0) {
-            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-            
-        }
+         CoreData.deleteAllManagedObjects()
+        
+        _ = XMLParser(url:"https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastNoAuthorsForEpisodes.xml")
+
+//        if (PodcastHelper.getPodcastCount() == 0) {
+//            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+//            
+//        }
+        
         setupView()
 //        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
 //        }

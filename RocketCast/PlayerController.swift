@@ -172,7 +172,7 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func playNextEpisode() {
-        if trackId >= 0 && trackId+1 <= currentEpisodeList.count {
+        if trackId >= 0 && trackId+1 < currentEpisodeList.count {
             
             trackId += 1
             
