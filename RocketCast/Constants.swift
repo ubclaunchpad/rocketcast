@@ -20,7 +20,6 @@ typealias XML = String
 var audioPlayer = AVAudioPlayer()
 var isPlaying = false
 
-let moc: NSManagedObjectContext = CoreDataHelper().persistentContainer.viewContext
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"

@@ -8,35 +8,26 @@
 
 import UIKit
 import CoreData
-@available(iOS 10.0, *)
 class PodcastController: UIViewController {
     
     var podcasts = [Podcast]()
     
     var mainView: PodcastView?
-    let CoreData = CoreDataHelper()
     let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (PodcastHelper.getPodcastCount() == 0) {
-            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-            
-        }
-        setupView()
-//        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
+//        if (DatabaseController.getPodcastCount() == 0) {
+//            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
+//            
 //        }
-        
-//        
-        
-        
-        
+        setupView()
+  
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
-        let podcastDB = Podcast(context: CoreData.persistentContainer.viewContext)
-        let listOfPodcasts = podcastDB.getAllPodcasts()
+        let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         for podcast in listOfPodcasts  {
             print(podcast.summary)
@@ -72,9 +63,9 @@ class PodcastController: UIViewController {
             }
         }
     }
-}
+    
 
-@available(iOS 10.0, *)
+}
 extension PodcastController:PodcastViewDelegate {
     
     func segueToEpisode() {
