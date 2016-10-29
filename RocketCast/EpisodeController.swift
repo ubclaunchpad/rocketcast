@@ -15,7 +15,6 @@ class EpisodeController: UIViewController {
     
     var mainView: EpisodeView?
     var coreData = CoreDataHelper()
-    var sendIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +24,11 @@ class EpisodeController: UIViewController {
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-        mainView?.episodesToView = episodesInPodcast
         
-       currentEpisodeList = episodesInPodcast
+        if (currentEpisodeList.isEmpty) {
+            currentEpisodeList = episodesInPodcast
+        }
+        mainView?.episodesToView = currentEpisodeList
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -41,7 +42,9 @@ class EpisodeController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             let viewController: PlayerController = segue.destination as! PlayerController
-            viewController.trackId = sendIndex
+            if let sendIndex = sender as? NSInteger {
+                viewController.trackId = sendIndex
+            }
         }
     }
 }
@@ -52,10 +55,7 @@ extension EpisodeController: EpisodeViewDelegate{
     }
     
     func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
-        let url = selectedEpisode.audioURL
-        sendIndex = index
-        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
-
+        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
     }
     
 }

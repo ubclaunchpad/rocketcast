@@ -83,9 +83,6 @@ extension PlayerController: PlayerViewDelegate {
     
     func setUpPlayer(webUrl:String) {
         
-        // Run the tests in DownloadTests.swift in order for this play
-        //let path = NSHomeDirectory() + "/Documents/https:ia902508usarchiveorg5itemstestmp3testfilempthreetestmp3"
-        
         let fileMgr = FileManager.default
         let path = NSHomeDirectory() + webUrl
         let file = fileMgr.contents(atPath: path)
@@ -163,6 +160,7 @@ extension PlayerController: PlayerViewDelegate {
         self.mainView?.slider.value = Float(audioPlayer.currentTime)
         print(self.mainView?.slider.value)
         print(self.mainView?.slider.maximumValue)
+        print("Hello")
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
            (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 5) ) {
             playNextEpisode()

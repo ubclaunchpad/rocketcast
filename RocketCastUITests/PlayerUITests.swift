@@ -28,11 +28,6 @@ class PlayerUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     func testPlay() {
         // There are two episodes for this one podcast
         
@@ -75,6 +70,20 @@ class PlayerUITests: XCTestCase {
     
     }
     func testSlider() {
+        
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["Monday Morning Podcast"].tap()
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        sleep(10)
+         XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
+        let playButton = app.buttons["Play"]
+        playButton.tap()
+       
+        let slider = app.sliders["0%"]
+        slider.adjust(toNormalizedSliderPosition: 0.99)
+        sleep(10)
+        XCTAssert(app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"].exists)
         
     }
 }

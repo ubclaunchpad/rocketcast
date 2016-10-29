@@ -19,7 +19,7 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          CoreData.deleteAllManagedObjects()
-        
+        print(PodcastHelper.getPodcastCount())
         _ = XMLParser(url:"https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastNoAuthorsForEpisodes.xml")
 
 //        if (PodcastHelper.getPodcastCount() == 0) {
