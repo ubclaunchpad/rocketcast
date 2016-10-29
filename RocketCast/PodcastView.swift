@@ -52,7 +52,7 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         }
         
 
-        
+
         
     }
     
