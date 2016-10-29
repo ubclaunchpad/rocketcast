@@ -13,17 +13,17 @@ import CoreData
 class XMLParser: NSObject {
     
     var element = String()
-    let coreData = CoreDataHelper()
-    var moc = NSManagedObjectContext()
+    let databaseController = DatabaseController()
     var podcast:Podcast?
     var tmpEpisode:Episode?
-    
+    let podcastClassName = String(describing: Podcast.self)
+    let episodeClassName = String(describing: Episode.self)
+
     
     init(url: String) {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
-          moc = coreData.persistentContainer.viewContext
-            podcast = Podcast(context: moc)
+            podcast = NSEntityDescription.insertNewObject(forEntityName: podcastClassName, into: databaseController.getContext())
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -37,8 +37,6 @@ class XMLParser: NSObject {
             Log.error("Oh shit something went wrong. OS parser failed")
             return
         }
-
-       coreData.saveContext()
     }
  
 }
