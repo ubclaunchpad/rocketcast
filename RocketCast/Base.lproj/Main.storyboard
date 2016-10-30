@@ -6,6 +6,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Add Url Controller-->
+        <scene sceneID="3PE-v1-6iD">
+            <objects>
+                <viewController id="qYa-7O-Oef" customClass="AddUrlController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="czQ-Ao-fWw"/>
+                        <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u1R-PH-iaT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueFromAddUrlToPodcastList" id="jmR-gG-5HZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l98-dN-hh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="-541"/>
+        </scene>
         <!--Podcast-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -21,11 +42,12 @@
                     </view>
                     <connections>
                         <segue destination="mE7-6p-V3x" kind="show" identifier="segueFromPodcastToEpisode" id="sPe-Yf-iBH"/>
+                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromPodcastListToAddUrl" id="uDr-br-kDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197" y="335"/>
+            <point key="canvasLocation" x="118" y="333"/>
         </scene>
         <!--Episode-->
         <scene sceneID="PGm-wl-ceH">
@@ -46,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1017" y="334"/>
+            <point key="canvasLocation" x="937" y="443"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
