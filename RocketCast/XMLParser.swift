@@ -9,12 +9,9 @@
 import Foundation
 import CoreData
 
-@available(iOS 10.0, *)
 class XMLParser: NSObject {
     
     var element = String()
-    let coreData = CoreDataHelper()
-    var moc = NSManagedObjectContext()
     var podcast:Podcast?
     var tmpEpisode:Episode?
     
@@ -22,8 +19,8 @@ class XMLParser: NSObject {
     init(url: String) {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
-          moc = coreData.persistentContainer.viewContext
-            podcast = Podcast(context: moc)
+        
+            podcast = Podcast(context: DatabaseController.getContext())
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -38,18 +35,17 @@ class XMLParser: NSObject {
             return
         }
 
-       coreData.saveContext()
+       DatabaseController.saveContext()
     }
  
 }
-@available(iOS 10.0, *)
 extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
             
-            tmpEpisode = Episode(context:moc)
+            tmpEpisode = Episode(context: DatabaseController.getContext())
         }
         
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {

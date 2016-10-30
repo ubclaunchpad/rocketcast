@@ -14,7 +14,6 @@ class EpisodeController: UIViewController {
     var episodesInPodcast = [Episode]()
     
     var mainView: EpisodeView?
-    var coreData = CoreDataHelper()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +23,10 @@ class EpisodeController: UIViewController {
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-        
         if (currentEpisodeList.isEmpty) {
             currentEpisodeList = episodesInPodcast
         }
-        mainView?.episodesToView = currentEpisodeList
+         mainView?.episodesToView = currentEpisodeList
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self

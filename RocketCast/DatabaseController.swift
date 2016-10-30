@@ -10,8 +10,16 @@ import Foundation
 import CoreData
 
 @available(iOS 10.0, *)
-class CoreDataHelper {
-    lazy var persistentContainer: NSPersistentContainer = {
+class DatabaseController {
+    
+    private init() {
+        
+    }
+    class func getContext() -> NSManagedObjectContext {
+        return DatabaseController.persistentContainer.viewContext
+    }
+    
+    static var persistentContainer: NSPersistentContainer = {
  
         let container = NSPersistentContainer(name: "RocketCast")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -24,7 +32,7 @@ class CoreDataHelper {
     
     // MARK: - Core Data Saving support
     
-    func saveContext () {
+    static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
@@ -37,64 +45,34 @@ class CoreDataHelper {
         }
     }
     
-    func deleteAllManagedObjects () {
-        
-        let moc = self.persistentContainer.viewContext
+    // MARK: - Delete Everything in CoreData
+    static func deleteAllManagedObjects () {
+    
         let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
         let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
         var deleteRequest: NSBatchDeleteRequest
-        var deleteResults: NSPersistentStoreResult
         
         do {
             deleteRequest = NSBatchDeleteRequest(fetchRequest: podcastRequest as! NSFetchRequest<NSFetchRequestResult>)
-            deleteResults = try moc.execute(deleteRequest)
+             try DatabaseController.getContext().execute(deleteRequest)
             
             deleteRequest = NSBatchDeleteRequest(fetchRequest: episodeRequest as! NSFetchRequest<NSFetchRequestResult>)
-            deleteResults = try moc.execute(deleteRequest)
-
-
-            
+            try DatabaseController.getContext().execute(deleteRequest)
         } catch let error as NSError {
             Log.error("Error deleting objects: " + error.localizedDescription)
         }
     }
     
     
-    func deletePodcast (_ podcastTitle: String) {
-        let moc = self.persistentContainer.viewContext
-        let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        podcastRequest.predicate = NSPredicate(format:"title = %@", podcastTitle as CVarArg)
-        let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
-        episodeRequest.predicate = NSPredicate(format:"podcastTitle = %@", podcastTitle as CVarArg)
-        
-        do {
-            let podcastResults = try moc.fetch(podcastRequest)
-            for podcast in podcastResults {
-                moc.delete(podcast)
-            }
-            
-            let episodeResults = try moc.fetch(episodeRequest)
-            for episode in episodeResults {
-                moc.delete(episode)
-            }
-            
-            Log.info("Deleted the podtcast")
-            
-        } catch let error as NSError {
-            Log.error("Failed deleting podcast: " + error.localizedDescription);
-        }
-    }
+    // MARK: - Core Data Podcast functionailty
     
-    func getPodcast (_ podcastTitle: String?) -> Podcast? {
+    static func getPodcast (byTitle: String)  -> Podcast {
+        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
         var podcast:Podcast?
-        let moc = self.persistentContainer.viewContext
-        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        if (podcastTitle != nil) {
-            request.predicate = NSPredicate(format:"title = %@", podcastTitle as! CVarArg)
-        }
+        podcastRequest.predicate = NSPredicate(format:"title = %@", (byTitle as? CVarArg)!)
         
         do {
-            let podcasts = try moc.fetch(request)
+            let podcasts = try DatabaseController.getContext().fetch(podcastRequest)
             podcast = podcasts.first
             
         }
@@ -102,33 +80,27 @@ class CoreDataHelper {
             Log.error("Error in getting podcasts: " + error.localizedDescription)
         }
         
-        return podcast
+        return podcast!
+        
     }
     
-    func getEpisode (_ episodeTitle: String?) -> Episode? {
-        var episode:Episode?
-        let moc = self.persistentContainer.viewContext
-        let request:NSFetchRequest<Episode> = Episode.fetchRequest()
-        if (episodeTitle != nil) {
-            request.predicate = NSPredicate(format:"title = %@", episodeTitle as! CVarArg)
-        }
-        
+    
+    
+    static func getAllPodcasts() -> [Podcast] {
+        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
         do {
-            let episodes = try moc.fetch(request)
-            episode = episodes.first
-            
+            let podcasts = try DatabaseController.getContext().fetch(podcastRequest)
+            return podcasts
         }
-        catch let error as NSError {
-            Log.error("Error in getting podcasts: " + error.localizedDescription)
+        catch {
+            fatalError("Error in getting podcasts")
         }
-        
-        return episode
     }
     
-    func getPodcastCount () -> NSInteger {
+    static func getPodcastCount () -> NSInteger {
         let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
         do {
-            let count = try moc.count(for: request)
+            let count = try DatabaseController.getContext().count(for: request)
             return count
             
         } catch let error as NSError {
@@ -138,6 +110,50 @@ class CoreDataHelper {
         return -1
     }
     
+    static func deletePodcast (_ podcastTitle: String) {
+        let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        podcastRequest.predicate = NSPredicate(format:"title = %@", podcastTitle as CVarArg)
+        let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
+        episodeRequest.predicate = NSPredicate(format:"podcastTitle = %@", podcastTitle as CVarArg)
+        
+        do {
+            let podcastResults = try DatabaseController.getContext().fetch(podcastRequest)
+            DatabaseController.getContext().delete(podcastResults.first!)
+            
+            
+            let episodeResults = try  DatabaseController.getContext().fetch(episodeRequest)
+            for episode in episodeResults {
+                DatabaseController.getContext().delete(episode)
+            }
+            
+            Log.info("Deleted the podtcast")
+            
+        } catch let error as NSError {
+            Log.error("Failed deleting podcast: " + error.localizedDescription);
+        }
+    }
+    
+    
+     // MARK: - Core Data Episode functionailty
+    static func getEpisode (_ episodeTitle: String?) -> Episode? {
+        var episode:Episode?
+        let request:NSFetchRequest<Episode> = Episode.fetchRequest()
+        if (episodeTitle != nil) {
+            request.predicate = NSPredicate(format:"title = %@", episodeTitle as! CVarArg)
+        }
+        
+        do {
+            let episodes = try DatabaseController.getContext().fetch(request)
+            episode = episodes.first
+            
+        }
+        catch let error as NSError {
+            Log.error("Error in getting podcasts: " + error.localizedDescription)
+        }
+        
+        return episode
+    }
+
     
 
 }

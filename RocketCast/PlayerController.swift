@@ -9,11 +9,9 @@
 import UIKit
 import AVFoundation
 import CoreData
-
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
-    var coreData = CoreDataHelper()
     var trackId = 0
     
     enum speedRates {
@@ -31,9 +29,9 @@ class PlayerController: UIViewController {
         } else {
             print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
-                let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                let episode = DatabaseController.getEpisode((currentEpisodeList[self.trackId].title)!)
                 episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-                self.coreData.saveContext()
+                DatabaseController.saveContext()
                 Log.debug("IsPlaying: \(isPlaying)")
                  print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                     self.setUpPlayer(webUrl: downloadedPodcast!)
@@ -48,13 +46,12 @@ class PlayerController: UIViewController {
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-        self.mainView?.setTitles(title: (currentEpisodeList[self.trackId].title)!)
+        self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
@@ -164,8 +161,6 @@ extension PlayerController: PlayerViewDelegate {
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
            (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 5) ) {
             playNextEpisode()
-        } else {
-            print("Hello")
         }
     }
     
@@ -186,9 +181,9 @@ extension PlayerController: PlayerViewDelegate {
             } else {
                 print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
-                    let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                    let episode = DatabaseController.getEpisode((currentEpisodeList[self.trackId].title)!)
                     episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-                    self.coreData.saveContext()
+                    DatabaseController.saveContext()
                     Log.debug("IsPlaying: \(isPlaying)")
                     print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                     self.setUpPlayer(webUrl: downloadedPodcast!)
@@ -215,9 +210,9 @@ extension PlayerController: PlayerViewDelegate {
             } else {
                 print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
-                    let episode = self.coreData.getEpisode((currentEpisodeList[self.trackId].title)!)
+                    let episode = DatabaseController.getEpisode((currentEpisodeList[self.trackId].title)!)
                     episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-                    self.coreData.saveContext()
+                    DatabaseController.saveContext()
                     Log.debug("IsPlaying: \(isPlaying)")
                     print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                     self.setUpPlayer(webUrl: downloadedPodcast!)

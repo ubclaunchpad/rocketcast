@@ -8,45 +8,31 @@
 
 import UIKit
 import CoreData
-@available(iOS 10.0, *)
 class PodcastController: UIViewController {
     
     var podcasts = [Podcast]()
     
     var mainView: PodcastView?
-    let CoreData = CoreDataHelper()
     let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
-         CoreData.deleteAllManagedObjects()
-        print(PodcastHelper.getPodcastCount())
-        _ = XMLParser(url:"https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastNoAuthorsForEpisodes.xml")
-
-//        if (PodcastHelper.getPodcastCount() == 0) {
+//        if (DatabaseController.getPodcastCount() == 0) {
 //            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-//            
+//
 //        }
-        
         setupView()
-//        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
-//        }
-        
-//        
-        
-        
-        
+  
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
-        let podcastDB = Podcast(context: CoreData.persistentContainer.viewContext)
-        let listOfPodcasts = podcastDB.getAllPodcasts()
+        let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         for podcast in listOfPodcasts  {
             print(podcast.summary)
         }
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -78,9 +64,11 @@ class PodcastController: UIViewController {
         }
     }
 }
-
-@available(iOS 10.0, *)
 extension PodcastController:PodcastViewDelegate {
+    
+    func segueToAddUrl() {
+        performSegue(withIdentifier: Segues.segueFromPodcastListToAddUrl, sender: self)
+    }
     
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
