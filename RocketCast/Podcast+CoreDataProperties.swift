@@ -22,6 +22,7 @@ extension Podcast {
     @NSManaged var summary: String?
     @NSManaged var imageURL: String?
     @NSManaged var episodes: NSSet?
+    @NSManaged var addedDate: Date?
 
 }
 
@@ -40,10 +41,5 @@ extension Podcast {
     
     @objc(removeEpisode:)
     @NSManaged public func removeFromEpisode(_values: NSSet)
-    
-    
-    
-   
-
     
 }
