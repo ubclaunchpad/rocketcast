@@ -32,7 +32,7 @@ class PodcastController: UIViewController {
         for podcast in listOfPodcasts  {
             print(podcast.summary)
         }
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }

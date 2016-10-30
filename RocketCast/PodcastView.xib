@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,54 +14,27 @@
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mXB-Kk-hfc">
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="obJ-sq-LaN">
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Kv-Za-aiK">
-                                    <state key="normal" title="Button"/>
-                                    <connections>
-                                        <action selector="segueButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="8ou-nA-SrL"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcasts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrz-dm-V8G">
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBJ-oJ-HcR">
-                                    <state key="normal" title="+ New Podcast"/>
-                                    <connections>
-                                        <action selector="addNewPodcastBtnPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lyj-gi-8oy"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-op-A9p">
                             <subviews>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-3r-6mG">
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableView>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="obJ-sq-LaN" firstAttribute="leading" secondItem="mXB-Kk-hfc" secondAttribute="leadingMargin" id="7Ws-8h-wCC"/>
-                        <constraint firstItem="Gpg-op-A9p" firstAttribute="top" secondItem="obJ-sq-LaN" secondAttribute="bottom" id="84Y-lH-BUe"/>
-                        <constraint firstItem="obJ-sq-LaN" firstAttribute="trailing" secondItem="mXB-Kk-hfc" secondAttribute="trailingMargin" id="xRT-yl-UfP"/>
-                        <constraint firstItem="obJ-sq-LaN" firstAttribute="top" secondItem="mXB-Kk-hfc" secondAttribute="topMargin" id="yaY-X6-P6N"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="mXB-Kk-hfc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5Sg-gX-EVW"/>
                 <constraint firstItem="mXB-Kk-hfc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BWu-uM-l7E"/>
-                <constraint firstItem="mXB-Kk-hfc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="G8Q-Cq-4rB"/>
+                <constraint firstItem="mXB-Kk-hfc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="G8Q-Cq-4rB"/>
                 <constraint firstAttribute="trailing" secondItem="mXB-Kk-hfc" secondAttribute="trailing" id="URL-F3-Lgb"/>
                 <constraint firstAttribute="bottom" secondItem="mXB-Kk-hfc" secondAttribute="bottom" id="dkM-cj-FVx"/>
             </constraints>
             <connections>
                 <outlet property="podcastList" destination="QaG-3r-6mG" id="jks-dA-New"/>
-                <outlet property="viewTitle" destination="Wrz-dm-V8G" id="Mu5-jA-nDG"/>
             </connections>
             <point key="canvasLocation" x="611" y="-251"/>
         </view>
