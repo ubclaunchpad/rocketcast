@@ -68,6 +68,10 @@ class PodcastController: UIViewController {
 }
 extension PodcastController:PodcastViewDelegate {
     
+    func segueToAddUrl() {
+        performSegue(withIdentifier: Segues.segueFromPodcastListToAddUrl, sender: self)
+    }
+    
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
     }

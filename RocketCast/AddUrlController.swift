@@ -41,6 +41,6 @@ extension AddUrlController:AddUrlViewDelegate{
     func addPodcast(webUrl: String) {
         print(webUrl)
         XMLParser(url:webUrl)
-        self.performSegue(withIdentifier: Segues.segueToPodcastList, sender: self)
+        self.performSegue(withIdentifier: Segues.segueFromAddUrlToPodcastList, sender: self)
     }
 }

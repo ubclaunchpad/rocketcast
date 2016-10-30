@@ -18,6 +18,10 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var podcastList: UITableView!
     lazy var podcastsToView = [Podcast]()
     
+    @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
+        viewDelegate?.segueToAddUrl()
+        
+    }
     @IBAction func segueButton(_ sender: AnyObject) {
         viewDelegate?.segueToEpisode()
     }

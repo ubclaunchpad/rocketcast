@@ -10,7 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PodcastView" customModule="RocketCast" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mXB-Kk-hfc">
@@ -30,6 +30,9 @@
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBJ-oJ-HcR">
                                     <state key="normal" title="+ New Podcast"/>
+                                    <connections>
+                                        <action selector="addNewPodcastBtnPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="Lyj-gi-8oy"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>
@@ -61,7 +64,7 @@
                 <outlet property="podcastList" destination="QaG-3r-6mG" id="jks-dA-New"/>
                 <outlet property="viewTitle" destination="Wrz-dm-V8G" id="Mu5-jA-nDG"/>
             </connections>
-            <point key="canvasLocation" x="351" y="-139"/>
+            <point key="canvasLocation" x="611" y="-251"/>
         </view>
     </objects>
 </document>
