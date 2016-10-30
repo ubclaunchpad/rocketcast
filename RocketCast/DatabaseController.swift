@@ -130,27 +130,7 @@ class DatabaseController {
     }
     
     static func updatePodcast(podcastTitle: String) {
-        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        podcastRequest.predicate = NSPredicate(format:"title = %@", podcastTitle as CVarArg)
-        podcastRequest.sortDescriptors = [ NSSortDescriptor(key: "addedDate", ascending: false)]
-        
-        do {
-            var podcasts = try DatabaseController.getContext().fetch(podcastRequest)
-            let currentPodcast = podcasts.popLast()
-            let recentlyAddedPodcast = podcasts.popLast()
-            let episodesFromCP = (currentPodcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
-            
-            let episodesFromAP = (currentPodcast!.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
-            
-            if (episodesFromCP.first?.title == episodesFromAP.first?.title ) {
-                DatabaseController.getContext().delete(recentlyAddedPodcast!)
-            }
-            
-        }
-        catch {
-            fatalError("Error in getting podcasts")
-        }
-
+     // TODO:
     }
     
     
