@@ -20,7 +20,6 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
         viewDelegate?.segueToAddUrl()
-        
     }
     @IBAction func segueButton(_ sender: AnyObject) {
         viewDelegate?.segueToEpisode()

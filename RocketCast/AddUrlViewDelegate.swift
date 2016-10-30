@@ -10,7 +10,6 @@ import Foundation
 
 protocol AddUrlViewDelegate {
     func addPodcast(webUrl:String)
-
 }
 
 

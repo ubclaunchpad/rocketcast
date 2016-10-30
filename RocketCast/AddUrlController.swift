@@ -15,24 +15,20 @@ class AddUrlController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        
-
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
     private func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = AddUrlView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-//       self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
+//      self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
     }
     
 }
