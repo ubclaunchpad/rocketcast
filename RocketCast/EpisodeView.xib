@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,46 +12,26 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-4e-oz5">
-                    <state key="normal" title="Button"/>
-                    <connections>
-                        <action selector="segueToPlayer:" destination="iN0-l3-epB" eventType="touchUpInside" id="5IK-gD-0Ha"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Episodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPx-t3-vC8">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BC3-Mm-Qpj">
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </tableView>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="width" constant="75" id="jaL-mh-Th7"/>
+                        <constraint firstAttribute="trailing" secondItem="shX-bq-jX4" secondAttribute="trailing" id="16W-SZ-kgK"/>
+                        <constraint firstItem="shX-bq-jX4" firstAttribute="leading" secondItem="BC3-Mm-Qpj" secondAttribute="leading" id="90a-8W-ic6"/>
+                        <constraint firstAttribute="bottom" secondItem="shX-bq-jX4" secondAttribute="bottom" id="caE-OM-z7M"/>
+                        <constraint firstItem="shX-bq-jX4" firstAttribute="top" secondItem="BC3-Mm-Qpj" secondAttribute="top" id="xM4-0s-Vur"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="4yk-5b-Ctz"/>
-                        <constraint firstAttribute="width" constant="240" id="8mQ-MH-9uE"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="4yk-5b-Ctz"/>
-                            <exclude reference="8mQ-MH-9uE"/>
-                        </mask>
-                    </variation>
-                </tableView>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="shX-bq-jX4" secondAttribute="bottom" constant="43" id="0uP-ty-pYG"/>
-                <constraint firstItem="shX-bq-jX4" firstAttribute="top" secondItem="gPx-t3-vC8" secondAttribute="bottom" constant="27" id="2g7-kW-Jp3"/>
-                <constraint firstItem="shX-bq-jX4" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" constant="-8" id="BoJ-Q5-pa6"/>
-                <constraint firstItem="gPx-t3-vC8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="81" id="Mwi-Ah-Bn8"/>
-                <constraint firstItem="shX-bq-jX4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TdQ-sR-cGY"/>
-                <constraint firstItem="shX-bq-jX4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="1.3" constant="-57.050000000000011" id="ZIw-Cg-qlo"/>
-                <constraint firstItem="IWU-4e-oz5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="44" id="d9D-qq-YBf"/>
-                <constraint firstAttribute="trailing" secondItem="IWU-4e-oz5" secondAttribute="trailing" constant="98" id="ial-6G-fVX"/>
-                <constraint firstAttribute="trailing" secondItem="shX-bq-jX4" secondAttribute="trailing" constant="16" id="mcc-HA-JQA"/>
-                <constraint firstItem="gPx-t3-vC8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="150" id="vJF-rL-yWj"/>
+                <constraint firstItem="BC3-Mm-Qpj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="08r-Ba-yVi"/>
+                <constraint firstAttribute="bottom" secondItem="BC3-Mm-Qpj" secondAttribute="bottom" id="HbX-NY-bbc"/>
+                <constraint firstItem="BC3-Mm-Qpj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cE2-vD-4t9"/>
+                <constraint firstAttribute="trailing" secondItem="BC3-Mm-Qpj" secondAttribute="trailing" id="mCw-nd-xM4"/>
             </constraints>
             <connections>
                 <outlet property="EpisodeTable" destination="shX-bq-jX4" id="V5O-R9-kmz"/>

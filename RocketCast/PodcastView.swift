@@ -47,7 +47,7 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor.clear
             cell.tag = (indexPath as NSIndexPath).row
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-            
+
             return cell
             
         } else {
@@ -59,6 +59,7 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+
     // returns an approiate number of rows depending on the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  podcastsToView.count
