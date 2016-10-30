@@ -35,8 +35,6 @@ class PlayerView: UIView {
     }
     
     @IBAction func changeAudio(_ sender: AnyObject) {
-        print(slider.value)
-        print(slider.maximumValue)
         if ((slider.value) == (slider.maximumValue)) {
             viewDelegate?.playNextEpisode()
         }

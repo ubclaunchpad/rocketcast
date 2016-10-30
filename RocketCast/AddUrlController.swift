@@ -28,7 +28,6 @@ class AddUrlController: UIViewController {
         mainView = AddUrlView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-//      self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
     }
     
 }

@@ -16,10 +16,6 @@ class PodcastController: UIViewController {
     let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if (DatabaseController.getPodcastCount() == 0) {
-//            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-//
-//        }
         setupView()
   
     }
@@ -29,9 +25,6 @@ class PodcastController: UIViewController {
         mainView = PodcastView.instancefromNib(viewSize)
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
-        for podcast in listOfPodcasts  {
-            print(podcast.summary)
-        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self

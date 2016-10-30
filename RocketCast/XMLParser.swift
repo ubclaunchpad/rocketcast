@@ -19,7 +19,6 @@ class XMLParser: NSObject {
     init(url: String) {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
-        
             podcast = Podcast(context: DatabaseController.getContext())
             parseData(data)
         } else {

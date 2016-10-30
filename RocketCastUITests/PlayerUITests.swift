@@ -29,13 +29,21 @@ class PlayerUITests: XCTestCase {
     }
     
     func testPlay() {
-        // There are two episodes for this one podcast
-        
+        // There are two episodes for this one podcast from AWS
         let app = XCUIApplication()
+
+        let addButton = app.navigationBars["Podcasts"].buttons["Add"]
+        addButton.tap()
+        let addPodcastButton = app.buttons["Add Podcast"]
+        addPodcastButton.tap()
+        
+        let launchpadPodcastTestingStaticText = app.tables.staticTexts["LaunchPad podcast testing"]
+
+
+        launchpadPodcastTestingStaticText.tap()
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Monday Morning Podcast"].tap()
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        sleep(10)
+        sleep(20)
         // Go to the first episode
         XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
         let playButton = app.buttons["Play"]
@@ -72,17 +80,23 @@ class PlayerUITests: XCTestCase {
     func testSlider() {
         
         let app = XCUIApplication()
+        
+        let addButton = app.navigationBars["Podcasts"].buttons["Add"]
+        addButton.tap()
+        let addPodcastButton = app.buttons["Add Podcast"]
+        addPodcastButton.tap()
+        
+        let launchpadPodcastTestingStaticText = app.tables.staticTexts["LaunchPad podcast testing"]
+        launchpadPodcastTestingStaticText.tap()
+
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["Monday Morning Podcast"].tap()
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        sleep(10)
-         XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
-        let playButton = app.buttons["Play"]
-        playButton.tap()
-       
+        sleep(20)
+        XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
+  
         let slider = app.sliders["0%"]
         slider.adjust(toNormalizedSliderPosition: 0.99)
-        sleep(10)
+        sleep(20)
         XCTAssert(app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"].exists)
         
     }

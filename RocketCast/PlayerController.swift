@@ -22,10 +22,8 @@ class PlayerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        print(currentEpisodeList[trackId].title)
         if let url = currentEpisodeList[trackId].doucmentaudioURL {
-            self.setUpPlayer(webUrl:url)
+            setupView(webUrl: url)
         } else {
             print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[trackId].audioURL)!, result: { (downloadedPodcast) in
@@ -33,20 +31,22 @@ class PlayerController: UIViewController {
                 episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
                 DatabaseController.saveContext()
                 Log.debug("IsPlaying: \(isPlaying)")
-                 print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    self.setUpPlayer(webUrl: downloadedPodcast!)
+                print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                self.setupView(webUrl: downloadedPodcast!)
            
             })
         }
+        
     }
     
     
-    fileprivate func setupView() {
+    fileprivate func setupView(webUrl: String) {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
         self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
+        self.setUpPlayer(webUrl:webUrl)
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,11 +85,15 @@ extension PlayerController: PlayerViewDelegate {
         let file = fileMgr.contents(atPath: path)
         do {
             audioPlayer = try AVAudioPlayer(data: file!)
-            
+             self.mainView?.slider.minimumValue = Float(0.0)
+             self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+            let thing = audioPlayer.duration
             audioPlayer.prepareToPlay()
             audioPlayer.enableRate = true
+           
             audioPlayer.play()
-            self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+        
+           
             let audioSession = AVAudioSession.sharedInstance()
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             do {
@@ -154,9 +158,9 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func updateProgressView(){
+        print(audioPlayer.duration)
+        print(audioPlayer.currentTime)
         self.mainView?.slider.value = Float(audioPlayer.currentTime)
-        print(self.mainView?.slider.value)
-        print(self.mainView?.slider.maximumValue)
         print("Hello")
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
            (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 5) ) {
