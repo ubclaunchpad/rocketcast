@@ -25,6 +25,7 @@ enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
   static let segueFromEpisodeToPlayer = "segueFromEpisodeToPlayer"
   static let segueToBackEpisodes = "segueToBackEpisodes"
+  static let segueToPodcastList = "fromAddUrlToPodcastList"
 }
 
 var currentEpisodeList = [Episode]()
