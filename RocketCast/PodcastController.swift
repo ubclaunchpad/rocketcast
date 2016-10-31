@@ -16,10 +16,6 @@ class PodcastController: UIViewController {
     let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if (DatabaseController.getPodcastCount() == 0) {
-//            _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-//            
-//        }
         setupView()
   
     }
@@ -63,8 +59,6 @@ class PodcastController: UIViewController {
             }
         }
     }
-    
-
 }
 extension PodcastController:PodcastViewDelegate {
     

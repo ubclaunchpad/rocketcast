@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("MY_UI_TEST_MODE") {
+            DatabaseController.deleteAllManagedObjects()
+        }
         // Override point for customization after application launch.
         return true
     }

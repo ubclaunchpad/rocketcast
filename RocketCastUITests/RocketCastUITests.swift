@@ -71,8 +71,10 @@ class RocketCastUITests: XCTestCase {
         let app = XCUIApplication()
         let tablesQuery = app.tables
         let countBefore = tablesQuery.cells.count
-        app.buttons["+ New Podcast"].tap()
-        app.buttons["Add Podcast"].tap()
+        let addButton = app.navigationBars["Podcasts"].buttons["Add"]
+        addButton.tap()
+        let addPodcastButton = app.buttons["Add Podcast"]
+        addPodcastButton.tap()
         let countAfter = tablesQuery.cells.count
         XCTAssert(countAfter == countBefore + 1)
     }
