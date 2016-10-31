@@ -37,21 +37,21 @@ class PlayerUITests: XCTestCase {
         
         // Verify if the slider is moving
         let initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
+        sleep(5)
         let normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         let normalSliderPositionDiff = normalSliderPositionValue - initialSliderPositionValue
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
         
         // Verify if 2x speed is working (i.e the slider should move faster)
         app.buttons[play2TimesButton].tap()
-        sleep(1)
+        sleep(5)
         let twoTimesSliderPositionValue = app.sliders.element.normalizedSliderPosition
         let twoTimesSliderPositionDiff = twoTimesSliderPositionValue - initialSliderPositionValue
         XCTAssertTrue(twoTimesSliderPositionDiff > normalSliderPositionDiff)
         
         // Verify if 3x speed is working (i.e the slider should move the fastest)
         app.buttons[play3TimesButton].tap()
-        sleep(1)
+        sleep(5)
         let threeTimeSliderPositionValue = app.sliders.element.normalizedSliderPosition
         let threeTimesSliderPositionDiff = threeTimeSliderPositionValue - initialSliderPositionValue
         XCTAssertTrue(threeTimesSliderPositionDiff > normalSliderPositionDiff)
@@ -60,7 +60,7 @@ class PlayerUITests: XCTestCase {
         // Verify if the pause button is working (i.e the slider should not move)
         app.buttons[pauseButton].tap()
         let currentSliderValue = app.sliders.element.normalizedSliderPosition
-        sleep(2)
+        sleep(5)
         XCTAssertTrue(currentSliderValue == app.sliders.element.normalizedSliderPosition)
     }
     
@@ -78,7 +78,7 @@ class PlayerUITests: XCTestCase {
         // please wait for awhile
         sleep(10)
         var initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
+        sleep(5)
         var normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         // Verify if the slider is moving
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
@@ -89,7 +89,7 @@ class PlayerUITests: XCTestCase {
         XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
         sleep(10)
         initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
+        sleep(5)
         normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         // Verify if the slider is moving
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
@@ -100,9 +100,9 @@ class PlayerUITests: XCTestCase {
         episodesButton.tap()
         // Go back to the first episode
         mondayMorningPodcast91216StaticText.tap()
-        sleep(1)
+        sleep(5)
         initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(2)
+        sleep(5)
         normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         // Verify if the slider is moving
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
@@ -126,7 +126,7 @@ class PlayerUITests: XCTestCase {
         sleep(10)
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
         var initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
+        sleep(5)
         var normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
         
@@ -135,7 +135,7 @@ class PlayerUITests: XCTestCase {
         sleep(10)
         XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
         initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
+        sleep(5)
         normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
     }
@@ -159,7 +159,7 @@ class PlayerUITests: XCTestCase {
             let preEpButton = app.buttons[playPrevEpisodeButton]
             preEpButton.tap()
             var initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-            sleep(1)
+            sleep(5)
             var normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
             XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
             
@@ -169,7 +169,7 @@ class PlayerUITests: XCTestCase {
             sleep(10)
             XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
             initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-            sleep(1)
+            sleep(5)
             normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
             XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
             
@@ -181,7 +181,7 @@ class PlayerUITests: XCTestCase {
             sleep(4)
             XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
             initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-            sleep(1)
+            sleep(5)
             normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
             XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
             i+=1
