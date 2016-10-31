@@ -94,8 +94,8 @@ class PlayerUITests: XCTestCase {
         sleep(20)
         XCTAssert(app.staticTexts["Monday Morning Podcast 9-12-16"].exists)
   
-        let slider = app.sliders["0%"]
-        slider.adjust(toNormalizedSliderPosition: 0.99)
+
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
         sleep(20)
         XCTAssert(app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"].exists)
         

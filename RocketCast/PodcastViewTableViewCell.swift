@@ -56,8 +56,8 @@ class PodcastViewTableViewCell: UITableViewCell {
                 DispatchQueue.main.async {
                     self.podcastImage.image = UIImage(data: data)
                 }
-            } catch  {
-                //handle ERROR
+            } catch let error as NSError {
+                Log.error("Error: " + error.debugDescription)
             }
         }
         
