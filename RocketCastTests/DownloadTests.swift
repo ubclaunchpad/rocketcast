@@ -23,13 +23,6 @@ class DownloadTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
     func testDownloadPodcastXML() {
         // Test real podcasts
         var done = false
@@ -191,18 +184,4 @@ class DownloadTests: XCTestCase {
             RunLoop.current.run(mode: RunLoopMode.defaultRunLoopMode, before: Date(timeIntervalSinceNow: 5))
         }
     }
-    
-    // Place in a view controller while importing AVFoundation
-//    let fileMgr = NSFileManager.defaultManager()
-//    let path = NSHomeDirectory().stringByAppendingString("/Documents/1")
-//    if let data = fileMgr.contentsAtPath(path) {
-//        var error:NSError?
-//        do {
-//            try audioPlayer = AVAudioPlayer(data: data)
-//        } catch let error as NSError {
-//            Log.error(error.debugDescription)
-//        }
-//        audioPlayer.prepareToPlay()
-//        audioPlayer.play()
-//    }
 }

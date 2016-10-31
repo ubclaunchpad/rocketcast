@@ -14,16 +14,10 @@ class RocketCastUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        self.app.launch()
-        sleep(2)
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        let app = XCUIApplication()
+        app.launchArguments = ["MY_UI_TEST_MODE"]
+        app.launch()
     }
     
     override func tearDown() {
@@ -32,50 +26,14 @@ class RocketCastUITests: XCTestCase {
     }
     
     
-    func testSegueToViews() {
-        
-        //Test 1: Check we arrive at Home Screen
-        let startScreen = app.staticTexts["Podcasts"]
-        let button = app.buttons["Button"]
-        let exists = NSPredicate(format: "exists == true")
-        
-        expectation(for: exists, evaluatedWith: startScreen, handler: nil)
-        waitForExpectations(timeout: 20, handler: nil)
-        
-        XCTAssert(startScreen.exists)
-        XCTAssert(app.buttons["Button"].exists)
-        
-        //Go to next screen
-        app.buttons["Button"].tap()
-        
-        //Test 2: Check we arrive at Episodes Screen
-        let episodeScreen = self.app.staticTexts["Episodes"]
-        
-        expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
-        
-        XCTAssert(episodeScreen.exists)
-        
-        //Test 3: Check we arrive at End Screen
-        let notExists = NSPredicate(format: "exists == false")
-        
-        expectation(for: notExists, evaluatedWith: episodeScreen, handler: nil)
-        self.app.buttons["Button"].tap()
-        waitForExpectations(timeout: 10, handler: nil)
-        
-        XCTAssert(!episodeScreen.exists)
-    }
-    
-    func testAddUrl() {
-        
+    func testVerifyTravisBySeguing() {
         let app = XCUIApplication()
-        let tablesQuery = app.tables
-        let countBefore = tablesQuery.cells.count
-        app.buttons["+ New Podcast"].tap()
-        app.buttons["Add Podcast"].tap()
-        let countAfter = tablesQuery.cells.count
-        XCTAssert(countAfter == countBefore + 1)
+        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
+        app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
+        let episodeTable = app.tables
+        XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
+        episodeTable.staticTexts[SamplePodcast.firstEpisode].tap()
     }
-
     
 }

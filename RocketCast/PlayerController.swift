@@ -56,6 +56,18 @@ class PlayerController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == Segues.segueToBackEpisodes  else {
+            return
+        }
+        
+        if let shouldReloadNewEpisodeTrackList = sender as? Bool {
+            if let destination = segue.destination as? EpisodeController {
+                destination.shouldReloadNewEpisodeTrack = shouldReloadNewEpisodeTrackList
+
+            }
+        }
+    }
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
@@ -128,7 +140,8 @@ extension PlayerController: PlayerViewDelegate {
     }
 
     func segueBackToEpisodes() {
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
+        let shouldReloadNewEpisodeTrack = false
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
     }
     
     func updateProgressView(){

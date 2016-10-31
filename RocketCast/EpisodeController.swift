@@ -12,29 +12,26 @@ import CoreData
 class EpisodeController: UIViewController {
     
     var episodesInPodcast = [Episode]()
-    
+    var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-        if (currentEpisodeList.isEmpty) {
+        if (shouldReloadNewEpisodeTrack) {
             currentEpisodeList = episodesInPodcast
-        }
-         mainView?.episodesToView = currentEpisodeList
-
+        }        
+        mainView?.episodesToView = currentEpisodeList
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -14,33 +14,10 @@ class EpisodeUITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        self.app.launch()
-        sleep(1)
-        
-        //Test 1: Check we arrive at Home Screen
-        let startScreen = self.app.staticTexts["Podcasts"]
-        var exists = NSPredicate(format: "exists == true")
-        
-        expectation(for: exists, evaluatedWith: startScreen, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
-        XCTAssert(startScreen.exists)
-        XCTAssert(app.buttons["Button"].exists)
-        app.buttons["Button"].tap()
-        
-        //Test 2: Check we arrive at Episodes Screen
-        let episodeScreen = self.app.staticTexts["Episodes"]
-        exists = NSPredicate(format: "exists == true")
-        
-        expectation(for: exists, evaluatedWith: episodeScreen, handler: nil)
-        waitForExpectations(timeout: 10, handler: nil)
-        
-        XCTAssert(episodeScreen.exists)
+        let app = XCUIApplication()
+        app.launchArguments = ["MY_UI_TEST_MODE"]
+        app.launch()
     }
     
     override func tearDown() {
@@ -48,9 +25,17 @@ class EpisodeUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testTableViewCells() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testTableViewCellsInEpisodeTable() {
+        
+        let app = XCUIApplication()
+        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
+        app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
+        let episodeCells = XCUIApplication().tables.cells
+        XCTAssertEqual(2, episodeCells.count)
+        XCTAssert( app.tables.staticTexts[SamplePodcast.firstEpisode].exists)
+        XCTAssert( app.tables.staticTexts[SamplePodcast.secondEpisode].exists)
+        
     }
     
 }

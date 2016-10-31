@@ -13,6 +13,7 @@ class XMLParser: NSObject {
     
     var element = String()
     var podcast:Podcast?
+    var samePodcast = false
     var tmpEpisode:Episode?
     
     
@@ -20,30 +21,32 @@ class XMLParser: NSObject {
         super.init()
         if let data = try? Data(contentsOf: URL(string: url)!) {
             podcast = Podcast(context: DatabaseController.getContext())
+            podcast?.addedDate = Date()
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
         }
     }
     
-   func parseData (_ data:Data) {
+    private func parseData (_ data:Data) {
         let parser = Foundation.XMLParser(data: data)
         parser.delegate = self
         guard parser.parse() else {
             Log.error("Oh shit something went wrong. OS parser failed")
             return
         }
-
-       DatabaseController.saveContext()
+        if (!samePodcast) {
+            DatabaseController.saveContext()
+        } else {
+            DatabaseController.getContext().delete(podcast!)
+        }
     }
- 
 }
 extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
-            
             tmpEpisode = Episode(context: DatabaseController.getContext())
         }
         
@@ -71,6 +74,9 @@ extension XMLParser: XMLParserDelegate {
                         tmpEpisode!.title = information
                     }
                 } else  {
+                    if (DatabaseController.doesThisPodcastAlreadyExist(podcastTitle: information)) {
+                        samePodcast = true
+                    }
                     podcast!.title = information
                 }
             case xmlKeyTags.author:
@@ -105,14 +111,13 @@ extension XMLParser: XMLParserDelegate {
             case xmlKeyTags.duration:
                 
                 tmpEpisode!.duration = information
-
+                
             default: break
             }
         }
-        
     }
     
-   func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
         Log.error("parsing failed: " + parseError.localizedDescription)
     }
     
@@ -121,16 +126,16 @@ extension XMLParser: XMLParserDelegate {
             if tmpEpisode!.author == nil {
                 tmpEpisode!.author = podcast!.author!
             }
+            if tmpEpisode!.imageURL == nil {
+                tmpEpisode!.imageURL = podcast!.imageURL
+            }
             tmpEpisode!.podcastTitle = podcast!.title
             
             let episodes = podcast!.episodes!.mutableCopy() as! NSMutableSet
             episodes.add(tmpEpisode!)
             podcast!.episodes = episodes.copy() as? NSSet
         }
-        
     }
-    
-    
 }
 
 
