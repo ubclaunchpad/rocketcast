@@ -14,23 +14,23 @@ class DatabaseController {
     private init() {
         
     }
+    
     class func getContext() -> NSManagedObjectContext {
         return DatabaseController.persistentContainer.viewContext
     }
     
     static var persistentContainer: NSPersistentContainer = {
-        
         let container = NSPersistentContainer(name: "RocketCast")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.mergePolicy = NSOverwriteMergePolicy
         return container
     }()
     
     // MARK: - Core Data Saving support
-    
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -44,7 +44,6 @@ class DatabaseController {
     
     // MARK: - Delete Everything in CoreData
     static func deleteAllManagedObjects () {
-        
         let episodeRequest:NSFetchRequest<Episode> = Episode.fetchRequest()
         let podcastRequest:NSFetchRequest<Podcast> = Podcast.fetchRequest()
         var deleteRequest: NSBatchDeleteRequest
@@ -60,9 +59,7 @@ class DatabaseController {
         }
     }
     
-    
     // MARK: - Core Data Podcast functionailty
-    
     static func getPodcast (byTitle: String)  -> Podcast {
         let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
         var podcast:Podcast?
@@ -133,7 +130,6 @@ class DatabaseController {
      // TODO:
     }
     
-    
     // MARK: - Core Data Episode functionailty
     static func getEpisode (_ episodeTitle: String?) -> Episode? {
         var episode:Episode?
@@ -145,7 +141,6 @@ class DatabaseController {
         do {
             let episodes = try DatabaseController.getContext().fetch(request)
             episode = episodes.first
-            
         }
         catch let error as NSError {
             Log.error("Error in getting podcasts: " + error.localizedDescription)
@@ -153,7 +148,6 @@ class DatabaseController {
         
         return episode
     }
-    
     
     // MARK: - Core Data Method for Test
     static func getPodcastCount () -> NSInteger {
@@ -168,7 +162,4 @@ class DatabaseController {
         
         return -1
     }
-
-    
-    
 }
