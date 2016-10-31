@@ -39,10 +39,8 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
         return episodesToView.count
     }
-    
     
     // Iiterates over every episode and creates a respective TableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->  UITableViewCell {

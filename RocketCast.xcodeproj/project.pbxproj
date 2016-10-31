@@ -45,6 +45,7 @@
 		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
 		D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */; };
 		D08995881DC68FA500917580 /* PodcastViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08995871DC68FA500917580 /* PodcastViewUITest.swift */; };
+		D089958A1DC6FDEA00917580 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08995891DC6FDEA00917580 /* Constants.swift */; };
 		D095AAE71D86784700AD1FD8 /* testPodcastXMLWithNoEpisodes.xml in Resources */ = {isa = PBXBuildFile; fileRef = D095AAE61D86784700AD1FD8 /* testPodcastXMLWithNoEpisodes.xml */; };
 		D095AAE81D86797900AD1FD8 /* testPodcastXMLWithNoEpisodes.xml in Resources */ = {isa = PBXBuildFile; fileRef = D095AAE61D86784700AD1FD8 /* testPodcastXMLWithNoEpisodes.xml */; };
 		D095AAEC1D867E3900AD1FD8 /* testPodcastNoAuthorsForEpisodes.xml in Resources */ = {isa = PBXBuildFile; fileRef = D095AAEB1D867E3900AD1FD8 /* testPodcastNoAuthorsForEpisodes.xml */; };
@@ -122,6 +123,7 @@
 		D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBridge.swift; sourceTree = "<group>"; };
 		D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadBridge.swift; sourceTree = "<group>"; };
 		D08995871DC68FA500917580 /* PodcastViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewUITest.swift; sourceTree = "<group>"; };
+		D08995891DC6FDEA00917580 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D095AAE61D86784700AD1FD8 /* testPodcastXMLWithNoEpisodes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testPodcastXMLWithNoEpisodes.xml; sourceTree = "<group>"; };
 		D095AAEB1D867E3900AD1FD8 /* testPodcastNoAuthorsForEpisodes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testPodcastNoAuthorsForEpisodes.xml; sourceTree = "<group>"; };
 		D095AAED1D878AC700AD1FD8 /* testNormalPodcastXML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testNormalPodcastXML.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				84C603231D9735F1009C73A7 /* EpisodeViewUITest.swift */,
 				C80FAE931D72376700C806C1 /* Info.plist */,
 				D08995871DC68FA500917580 /* PodcastViewUITest.swift */,
+				D08995891DC6FDEA00917580 /* Constants.swift */,
 			);
 			path = RocketCastUITests;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 			files = (
 				84C603241D9735F1009C73A7 /* EpisodeViewUITest.swift in Sources */,
 				D08995881DC68FA500917580 /* PodcastViewUITest.swift in Sources */,
+				D089958A1DC6FDEA00917580 /* Constants.swift in Sources */,
 				C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */,
 				527876271DB2DC790001EDFB /* PlayerUITests.swift in Sources */,
 			);

@@ -22,7 +22,6 @@ class EpisodeController: UIViewController {
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-       
         if (shouldReloadNewEpisodeTrack) {
             currentEpisodeList = episodesInPodcast
         }        
@@ -33,7 +32,6 @@ class EpisodeController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,7 +51,6 @@ extension EpisodeController: EpisodeViewDelegate{
     
     func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
-
     }
     
 }

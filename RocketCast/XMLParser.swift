@@ -47,7 +47,6 @@ extension XMLParser: XMLParserDelegate {
         element = elementName
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
-            
             tmpEpisode = Episode(context: DatabaseController.getContext())
         }
         
@@ -116,7 +115,6 @@ extension XMLParser: XMLParserDelegate {
             default: break
             }
         }
-        
     }
     
     func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
@@ -137,10 +135,7 @@ extension XMLParser: XMLParserDelegate {
             episodes.add(tmpEpisode!)
             podcast!.episodes = episodes.copy() as? NSSet
         }
-        
     }
-    
-    
 }
 
 

@@ -66,7 +66,6 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssert(currentSize == DatabaseController.getPodcastCount())
     }
     
-    
     func testParseXMLWithNoEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
@@ -82,21 +81,12 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssert(currentSize == DatabaseController.getPodcastCount())
     }
     
-    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         // Delete Everything
         super.tearDown()
         DatabaseController.deleteAllManagedObjects()
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
     
     func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
         XCTAssertEqual(expectedEpisode["title"], episode.title)

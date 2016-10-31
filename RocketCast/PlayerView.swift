@@ -35,8 +35,7 @@ class PlayerView: UIView {
     }
     
     @IBAction func changeAudio(_ sender: AnyObject) {
-        print(slider.value)
-        print(slider.maximumValue)
+
         if ((slider.value) == (slider.maximumValue)) {
             viewDelegate?.playNextEpisode()
         }
@@ -73,9 +72,7 @@ class PlayerView: UIView {
     func setTitles (title: String) {
         titleLabel.text = title
         descriptionView.text = "Test Description"
-
     }
-    
     
     func updateUI (episode: Episode) {
         self.titleLabel.text = episode.title!
@@ -88,8 +85,8 @@ class PlayerView: UIView {
                     self.imageView.image = UIImage(data: data)
                 }
                 
-            } catch {
-                //handle error
+            } catch let error as NSError{
+                Log.error("Error: " + error.debugDescription)
             }
         }
     }

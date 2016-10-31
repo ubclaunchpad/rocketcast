@@ -53,13 +53,8 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         } else {
             return UITableViewCell()
         }
-        
-
-
-        
     }
     
-
     // returns an approiate number of rows depending on the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  podcastsToView.count
