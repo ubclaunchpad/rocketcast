@@ -39,7 +39,6 @@ class PodcastViewUITest: XCTestCase {
             cells = XCUIApplication().tables.cells
             XCTAssertEqual(1, cells.count)
             XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
-            
             launchpadPodcastTestingStaticText.tap()
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
