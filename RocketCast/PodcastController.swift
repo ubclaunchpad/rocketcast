@@ -8,27 +8,24 @@
 
 import UIKit
 import CoreData
-@available(iOS 10.0, *)
 class PodcastController: UIViewController {
     
-    var podcasts = [String]()
+    var podcasts = [Podcast]()
     
     var mainView: PodcastView?
-    let CoreData = CoreDataHelper()
+    let PodcastHelper = Podcast()
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-//        ModelBridge.sharedInstance.downloadPodcastXML("http://billburr.libsyn.com/rss") { (downloadedPodcast) in
-//        }
-//        
-        
-    //    _ = XMLParser(url:"http://billburr.libsyn.com/rss")
-        
+  
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
+        let listOfPodcasts = DatabaseController.getAllPodcasts()
+        mainView?.podcastsToView = listOfPodcasts
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -47,15 +44,31 @@ class PodcastController: UIViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row])
+        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row].title!)
         return cell
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EpisodeController {
+            if let podcast = sender as? Podcast {
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                destination.episodesInPodcast = episodes
+            }
+        }
+    }
 }
-
-@available(iOS 10.0, *)
 extension PodcastController:PodcastViewDelegate {
+    
+    func segueToAddUrl() {
+        performSegue(withIdentifier: Segues.segueFromPodcastListToAddUrl, sender: self)
+    }
     
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
+    }
+    
+    func setSelectedPodcastAndSegue(selectedPodcast: Podcast) {
+        performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: selectedPodcast)
+        
     }
 }

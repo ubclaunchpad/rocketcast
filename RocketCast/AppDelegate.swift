@@ -14,9 +14,11 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var CoreData = CoreDataHelper()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("MY_UI_TEST_MODE") {
+            DatabaseController.deleteAllManagedObjects()
+        }
         // Override point for customization after application launch.
         return true
     }
@@ -41,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        CoreData.saveContext()
+        DatabaseController.saveContext()
     }
 
 }

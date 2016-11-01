@@ -14,12 +14,13 @@ protocol PlayerViewDelegate {
     func goForward()
     func goBack()
     func stopPodcast()
-    func setUpPlayer()
-    
-    func getEpisodeTitle() -> String
-    func getEpisodeDesc() -> String
-    
+    func setUpPlayer(webUrl:String)
+
     func changeSpeed(_ rateTag: Int)
-    func getEpisodeImage(_ result: (_ image: UIImage) -> ())
+    func segueBackToEpisodes()
+    
+    func updateProgressView()
+    func playNextEpisode()
+    func playLastEpisode()
 }
 

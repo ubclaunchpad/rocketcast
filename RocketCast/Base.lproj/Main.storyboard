@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Add New Url-->
+        <scene sceneID="3PE-v1-6iD">
+            <objects>
+                <viewController title="Add New Url" id="qYa-7O-Oef" customClass="AddUrlController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="czQ-Ao-fWw"/>
+                        <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u1R-PH-iaT">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="NNq-21-0oV" kind="show" identifier="segueFromAddUrlToPodcastList" id="jmR-gG-5HZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l98-dN-hh3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="-541"/>
+        </scene>
         <!--Podcast-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -14,40 +36,40 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationItem key="navigationItem" title="Podcasts" id="tMP-TO-fhs"/>
                     <connections>
                         <segue destination="mE7-6p-V3x" kind="show" identifier="segueFromPodcastToEpisode" id="sPe-Yf-iBH"/>
+                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromPodcastListToAddUrl" id="uDr-br-kDS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197" y="335"/>
+            <point key="canvasLocation" x="1056.8" y="332.38380809595208"/>
         </scene>
-        <!--Episode-->
+        <!--Episodes-->
         <scene sceneID="PGm-wl-ceH">
             <objects>
-                <viewController title="Episode" id="mE7-6p-V3x" customClass="EpisodeController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Episodes" id="mE7-6p-V3x" customClass="EpisodeController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kAC-sE-Lv8"/>
                         <viewControllerLayoutGuide type="bottom" id="BTS-D8-Xcc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qun-52-uhC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromEpisodeToPlayer" id="Es6-NR-SR3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="599" y="335"/>
+            <point key="canvasLocation" x="1876" y="442.12893553223392"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -58,15 +80,38 @@
                         <viewControllerLayoutGuide type="bottom" id="qJ3-4x-sGR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qud-HQ-3KO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="mE7-6p-V3x" kind="show" identifier="segueToBackEpisodes" id="5Dc-yA-muE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5S-R9-oTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="335"/>
+            <point key="canvasLocation" x="2960.8000000000002" y="333.28335832083962"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mgI-CF-mGv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NNq-21-0oV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KMJ-qL-At8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="fa8-7n-4kV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udk-8X-9mX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="332.38380809595208"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="sPe-Yf-iBH"/>
+    </inferredMetricsTieBreakers>
 </document>

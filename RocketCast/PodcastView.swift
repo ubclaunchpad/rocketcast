@@ -16,7 +16,11 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var viewTitle: UILabel!
     
     @IBOutlet weak var podcastList: UITableView!
+    lazy var podcastsToView = [Podcast]()
     
+    @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
+        viewDelegate?.segueToAddUrl()
+    }
     @IBAction func segueButton(_ sender: AnyObject) {
         viewDelegate?.segueToEpisode()
     }
@@ -38,18 +42,22 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         
         let podcastCell = UINib(nibName: "PodcastViewTableViewCell", bundle: nil)
         tableView.register(podcastCell, forCellReuseIdentifier: "podcastCell")
-        let cell = self.podcastList.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! PodcastViewTableViewCell
-        
-        cell.backgroundColor = UIColor.clear
-    
-        cell.tag = (indexPath as NSIndexPath).row
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        return cell        
+        if let cell = self.podcastList.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as? PodcastViewTableViewCell {
+            cell.updateUI(Podcast: podcastsToView[indexPath.row])
+            cell.backgroundColor = UIColor.clear
+            cell.tag = (indexPath as NSIndexPath).row
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+
+            return cell
+            
+        } else {
+            return UITableViewCell()
+        }
     }
     
     // returns an approiate number of rows depending on the section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  1
+        return  podcastsToView.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,6 +66,11 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
+        
     }
 
 }
