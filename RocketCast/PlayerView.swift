@@ -40,10 +40,10 @@ class PlayerView: UIView {
             viewDelegate?.playNextEpisode()
         }
         
-        audioPlayer.stop()
-        audioPlayer.currentTime = TimeInterval(slider.value)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
+        AudioEpisodeTracker.audioPlayer.stop()
+        AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
+        AudioEpisodeTracker.audioPlayer.prepareToPlay()
+        AudioEpisodeTracker.audioPlayer.play()
     }
     
    

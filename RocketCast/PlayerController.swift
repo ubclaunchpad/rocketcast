@@ -12,7 +12,6 @@ import CoreData
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
-    var trackId = 0
     
     enum speedRates {
         static let single:Float = 1
@@ -22,6 +21,7 @@ class PlayerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupView()
     }
     
@@ -30,19 +30,27 @@ class PlayerController: UIViewController {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
-        self.mainView?.updateUI(episode: currentEpisodeList[self.trackId])
+        self.mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
         self.mainView?.viewDelegate = self
-        self.loadUpAudioEpisode()
+        if (!AudioEpisodeTracker.isPlaying) {
+            self.loadUpAudioEpisode()
+        } else {
+            self.mainView?.slider.minimumValue = 0
+            self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
+            self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+        }
+        
     }
     
     func loadUpAudioEpisode() {
-        if let url = currentEpisodeList[trackId].doucmentaudioURL {
+        if let url =  AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL {
             self.setUpPlayer(webUrl:url)
         } else {
             print("LOADING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             var done = false
-            ModelBridge.sharedInstance.downloadAudio((currentEpisodeList[self.trackId].audioURL)!, result: { (downloadedPodcast) in
-                let episode = DatabaseController.getEpisode((currentEpisodeList[self.trackId].title)!)
+            ModelBridge.sharedInstance.downloadAudio((AudioEpisodeTracker.getCurrentEpisode().audioURL)!, result: { (downloadedPodcast) in
+                let episode = DatabaseController.getEpisode((AudioEpisodeTracker.getCurrentEpisode().title)!)
                 episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
                 DatabaseController.saveContext()
                 print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -73,25 +81,29 @@ class PlayerController: UIViewController {
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
     func playPodcast() {
-        if !audioPlayer.isPlaying {
-            audioPlayer.play()
+        if !AudioEpisodeTracker.audioPlayer.isPlaying {
+            AudioEpisodeTracker.audioPlayer.prepareToPlay()
+            AudioEpisodeTracker.audioPlayer.enableRate = true
+            AudioEpisodeTracker.audioPlayer.play()
+            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+
         }
     }
     
     func pausePodcast() {
-        audioPlayer.pause()
+        AudioEpisodeTracker.audioPlayer.pause()
     }
     
     func stopPodcast() {
-        audioPlayer.stop()
+        AudioEpisodeTracker.audioPlayer.stop()
     }
     
     func goForward() {
-        audioPlayer.play(atTime: audioPlayer.currentTime+30)
+        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime+30)
     }
     
     func goBack() {
-        audioPlayer.play(atTime: audioPlayer.currentTime-30)
+        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime-30)
     }
     
     func setUpPlayer(webUrl:String) {
@@ -100,14 +112,14 @@ extension PlayerController: PlayerViewDelegate {
         let path = NSHomeDirectory() + webUrl
         let file = fileMgr.contents(atPath: path)
         do {
-            audioPlayer = try AVAudioPlayer(data: file!)
+            AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: file!)
             self.mainView?.slider.minimumValue = Float(0.0)
-            self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
-            audioPlayer.prepareToPlay()
-            audioPlayer.enableRate = true
+            self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
+            AudioEpisodeTracker.audioPlayer.prepareToPlay()
+            AudioEpisodeTracker.audioPlayer.enableRate = true
             
-            audioPlayer.play()
-            
+            AudioEpisodeTracker.audioPlayer.play()
+            AudioEpisodeTracker.isPlaying = true
             
             let audioSession = AVAudioSession.sharedInstance()
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
@@ -126,13 +138,13 @@ extension PlayerController: PlayerViewDelegate {
     func changeSpeed(_ rateTag: Int) {
         switch rateTag {
         case Int(speedRates.single):
-            audioPlayer.rate = speedRates.single
+            AudioEpisodeTracker.audioPlayer.rate = speedRates.single
             break
         case Int(speedRates.double):
-            audioPlayer.rate = speedRates.double
+            AudioEpisodeTracker.audioPlayer.rate = speedRates.double
             break
         case Int(speedRates.triple):
-            audioPlayer.rate = speedRates.triple
+            AudioEpisodeTracker.audioPlayer.rate = speedRates.triple
             break
         default:
             break
@@ -145,9 +157,9 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func updateProgressView(){
-        print(audioPlayer.duration)
-        print(audioPlayer.currentTime)
-        self.mainView?.slider.value = Float(audioPlayer.currentTime)
+        print(self.mainView?.slider.value)
+        print(AudioEpisodeTracker.audioPlayer.currentTime)
+        self.mainView?.slider.value = Float(AudioEpisodeTracker.audioPlayer.currentTime)
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 5) ) {
             playNextEpisode()
@@ -155,35 +167,37 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func playNextEpisode() {
-        guard trackId >= 0 && trackId+1 < currentEpisodeList.count  else {
+        guard AudioEpisodeTracker.episodeIndex >= 0 &&
+            AudioEpisodeTracker.episodeIndex+1 < AudioEpisodeTracker.currentEpisodesInTrack.count  else {
             return
         }
         
-        trackId += 1
+        AudioEpisodeTracker.episodeIndex += 1
         
-        self.mainView?.titleLabel.text = currentEpisodeList[trackId].title
-        print(currentEpisodeList[trackId].title)
-        audioPlayer.stop()
-        audioPlayer.currentTime = 0
+        self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
+        
+        AudioEpisodeTracker.audioPlayer.stop()
+        AudioEpisodeTracker.audioPlayer.currentTime = 0
         self.mainView?.slider.setValue(0.0, animated: false)
-        self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
         
         self.loadUpAudioEpisode()
     }
     
     func playLastEpisode() {
-        guard trackId-1 >= 0 && (trackId) < currentEpisodeList.count else  {
+        guard AudioEpisodeTracker.episodeIndex-1 >= 0
+            && (AudioEpisodeTracker.episodeIndex) < AudioEpisodeTracker.currentEpisodesInTrack.count else  {
             return
         }
         
-        trackId -= 1
+        AudioEpisodeTracker.episodeIndex -= 1
         
-        self.mainView?.titleLabel.text = currentEpisodeList[trackId].title
-        print(currentEpisodeList[trackId].title)
-        audioPlayer.stop()
-        audioPlayer.currentTime = 0
+        self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
+
+        AudioEpisodeTracker.audioPlayer.stop()
+        AudioEpisodeTracker.audioPlayer.currentTime = 0
         self.mainView?.slider.setValue(0.0, animated: false)
-        self.mainView?.slider.maximumValue = Float(audioPlayer.duration)
+        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
         self.loadUpAudioEpisode()
         
     }
