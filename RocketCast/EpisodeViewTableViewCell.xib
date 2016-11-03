@@ -21,19 +21,25 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MWe-Gy-G4L"/>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="u0a-an-CCo" secondAttribute="bottom" id="8Gu-nW-Ee7"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="u0a-an-CCo" secondAttribute="trailing" id="f5x-kR-etb"/>
+                    <constraint firstItem="MWe-Gy-G4L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="0ME-Zt-Fxs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="u0a-an-CCo" secondAttribute="bottom" constant="-1" id="8Gu-nW-Ee7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MWe-Gy-G4L" secondAttribute="trailing" constant="9" id="Hwf-Jx-d2C"/>
+                    <constraint firstItem="MWe-Gy-G4L" firstAttribute="leading" secondItem="u0a-an-CCo" secondAttribute="trailing" constant="13" id="cfC-s9-6ae"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="u0a-an-CCo" secondAttribute="trailing" constant="42" id="f5x-kR-etb"/>
                     <constraint firstItem="u0a-an-CCo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hUy-4a-I0E"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MWe-Gy-G4L" secondAttribute="bottom" constant="16" id="qyD-v4-JDH"/>
                     <constraint firstItem="u0a-an-CCo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="swL-hR-rt8"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="downloadAnimation" destination="MWe-Gy-G4L" id="5rh-ij-Pa5"/>
                 <outlet property="episodeHeader" destination="u0a-an-CCo" id="SEs-hQ-2RJ"/>
             </connections>
-            <point key="canvasLocation" x="-17" y="174"/>
+            <point key="canvasLocation" x="-212" y="171"/>
         </tableViewCell>
     </objects>
 </document>

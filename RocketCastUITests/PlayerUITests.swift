@@ -32,8 +32,11 @@ class PlayerUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        
+        let cells = app.tables.cells
+        firstCell = cells.element(boundBy: 0).
          // please wait for awhile
-        sleep(10)
+        sleep(20)
         
         // Verify if the slider is moving
         let initialSliderPositionValue = app.sliders.element.normalizedSliderPosition

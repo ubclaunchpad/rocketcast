@@ -17,6 +17,7 @@ class EpisodeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    
     }
     
     fileprivate func setupView() {
@@ -24,7 +25,7 @@ class EpisodeController: UIViewController {
         mainView = EpisodeView.instancefromNib(viewSize)
         if (shouldReloadNewEpisodeTrack) {
             currentEpisodeList = episodesInPodcast
-        }        
+        }
         mainView?.episodesToView = currentEpisodeList
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -44,13 +45,41 @@ class EpisodeController: UIViewController {
     }
 }
 
-extension EpisodeController: EpisodeViewDelegate{
+extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
-    func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
-        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
+    func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
+        if selectedEpisode.doucmentaudioURL != nil {
+            performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
+        }
+        else {
+            if let episodeCell = self.mainView?.EpisodeTable.cellForRow(at: indexPathForEpisode) as? EpisodeViewTableViewCell {
+                episodeCell.downloadAnimation.startAnimating()
+                
+                ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
+                    if downloadedPodcast == nil {
+                        print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
+                    }
+                    let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
+                    episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                    DatabaseController.saveContext()
+                    print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                    episodeCell.downloadAnimation.stopAnimating()
+                    episodeCell.downloadAnimation.isHidden = true
+                    episodeCell.accessoryType = .checkmark
+     
+                })
+                
+            }
+            
+        }
     }
+    
+    
+    
+    
+    
     
 }
