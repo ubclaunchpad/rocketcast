@@ -12,6 +12,7 @@ import AVFoundation
 class AudioEpisodeTracker {
     
     static var audioPlayer = AVAudioPlayer()
+    static var currentTimer = Timer()
     static var isPlaying = false
     static var currentEpisodesInTrack = [Episode]()
     static var episodeIndex = -1
@@ -19,9 +20,7 @@ class AudioEpisodeTracker {
     static var podcastTitle = ""
     static var episodeTitle = ""
     
-    
     static func getCurrentEpisode() -> Episode {
         return currentEpisodesInTrack[episodeIndex]
     }
-
 }
