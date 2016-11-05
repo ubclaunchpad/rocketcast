@@ -56,19 +56,32 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         }
         else {
             if let episodeCell = self.mainView?.EpisodeTable.cellForRow(at: indexPathForEpisode) as? EpisodeViewTableViewCell {
+                episodeCell.downloadAnimation.isHidden = false
                 episodeCell.downloadAnimation.startAnimating()
-                
+                episodeCell.downloadStatus.text = "Downloading ..."
                 ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
-                    if downloadedPodcast == nil {
-                        print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
+                    if downloadedPodcast != nil {
+                        let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
+                        episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+                        DatabaseController.saveContext()
+                        print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                        DispatchQueue.main.async {
+                            episodeCell.downloadAnimation.stopAnimating()
+                            episodeCell.downloadAnimation.isHidden = true
+                            episodeCell.downloadStatus.isHidden = true
+                            episodeCell.accessoryType = .checkmark
+                        }
+                        
+                    } else {
+                        DispatchQueue.main.async {
+                            print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
+                            episodeCell.downloadAnimation.isHidden = true
+                            episodeCell.downloadStatus.text = "Failed To Download"
+                        }
+                       
+                        
                     }
-                    let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
-                    episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-                    DatabaseController.saveContext()
-                    print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                    episodeCell.downloadAnimation.stopAnimating()
-                    episodeCell.downloadAnimation.isHidden = true
-                    episodeCell.accessoryType = .checkmark
+                    
      
                 })
                 
