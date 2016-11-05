@@ -187,4 +187,20 @@ class PlayerUITests: XCTestCase {
             i+=1
         }
     }
+    
+    func testSkipForwardButton() {
+        let app = XCUIApplication()
+        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
+        // Go to the first episode
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        sleep(10)
+        var beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        app.buttons[skipButton].tap()
+        var afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        XCTAssertTrue(beforeSkipSliderPos + 30 <= afterSkipSliderPos)
+    }
 }
