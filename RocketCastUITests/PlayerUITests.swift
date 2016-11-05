@@ -201,6 +201,6 @@ class PlayerUITests: XCTestCase {
         var beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
         app.buttons[skipButton].tap()
         var afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
-        XCTAssertTrue(beforeSkipSliderPos + 30 <= afterSkipSliderPos)
+        XCTAssertTrue(beforeSkipSliderPos < afterSkipSliderPos)
     }
 }
