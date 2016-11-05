@@ -53,11 +53,15 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         cell.episodeHeader.text = episodesToView[indexPath.row].title
         cell.tag = (indexPath as NSIndexPath).row
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        
+          print(episodesToView[indexPath.row].title)
         if episodesToView[indexPath.row].doucmentaudioURL != nil {
+            print(episodesToView[indexPath.row].title)
             cell.downloadAnimation.isHidden = true
             cell.accessoryType = .checkmark
             cell.downloadStatus.isHidden = true
+        } else {
+             cell.downloadStatus.isHidden = false
+            cell.accessoryType = .none
         }
         return cell
         

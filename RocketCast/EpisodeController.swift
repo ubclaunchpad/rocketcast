@@ -12,6 +12,7 @@ import CoreData
 class EpisodeController: UIViewController {
     
     var episodesInPodcast = [Episode]()
+    var podcastTitle = ""
     var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
     override func viewDidLoad() {
@@ -24,9 +25,9 @@ class EpisodeController: UIViewController {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
         if (shouldReloadNewEpisodeTrack) {
-            currentEpisodeList = episodesInPodcast
-        }
-        mainView?.episodesToView = currentEpisodeList
+            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
+        }        
+        mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -37,9 +38,22 @@ class EpisodeController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
-            let viewController: PlayerController = segue.destination as! PlayerController
             if let sendIndex = sender as? NSInteger {
-                viewController.trackId = sendIndex
+                if (AudioEpisodeTracker.podcastTitle.isEmpty) {
+                    AudioEpisodeTracker.episodeIndex = sendIndex
+                    AudioEpisodeTracker.podcastTitle = podcastTitle
+                    AudioEpisodeTracker.isPlaying = false
+                }  else if (AudioEpisodeTracker.podcastTitle != podcastTitle) {
+                    AudioEpisodeTracker.episodeIndex = sendIndex
+                    AudioEpisodeTracker.podcastTitle = podcastTitle
+                    AudioEpisodeTracker.isPlaying = false
+                } else if (AudioEpisodeTracker.episodeIndex != sendIndex) {
+                    AudioEpisodeTracker.episodeIndex = sendIndex
+                    AudioEpisodeTracker.isPlaying = false
+                } else if AudioEpisodeTracker.episodeIndex == sendIndex {
+                    AudioEpisodeTracker.isPlaying = true
+                
+                }
             }
         }
     }

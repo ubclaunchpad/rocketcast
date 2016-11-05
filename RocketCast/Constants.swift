@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AVFoundation
 import CoreData
 
 typealias PodcastWebURL = String
@@ -17,9 +16,6 @@ typealias PodcastStorageURL = String
 typealias ImageStorageURL = String
 typealias AudioStorageURL = String
 typealias XML = String
-var audioPlayer = AVAudioPlayer()
-var isPlaying = false
-
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
@@ -29,7 +25,6 @@ enum  Segues {
   static let segueFromPodcastListToAddUrl = "segueFromPodcastListToAddUrl"
 }
 
-var currentEpisodeList = [Episode]()
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"
