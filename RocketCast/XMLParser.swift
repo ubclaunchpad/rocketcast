@@ -48,6 +48,7 @@ extension XMLParser: XMLParserDelegate {
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
             tmpEpisode = Episode(context: DatabaseController.getContext())
+            tmpEpisode?.isDownloading = false
         }
         
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {

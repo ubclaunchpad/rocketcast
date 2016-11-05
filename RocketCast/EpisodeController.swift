@@ -21,6 +21,11 @@ class EpisodeController: UIViewController {
     
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setupView()
+    }
+    
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
@@ -30,6 +35,7 @@ class EpisodeController: UIViewController {
         mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
+        self.mainView?.EpisodeTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,12 +73,15 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
         if selectedEpisode.doucmentaudioURL != nil {
             performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
+            
         }
         else {
             if let episodeCell = self.mainView?.EpisodeTable.cellForRow(at: indexPathForEpisode) as? EpisodeViewTableViewCell {
                 episodeCell.downloadAnimation.isHidden = false
                 episodeCell.downloadAnimation.startAnimating()
                 episodeCell.downloadStatus.text = "Downloading ..."
+                selectedEpisode.isDownloading = true
+                DatabaseController.saveContext()
                 ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
                     if downloadedPodcast != nil {
                         let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
@@ -80,6 +89,8 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
                         DatabaseController.saveContext()
                         print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                         DispatchQueue.main.async {
+                            episode?.isDownloading = false
+                            DatabaseController.saveContext()
                             episodeCell.downloadAnimation.stopAnimating()
                             episodeCell.downloadAnimation.isHidden = true
                             episodeCell.downloadStatus.isHidden = true
@@ -91,13 +102,14 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
                             print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
                             episodeCell.downloadAnimation.isHidden = true
                             episodeCell.downloadStatus.text = "Failed To Download"
+                            selectedEpisode.isDownloading = false
+                            DatabaseController.saveContext()
                         }
                        
                         
                     }
-                    
-     
                 })
+                 self.mainView?.EpisodeTable.reloadData()
                 
             }
             
