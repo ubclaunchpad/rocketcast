@@ -439,7 +439,7 @@
 				TargetAttributes = {
 					C80FAE6A1D72376600C806C1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = L822HFXC5L;
+						DevelopmentTeam = 69C5F6WEA5;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {

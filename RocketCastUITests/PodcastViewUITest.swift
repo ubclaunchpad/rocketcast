@@ -62,4 +62,34 @@ class PodcastViewUITest: XCTestCase {
         let countAfter = tablesQuery.cells.count
         XCTAssert(countAfter == countBefore + 1)
     }
+    
+    func testJumpBackToPlayer() {
+        
+        let app = XCUIApplication()
+        let podcastsNavigationBar = app.navigationBars["Podcasts"]
+        podcastsNavigationBar.buttons["Add"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        
+        let playerNavigationBar = app.navigationBars["Player"]
+        playerNavigationBar.buttons["Episodes"].tap()
+        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
+        
+        let playButton = podcastsNavigationBar.buttons["Play"]
+        playButton.tap()
+        
+        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
+        mondayMorningPodcast91216StaticText.tap()
+        mondayMorningPodcast91216StaticText.tap()
+        mondayMorningPodcast91216StaticText.tap()
+        app.buttons["next ep"].tap()
+        playerNavigationBar.buttons["Podcasts"].tap()
+        playButton.tap()
+        
+        
+        
+    }
 }

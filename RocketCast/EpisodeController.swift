@@ -15,6 +15,12 @@ class EpisodeController: UIViewController {
     var podcastTitle = ""
     var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setupView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -27,6 +33,9 @@ class EpisodeController: UIViewController {
             AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
         }        
         mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
+        if AudioEpisodeTracker.isPlaying {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
+        }
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }

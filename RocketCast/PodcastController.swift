@@ -20,12 +20,20 @@ class PodcastController: UIViewController {
   
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        setupView()
+    }
+    
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
+        if AudioEpisodeTracker.isPlaying {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
+        }
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -66,6 +74,9 @@ extension PodcastController:PodcastViewDelegate {
     
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
+    }
+    func segueToPlayer() {
+        performSegue(withIdentifier: Segues.segueFromPodcastListToPlayer, sender: self)
     }
     
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast) {
