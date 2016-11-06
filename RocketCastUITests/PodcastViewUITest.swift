@@ -65,6 +65,7 @@ class PodcastViewUITest: XCTestCase {
         XCTAssert(countAfter == countBefore + 1)
     }
     
+    //Assert you can segue from podcast view to player view if an episode it playing
     func testJumpBackToPlayer() {
         
         let app = XCUIApplication()
@@ -84,13 +85,26 @@ class PodcastViewUITest: XCTestCase {
         playButton.tap()
         
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
-        mondayMorningPodcast91216StaticText.tap()
-        mondayMorningPodcast91216StaticText.tap()
-        mondayMorningPodcast91216StaticText.tap()
-        app.buttons["next ep"].tap()
-        playerNavigationBar.buttons["Podcasts"].tap()
-        playButton.tap()
+        XCTAssert(mondayMorningPodcast91216StaticText.exists)
+    }
+    
+    func testJumpBackToPlayerNextEpisode() {
         
+        let app = XCUIApplication()
+        let podcastsNavigationBar = app.navigationBars["Podcasts"]
+        podcastsNavigationBar.buttons["Add"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        app.buttons["next ep"].tap()
+        app.navigationBars["Player"].buttons["Episodes"].tap()
+        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
+        podcastsNavigationBar.buttons["Play"].tap()
+        
+        let thursdayAfternoonMondayMorningPodcast9816StaticText = app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"]
+        XCTAssert(thursdayAfternoonMondayMorningPodcast9816StaticText.exists)
         
         
     }
