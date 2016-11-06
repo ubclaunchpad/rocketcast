@@ -17,7 +17,6 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-  
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -9,10 +9,14 @@
 import UIKit
 
 protocol EpisodeViewTableViewCellDelegate{
+ //   func updateAnimation()
 }
 
 class EpisodeViewTableViewCell: UITableViewCell {
     @IBOutlet weak var episodeHeader: UILabel!
+    @IBOutlet weak var downloadAnimation: UIActivityIndicatorView!
+    
+    @IBOutlet weak var downloadStatus: UILabel!
     var delegate: EpisodeViewTableViewCellDelegate?
     
     override func awakeFromNib() {

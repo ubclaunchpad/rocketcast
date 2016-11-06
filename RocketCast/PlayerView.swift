@@ -38,22 +38,17 @@ class PlayerView: UIView {
 
         if ((slider.value) == (slider.maximumValue)) {
             viewDelegate?.playNextEpisode()
+        } else {
+            AudioEpisodeTracker.audioPlayer.stop()
+            AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
+            AudioEpisodeTracker.audioPlayer.prepareToPlay()
+            AudioEpisodeTracker.audioPlayer.play()
         }
         
-        AudioEpisodeTracker.audioPlayer.stop()
-        AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
-        AudioEpisodeTracker.audioPlayer.prepareToPlay()
-        AudioEpisodeTracker.audioPlayer.play()
+       
     }
     
-   
-    @IBAction func playNextEpisode(_ sender: AnyObject) {
-      viewDelegate?.playNextEpisode()
-    }
-    
-    @IBAction func playLastEpisode(_ sender: AnyObject) {
-        viewDelegate?.playLastEpisode()
-    }
+
     @IBAction func SegueBack(_ sender: AnyObject) {
         viewDelegate?.segueBackToEpisodes()
     }

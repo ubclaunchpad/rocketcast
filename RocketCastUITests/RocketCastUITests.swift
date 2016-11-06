@@ -27,13 +27,33 @@ class RocketCastUITests: XCTestCase {
     
     
     func testVerifyTravisBySeguing() {
+        
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
-        app.buttons[AddPodcastButtonOnAddURLView].tap()
-        app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
-        let episodeTable = app.tables
-        XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
-        episodeTable.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.navigationBars["Podcasts"].buttons["Add"].tap()
+        app.buttons["Add Podcast"].tap()
+    
+        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
+        let cells = XCUIApplication().tables.cells
+        XCTAssertEqual(1, cells.count)
+        XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
+        launchpadPodcastTestingStaticText.tap()
+
+        let episodeCells = XCUIApplication().tables.cells
+        let firstCell = episodeCells.element(boundBy: 0)
+        sleep(1)
+        XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
+        XCTAssert(firstCell.staticTexts[tapToDownload].exists)
+        
+        let downloadingLabel = firstCell.staticTexts[downloaded]
+     
+        let doesntExist = NSPredicate(format: "exists == true")
+        
+        expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
+        firstCell.tap()
+        
+        waitForExpectations(timeout: 50, handler: nil)
+        firstCell.tap()
+    
     }
     
 }

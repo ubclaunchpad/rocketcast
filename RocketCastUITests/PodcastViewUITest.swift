@@ -43,9 +43,14 @@ class PodcastViewUITest: XCTestCase {
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
             XCTAssertEqual(2, cells.count)
-            XCTAssert(episodeTable.staticTexts[SamplePodcast.firstEpisode].exists)
-            XCTAssert(episodeTable.staticTexts[SamplePodcast.secondEpisode].exists)
+            let firstCell = episodeTable.cells.element(boundBy: 0)
+            XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
+            XCTAssert(firstCell.staticTexts[tapToDownload].exists)
             
+            let secondCell = episodeTable.cells.element(boundBy: 1)
+            XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
+            XCTAssert(secondCell.staticTexts[tapToDownload].exists)
+                    
             app.navigationBars[EpisodeButton].buttons[PodcastButton].tap()
             i+=1
         }
@@ -65,9 +70,7 @@ class PodcastViewUITest: XCTestCase {
         XCTAssert(countAfter == countBefore + 1)
     }
     
-    //Assert you can segue from podcast view to player view if an episode it playing
-    func testJumpBackToPlayer() {
-        
+    func testJumpToCurrentlyPlayingEpisodeFromPlayerVC() {
         let app = XCUIApplication()
         let podcastsNavigationBar = app.navigationBars["Podcasts"]
         podcastsNavigationBar.buttons["Add"].tap()
@@ -75,37 +78,18 @@ class PodcastViewUITest: XCTestCase {
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+        
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         
-        let playerNavigationBar = app.navigationBars["Player"]
-        playerNavigationBar.buttons["Episodes"].tap()
-        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
-        
-        let playButton = podcastsNavigationBar.buttons["Play"]
-        playButton.tap()
-        
-        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
-        XCTAssert(mondayMorningPodcast91216StaticText.exists)
-    }
-    
-    func testJumpBackToPlayerNextEpisode() {
-        
-        let app = XCUIApplication()
-        let podcastsNavigationBar = app.navigationBars["Podcasts"]
-        podcastsNavigationBar.buttons["Add"].tap()
-        app.buttons["Add Podcast"].tap()
-        
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
-        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        app.buttons["next ep"].tap()
         app.navigationBars["Player"].buttons["Episodes"].tap()
         app.navigationBars["Episodes"].buttons["Podcasts"].tap()
-        podcastsNavigationBar.buttons["Play"].tap()
-        
-        let thursdayAfternoonMondayMorningPodcast9816StaticText = app.staticTexts["Thursday Afternoon Monday Morning Podcast 9-8-16"]
-        XCTAssert(thursdayAfternoonMondayMorningPodcast9816StaticText.exists)
-        
-        
+        app.navigationBars["Podcasts"].buttons["Play"].tap()
+        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
+        XCTAssert(mondayMorningPodcast91216StaticText.exists)
     }
 }

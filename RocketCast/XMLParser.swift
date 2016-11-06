@@ -48,6 +48,7 @@ extension XMLParser: XMLParserDelegate {
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
             tmpEpisode = Episode(context: DatabaseController.getContext())
+
         }
         
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
@@ -109,9 +110,7 @@ extension XMLParser: XMLParserDelegate {
                     }
                 }
             case xmlKeyTags.duration:
-                
                 tmpEpisode!.duration = information
-                
             default: break
             }
         }
