@@ -22,7 +22,9 @@ class PodcastController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        setupView()
+        if AudioEpisodeTracker.isPlaying {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
+        }
     }
     
     fileprivate func setupView() {
@@ -31,11 +33,9 @@ class PodcastController: UIViewController {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
-        if AudioEpisodeTracker.isPlaying {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
-        }
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
+        print(listOfPodcasts.count)
     }
     
     override func didReceiveMemoryWarning() {

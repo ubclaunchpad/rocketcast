@@ -60,6 +60,8 @@ class PodcastViewUITest: XCTestCase {
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         let countAfter = tablesQuery.cells.count
+        print(countBefore)
+        print(countAfter)
         XCTAssert(countAfter == countBefore + 1)
     }
     
