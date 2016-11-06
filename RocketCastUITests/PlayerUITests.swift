@@ -39,8 +39,10 @@ class PlayerUITests: XCTestCase {
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
-
-        
+       
+        let slider = app.sliders["0%"]
+        expectation(for: doesItExist, evaluatedWith: slider, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
         var normalSliderPositionValue =  app.sliders["1%"]
         XCTAssertFalse(normalSliderPositionValue.exists)
@@ -56,7 +58,7 @@ class PlayerUITests: XCTestCase {
         
         // Verify if 3x speed is working (i.e the slider should move the fastest)
         app.buttons[play3TimesButton].tap()
-        normalSliderPositionValue =  app.sliders["8%"]
+        normalSliderPositionValue =  app.sliders["5%"]
         XCTAssertFalse(normalSliderPositionValue.exists)
         expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
@@ -116,11 +118,12 @@ class PlayerUITests: XCTestCase {
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
 
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
-        var initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
-        var normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
-       // XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
-        
+       
+        var normalSliderPositionValue =  app.sliders["1%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+
         // move the slider to the end, which should go to the next episode
         app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
         let successAlert = app.alerts["Success"]
@@ -130,9 +133,10 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
          successAlert.buttons["Ok"].tap()
         XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
-        initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
-        normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
-       // XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
+        
+        normalSliderPositionValue =  app.sliders["1%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
     }
 }
