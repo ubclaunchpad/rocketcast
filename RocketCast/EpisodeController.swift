@@ -18,7 +18,10 @@ class EpisodeController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        setupView()
+        if AudioEpisodeTracker.isPlaying {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
+        }
+         setupView()
     }
     
     fileprivate func setupView() {
@@ -29,6 +32,7 @@ class EpisodeController: UIViewController {
         }
         
         mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
+
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }

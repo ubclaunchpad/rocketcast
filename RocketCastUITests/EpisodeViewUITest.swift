@@ -43,4 +43,29 @@ class EpisodeUITests: XCTestCase {
         
     }
     
+    func testJumpToCurrentlyPlayingEpisodeFromEpisodeVC() {
+        let app = XCUIApplication()
+        let podcastsNavigationBar = app.navigationBars["Podcasts"]
+        podcastsNavigationBar.buttons["Add"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        waitForExpectations(timeout: timeOut, handler: nil)
+        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+
+    
+        let playerNavigationBar = app.navigationBars["Player"]
+        playerNavigationBar.buttons["Episodes"].tap()
+        app.navigationBars["Episodes"].buttons["Play"].tap()
+        
+        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
+        XCTAssert(mondayMorningPodcast91216StaticText.exists)
+    }
+    
 }
