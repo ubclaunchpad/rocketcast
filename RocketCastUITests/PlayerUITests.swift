@@ -37,7 +37,7 @@ class PlayerUITests: XCTestCase {
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
 
         
@@ -85,7 +85,7 @@ class PlayerUITests: XCTestCase {
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
         
         
@@ -116,7 +116,7 @@ class PlayerUITests: XCTestCase {
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
 
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
@@ -131,7 +131,7 @@ class PlayerUITests: XCTestCase {
         XCTAssertFalse(successAlert.exists)
         
         expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
          successAlert.buttons["Ok"].tap()
         XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
         initialSliderPositionValue = app.sliders.element.normalizedSliderPosition

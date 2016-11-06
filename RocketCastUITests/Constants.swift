@@ -28,3 +28,6 @@ let playNextEpisodeButton = "next ep"
 let playPrevEpisodeButton = "pre ep"
 let play2TimesButton = "2x"
 let play3TimesButton = "3x"
+
+
+let timeOut = TimeInterval(100)
