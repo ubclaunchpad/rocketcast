@@ -42,26 +42,24 @@ class PlayerUITests: XCTestCase {
 
         
         // Verify if the slider is moving
-        let initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
-        let normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        let normalSliderPositionDiff = normalSliderPositionValue - initialSliderPositionValue
-       // XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
+        var normalSliderPositionValue =  app.sliders["1%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         
         // Verify if 2x speed is working (i.e the slider should move faster)
         app.buttons[play2TimesButton].tap()
-        sleep(1)
-        let twoTimesSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        let twoTimesSliderPositionDiff = twoTimesSliderPositionValue - initialSliderPositionValue
-        //XCTAssertTrue(twoTimesSliderPositionDiff > normalSliderPositionDiff)
+        normalSliderPositionValue =  app.sliders["3%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         
         // Verify if 3x speed is working (i.e the slider should move the fastest)
         app.buttons[play3TimesButton].tap()
-        sleep(1)
-        let threeTimeSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        let threeTimesSliderPositionDiff = threeTimeSliderPositionValue - initialSliderPositionValue
-       // XCTAssertTrue(threeTimesSliderPositionDiff > normalSliderPositionDiff)
-        //XCTAssertTrue(threeTimesSliderPositionDiff > twoTimesSliderPositionDiff)
+        normalSliderPositionValue =  app.sliders["8%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         
         // Verify if the pause button is working (i.e the slider should not move)
         app.buttons[pauseButton].tap()
@@ -88,14 +86,12 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
         
-        
-        let initialSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        sleep(1)
-        let normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
-        // Verify if the slider is moving
-      //  XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
-        app.buttons[pauseButton].tap()
+        let normalSliderPositionValue =  app.sliders["1%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
     
+        app.buttons[pauseButton].tap()
     }
     
     func testVerifyIfNextEpisodeIsPlayedWhenSliderReachesNearMaxValue() {
@@ -139,5 +135,4 @@ class PlayerUITests: XCTestCase {
         normalSliderPositionValue = app.sliders.element.normalizedSliderPosition
        // XCTAssertTrue(normalSliderPositionValue > initialSliderPositionValue)
     }
-
 }
