@@ -23,6 +23,7 @@ enum  Segues {
   static let segueToBackEpisodes = "segueToBackEpisodes"
   static let segueFromAddUrlToPodcastList = "segueFromAddUrlToPodcastList"
   static let segueFromPodcastListToAddUrl = "segueFromPodcastListToAddUrl"
+  static let segueFromPodcastListToPlayer = "segueFromPodcastListToPlayer"
 }
 
 enum EpisodeViewConstants {

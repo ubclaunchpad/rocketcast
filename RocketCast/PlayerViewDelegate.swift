@@ -21,6 +21,5 @@ protocol PlayerViewDelegate {
     
     func updateProgressView()
     func playNextEpisode()
-    func playLastEpisode()
 }
 

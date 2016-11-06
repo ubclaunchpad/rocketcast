@@ -11,6 +11,7 @@ import UIKit
 protocol PodcastViewDelegate {
     func segueToEpisode()
     func segueToAddUrl()
+    func segueToPlayer()
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
     func updateAllPodcasts()
 }

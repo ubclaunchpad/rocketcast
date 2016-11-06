@@ -15,9 +15,13 @@ class EpisodeController: UIViewController {
     var podcastTitle = ""
     var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if AudioEpisodeTracker.isPlaying {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
+        }
+         setupView()
     }
     
     fileprivate func setupView() {
@@ -25,8 +29,10 @@ class EpisodeController: UIViewController {
         mainView = EpisodeView.instancefromNib(viewSize)
         if (shouldReloadNewEpisodeTrack) {
             AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
-        }        
+        }
+        
         mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
+
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -51,20 +57,51 @@ class EpisodeController: UIViewController {
                     AudioEpisodeTracker.isPlaying = false
                 } else if AudioEpisodeTracker.episodeIndex == sendIndex {
                     AudioEpisodeTracker.isPlaying = true
-                
                 }
             }
         }
     }
 }
 
-extension EpisodeController: EpisodeViewDelegate{
+extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
-    func setSelectedEpisode (selectedEpisode: Episode, index: Int) {
-        performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
+    func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
+        guard selectedEpisode.doucmentaudioURL == nil else {
+            performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
+            return
+        }
+        
+        guard  let episodeCell = self.mainView?.EpisodeTable.cellForRow(at: indexPathForEpisode) as? EpisodeViewTableViewCell  else {
+            return
+        }
+        episodeCell.downloadAnimation.isHidden = false
+        episodeCell.downloadAnimation.startAnimating()
+        episodeCell.downloadStatus.text = "Downloading ..."
+        ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
+            
+            guard downloadedPodcast != nil  else {
+                DispatchQueue.main.async {
+                    print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
+                    episodeCell.downloadAnimation.isHidden = true
+                    episodeCell.downloadStatus.text = "Failed To Download"
+                }
+                return
+            }
+            
+            let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
+            episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+            DatabaseController.saveContext()
+            print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            DispatchQueue.main.async {
+                episodeCell.downloadAnimation.stopAnimating()
+                episodeCell.downloadStatus.text = "Downloaded"
+                episodeCell.downloadAnimation.isHidden = true
+                episodeCell.downloadStatus.isHidden = true
+                episodeCell.accessoryType = .checkmark
+            }
+        })
     }
-    
 }

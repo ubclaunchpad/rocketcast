@@ -16,24 +16,48 @@
                 <frame key="frameInset" width="518" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0a-an-CCo">
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sL9-vy-bYe">
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0a-an-CCo">
+                                <frame key="frameInset" width="461" height="55"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="450" ambiguous="YES" text="Tap to Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-2Q-2vL">
+                                <frame key="frameInset" minY="55" width="461" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VaN-2Q-2vL" firstAttribute="top" secondItem="u0a-an-CCo" secondAttribute="bottom" id="Gco-Cz-727"/>
+                            <constraint firstItem="u0a-an-CCo" firstAttribute="top" secondItem="sL9-vy-bYe" secondAttribute="top" id="Qdd-Qu-KTd"/>
+                            <constraint firstItem="u0a-an-CCo" firstAttribute="leading" secondItem="sL9-vy-bYe" secondAttribute="leading" id="da6-Cl-jSU"/>
+                            <constraint firstItem="VaN-2Q-2vL" firstAttribute="leading" secondItem="u0a-an-CCo" secondAttribute="leading" id="dqk-Mn-7NR"/>
+                            <constraint firstAttribute="trailing" secondItem="u0a-an-CCo" secondAttribute="trailing" id="zfx-lc-Oqa"/>
+                        </constraints>
+                    </stackView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MWe-Gy-G4L"/>
                 </subviews>
                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="u0a-an-CCo" secondAttribute="bottom" id="8Gu-nW-Ee7"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="u0a-an-CCo" secondAttribute="trailing" id="f5x-kR-etb"/>
-                    <constraint firstItem="u0a-an-CCo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hUy-4a-I0E"/>
-                    <constraint firstItem="u0a-an-CCo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="swL-hR-rt8"/>
+                    <constraint firstItem="MWe-Gy-G4L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="0ME-Zt-Fxs"/>
+                    <constraint firstItem="MWe-Gy-G4L" firstAttribute="leading" secondItem="sL9-vy-bYe" secondAttribute="trailing" constant="20" id="DPo-PM-gqF"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MWe-Gy-G4L" secondAttribute="trailing" constant="9" id="Hwf-Jx-d2C"/>
+                    <constraint firstItem="sL9-vy-bYe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cnd-YB-a7c"/>
+                    <constraint firstAttribute="bottom" secondItem="sL9-vy-bYe" secondAttribute="bottom" id="gwn-wH-9ms"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="MWe-Gy-G4L" secondAttribute="bottom" constant="16" id="qyD-v4-JDH"/>
+                    <constraint firstItem="sL9-vy-bYe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="rMy-0r-G2W"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="downloadAnimation" destination="MWe-Gy-G4L" id="5rh-ij-Pa5"/>
+                <outlet property="downloadStatus" destination="VaN-2Q-2vL" id="RY6-CV-dKx"/>
                 <outlet property="episodeHeader" destination="u0a-an-CCo" id="SEs-hQ-2RJ"/>
             </connections>
-            <point key="canvasLocation" x="-17" y="174"/>
+            <point key="canvasLocation" x="-356" y="175"/>
         </tableViewCell>
     </objects>
 </document>

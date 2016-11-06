@@ -53,6 +53,15 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         cell.episodeHeader.text = episodesToView[indexPath.row].title
         cell.tag = (indexPath as NSIndexPath).row
         cell.selectionStyle = UITableViewCellSelectionStyle.none
+        if episodesToView[indexPath.row].doucmentaudioURL != nil {
+            cell.downloadAnimation.isHidden = true
+            cell.accessoryType = .checkmark
+            cell.downloadStatus.isHidden = true
+        } else {
+             cell.downloadStatus.isHidden = false
+             cell.accessoryType = .none
+        }
+    
         return cell
         
     }
@@ -66,8 +75,10 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row)
+        viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row, indexPathForEpisode: indexPath)
+
     }
+
     
 }
 

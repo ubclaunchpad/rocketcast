@@ -191,6 +191,8 @@
 			children = (
 				D00F6C8E1DC8468C00C3B2A4 /* PodcastModel */,
 				D00F6C8F1DC8469500C3B2A4 /* EpisodeModel */,
+				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
+				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
 				C8D601A61D793E05003512FE /* Log.swift */,
 				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
 				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
@@ -431,7 +433,7 @@
 				TargetAttributes = {
 					C80FAE6A1D72376600C806C1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = L822HFXC5L;
+						DevelopmentTeam = 69C5F6WEA5;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -694,14 +696,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = L822HFXC5L;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCast;
+				PRODUCT_BUNDLE_IDENTIFIER = rocketCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -711,13 +714,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = L822HFXC5L;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ubclaunchpad.RocketCast;
+				PRODUCT_BUNDLE_IDENTIFIER = rocketCast;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
