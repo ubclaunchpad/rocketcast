@@ -191,12 +191,12 @@
 			children = (
 				D00F6C8E1DC8468C00C3B2A4 /* PodcastModel */,
 				D00F6C8F1DC8469500C3B2A4 /* EpisodeModel */,
-				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				C8D601A61D793E05003512FE /* Log.swift */,
+				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
+				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */,
 				C8D601A41D79380B003512FE /* XMLParser.swift */,
 				D007E3F51D8DDEE600070123 /* DefaultLibraryExtensions.swift */,
-				D08F616A1DC85740002C3226 /* AudioEpisodeTrackModel */,
 				D0075F5A1D938F2400DBAF58 /* DatabaseController.swift */,
 			);
 			name = Model;
@@ -314,14 +314,6 @@
 				D0075F551D93815A00DBAF58 /* Episode.swift */,
 			);
 			name = EpisodeModel;
-			sourceTree = "<group>";
-		};
-		D08F616A1DC85740002C3226 /* AudioEpisodeTrackModel */ = {
-			isa = PBXGroup;
-			children = (
-				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
-			);
-			name = AudioEpisodeTrackModel;
 			sourceTree = "<group>";
 		};
 		D095AAE31D86766300AD1FD8 /* testxmlfiles */ = {

@@ -10,14 +10,11 @@ import UIKit
 import CoreData
 class PodcastController: UIViewController {
     
-    var podcasts = [Podcast]()
-    
     var mainView: PodcastView?
-    let PodcastHelper = Podcast()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-  
     }
     
     fileprivate func setupView() {
@@ -26,26 +23,14 @@ class PodcastController: UIViewController {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
+        
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = (podcasts[(indexPath as NSIndexPath).row].title!)
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,6 +55,22 @@ extension PodcastController:PodcastViewDelegate {
     
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast) {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: selectedPodcast)
-        
+    }
+    
+    func updateAllPodcasts() {
+        AudioEpisodeTracker.resetAudioTracker()
+        var currentPodcasts =  DatabaseController.getAllPodcasts()
+        while (!currentPodcasts.isEmpty) {
+            if let podcast = currentPodcasts.popLast() {
+                if let rssFeedURL = podcast.rssFeedURL {
+                    XMLParser(url:rssFeedURL)
+                    if (XMLParser.didItSucceed()) {
+                        DatabaseController.deletePodcast(podcastTitle: podcast.title!)
+                    }
+                }
+            }
+        }
+        self.setupView()
+        self.mainView?.podcastList.reloadData()
     }
 }

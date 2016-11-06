@@ -32,6 +32,8 @@ enum EpisodeViewConstants {
 
 let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss ZZ"
 
+let testRSSFeed = "https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastMadeup.xml"
+
 struct xmlKeyTags {
     static let episodeTag = "item"
     static let podcastImage = "itunes:image"

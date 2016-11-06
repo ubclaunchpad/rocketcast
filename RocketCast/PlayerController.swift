@@ -25,7 +25,6 @@ class PlayerController: UIViewController {
         setupView()
     }
     
-    
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PlayerView.instancefromNib(viewSize)
@@ -40,7 +39,6 @@ class PlayerController: UIViewController {
             self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
             AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
         }
-        
     }
     
     func loadUpAudioEpisode() {
@@ -158,8 +156,9 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func updateProgressView(){
-        Log.info("\(self.mainView?.slider.value)")
-        Log.info("\(AudioEpisodeTracker.audioPlayer.currentTime)")
+        guard !AudioEpisodeTracker.currentEpisodesInTrack.isEmpty else {
+            return
+        }
         self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 3) ) {
@@ -200,7 +199,6 @@ extension PlayerController: PlayerViewDelegate {
         self.mainView?.slider.setValue(0.0, animated: false)
         self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
         self.loadUpAudioEpisode()
-        
     }
 }
 

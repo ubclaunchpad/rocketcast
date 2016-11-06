@@ -62,4 +62,27 @@ class PodcastViewUITest: XCTestCase {
         let countAfter = tablesQuery.cells.count
         XCTAssert(countAfter == countBefore + 1)
     }
+    
+    func testReloadPodcast() {
+        // TODO: 
+        // do asserts later
+        let app = XCUIApplication()
+        let podcastsNavigationBar = app.navigationBars["Podcasts"]
+        let refreshButton = podcastsNavigationBar.buttons["Refresh"]
+        refreshButton.tap()
+        podcastsNavigationBar.buttons["Add"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+        
+        let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"]
+        mondayMorningPodcast91216StaticText.tap()
+        app.navigationBars["Player"].buttons["Episodes"].tap()
+        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
+        refreshButton.tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element(boundBy: 1).tables.staticTexts["Bill Burr rants about relationship advice, sports and the Illuminati."].tap()
+        mondayMorningPodcast91216StaticText.tap()
+        
+    }
 }

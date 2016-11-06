@@ -23,6 +23,7 @@ extension Podcast {
     @NSManaged var imageURL: String?
     @NSManaged var episodes: NSSet?
     @NSManaged var addedDate: Date?
+    @NSManaged var rssFeedURL: String?
 
 }
 

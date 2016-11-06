@@ -23,4 +23,15 @@ class AudioEpisodeTracker {
     static func getCurrentEpisode() -> Episode {
         return currentEpisodesInTrack[episodeIndex]
     }
+    
+    static func resetAudioTracker() {
+        audioPlayer = AVAudioPlayer()
+        currentEpisodesInTrack = [Episode]()
+        currentTimer.invalidate()
+        isPlaying = false
+        episodeIndex = -1
+        podcastIndex = -1
+        episodeTitle = ""
+        podcastTitle = ""
+    }
 }
