@@ -31,3 +31,5 @@ let play3TimesButton = "3x"
 
 
 let timeOut = TimeInterval(100)
+
+let runOnTravis = false
