@@ -17,7 +17,6 @@ class PodcastController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-  
     }
     
     fileprivate func setupView() {

@@ -60,16 +60,8 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         } else {
              cell.downloadStatus.isHidden = false
              cell.accessoryType = .none
-            
         }
-        
-    if episodesToView[indexPath.row].isDownloading {
-            cell.downloadAnimation.isHidden = false
-            cell.downloadStatus.isHidden = true
-            cell.downloadAnimation.isHidden = false
-            cell.downloadAnimation.startAnimating()
-            cell.downloadStatus.text = "Downloading ..."
-    }
+    
         return cell
         
     }

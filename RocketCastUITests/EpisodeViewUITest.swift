@@ -9,8 +9,6 @@
 import XCTest
 
 class EpisodeUITests: XCTestCase {
-    
-    fileprivate var app = XCUIApplication()
 
     override func setUp() {
         super.setUp()
@@ -32,9 +30,16 @@ class EpisodeUITests: XCTestCase {
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
         let episodeCells = XCUIApplication().tables.cells
+        
         XCTAssertEqual(2, episodeCells.count)
-        XCTAssert( app.tables.staticTexts[SamplePodcast.firstEpisode].exists)
-        XCTAssert( app.tables.staticTexts[SamplePodcast.secondEpisode].exists)
+        
+        let firstCell = episodeCells.element(boundBy: 0)
+        XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
+        XCTAssert(firstCell.staticTexts[tapToDownload].exists)
+        
+        let secondCell = episodeCells.element(boundBy: 1)
+        XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
+        XCTAssert(secondCell.staticTexts[tapToDownload].exists)
         
     }
     

@@ -26,6 +26,5 @@ extension Episode {
     @NSManaged var author:String?
     @NSManaged var podcastTitle:String?
     @NSManaged var doucmentaudioURL:String?
-    @NSManaged var isDownloading: Bool
 
 }

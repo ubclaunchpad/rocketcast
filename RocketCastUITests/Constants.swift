@@ -20,6 +20,8 @@ let EpisodeButton = "Episodes"
 let PlayerButton = "Player"
 let AddPodcastButtonOnAddURLView = "Add Podcast"
 let AddButtonFromPodcastView = "Add"
+let tapToDownload = "Tap to Download"
+let downloaded = "Downloaded"
 
 let pauseButton = "Pause"
 let playNextEpisodeButton = "next ep"

@@ -43,9 +43,14 @@ class PodcastViewUITest: XCTestCase {
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
             XCTAssertEqual(2, cells.count)
-            XCTAssert(episodeTable.staticTexts[SamplePodcast.firstEpisode].exists)
-            XCTAssert(episodeTable.staticTexts[SamplePodcast.secondEpisode].exists)
+            let firstCell = episodeTable.cells.element(boundBy: 0)
+            XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
+            XCTAssert(firstCell.staticTexts[tapToDownload].exists)
             
+            let secondCell = episodeTable.cells.element(boundBy: 1)
+            XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
+            XCTAssert(secondCell.staticTexts[tapToDownload].exists)
+                    
             app.navigationBars[EpisodeButton].buttons[PodcastButton].tap()
             i+=1
         }
