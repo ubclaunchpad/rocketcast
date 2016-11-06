@@ -30,4 +30,4 @@ let play2TimesButton = "2x"
 let play3TimesButton = "3x"
 
 
-let timeOut = TimeInterval(100)
+let timeOut = TimeInterval(300)
