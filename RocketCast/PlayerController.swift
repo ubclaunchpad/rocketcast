@@ -72,7 +72,7 @@ class PlayerController: UIViewController {
         if let shouldReloadNewEpisodeTrackList = sender as? Bool {
             if let destination = segue.destination as? EpisodeController {
                 destination.shouldReloadNewEpisodeTrack = shouldReloadNewEpisodeTrackList
-
+                
             }
         }
     }

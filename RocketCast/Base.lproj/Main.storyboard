@@ -44,6 +44,7 @@
                     <connections>
                         <segue destination="mE7-6p-V3x" kind="show" identifier="segueFromPodcastToEpisode" id="sPe-Yf-iBH"/>
                         <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromPodcastListToAddUrl" id="uDr-br-kDS"/>
+                        <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromPodcastListToPlayer" id="7qt-w5-QPL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -69,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="442.12893553223392"/>
+            <point key="canvasLocation" x="1959" y="386"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -113,5 +114,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="sPe-Yf-iBH"/>
+        <segue reference="7qt-w5-QPL"/>
     </inferredMetricsTieBreakers>
 </document>
