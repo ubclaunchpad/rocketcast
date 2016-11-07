@@ -12,20 +12,32 @@ class PlayerView: UIView {
     var viewDelegate: PlayerViewDelegate?
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var podcastTitleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var speedButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
     
     @IBAction func playButton(_ sender: AnyObject) {
-        viewDelegate?.playPodcast()
-        statusLabel.text = "Playing at 1x"
+        isPlaying = !isPlaying
     }
     
     @IBOutlet weak var slider: UISlider!
+    var sliderIsMoving = false
     
-    @IBAction func stopButton(_ sender: AnyObject) {
-        viewDelegate?.pausePodcast()
-        statusLabel.text = "Pause"
+    var isPlaying = true {
+        didSet {
+            if isPlaying {
+                playButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+                viewDelegate?.playPodcast()
+                statusLabel.text = "Playing at 1x"
+            } else {
+                playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
+                viewDelegate?.pausePodcast()
+                statusLabel.text = "Pause"
+            }
+        }
     }
     @IBAction func backButton(_ sender: AnyObject) {
         viewDelegate?.goBack()
@@ -35,26 +47,34 @@ class PlayerView: UIView {
     }
     
     @IBAction func changeAudio(_ sender: AnyObject) {
-
-        if ((slider.value) == (slider.maximumValue)) {
-            viewDelegate?.playNextEpisode()
-        } else {
+        // Smooths slider by reducing logic performed during each continuous slide
+        if sliderIsMoving {
+            // Once slider is let go
+            sliderIsMoving = false
+            slider.isContinuous = true
+            
+            guard slider.value != slider.maximumValue else {
+                viewDelegate?.playNextEpisode()
+                return
+            }
             AudioEpisodeTracker.audioPlayer.stop()
             AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
             AudioEpisodeTracker.audioPlayer.play()
+        } else {
+            // Initial slide value
+            
+            sliderIsMoving = true
+            slider.isContinuous = false
         }
         
-       
+        
     }
     
-
-    @IBAction func SegueBack(_ sender: AnyObject) {
-        viewDelegate?.segueBackToEpisodes()
-    }
     @IBAction func changeSpeed(_ sender: UIButton) {
-        viewDelegate?.changeSpeed(sender.tag)
-        statusLabel.text = "Playing at \(sender.tag)x"
+        let speed = viewDelegate?.changeSpeed()
+        speedButton.setTitle("\(speed!)x", for: .normal)
+        statusLabel.text = "Playing at \(speed!)x"
     }
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
@@ -71,6 +91,7 @@ class PlayerView: UIView {
     
     func updateUI (episode: Episode) {
         self.titleLabel.text = episode.title!
+        self.podcastTitleLabel.text = episode.podcastTitle
         self.descriptionView.text = "Simple description of Podcast"
         let url = URL(string: episode.imageURL!)
         DispatchQueue.global().async {
@@ -88,3 +109,10 @@ class PlayerView: UIView {
     
 }
 
+class MediaSlider: UISlider {
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
+        let customBounds = CGRect(origin: bounds.origin, size: CGSize(width: bounds.size.width, height: 5.0))
+        super.trackRect(forBounds: customBounds)
+        return customBounds
+    }
+}
