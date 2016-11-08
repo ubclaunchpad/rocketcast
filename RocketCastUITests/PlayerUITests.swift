@@ -188,7 +188,7 @@ class PlayerUITests: XCTestCase {
         }
     }
     
-    func testSkipForwardButton() {
+    func testSkipAndRevertButton() {
         let app = XCUIApplication()
         app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
@@ -198,9 +198,16 @@ class PlayerUITests: XCTestCase {
         // Go to the first episode
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         sleep(10)
-        var beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        let beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
         app.buttons[skipButton].tap()
-        var afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        let afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(beforeSkipSliderPos < afterSkipSliderPos)
+        
+        let beforeRevertSliderPos = app.sliders.element.normalizedSliderPosition
+        app.buttons[backButton].tap()
+        let afterRevertSliderPos = app.sliders.element.normalizedSliderPosition
+        XCTAssertTrue(beforeRevertSliderPos > afterRevertSliderPos)
+        
+        
     }
 }
