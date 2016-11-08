@@ -60,8 +60,7 @@ class EpisodeUITests: XCTestCase {
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
 
     
-        let playerNavigationBar = app.navigationBars["Player"]
-        playerNavigationBar.buttons["Episodes"].tap()
+        app.buttons["Episodes"].tap()
         app.navigationBars["Episodes"].buttons["Play"].tap()
         
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
