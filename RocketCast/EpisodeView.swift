@@ -14,6 +14,11 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
 
     lazy var episodesToView = [Episode]()
     
+    @IBOutlet weak var podcastTitle: UILabel!
+    @IBOutlet weak var podcastAuthor: UILabel!
+    @IBOutlet weak var podcastSummary: UILabel!
+    @IBOutlet weak var coverPhotoView: UIView!
+    
     @IBOutlet weak var EpisodeTable: UITableView!
     
     @IBAction func segueToPlayer(_ sender: AnyObject) {
@@ -30,6 +35,38 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         view.EpisodeTable.backgroundColor = UIColor.clear
         view.EpisodeTable.isOpaque = false
         return view
+    }
+    
+    func setupPodcastInfo() {
+        let effectsLayer = coverPhotoView.layer
+        effectsLayer.cornerRadius = 18
+        effectsLayer.shadowColor = UIColor.black.cgColor
+        effectsLayer.shadowOffset = CGSize(width: 0, height: 0)
+        effectsLayer.shadowRadius = 4
+        effectsLayer.shadowOpacity = 0.4
+        effectsLayer.shadowPath = UIBezierPath(roundedRect: coverPhotoView.bounds, cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
+        
+        let podcastEpisode = AudioEpisodeTracker.currentEpisodesInTrack.first
+        podcastTitle.text = podcastEpisode?.podcastTitle
+        podcastAuthor.text = podcastEpisode?.author
+        podcastSummary.text = podcastEpisode?.summary
+        let url = URL(string: (podcastEpisode?.imageURL)!)
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url!)
+                let coverPhoto = UIImageView()
+                coverPhoto.frame = self.coverPhotoView.bounds
+                coverPhoto.layer.cornerRadius = 18
+                coverPhoto.layer.masksToBounds = true
+                DispatchQueue.main.async {
+                    coverPhoto.image = UIImage(data: data)
+                    self.coverPhotoView.addSubview(coverPhoto)
+                }
+                
+            } catch let error as NSError{
+                Log.error("Error: " + error.debugDescription)
+            }
+        }
     }
     
     // returns an approiate number of rows depending on the section
