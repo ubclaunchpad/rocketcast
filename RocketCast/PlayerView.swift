@@ -10,11 +10,12 @@ import UIKit
 
 class PlayerView: UIView {
     var viewDelegate: PlayerViewDelegate?
-    @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var podcastTitleLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
     
+    @IBOutlet weak var coverPhotoView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
@@ -67,8 +68,6 @@ class PlayerView: UIView {
             sliderIsMoving = true
             slider.isContinuous = false
         }
-        
-        
     }
     
     @IBAction func changeSpeed(_ sender: UIButton) {
@@ -80,8 +79,18 @@ class PlayerView: UIView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PlayerView
         view.frame = frame
-        
         return view
+    }
+    
+    func setStyling() {
+        
+        let effectsLayer = coverPhotoView.layer
+        effectsLayer.cornerRadius = 14
+        effectsLayer.shadowColor = UIColor.black.cgColor
+        effectsLayer.shadowOffset = CGSize(width: 0, height: 0)
+        effectsLayer.shadowRadius = 4
+        effectsLayer.shadowOpacity = 0.4
+        effectsLayer.shadowPath = UIBezierPath(roundedRect: coverPhotoView.bounds, cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
     }
     
     func setTitles (title: String) {
@@ -97,8 +106,13 @@ class PlayerView: UIView {
         DispatchQueue.global().async {
             do {
                 let data = try Data(contentsOf: url!)
+                let coverPhoto = UIImageView()
+                coverPhoto.frame = self.coverPhotoView.bounds
+                coverPhoto.layer.cornerRadius = 14
+                coverPhoto.layer.masksToBounds = true
                 DispatchQueue.main.async {
-                    self.imageView.image = UIImage(data: data)
+                    coverPhoto.image = UIImage(data: data)
+                    self.coverPhotoView.addSubview(coverPhoto)
                 }
                 
             } catch let error as NSError{

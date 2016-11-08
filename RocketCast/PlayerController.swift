@@ -23,6 +23,7 @@ class PlayerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupView()
     }
@@ -32,6 +33,7 @@ class PlayerController: UIViewController {
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
+        self.mainView?.setStyling()
         self.mainView?.viewDelegate = self
         if (!AudioEpisodeTracker.isPlaying) {
             self.loadUpAudioEpisode()
