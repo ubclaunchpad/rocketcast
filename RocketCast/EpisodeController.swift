@@ -32,7 +32,6 @@ class EpisodeController: UIViewController {
         }
         
         mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
-        mainView?.setupPodcastInfo()
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
