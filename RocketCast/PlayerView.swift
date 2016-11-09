@@ -32,7 +32,7 @@ class PlayerView: UIView {
             if isPlaying {
                 playButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
                 viewDelegate?.playPodcast()
-                statusLabel.text = "Playing at 1x"
+                statusLabel.text = "Playing at \(Int(AudioEpisodeTracker.currentRate))x"
             } else {
                 playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
                 viewDelegate?.pausePodcast()
@@ -64,7 +64,6 @@ class PlayerView: UIView {
             AudioEpisodeTracker.audioPlayer.play()
         } else {
             // Initial slide value
-            
             sliderIsMoving = true
             slider.isContinuous = false
         }
@@ -83,7 +82,6 @@ class PlayerView: UIView {
     }
     
     func setStyling() {
-        
         let effectsLayer = coverPhotoView.layer
         effectsLayer.cornerRadius = 14
         effectsLayer.shadowColor = UIColor.black.cgColor
@@ -99,6 +97,8 @@ class PlayerView: UIView {
     }
     
     func updateUI (episode: Episode) {
+        speedButton.setTitle("\(Int(AudioEpisodeTracker.currentRate))x", for: .normal)
+        isPlaying = AudioEpisodeTracker.isPlaying
         self.titleLabel.text = episode.title!
         self.podcastTitleLabel.text = episode.podcastTitle
         self.descriptionView.text = "Simple description of Podcast"
