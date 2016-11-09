@@ -45,6 +45,7 @@ class PlayerUITests: XCTestCase {
         expectation(for: doesItExist, evaluatedWith: slider, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
+        XCUIApplication().staticTexts["Pause"].tap()
         if (runOnTravis) {
             var normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
@@ -147,5 +148,38 @@ class PlayerUITests: XCTestCase {
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
             waitForExpectations(timeout: timeOut, handler: nil)
         }
+    }
+    
+    func testSpeedRateButtonIsSaved() {
+        let app = XCUIApplication()
+        let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
+        addButton.tap()
+        let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
+        addPodcastButton.tap()
+        
+        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
+        launchpadPodcastTestingStaticText.tap()
+        
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        // Go to the first episode
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        waitForExpectations(timeout: timeOut, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        
+        XCTAssert(app.buttons[play2TimesButton].exists)
+        app.buttons[play2TimesButton].tap()
+        XCTAssert(app.buttons[play3TimesButton].exists)
+        
+        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
+        let playButton = app.navigationBars[EpisodeButton].buttons[PlayButtonFromNavigationBar]
+        playButton.tap()
+        
+        XCTAssert(app.buttons[play3TimesButton].exists)
+        
+        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
     }
 }

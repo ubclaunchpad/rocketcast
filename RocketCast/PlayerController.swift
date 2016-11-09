@@ -13,19 +13,15 @@ class PlayerController: UIViewController {
     
     var mainView: PlayerView?
     
-    enum speedRates {
-        static let single:Float = 1
-        static let double:Float = 2
-        static let triple:Float = 3
-    }
-    
-    var currentSpeed = speedRates.single
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
     
     fileprivate func setupView() {
@@ -155,6 +151,7 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.enableRate = true
             AudioEpisodeTracker.audioPlayer.play()
             AudioEpisodeTracker.isPlaying = true
+            AudioEpisodeTracker.currentRate = speedRates.single
             mainView?.isPlaying = true
             
             let audioSession = AVAudioSession.sharedInstance()
@@ -171,24 +168,24 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func changeSpeed() -> String {
-        switch currentSpeed {
+        switch AudioEpisodeTracker.currentRate {
         case speedRates.single:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.double
-            currentSpeed = speedRates.double
+            AudioEpisodeTracker.currentRate = speedRates.double
             break
 
         case speedRates.double:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.triple
-            currentSpeed = speedRates.triple
+            AudioEpisodeTracker.currentRate = speedRates.triple
             break
         case speedRates.triple:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.single
-            currentSpeed = speedRates.single
+            AudioEpisodeTracker.currentRate = speedRates.single
             break
         default:
             break
         }
-        return String(Int(currentSpeed))
+        return String(Int(AudioEpisodeTracker.currentRate))
     }
 
     func segueBackToEpisodes() {
