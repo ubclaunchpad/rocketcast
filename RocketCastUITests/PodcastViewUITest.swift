@@ -79,15 +79,13 @@ class PodcastViewUITest: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
         
-
         let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        
-        app.navigationBars["Player"].buttons["Episodes"].tap()
+        app.buttons["Episodes"].tap()
         app.navigationBars["Episodes"].buttons["Podcasts"].tap()
         app.navigationBars["Podcasts"].buttons["Play"].tap()
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]

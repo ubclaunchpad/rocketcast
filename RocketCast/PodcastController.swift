@@ -28,14 +28,15 @@ class PodcastController: UIViewController {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
         let listOfPodcasts = DatabaseController.getAllPodcasts()
-        mainView?.podcastsToView = listOfPodcasts
-     
+        mainView?.podcastsToView = listOfPodcasts     
         let updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
         let addUrlButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
 
         navigationItem.leftBarButtonItems = [updatePodcastsButton,addUrlButton ]
+
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
+        print(listOfPodcasts.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +83,7 @@ extension PodcastController:PodcastViewDelegate {
                 }
             }
         }
+        navigationItem.rightBarButtonItem = nil
         self.setupView()
         self.mainView?.podcastList.reloadData()
     }

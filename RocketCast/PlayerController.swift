@@ -13,16 +13,16 @@ class PlayerController: UIViewController {
     
     var mainView: PlayerView?
     
-    enum speedRates {
-        static let single:Float = 1
-        static let double:Float = 2
-        static let triple:Float = 3
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupView()
+    }
+    
+
+    override func viewWillAppear(_ animated: Bool) {
+        mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
     
     fileprivate func setupView() {
@@ -30,6 +30,7 @@ class PlayerController: UIViewController {
         mainView = PlayerView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
+        self.mainView?.setStyling()
         self.mainView?.viewDelegate = self
         if (!AudioEpisodeTracker.isPlaying) {
             self.loadUpAudioEpisode()
@@ -151,6 +152,8 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.enableRate = true
             AudioEpisodeTracker.audioPlayer.play()
             AudioEpisodeTracker.isPlaying = true
+            AudioEpisodeTracker.currentRate = speedRates.single
+            mainView?.isPlaying = true
             
             let audioSession = AVAudioSession.sharedInstance()
            AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
@@ -165,20 +168,25 @@ extension PlayerController: PlayerViewDelegate {
         }
     }
     
-    func changeSpeed(_ rateTag: Int) {
-        switch rateTag {
-        case Int(speedRates.single):
-            AudioEpisodeTracker.audioPlayer.rate = speedRates.single
-            break
-        case Int(speedRates.double):
+    func changeSpeed() -> String {
+        switch AudioEpisodeTracker.currentRate {
+        case speedRates.single:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.double
+            AudioEpisodeTracker.currentRate = speedRates.double
             break
-        case Int(speedRates.triple):
+
+        case speedRates.double:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.triple
+            AudioEpisodeTracker.currentRate = speedRates.triple
+            break
+        case speedRates.triple:
+            AudioEpisodeTracker.audioPlayer.rate = speedRates.single
+            AudioEpisodeTracker.currentRate = speedRates.single
             break
         default:
             break
         }
+        return String(Int(AudioEpisodeTracker.currentRate))
     }
 
     func segueBackToEpisodes() {
@@ -186,12 +194,11 @@ extension PlayerController: PlayerViewDelegate {
         performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
     }
     
-    func updateProgressView(){
-        guard !AudioEpisodeTracker.currentEpisodesInTrack.isEmpty else {
+    func updateProgressView() {
+        guard mainView?.sliderIsMoving == false else {
             return
         }
-
-        self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
+        self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: true)
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 3) ) {
             AudioEpisodeTracker.audioPlayer.stop()
@@ -215,4 +222,3 @@ extension PlayerController: PlayerViewDelegate {
         self.loadUpAudioEpisode()
     }
  }
-

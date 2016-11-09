@@ -26,6 +26,12 @@ enum  Segues {
   static let segueFromPodcastListToPlayer = "segueFromPodcastListToPlayer"
 }
 
+enum speedRates {
+    static let single:Float = 1
+    static let double:Float = 2
+    static let triple:Float = 3
+}
+
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"
