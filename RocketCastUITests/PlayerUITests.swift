@@ -45,7 +45,6 @@ class PlayerUITests: XCTestCase {
         expectation(for: doesItExist, evaluatedWith: slider, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
-        XCUIApplication().staticTexts["Pause"].tap()
         if (runOnTravis) {
             var normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
@@ -106,6 +105,10 @@ class PlayerUITests: XCTestCase {
     }
     
     func testVerifyIfNextEpisodeIsPlayedWhenSliderReachesNearMaxValue() {
+        
+        guard runOnTravis else {
+            return
+        }
         
         let app = XCUIApplication()
         let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
