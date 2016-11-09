@@ -19,6 +19,7 @@ class AudioEpisodeTracker {
     static var podcastIndex = -1
     static var podcastTitle = ""
     static var episodeTitle = ""
+    static var currentRate = speedRates.single
     
     static func getCurrentEpisode() -> Episode {
         return currentEpisodesInTrack[episodeIndex]

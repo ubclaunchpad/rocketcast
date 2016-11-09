@@ -86,7 +86,7 @@ class PodcastViewUITest: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         
-        app.navigationBars["Player"].buttons["Episodes"].tap()
+        app.buttons["Episodes"].tap()
         app.navigationBars["Episodes"].buttons["Podcasts"].tap()
         app.navigationBars["Podcasts"].buttons["Play"].tap()
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]

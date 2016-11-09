@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if args.contains("MY_UI_TEST_MODE") {
             DatabaseController.deleteAllManagedObjects()
         }
+
+        UINavigationBar.appearance().backgroundColor = UIColor.clear
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Override point for customization after application launch.
         return true
     }
