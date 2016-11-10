@@ -42,12 +42,12 @@ class PodcastViewUITest: XCTestCase {
             launchpadPodcastTestingStaticText.tap()
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
-            XCTAssertEqual(2, cells.count)
-            let firstCell = episodeTable.cells.element(boundBy: 0)
+            XCTAssertEqual(3, cells.count)
+            let firstCell = episodeTable.cells.element(boundBy: 1)
             XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
             XCTAssert(firstCell.staticTexts[tapToDownload].exists)
             
-            let secondCell = episodeTable.cells.element(boundBy: 1)
+            let secondCell = episodeTable.cells.element(boundBy: 2)
             XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
             XCTAssert(secondCell.staticTexts[tapToDownload].exists)
                     
@@ -79,7 +79,7 @@ class PodcastViewUITest: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
         
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()

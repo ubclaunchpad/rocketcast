@@ -15,6 +15,8 @@ protocol EpisodeViewTableViewCellDelegate{
 class EpisodeViewTableViewCell: UITableViewCell {
     @IBOutlet weak var episodeHeader: UILabel!
     @IBOutlet weak var downloadAnimation: UIActivityIndicatorView!
+    @IBOutlet weak var episodeInformation: UILabel!
+    @IBOutlet weak var episodeSummary: UILabel!
     
     @IBOutlet weak var downloadStatus: UILabel!
     var delegate: EpisodeViewTableViewCellDelegate?
@@ -26,15 +28,6 @@ class EpisodeViewTableViewCell: UITableViewCell {
     
     func setEpisodeHeaderText(_ setHeader: NSMutableString) {
         episodeHeader.text = setHeader as String
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if !selected {
-            episodeHeader.textColor = UIColor.black
-        } else {
-            episodeHeader.textColor = UIColor.red
-        }
-        
     }
 }
 
