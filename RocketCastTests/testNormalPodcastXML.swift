@@ -28,7 +28,7 @@ let expectedEpisode1:[String:String] =
     
     
  let expectedEpisode2:[String:String] =
-        [ "title" : "Photon",
+        [ "title" : "Photon's Dog",
           "description": "lights",
           "author" : "Kelvin Chan",
           "date": "2016-09-21 19:40:49 +0000",

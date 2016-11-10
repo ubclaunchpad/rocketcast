@@ -20,6 +20,7 @@ class PlayerController: UIViewController {
         setupView()
     }
     
+
     override func viewWillAppear(_ animated: Bool) {
         mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
@@ -58,7 +59,15 @@ class PlayerController: UIViewController {
                 return
             }
             
-            let episode = DatabaseController.getEpisode((AudioEpisodeTracker.getCurrentEpisode().title)!)
+            guard AudioEpisodeTracker.episodeIndex != -1 else {
+                return
+            }
+            
+            guard let episodeTitle = AudioEpisodeTracker.getCurrentEpisode().title else {
+                return
+            }
+            
+            let episode = DatabaseController.getEpisode(episodeTitle)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
             DatabaseController.saveContext()
             DispatchQueue.main.async {

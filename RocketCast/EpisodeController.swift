@@ -84,22 +84,28 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         }
         episodeCell.downloadAnimation.isHidden = false
         episodeCell.downloadAnimation.startAnimating()
+        Log.info("Starting to downloading")
         episodeCell.downloadStatus.text = "Downloading ..."
         ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
             
             guard downloadedPodcast != nil  else {
                 DispatchQueue.main.async {
-                    print("DOWNLOAD ERRRRROOOOORRRRRRRRR")
+                    Log.info("DOWNLOAD ERRRRROOOOORRRRRRRRR")
                     episodeCell.downloadAnimation.isHidden = true
                     episodeCell.downloadStatus.text = "Failed To Download"
                 }
                 return
             }
             
-            let episode = DatabaseController.getEpisode((selectedEpisode.title)!)
+            guard let episodeTitle = selectedEpisode.title else {
+                Log.info("Empty episode title. The podcast got deleted")
+                return
+            }
+            
+            let episode = DatabaseController.getEpisode(episodeTitle as String)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
             DatabaseController.saveContext()
-            print("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()
                 episodeCell.downloadStatus.text = "Downloaded"

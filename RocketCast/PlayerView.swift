@@ -62,6 +62,7 @@ class PlayerView: UIView {
             AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
             AudioEpisodeTracker.audioPlayer.play()
+
         } else {
             // Initial slide value
             sliderIsMoving = true

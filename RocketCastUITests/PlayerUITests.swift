@@ -46,7 +46,7 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
         if (runOnTravis) {
-            var normalSliderPositionValue =  app.sliders["1%"]
+            let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
             waitForExpectations(timeout: timeOut, handler: nil)
@@ -140,7 +140,6 @@ class PlayerUITests: XCTestCase {
         app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
         let successAlert = app.alerts["Success"]
         XCTAssertFalse(successAlert.exists)
-        
         expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
         successAlert.buttons["Ok"].tap()

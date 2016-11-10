@@ -13,4 +13,5 @@ protocol PodcastViewDelegate {
     func segueToAddUrl()
     func segueToPlayer()
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
+    func updateAllPodcasts()
 }
