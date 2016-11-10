@@ -51,7 +51,7 @@ class PodcastViewUITest: XCTestCase {
             XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
             XCTAssert(secondCell.staticTexts[tapToDownload].exists)
                     
-            app.navigationBars[EpisodeButton].buttons[PodcastButton].tap()
+            app.buttons[PodcastButton].tap()
             i+=1
         }
     }
@@ -86,10 +86,11 @@ class PodcastViewUITest: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         
-        app.buttons["Episodes"].tap()
-        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
-        app.navigationBars["Podcasts"].buttons["Play"].tap()
+        app.buttons["Back"].tap()
+        app.buttons["Podcasts"].tap()
+        app.buttons["Play"].tap()
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
         XCTAssert(mondayMorningPodcast91216StaticText.exists)
     }
+
 }

@@ -39,9 +39,10 @@ class RocketCastUITests: XCTestCase {
         launchpadPodcastTestingStaticText.tap()
 
         let episodeCells = XCUIApplication().tables.cells
-        let firstCell = episodeCells.element(boundBy: 0)
+        print(episodeCells.count)
+        let firstCell = episodeCells.element(boundBy: 1)
+        print(firstCell)
         sleep(1)
-        XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
         XCTAssert(firstCell.staticTexts[tapToDownload].exists)
         
         let downloadingLabel = firstCell.staticTexts[downloaded]

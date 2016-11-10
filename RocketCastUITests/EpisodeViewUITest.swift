@@ -31,13 +31,13 @@ class EpisodeUITests: XCTestCase {
         app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
         let episodeCells = XCUIApplication().tables.cells
         
-        XCTAssertEqual(2, episodeCells.count)
+        XCTAssertEqual(3, episodeCells.count)
         
-        let firstCell = episodeCells.element(boundBy: 0)
+        let firstCell = episodeCells.element(boundBy: 1)
         XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
         XCTAssert(firstCell.staticTexts[tapToDownload].exists)
         
-        let secondCell = episodeCells.element(boundBy: 1)
+        let secondCell = episodeCells.element(boundBy: 2)
         XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
         XCTAssert(secondCell.staticTexts[tapToDownload].exists)
         
@@ -52,7 +52,7 @@ class EpisodeUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
 
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
@@ -60,8 +60,8 @@ class EpisodeUITests: XCTestCase {
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
 
     
-        app.buttons["Episodes"].tap()
-        app.navigationBars["Episodes"].buttons["Play"].tap()
+        app.buttons["Back"].tap()
+        app.buttons["Play"].tap()
         
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
         XCTAssert(mondayMorningPodcast91216StaticText.exists)
