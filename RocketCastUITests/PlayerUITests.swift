@@ -33,7 +33,7 @@ class PlayerUITests: XCTestCase {
         
         tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
         // please wait for awhile
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -87,7 +87,7 @@ class PlayerUITests: XCTestCase {
         
         let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
         // please wait for awhile
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
@@ -122,7 +122,7 @@ class PlayerUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -165,7 +165,7 @@ class PlayerUITests: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -176,12 +176,12 @@ class PlayerUITests: XCTestCase {
         app.buttons[play2TimesButton].tap()
         XCTAssert(app.buttons[play3TimesButton].exists)
         
-        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
-        let playButton = app.navigationBars[EpisodeButton].buttons[PlayButtonFromNavigationBar]
+        app.buttons["Back"].tap()
+        let playButton = app.buttons[PlayButtonFromNavigationBar]
         playButton.tap()
         
         XCTAssert(app.buttons[play3TimesButton].exists)
         
-        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
+        app.buttons["Back"].tap()
     }
 }

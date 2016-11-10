@@ -32,6 +32,12 @@ enum speedRates {
     static let triple:Float = 3
 }
 
+enum PodcastInfoStrings {
+    static let singularHour = "hour"
+    static let pluralHour = "hours"
+    static let minute = "min"
+}
+
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"

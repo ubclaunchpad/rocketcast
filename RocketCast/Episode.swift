@@ -13,5 +13,22 @@ import CoreData
 class Episode: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
+    func getDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateFormat = "MMM d"
+        return dateFormatter.string(from: self.date!)
+    }
     
+    func getDuration() -> String {
+        var timeArray = self.duration?.components(separatedBy: ":")
+        let digitOne = Int((timeArray?[0])!)!
+        let digitTwo = Int((timeArray?[1])!)!
+        if timeArray?.count == 2 {
+            return "\(timeArray![0]) \(PodcastInfoStrings.minute)"
+        } else if timeArray?.count == 3 {
+            return "\(digitOne) \(digitOne > 1 ? PodcastInfoStrings.pluralHour : PodcastInfoStrings.singularHour) \(digitTwo) \(PodcastInfoStrings.minute)"
+        }
+        return ""
+    }
 }
