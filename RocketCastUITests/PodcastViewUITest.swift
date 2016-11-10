@@ -42,16 +42,16 @@ class PodcastViewUITest: XCTestCase {
             launchpadPodcastTestingStaticText.tap()
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
-            XCTAssertEqual(2, cells.count)
-            let firstCell = episodeTable.cells.element(boundBy: 0)
+            XCTAssertEqual(3, cells.count)
+            let firstCell = episodeTable.cells.element(boundBy: 1)
             XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
             XCTAssert(firstCell.staticTexts[tapToDownload].exists)
             
-            let secondCell = episodeTable.cells.element(boundBy: 1)
+            let secondCell = episodeTable.cells.element(boundBy: 2)
             XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
             XCTAssert(secondCell.staticTexts[tapToDownload].exists)
                     
-            app.navigationBars[EpisodeButton].buttons[PodcastButton].tap()
+            app.buttons[PodcastButton].tap()
             i+=1
         }
     }
@@ -79,17 +79,18 @@ class PodcastViewUITest: XCTestCase {
         let tablesQuery = app.tables
         tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
         
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
         
-        app.buttons["Episodes"].tap()
-        app.navigationBars["Episodes"].buttons["Podcasts"].tap()
-        app.navigationBars["Podcasts"].buttons["Play"].tap()
+        app.buttons["Back"].tap()
+        app.buttons["Podcasts"].tap()
+        app.buttons["Play"].tap()
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
         XCTAssert(mondayMorningPodcast91216StaticText.exists)
     }
+
 }

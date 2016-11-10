@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,27 +15,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BC3-Mm-Qpj">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cyX-2c-NhM">
+                    <rect key="frame" x="0.0" y="5" width="375" height="662"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="shX-bq-jX4">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="662"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </tableView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="shX-bq-jX4" secondAttribute="trailing" id="16W-SZ-kgK"/>
-                        <constraint firstItem="shX-bq-jX4" firstAttribute="leading" secondItem="BC3-Mm-Qpj" secondAttribute="leading" id="90a-8W-ic6"/>
-                        <constraint firstAttribute="bottom" secondItem="shX-bq-jX4" secondAttribute="bottom" id="caE-OM-z7M"/>
-                        <constraint firstItem="shX-bq-jX4" firstAttribute="top" secondItem="BC3-Mm-Qpj" secondAttribute="top" id="xM4-0s-Vur"/>
-                    </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="BC3-Mm-Qpj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="08r-Ba-yVi"/>
-                <constraint firstAttribute="bottom" secondItem="BC3-Mm-Qpj" secondAttribute="bottom" id="HbX-NY-bbc"/>
-                <constraint firstItem="BC3-Mm-Qpj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cE2-vD-4t9"/>
-                <constraint firstAttribute="trailing" secondItem="BC3-Mm-Qpj" secondAttribute="trailing" id="mCw-nd-xM4"/>
+                <constraint firstAttribute="trailing" secondItem="cyX-2c-NhM" secondAttribute="trailing" id="VLW-W2-AZ4"/>
+                <constraint firstAttribute="bottom" secondItem="cyX-2c-NhM" secondAttribute="bottom" id="bp5-fs-6j9"/>
+                <constraint firstItem="cyX-2c-NhM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cSy-sF-h5T"/>
+                <constraint firstItem="cyX-2c-NhM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="vga-f8-LWS"/>
             </constraints>
             <connections>
                 <outlet property="EpisodeTable" destination="shX-bq-jX4" id="V5O-R9-kmz"/>
