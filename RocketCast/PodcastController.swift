@@ -78,15 +78,15 @@ extension PodcastController:PodcastViewDelegate {
         while (!currentPodcasts.isEmpty) {
             if let podcast = currentPodcasts.popLast() {
                 if let rssFeedURL = podcast.rssFeedURL {
+                    
+                    DatabaseController.deletePodcast(podcastTitle: podcast.title!)
                     XMLParser(url:rssFeedURL)
-                    if (XMLParser.didItSucceed()) {
-                        DatabaseController.deletePodcast(podcastTitle: podcast.title!)
-                    }
                 }
             }
         }
         navigationItem.rightBarButtonItem = nil
-        self.setupView()
+        let listOfPodcasts = DatabaseController.getAllPodcasts()
+        mainView?.podcastsToView = listOfPodcasts
         self.mainView?.podcastList.reloadData()
     }
 }
