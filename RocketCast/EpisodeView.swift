@@ -30,6 +30,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         view.EpisodeTable.separatorColor = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
         view.EpisodeTable.backgroundColor = UIColor.clear
         view.EpisodeTable.isOpaque = false
+        view.EpisodeTable.tableFooterView = UIView(frame: CGRect.zero)
         return view
     }
     
@@ -66,13 +67,19 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
             let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
             
+            let episode = episodesToView[indexPath.row]
+            
             cell.backgroundColor = UIColor.clear
-            cell.episodeHeader.text = episodesToView[indexPath.row].title
+            cell.episodeHeader.text = episode.title
+            cell.episodeInformation.text = "\(episode.getDate()) - \(episode.getDuration())"
+            cell.episodeSummary.text = episode.summary
             cell.tag = (indexPath as NSIndexPath).row
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-            if episodesToView[indexPath.row].doucmentaudioURL != nil {
+            cell.tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
+            if episode.doucmentaudioURL != nil {
                 cell.downloadAnimation.isHidden = true
                 cell.accessoryType = .checkmark
+                
                 cell.downloadStatus.isHidden = true
             } else {
                 cell.downloadStatus.isHidden = false
@@ -86,7 +93,11 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        if indexPath.section == 0 {
+            return UITableViewAutomaticDimension
+        } else {
+            return 94
+        }
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

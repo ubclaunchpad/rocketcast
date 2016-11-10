@@ -16,6 +16,12 @@ class EpisodeController: UIViewController {
     var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
     
+    override func viewDidLoad() {
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = ""
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if AudioEpisodeTracker.isPlaying {
