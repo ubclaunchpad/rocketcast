@@ -94,6 +94,10 @@ class PodcastViewUITest: XCTestCase {
     
     func testReloadPodcast () {
         
+        guard runOnTravis else {
+            return
+        }
+        
         let app = XCUIApplication()
         let podcastsNavigationBar = app.navigationBars["Podcasts"]
         
