@@ -40,33 +40,48 @@ UICollectionViewDataSource {
         
         view.podcastView.delegate = view
         view.podcastView.dataSource = view
+        view.podcastView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return view
     }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let podcastCell = UINib(nibName: "PodcastViewCollectionViewCell", bundle: nil)
-        podcastView.register(podcastCell, forCellWithReuseIdentifier: "podcastCell")
-        
-        if let cell = self.podcastView.dequeueReusableCell(withReuseIdentifier: "podcastCell", for: indexPath) as? PodcastViewCollectionViewCell {
-            cell.setStyling()
-            cell.podcast = podcastsToView[indexPath.row]
-            return cell
+        if indexPath.section == 0 {
+            let podcastCell = UINib(nibName: "PodcastViewCollectionViewCell", bundle: nil)
+            podcastView.register(podcastCell, forCellWithReuseIdentifier: "podcastCell")
+            
+            if let cell = self.podcastView.dequeueReusableCell(withReuseIdentifier: "podcastCell", for: indexPath) as? PodcastViewCollectionViewCell {
+                cell.setStyling()
+                cell.podcast = podcastsToView[0]
+                return cell
+            }
+            return UICollectionViewCell()
+            
+        } else if indexPath.section == 1 {
+            
         }
-        return UICollectionViewCell()
-
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return podcastsToView.count
+        return section == 0 ? 1 : 3
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSize(width: self.podcastView.frame.width / 2.6, height: self.podcastView.frame.width / 2.6 + 39)
+        return CGSize(width: self.podcastView.frame.width * 0.45, height: self.podcastView.frame.width / 2 + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section:Int) -> UIEdgeInsets {
+        return section == 0 ? UIEdgeInsets.zero : UIEdgeInsetsMake(0, 15.0, 0, 15.0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,7 +93,7 @@ UICollectionViewDataSource {
             cell.backgroundColor = UIColor.clear
             cell.tag = (indexPath as NSIndexPath).row
             cell.selectionStyle = UITableViewCellSelectionStyle.none
-
+            
             return cell
             
         } else {
@@ -90,7 +105,7 @@ UICollectionViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  podcastsToView.count
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -103,5 +118,5 @@ UICollectionViewDataSource {
         viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
         
     }
-
+    
 }
