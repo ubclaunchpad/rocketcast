@@ -32,23 +32,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="frW-cw-SM8">
-                                        <rect key="frame" x="0.0" y="56" width="142.5" height="20"/>
+                                        <rect key="frame" x="0.0" y="56" width="119" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zP-eL-UOP">
-                                                <rect key="frame" x="0.0" y="0.0" width="31.5" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MWe-Gy-G4L">
-                                                <rect key="frame" x="36.5" y="0.0" width="20" height="20"/>
+                                                <rect key="frame" x="35" y="0.0" width="0.0" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="C7p-J3-ROP"/>
                                                     <constraint firstAttribute="height" constant="20" id="cYz-Jl-sDH"/>
                                                 </constraints>
                                             </activityIndicatorView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="450" ambiguous="YES" text="Tap to Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaN-2Q-2vL">
-                                                <rect key="frame" x="61.5" y="0.0" width="81" height="20"/>
+                                                <rect key="frame" x="38" y="0.0" width="81" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>

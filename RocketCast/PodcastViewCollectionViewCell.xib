@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="187" height="225"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0Dl-r1-hrU">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0Dl-r1-hrU">
                         <rect key="frame" x="3" y="2" width="180" height="221"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoQ-Qv-aGv">
-                                <rect key="frame" x="20" y="0.0" width="140" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="0et-Ee-Iw7"/>
@@ -30,7 +30,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-80-KRs">
-                                <rect key="frame" x="20" y="144" width="140" height="73"/>
+                                <rect key="frame" x="0.0" y="144" width="140" height="73"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ve-Kn-Q2C">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="55"/>
@@ -56,10 +56,10 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="0Dl-r1-hrU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="Hhb-Oa-7IP"/>
+                <constraint firstItem="0Dl-r1-hrU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Hhb-Oa-7IP"/>
                 <constraint firstAttribute="bottom" secondItem="0Dl-r1-hrU" secondAttribute="bottom" id="WOw-UB-Agb"/>
                 <constraint firstItem="0Dl-r1-hrU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="lP0-z0-Tp1"/>
-                <constraint firstAttribute="trailing" secondItem="0Dl-r1-hrU" secondAttribute="trailing" constant="4" id="psC-De-5RM"/>
+                <constraint firstAttribute="trailing" secondItem="0Dl-r1-hrU" secondAttribute="trailing" constant="8" id="psC-De-5RM"/>
             </constraints>
             <size key="customSize" width="187" height="225"/>
             <connections>

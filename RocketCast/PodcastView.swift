@@ -40,7 +40,7 @@ UICollectionViewDataSource {
         
         view.podcastView.delegate = view
         view.podcastView.dataSource = view
-        view.podcastView.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        view.podcastView.contentInset = UIEdgeInsets(top: 0, left: 12, bottom: 10, right: 22)
         return view
     }
     
@@ -80,7 +80,7 @@ UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return indexPath.section == 0 ? CGSize(width: self.podcastView.frame.width, height: 50) : CGSize(width: self.podcastView.frame.width * 0.45, height: 190)
+        return indexPath.section == 0 ? CGSize(width: self.podcastView.frame.width, height: 50) : CGSize(width: 150, height: 190)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
