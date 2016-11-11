@@ -12,6 +12,8 @@
 		5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246CF081D84A6FF00ABF027 /* DownloadTests.swift */; };
 		526AF93C1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526AF93A1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.swift */; };
 		526AF93D1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526AF93B1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.xib */; };
+		526AF9401DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526AF93E1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift */; };
+		526AF9411DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526AF93F1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib */; };
 		527876271DB2DC790001EDFB /* PlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527876261DB2DC790001EDFB /* PlayerUITests.swift */; };
 		84C603201D972E5A009C73A7 /* EpisodeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */; };
 		84C603221D972E9E009C73A7 /* EpisodeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */; };
@@ -89,6 +91,8 @@
 		5246CF081D84A6FF00ABF027 /* DownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
 		526AF93A1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		526AF93B1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastViewCollectionViewCell.xib; sourceTree = "<group>"; };
+		526AF93E1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastsTitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		526AF93F1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastsTitleCollectionViewCell.xib; sourceTree = "<group>"; };
 		527876261DB2DC790001EDFB /* PlayerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerUITests.swift; sourceTree = "<group>"; };
 		84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeViewTableViewCell.xib; sourceTree = "<group>"; };
 		84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewTableViewCell.swift; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				C80DA31C1D77E1AA0089A678 /* PodcastView.xib */,
+				526AF93E1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift */,
+				526AF93F1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib */,
 				526AF93A1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.swift */,
 				526AF93B1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.xib */,
 				A797FF0A1D8DF42000D649EC /* PodcastViewTableViewCell.swift */,
@@ -495,6 +501,7 @@
 				D0B6914E1D85D7CC00C3366D /* testNormalPodcastXML.xml in Resources */,
 				84C603201D972E5A009C73A7 /* EpisodeViewTableViewCell.xib in Resources */,
 				C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */,
+				526AF9411DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib in Resources */,
 				A797FF0D1D8DF42000D649EC /* PodcastViewTableViewCell.xib in Resources */,
 				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
 				C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */,
@@ -530,6 +537,7 @@
 			files = (
 				D0075F581D93815A00DBAF58 /* Episode+CoreDataProperties.swift in Sources */,
 				C80DA32E1D77E86C0089A678 /* PlayerViewDelegate.swift in Sources */,
+				526AF9401DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift in Sources */,
 				C80FAE771D72376600C806C1 /* RocketCast.xcdatamodeld in Sources */,
 				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
 				A797FF0C1D8DF42000D649EC /* PodcastViewTableViewCell.swift in Sources */,
