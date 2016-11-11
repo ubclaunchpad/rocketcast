@@ -24,6 +24,7 @@ enum  Segues {
   static let segueFromAddUrlToPodcastList = "segueFromAddUrlToPodcastList"
   static let segueFromPodcastListToAddUrl = "segueFromPodcastListToAddUrl"
   static let segueFromPodcastListToPlayer = "segueFromPodcastListToPlayer"
+  static let segueToItuneWeb = "segueToItuneWeb"
 }
 
 enum speedRates {

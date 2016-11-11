@@ -110,7 +110,5 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         }
         
     }
-    
-    
 }
 

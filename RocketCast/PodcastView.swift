@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
     var viewDelegate: PodcastViewDelegate?
     

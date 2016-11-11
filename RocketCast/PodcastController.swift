@@ -33,8 +33,9 @@ class PodcastController: UIViewController {
         mainView?.podcastsToView = listOfPodcasts     
         let updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
         let addUrlButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
+        let goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(segueToItuneWeb))
 
-        navigationItem.leftBarButtonItems = [updatePodcastsButton,addUrlButton ]
+        navigationItem.leftBarButtonItems = [updatePodcastsButton, addUrlButton, goToItuneWebButton]
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
@@ -88,5 +89,9 @@ extension PodcastController:PodcastViewDelegate {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         self.mainView?.podcastList.reloadData()
+    }
+    
+    func segueToItuneWeb() {
+        performSegue(withIdentifier: Segues.segueToItuneWeb, sender: self)
     }
 }
