@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 
 
-class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
+class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate,
+UICollectionViewDataSource {
     var viewDelegate: PodcastViewDelegate?
     
+    @IBOutlet weak var podcastView: UICollectionView!
     @IBOutlet weak var viewTitle: UILabel!
     
     @IBOutlet weak var podcastList: UITableView!
@@ -35,7 +37,36 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         view.podcastList.separatorStyle = UITableViewCellSeparatorStyle.none
         view.podcastList.backgroundColor = UIColor.clear
         view.podcastList.isOpaque = false
+        
+        view.podcastView.delegate = view
+        view.podcastView.dataSource = view
         return view
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let podcastCell = UINib(nibName: "PodcastViewCollectionViewCell", bundle: nil)
+        podcastView.register(podcastCell, forCellWithReuseIdentifier: "podcastCell")
+        
+        if let cell = self.podcastView.dequeueReusableCell(withReuseIdentifier: "podcastCell", for: indexPath) as? PodcastViewCollectionViewCell {
+            cell.setStyling()
+            cell.podcast = podcastsToView[indexPath.row]
+            return cell
+        }
+        return UICollectionViewCell()
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return podcastsToView.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSize(width: self.podcastView.frame.width / 2.6, height: self.podcastView.frame.width / 2.6 + 39)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

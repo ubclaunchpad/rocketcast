@@ -1,40 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PodcastView" customModule="RocketCast" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mXB-Kk-hfc">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-op-A9p">
+                    <rect key="frame" x="0.0" y="10" width="375" height="647"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-op-A9p">
-                            <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-3r-6mG">
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </tableView>
-                            </subviews>
-                        </stackView>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-3r-6mG">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
                     </subviews>
                 </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-YV-v6A">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ld2-3e-YZM">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="mXB-Kk-hfc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5Sg-gX-EVW"/>
-                <constraint firstItem="mXB-Kk-hfc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="BWu-uM-l7E"/>
-                <constraint firstItem="mXB-Kk-hfc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="G8Q-Cq-4rB"/>
-                <constraint firstAttribute="trailing" secondItem="mXB-Kk-hfc" secondAttribute="trailing" id="URL-F3-Lgb"/>
-                <constraint firstAttribute="bottom" secondItem="mXB-Kk-hfc" secondAttribute="bottom" id="dkM-cj-FVx"/>
+                <constraint firstItem="0jZ-YV-v6A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0ef-Mx-KyX"/>
+                <constraint firstAttribute="bottom" secondItem="0jZ-YV-v6A" secondAttribute="bottom" id="5ag-Cx-Pd4"/>
+                <constraint firstAttribute="trailing" secondItem="0jZ-YV-v6A" secondAttribute="trailing" id="FWW-kz-6fl"/>
+                <constraint firstItem="0jZ-YV-v6A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZU6-IA-Jmw"/>
             </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="Gpg-op-A9p"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="podcastList" destination="QaG-3r-6mG" id="jks-dA-New"/>
+                <outlet property="podcastView" destination="0jZ-YV-v6A" id="92A-hB-z6t"/>
             </connections>
             <point key="canvasLocation" x="611" y="-251"/>
         </view>
