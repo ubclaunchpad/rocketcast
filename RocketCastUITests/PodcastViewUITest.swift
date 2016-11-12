@@ -94,7 +94,7 @@ class PodcastViewUITest: XCTestCase {
     
     func testReloadPodcast () {
         
-        guard runOnTravis else {
+        guard runForTravis else {
             return
         }
         
