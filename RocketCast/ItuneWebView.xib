@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ItuneWebView" customModule="RocketCast" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QdQ-6h-cVF">
+                    <rect key="frame" x="0.0" y="106" width="375" height="552"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="375" id="acn-cN-Tp0"/>
+                        <constraint firstAttribute="height" constant="552" id="dJQ-5e-ovW"/>
+                    </constraints>
+                </tableView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="e7B-HT-Qjw">
+                    <rect key="frame" x="0.0" y="62" width="375" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e7B-HT-Qjw" firstAttribute="trailing" secondItem="QdQ-6h-cVF" secondAttribute="trailing" id="HkB-xu-Cko"/>
+                <constraint firstItem="QdQ-6h-cVF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UF7-x4-Epp"/>
+                <constraint firstItem="QdQ-6h-cVF" firstAttribute="top" secondItem="e7B-HT-Qjw" secondAttribute="bottom" id="cT2-AE-swF"/>
+                <constraint firstAttribute="bottom" secondItem="QdQ-6h-cVF" secondAttribute="bottom" constant="9" id="nke-ze-YWz"/>
+                <constraint firstItem="e7B-HT-Qjw" firstAttribute="leading" secondItem="QdQ-6h-cVF" secondAttribute="leading" id="tdm-Qm-1K8"/>
+            </constraints>
+            <connections>
+                <outlet property="podcastTable" destination="QdQ-6h-cVF" id="QJZ-Lx-kEo"/>
+                <outlet property="searchBar" destination="e7B-HT-Qjw" id="199-Xf-ZcH"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="63.5"/>
+        </view>
+    </objects>
+</document>

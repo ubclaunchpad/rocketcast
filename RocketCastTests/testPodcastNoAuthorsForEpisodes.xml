@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <channel>
+        <atom:link href="http://billburr.libsyn.com/rss" rel="self" type="application/rss+xml"/>
+        <title>Monday Morning Podcast</title>
+        <pubDate>Mon, 12 Sep 2016 05:05:59 +0000</pubDate>
+        <lastBuildDate>Mon, 12 Sep 2016 05:08:40 +0000</lastBuildDate>
+        <generator>Libsyn WebEngine 2.0</generator>
+        <link>http://mmpodcast.libsyn.com</link>
+        <language>en</language>
+        <copyright>
+            <![CDATA[Bill BUrr]]>
+        </copyright>
+        <docs>http://mmpodcast.libsyn.com</docs>
+        <itunes:summary>
+            <![CDATA[Bill Burr rants about relationship advice, sports and the Illuminati.]]>
+        </itunes:summary>
+        <image>
+            <url>http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg</url>
+            <title>Monday Morning Podcast</title>
+            <link>
+                <![CDATA[http://mmpodcast.libsyn.com]]>
+            </link>
+        </image>
+        <itunes:author>Bill Burr</itunes:author>
+        <itunes:category text="Comedy"/>
+        <itunes:image href="http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg" />
+        <itunes:explicit>no</itunes:explicit>
+        <description>
+            <![CDATA[Bill Burr rants about relationship advice, sports and the Illuminati.]]>
+        </description>
+        <itunes:subtitle>
+            <![CDATA[Bill Burr rants about relationship advice, sports and the Illuminati.]]>
+        </itunes:subtitle>
+        <item>
+            <title>Monday Morning Podcast 9-12-16</title>
+            <pubDate>Mon, 13 Sep 2016 05:05:59 +0000</pubDate>
+            <guid isPermaLink="false">
+                <![CDATA[ccbfb4462f68d1f9319947d76a214e2b]]>
+            </guid>
+            <link>
+                <![CDATA[http://billburr.libsyn.com/monday-morning-podcast-9-12-16]]>
+            </link>
+            <itunes:image href="http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg" />
+            <description>
+                <![CDATA[<p>Bill rambles about football, strip clubs and quitting on stage.</p>]]>
+            </description>
+            <enclosure length="61333300" type="audio/mpeg" url="http://traffic.libsyn.com/billburr/MMPC_9-12-16.mp3" />
+            <itunes:duration>01:03:52</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:keywords />
+            <itunes:subtitle>
+                <![CDATA[Bill rambles about football, strip clubs and quitting on stage.]]>
+            </itunes:subtitle>
+        </item>
+        <item>
+            <title>Thursday Afternoon Monday Morning Podcast 9-8-16</title>
+            <pubDate>Thu, 08 Sep 2016 21:28:15 +0000</pubDate>
+            <guid isPermaLink="false">
+                <![CDATA[ddf1a7c44748312f62f379227022b6a6]]>
+            </guid>
+            <link>
+                <![CDATA[http://billburr.libsyn.com/thursday-afternoon-monday-morning-podcast-9-8-16]]>
+            </link>
+            <itunes:image href="http://static.libsyn.com/p/assets/4/7/9/b/479b005a1d9a6fe6/Burr_image-062.jpg" />
+            <description>
+                <![CDATA[<p>Bill rambles about Sully, The East Side Comedy Club and having 9 kids.</p>]]>
+            </description>
+            <enclosure length="65803124" type="audio/mpeg" url="http://traffic.libsyn.com/billburr/TAMMP_9-8-16.mp3" />
+            <itunes:duration>01:07:59</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:keywords />
+            <itunes:subtitle>
+                <![CDATA[Bill rambles about Sully, The East Side Comedy Club and having 9 kids.]]>
+            </itunes:subtitle>
+        </item>
+    </channel>
+</rss>
+
