@@ -13,6 +13,8 @@ class PlayerController: UIViewController {
     
     var mainView: PlayerView?
     
+    var alertController: UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
@@ -116,10 +118,32 @@ class PlayerController: UIViewController {
             }
         }
     }
+
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
+    func openDeleteModal() {
+        self.alertController = UIAlertController(title: "Delete Episode", message: "Are you sure you want to delete this Episode?", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            print("Deleted Episode")
+            self.closeDeleteModal()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Did not Delete Episode")
+            self.closeDeleteModal()
+        }
+        self.alertController?.addAction(DestructiveAction)
+        self.alertController?.addAction(cancelAction)
+        self.present(self.alertController!, animated: true, completion: nil)
+    }
+    
+    func closeDeleteModal() {
+        if (self.alertController != nil) {
+            self.alertController?.dismiss(animated: true)
+        }
+    }
+    
     func playPodcast() {
         if !AudioEpisodeTracker.audioPlayer.isPlaying {
           print(AudioEpisodeTracker.audioPlayer.currentTime)
