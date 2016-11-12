@@ -22,10 +22,10 @@ class XMLParser: NSObject {
     init(url: String) {
         super.init()
         // in production this code will be uncommented
-        guard url == testRSSFeed || url.lowercased().contains("rss") || url.lowercased().contains("feed") else {
-            XMLParser.success = false
-            return
-        }
+//        guard url == testRSSFeed || url.lowercased().contains("rss") || url.lowercased().contains("feed") else {
+//            XMLParser.success = false
+//            return
+//        }
         
         if let data = try? Data(contentsOf: URL(string: url)!) {
             podcast = Podcast(context: DatabaseController.getContext())
