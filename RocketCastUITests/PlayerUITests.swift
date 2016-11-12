@@ -206,14 +206,22 @@ class PlayerUITests: XCTestCase {
         let afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(beforeSkipSliderPos < afterSkipSliderPos)
         
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.40)
         let beforeRevertSliderPos = app.sliders.element.normalizedSliderPosition
+        app.buttons[backButton].tap()
+        app.buttons[backButton].tap()
         app.buttons[backButton].tap()
         let afterRevertSliderPos = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(beforeRevertSliderPos > afterRevertSliderPos)
-        
-        
-        
-        
+
+        // Go to near the end
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
+        let successAlert = app.alerts["Success"]
+        XCTAssertFalse(successAlert.exists)
+        expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        successAlert.buttons["Ok"].tap()
+        XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
     }
     
 }
