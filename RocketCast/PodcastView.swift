@@ -26,10 +26,7 @@ UICollectionViewDataSource {
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
         viewDelegate?.segueToItuneWeb()
     }
-    @IBAction func segueButton(_ sender: AnyObject) {
-        viewDelegate?.segueToEpisode()
-    }
-    
+
     class func instancefromNib(_ frame: CGRect) -> PodcastView {
         let view = UINib(nibName: "PodcastView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PodcastView

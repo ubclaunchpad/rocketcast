@@ -14,6 +14,8 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastAuthor: UILabel!
     @IBOutlet weak var podcastSummary: UILabel!
     @IBOutlet weak var coverPhotoView: UIView!
+    var listOfEpisodes = [Episode]()
+    
     
     func setupPodcastInfo() {
         let effectsLayer = coverPhotoView.layer
@@ -24,7 +26,7 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         effectsLayer.shadowOpacity = 0.4
         effectsLayer.shadowPath = UIBezierPath(roundedRect: coverPhotoView.bounds, cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
         
-        let podcastEpisode = AudioEpisodeTracker.currentEpisodesInTrack.first
+        let podcastEpisode = listOfEpisodes.first
         podcastTitle.text = podcastEpisode?.podcastTitle
         podcastAuthor.text = podcastEpisode?.author
         podcastSummary.text = podcastEpisode?.summary

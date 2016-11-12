@@ -55,6 +55,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             let nib_name = UINib(nibName: "EpisodeHeaderTableViewCell", bundle:nil)
             tableView.register(nib_name, forCellReuseIdentifier: "EpisodeHeaderTableViewCell")
             let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: "EpisodeHeaderTableViewCell", for: indexPath) as! EpisodeHeaderTableViewCell
+            cell.listOfEpisodes = episodesToView
             cell.setupPodcastInfo()
             cell.isUserInteractionEnabled = false
             cell.preservesSuperviewLayoutMargins = false
