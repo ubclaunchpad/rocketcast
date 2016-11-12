@@ -186,14 +186,21 @@ class PlayerUITests: XCTestCase {
     
     func testSkipAndRevertButton() {
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
-        app.buttons[AddPodcastButtonOnAddURLView].tap()
-        
         let tablesQuery = app.tables
-        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
-        // Go to the first episode
+        
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
-        sleep(10)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        
         let beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
         app.buttons[skipButton].tap()
         let afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
@@ -203,6 +210,10 @@ class PlayerUITests: XCTestCase {
         app.buttons[backButton].tap()
         let afterRevertSliderPos = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(beforeRevertSliderPos > afterRevertSliderPos)
+        
+        
+        
+        
     }
     
 }
