@@ -13,10 +13,10 @@ class EpisodeController: UIViewController {
     
     var episodesInPodcast = [Episode]()
     var podcastTitle = ""
-    var shouldReloadNewEpisodeTrack = true
     var mainView: EpisodeView?
     
     override func viewDidLoad() {
+        setupView()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -27,17 +27,14 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
-         setupView()
+        
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-        if (shouldReloadNewEpisodeTrack) {
-            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
-        }
-        
-        mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
+       
+        mainView?.episodesToView = episodesInPodcast
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -74,6 +71,7 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
     }
     
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
+        AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
         guard selectedEpisode.doucmentaudioURL == nil else {
             performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
             return

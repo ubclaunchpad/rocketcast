@@ -56,10 +56,7 @@ class PodcastController: UIViewController {
     }
 }
 extension PodcastController:PodcastViewDelegate {
-    
-    func segueToEpisode() {
-        performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
-    }
+
     func segueToPlayer() {
         performSegue(withIdentifier: Segues.segueFromPodcastListToPlayer, sender: self)
     }
