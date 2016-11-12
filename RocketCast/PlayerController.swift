@@ -143,7 +143,8 @@ extension PlayerController: PlayerViewDelegate {
         var time: TimeInterval = AudioEpisodeTracker.audioPlayer.currentTime
         time += 30.0 // Go forward by 30 seconds
         if time > AudioEpisodeTracker.audioPlayer.duration{
-            AudioEpisodeTracker.audioPlayer.stop()
+            AudioEpisodeTracker.audioPlayer.currentTime = AudioEpisodeTracker.audioPlayer.duration - 1
+            AudioEpisodeTracker.audioPlayer.play()
         } else{
             AudioEpisodeTracker.audioPlayer.currentTime = time
             AudioEpisodeTracker.audioPlayer.play()

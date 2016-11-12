@@ -203,7 +203,6 @@ class PlayerUITests: XCTestCase {
         app.buttons[backButton].tap()
         let afterRevertSliderPos = app.sliders.element.normalizedSliderPosition
         XCTAssertTrue(beforeRevertSliderPos > afterRevertSliderPos)
-        
-        
     }
+    
 }
