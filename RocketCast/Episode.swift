@@ -24,13 +24,21 @@ class Episode: NSManagedObject {
     }
     
     func getDuration() -> String {
-        guard let  timeArray = self.duration?.components(separatedBy: ":") else {
+        guard let timeArray = self.duration?.components(separatedBy: ":") else {
             return ""
         }
         guard let digitOne = Int((timeArray[0])) else {
             return ""
         }
-        if timeArray.count == 2 {
+        if timeArray.count == 1 {
+            let hour = (digitOne >= 3600 ? digitOne % 3600 : 0)
+            let minutes = (digitOne - (hour * 3600)) % 60
+            if hour > 1 {
+                return "\(hour) hours \(minutes) min"
+            } else {
+                return (hour > 0 ? "\(hour) hour \(minutes) min" : "\(minutes) min")
+            }
+        } else if timeArray.count == 2 {
             return "\(timeArray[0]) \(PodcastInfoStrings.minute)"
         } else if timeArray.count == 3 {
             guard let digitTwo = Int((timeArray[1])) else {
