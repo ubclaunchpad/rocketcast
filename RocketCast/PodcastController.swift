@@ -14,6 +14,7 @@ class PodcastController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         setupView()
@@ -87,6 +88,6 @@ extension PodcastController:PodcastViewDelegate {
         navigationItem.rightBarButtonItem = nil
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
-        self.mainView?.podcastList.reloadData()
+        self.mainView?.podcastView.reloadData()
     }
 }

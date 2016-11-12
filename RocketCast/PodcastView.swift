@@ -10,13 +10,18 @@ import Foundation
 import UIKit
 
 
-class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
+class PodcastView: UIView, UICollectionViewDelegate,
+UICollectionViewDataSource {
     var viewDelegate: PodcastViewDelegate?
     
+    @IBOutlet weak var podcastView: UICollectionView!
     @IBOutlet weak var viewTitle: UILabel!
     
-    @IBOutlet weak var podcastList: UITableView!
-    lazy var podcastsToView = [Podcast]()
+    var podcastsToView = [Podcast]() {
+        didSet {
+            podcastView.reloadData()
+        }
+    }
     
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
         viewDelegate?.segueToAddUrl()
@@ -29,48 +34,82 @@ class PodcastView: UIView, UITableViewDelegate, UITableViewDataSource {
         let view = UINib(nibName: "PodcastView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! PodcastView
         view.frame = frame
-        view.podcastList.delegate = view
-        view.podcastList.dataSource = view
-        view.podcastList.allowsSelection = true
-        view.podcastList.separatorStyle = UITableViewCellSeparatorStyle.none
-        view.podcastList.backgroundColor = UIColor.clear
-        view.podcastList.isOpaque = false
+        
+        view.podcastView.delegate = view
+        view.podcastView.dataSource = view
+        view.podcastView.contentInset = UIEdgeInsets(top: 0, left: 12, bottom: 10, right: 12)
         return view
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let podcastCell = UINib(nibName: "PodcastViewTableViewCell", bundle: nil)
-        tableView.register(podcastCell, forCellReuseIdentifier: "podcastCell")
-        if let cell = self.podcastList.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as? PodcastViewTableViewCell {
-            cell.updateUI(Podcast: podcastsToView[indexPath.row])
-            cell.backgroundColor = UIColor.clear
-            cell.tag = (indexPath as NSIndexPath).row
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-
-            return cell
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            let podcastCell = UINib(nibName: "PodcastsTitleCollectionViewCell", bundle: nil)
+            podcastView.register(podcastCell, forCellWithReuseIdentifier: "podcastTitleCell")
+            
+            if let cell = self.podcastView.dequeueReusableCell(withReuseIdentifier: "podcastTitleCell", for: indexPath) as? PodcastsTitleCollectionViewCell {
+                cell.titleLabel.text = "Podcasts"
+                cell.isUserInteractionEnabled = false
+                return cell
+            }
+            return UICollectionViewCell()
             
         } else {
-            return UITableViewCell()
+            let podcastCell = UINib(nibName: "PodcastViewCollectionViewCell", bundle: nil)
+            podcastView.register(podcastCell, forCellWithReuseIdentifier: "podcastCell")
+            
+            if let cell = self.podcastView.dequeueReusableCell(withReuseIdentifier: "podcastCell", for: indexPath) as? PodcastViewCollectionViewCell {
+                var width: Int!
+                if UIScreen.main.bounds.size.width >= 414 {
+                    width = 170
+                } else if UIScreen.main.bounds.size.width >= 375 {
+                    width = 150
+                } else {
+                    width = 130
+                }
+                cell.size = width
+                cell.setStyling()
+                cell.podcast = podcastsToView[indexPath.row]
+                return cell
+            }
+            return UICollectionViewCell()
         }
     }
     
-    // returns an approiate number of rows depending on the section
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  podcastsToView.count
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return section == 0 ? 1 : podcastsToView.count
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        var width: Int!
+        var height: Int!
+        if UIScreen.main.bounds.size.width >= 414 {
+            width = 185
+            height = 220
+        } else if UIScreen.main.bounds.size.width >= 375 {
+            width = 165
+            height = 205
+        } else {
+            width = 144
+            height = 180
+        }
         
+        return indexPath.section == 0 ? CGSize(width: self.podcastView.frame.width, height: 50) : CGSize(width: width, height: height)
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            viewDelegate?.setSelectedPodcastAndSegue(selectedPodcast: podcastsToView[indexPath.row])
+        }
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section:Int) -> UIEdgeInsets {
+        return section == 0 ? UIEdgeInsets.zero : UIEdgeInsets.zero
+    }
 }
