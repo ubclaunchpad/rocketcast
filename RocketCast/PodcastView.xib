@@ -15,21 +15,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gpg-op-A9p">
-                    <rect key="frame" x="0.0" y="10" width="375" height="647"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QaG-3r-6mG">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        </tableView>
-                    </subviews>
-                </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0jZ-YV-v6A">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ld2-3e-YZM">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="ld2-3e-YZM">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -44,13 +33,7 @@
                 <constraint firstAttribute="trailing" secondItem="0jZ-YV-v6A" secondAttribute="trailing" id="FWW-kz-6fl"/>
                 <constraint firstItem="0jZ-YV-v6A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ZU6-IA-Jmw"/>
             </constraints>
-            <variation key="default">
-                <mask key="subviews">
-                    <exclude reference="Gpg-op-A9p"/>
-                </mask>
-            </variation>
             <connections>
-                <outlet property="podcastList" destination="QaG-3r-6mG" id="jks-dA-New"/>
                 <outlet property="podcastView" destination="0jZ-YV-v6A" id="92A-hB-z6t"/>
             </connections>
             <point key="canvasLocation" x="611" y="-251"/>

@@ -14,6 +14,8 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var podcastAuthor: UILabel!
     
+    @IBOutlet weak var photoWidth: NSLayoutConstraint!
+    @IBOutlet weak var photoHeight: NSLayoutConstraint!
     var podcast: Podcast! {
         didSet {
             podcastTitle.text = podcast.title
@@ -38,6 +40,13 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var size: Int! {
+        didSet {
+            photoWidth.constant = CGFloat(size)
+            photoHeight.constant = CGFloat(size)
+        }
+    }
+    
     func setStyling() {
         let effectsLayer = coverPhotoView.layer
         effectsLayer.cornerRadius = 14
@@ -45,7 +54,7 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         effectsLayer.shadowOffset = CGSize(width: 0, height: 0)
         effectsLayer.shadowRadius = 4
         effectsLayer.shadowOpacity = 0.4
-        effectsLayer.shadowPath = UIBezierPath(roundedRect: coverPhotoView.bounds, cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
+        effectsLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x:coverPhotoView.frame.origin.x, y:coverPhotoView.frame.origin.y, width: photoWidth.constant, height:photoHeight.constant), cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
     }
     
     override func awakeFromNib() {

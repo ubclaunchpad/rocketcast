@@ -56,14 +56,15 @@
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="0Dl-r1-hrU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="Hhb-Oa-7IP"/>
                 <constraint firstAttribute="bottom" secondItem="0Dl-r1-hrU" secondAttribute="bottom" id="WOw-UB-Agb"/>
+                <constraint firstItem="0Dl-r1-hrU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="b7K-3p-f4Q"/>
                 <constraint firstItem="0Dl-r1-hrU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="lP0-z0-Tp1"/>
-                <constraint firstAttribute="trailing" secondItem="0Dl-r1-hrU" secondAttribute="trailing" constant="8" id="psC-De-5RM"/>
             </constraints>
             <size key="customSize" width="187" height="225"/>
             <connections>
                 <outlet property="coverPhotoView" destination="NoQ-Qv-aGv" id="N3e-hv-jZS"/>
+                <outlet property="photoHeight" destination="usZ-qK-Wbq" id="sCo-bC-xCS"/>
+                <outlet property="photoWidth" destination="0et-Ee-Iw7" id="0AA-dC-JyH"/>
                 <outlet property="podcastAuthor" destination="yxA-GE-jAK" id="EUu-iF-zqn"/>
                 <outlet property="podcastTitle" destination="7Ve-Kn-Q2C" id="YtE-py-wra"/>
             </connections>
