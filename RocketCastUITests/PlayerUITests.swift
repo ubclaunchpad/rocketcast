@@ -26,13 +26,13 @@ class PlayerUITests: XCTestCase {
     func testSpeedRate () {
         
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let tablesQuery = app.tables
-        
-        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         // please wait for awhile
+        let tablesQuery = app.tables
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
@@ -79,12 +79,14 @@ class PlayerUITests: XCTestCase {
     func testIfSliderIsMoving () {
         
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
+        
+        let tablesQuery = app.tables
         let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
         // please wait for awhile
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
@@ -111,13 +113,11 @@ class PlayerUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
-        addButton.tap()
-        let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
-        addPodcastButton.tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
-        launchpadPodcastTestingStaticText.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -154,13 +154,12 @@ class PlayerUITests: XCTestCase {
     
     func testSpeedRateButtonIsSaved() {
         let app = XCUIApplication()
-        let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
-        addButton.tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         
-        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
-        launchpadPodcastTestingStaticText.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()

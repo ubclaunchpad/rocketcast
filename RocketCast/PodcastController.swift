@@ -14,6 +14,7 @@ class PodcastController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = ""
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9803921569, green: 0.9803921569, blue: 0.9803921569, alpha: 1)
         setupView()
@@ -32,14 +33,12 @@ class PodcastController: UIViewController {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts     
         let updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
-        let addUrlButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
-        let goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(segueToItuneWeb))
+        let goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToItuneWeb))
 
-        navigationItem.leftBarButtonItems = [updatePodcastsButton, addUrlButton, goToItuneWebButton]
+        navigationItem.leftBarButtonItems = [updatePodcastsButton, goToItuneWebButton]
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-        print(listOfPodcasts.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,10 +57,6 @@ class PodcastController: UIViewController {
 }
 extension PodcastController:PodcastViewDelegate {
     
-    func segueToAddUrl() {
-        performSegue(withIdentifier: Segues.segueFromPodcastListToAddUrl, sender: self)
-    }
-    
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
     }
@@ -79,7 +74,6 @@ extension PodcastController:PodcastViewDelegate {
         while (!currentPodcasts.isEmpty) {
             if let podcast = currentPodcasts.popLast() {
                 if let rssFeedURL = podcast.rssFeedURL {
-                    
                     DatabaseController.deletePodcast(podcastTitle: podcast.title!)
                     XMLParser(url:rssFeedURL)
                 }
@@ -88,7 +82,7 @@ extension PodcastController:PodcastViewDelegate {
         navigationItem.rightBarButtonItem = nil
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
-        self.mainView?.podcastList.reloadData()
+        self.mainView?.podcastView.reloadData()
     }
     
     func segueToItuneWeb() {

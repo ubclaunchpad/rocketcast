@@ -22,10 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueFromItuneAPIToPodcast" id="BXj-pR-ThK"/>
+                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromItuneWebToAddUrl" id="4CW-1X-Jdn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JIm-f8-wi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="98" y="-453"/>
+            <point key="canvasLocation" x="-495" y="-528"/>
         </scene>
         <!--Add New Url-->
         <scene sceneID="3PE-v1-6iD">
@@ -36,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u1R-PH-iaT">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -57,14 +61,13 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Podcasts" id="tMP-TO-fhs"/>
                     <connections>
                         <segue destination="mE7-6p-V3x" kind="show" identifier="segueFromPodcastToEpisode" id="sPe-Yf-iBH"/>
-                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromPodcastListToAddUrl" id="uDr-br-kDS"/>
                         <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromPodcastListToPlayer" id="7qt-w5-QPL"/>
                         <segue destination="hDs-lI-CNq" kind="show" identifier="segueToItuneWeb" id="daQ-V3-Mc1"/>
                     </connections>
@@ -136,6 +139,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="7qt-w5-QPL"/>
+        <segue reference="BXj-pR-ThK"/>
         <segue reference="sPe-Yf-iBH"/>
     </inferredMetricsTieBreakers>
 </document>

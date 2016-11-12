@@ -162,4 +162,16 @@ class DatabaseController {
         
         return -1
     }
+    
+    static func getEpisodesByPodcastTitle (_podcastTitle: String?) -> [Episode?] {
+        let episodeRequest: NSFetchRequest<Episode> = Episode.fetchRequest()
+        episodeRequest.predicate = NSPredicate(format:"title = %@", _podcastTitle as! CVarArg)
+        do {
+            let episodes = try DatabaseController.getContext().fetch(episodeRequest)
+            return episodes
+        }
+        catch {
+            fatalError("Error in getting podcasts")
+        }
+    }
 }

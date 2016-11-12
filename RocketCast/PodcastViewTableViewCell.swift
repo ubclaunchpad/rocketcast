@@ -15,7 +15,6 @@ class PodcastViewTableViewCell: UITableViewCell {
     
     var delegate: PodcastViewTableViewCellDelegate?
     
-    
     @IBOutlet weak var podcastImage: UIImageView!
     @IBOutlet weak var podcastDescription: UILabel!
     @IBOutlet weak var podcastName: UILabel!
@@ -42,9 +41,7 @@ class PodcastViewTableViewCell: UITableViewCell {
 
     }
     
-    
     func updateUI(Podcast: Podcast) {
-        //videoTitle.text = PartyRock.videoTitle
         //TODO: set image from url
         self.podcastName.text = Podcast.title!
         self.podcastDescription.text = Podcast.summary!
@@ -60,7 +57,6 @@ class PodcastViewTableViewCell: UITableViewCell {
                 Log.error("Error: " + error.debugDescription)
             }
         }
-        
     }
 
     

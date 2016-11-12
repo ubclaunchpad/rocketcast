@@ -9,5 +9,7 @@
 import Foundation
 
 protocol ItuneWebDelegate {
-
+    func getPodcastsFromItuneAPI(_inputString:String)
+    func savePodcastToCoreDataFromItuneAPI(_rssFeed: String)
+    func segueToAddUrl()
 }

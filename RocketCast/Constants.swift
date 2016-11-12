@@ -25,6 +25,8 @@ enum  Segues {
   static let segueFromPodcastListToAddUrl = "segueFromPodcastListToAddUrl"
   static let segueFromPodcastListToPlayer = "segueFromPodcastListToPlayer"
   static let segueToItuneWeb = "segueToItuneWeb"
+  static let segueFromItuneAPIToPodcast = "segueFromItuneAPIToPodcast"
+  static let segueFromItuneWebToAddUrl = "segueFromItuneWebToAddUrl"
 }
 
 enum speedRates {
@@ -61,7 +63,7 @@ struct xmlKeyTags {
     static let authorEpisodeTagTwo = "dc:creator"
     static let descriptionTagTwo = "description"
     static let duration = "itunes:duration"
-    static let unwantedStringInTag = ["<p>", "</p>", "\t"]
+    static let unwantedStringInTag = ["<p>", "</p>", "\t", "<span>", "</span>"]
 }
 
 let stringsToRemove = ["http://", "/", "."]

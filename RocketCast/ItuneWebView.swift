@@ -11,7 +11,7 @@ import UIKit
 class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
     var viewDelegate: ItuneWebDelegate?
-    let info = ["a", "b", "c"]
+    var discoveredPodcasts = [PodcastFromAPI]()
     @IBOutlet weak var podcastTable: UITableView!
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -38,7 +38,7 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return info.count
+        return discoveredPodcasts.count
     }
     
 
@@ -55,8 +55,7 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
         tableView.register(nib_name, forCellReuseIdentifier: "podcastCell")
         let cell = self.podcastTable.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! ItuneWebTableViewCell
         
-        cell.podcastTitle.text = info[indexPath.row]
-        
+        cell.updateUI(podcast: discoveredPodcasts[indexPath.row])
         
         return cell
     }
@@ -66,10 +65,12 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
+        
+        if let rssfeed = discoveredPodcasts[indexPath.row].rssFeed as? String {
+             viewDelegate?.savePodcastToCoreDataFromItuneAPI(_rssFeed: rssfeed)
+        }
+       
     }
-    
-  
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -77,7 +78,7 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        viewDelegate?.getPodcastsFromItuneAPI(_inputString: searchText)
     }
     
 }

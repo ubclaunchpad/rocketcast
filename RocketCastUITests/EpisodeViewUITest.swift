@@ -26,9 +26,10 @@ class EpisodeUITests: XCTestCase {
     func testTableViewCellsInEpisodeTable() {
         
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
-        app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         let episodeCells = XCUIApplication().tables.cells
         
         XCTAssertEqual(3, episodeCells.count)
@@ -45,12 +46,13 @@ class EpisodeUITests: XCTestCase {
     
     func testJumpToCurrentlyPlayingEpisodeFromEpisodeVC() {
         let app = XCUIApplication()
-        let podcastsNavigationBar = app.navigationBars["Podcasts"]
-        podcastsNavigationBar.buttons["Add"].tap()
+
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         
         let tablesQuery = app.tables
-        tablesQuery.staticTexts["LaunchPad podcast testing"].tap()
+        app.staticTexts["LaunchPad podcast testing"].tap()
 
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
