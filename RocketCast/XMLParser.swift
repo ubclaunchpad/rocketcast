@@ -31,7 +31,6 @@ class XMLParser: NSObject {
             podcast = Podcast(context: DatabaseController.getContext())
             podcast?.rssFeedURL = url
             podcast?.addedDate = Date()
-            podcast?.summary = ""
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
