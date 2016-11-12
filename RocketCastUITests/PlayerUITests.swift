@@ -167,9 +167,9 @@ class PlayerUITests: XCTestCase {
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.staticTexts[SamplePodcast.firstEpisode].tap()
         waitForExpectations(timeout: timeOut, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.staticTexts[SamplePodcast.firstEpisode].tap()
         
         XCTAssert(app.buttons[play2TimesButton].exists)
         app.buttons[play2TimesButton].tap()
