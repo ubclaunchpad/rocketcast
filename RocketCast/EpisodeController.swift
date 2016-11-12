@@ -47,7 +47,7 @@ class EpisodeController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
+        if (segue.identifier == Segues.segueFromEpisodeToPlayer || segue.identifier == Segues.segueToBackEpisodes) {
             if let sendIndex = sender as? NSInteger {
                 if (AudioEpisodeTracker.podcastTitle.isEmpty) {
                     AudioEpisodeTracker.episodeIndex = sendIndex

@@ -28,6 +28,8 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         podcastTitle.text = podcastEpisode?.podcastTitle
         podcastAuthor.text = podcastEpisode?.author
         podcastSummary.text = podcastEpisode?.summary
+        print("Title: ", podcastTitle?.text)
+        print("Image URL: ", podcastEpisode?.imageURL)
         let url = URL(string: (podcastEpisode?.imageURL)!)
         DispatchQueue.global().async {
             do {

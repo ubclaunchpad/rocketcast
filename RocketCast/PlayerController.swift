@@ -118,6 +118,11 @@ class PlayerController: UIViewController {
             }
         }
     }
+    
+    func deleteEpisode(){
+        let episode = AudioEpisodeTracker.getCurrentEpisode()
+        DatabaseController.deleteEpisodeAudio(episodeTitle: episode.title!)
+    }
 
 }
 
@@ -128,6 +133,8 @@ extension PlayerController: PlayerViewDelegate {
         let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
             print("Deleted Episode")
             self.closeDeleteModal()
+            self.segueBackToEpisodes(shouldReloadNewEpisodeTrack: false)
+            self.deleteEpisode()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             print("Did not Delete Episode")
@@ -223,6 +230,10 @@ extension PlayerController: PlayerViewDelegate {
 
     func segueBackToEpisodes() {
         let shouldReloadNewEpisodeTrack = false
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
+    }
+    
+    func segueBackToEpisodes(shouldReloadNewEpisodeTrack: Bool) {
         performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
     }
     
