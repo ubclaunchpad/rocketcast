@@ -27,13 +27,32 @@ class RocketCastUITests: XCTestCase {
     
     
     func testVerifyTravisBySeguing() {
+        
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
-        app.buttons[AddPodcastButtonOnAddURLView].tap()
-        app.tables.staticTexts[SamplePodcast.podcastTitle].tap()
-        let episodeTable = app.tables
-        XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
-        episodeTable.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+
+        let episodeCells = XCUIApplication().tables.cells
+        print(episodeCells.count)
+        let firstCell = episodeCells.element(boundBy: 1)
+        print(firstCell)
+        sleep(1)
+        XCTAssert(firstCell.staticTexts[tapToDownload].exists)
+        
+        let downloadingLabel = firstCell.staticTexts[downloaded]
+     
+        let doesntExist = NSPredicate(format: "exists == true")
+        
+        expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
+        firstCell.tap()
+        
+        waitForExpectations(timeout: 50, handler: nil)
+        firstCell.tap()
+    
     }
     
 }

@@ -16,11 +16,10 @@ protocol PlayerViewDelegate {
     func stopPodcast()
     func setUpPlayer(webUrl:String)
 
-    func changeSpeed(_ rateTag: Int)
+    func changeSpeed() -> String
     func segueBackToEpisodes()
     
     func updateProgressView()
     func playNextEpisode()
-    func playLastEpisode()
 }
 

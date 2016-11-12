@@ -1,11 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Itune Web Controller-->
+        <scene sceneID="UZY-Ur-yAh">
+            <objects>
+                <viewController id="hDs-lI-CNq" customClass="ItuneWebController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LMB-E8-tky"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZZU-R5-duL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bdq-8e-kyp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="segueFromItuneAPIToPodcast" id="BXj-pR-ThK"/>
+                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromItuneWebToAddUrl" id="4CW-1X-Jdn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JIm-f8-wi2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-495" y="-528"/>
+        </scene>
         <!--Add New Url-->
         <scene sceneID="3PE-v1-6iD">
             <objects>
@@ -15,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u1R-PH-iaT">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -36,14 +61,15 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Podcasts" id="tMP-TO-fhs"/>
                     <connections>
                         <segue destination="mE7-6p-V3x" kind="show" identifier="segueFromPodcastToEpisode" id="sPe-Yf-iBH"/>
-                        <segue destination="qYa-7O-Oef" kind="show" identifier="segueFromPodcastListToAddUrl" id="uDr-br-kDS"/>
+                        <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromPodcastListToPlayer" id="7qt-w5-QPL"/>
+                        <segue destination="hDs-lI-CNq" kind="show" identifier="segueToItuneWeb" id="daQ-V3-Mc1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -59,7 +85,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BTS-D8-Xcc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qun-52-uhC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -69,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876" y="442.12893553223392"/>
+            <point key="canvasLocation" x="1959" y="386"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -80,7 +106,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qJ3-4x-sGR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qud-HQ-3KO">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -112,6 +138,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="7qt-w5-QPL"/>
+        <segue reference="BXj-pR-ThK"/>
         <segue reference="sPe-Yf-iBH"/>
     </inferredMetricsTieBreakers>
 </document>

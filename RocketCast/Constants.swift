@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AVFoundation
 import CoreData
 
 typealias PodcastWebURL = String
@@ -17,9 +16,6 @@ typealias PodcastStorageURL = String
 typealias ImageStorageURL = String
 typealias AudioStorageURL = String
 typealias XML = String
-var audioPlayer = AVAudioPlayer()
-var isPlaying = false
-
 
 enum  Segues {
   static let segueFromPodcastToEpisode = "segueFromPodcastToEpisode"
@@ -27,15 +23,32 @@ enum  Segues {
   static let segueToBackEpisodes = "segueToBackEpisodes"
   static let segueFromAddUrlToPodcastList = "segueFromAddUrlToPodcastList"
   static let segueFromPodcastListToAddUrl = "segueFromPodcastListToAddUrl"
+  static let segueFromPodcastListToPlayer = "segueFromPodcastListToPlayer"
+  static let segueToItuneWeb = "segueToItuneWeb"
+  static let segueFromItuneAPIToPodcast = "segueFromItuneAPIToPodcast"
+  static let segueFromItuneWebToAddUrl = "segueFromItuneWebToAddUrl"
 }
 
-var currentEpisodeList = [Episode]()
+enum speedRates {
+    static let single:Float = 1
+    static let double:Float = 2
+    static let triple:Float = 3
+}
+
+enum PodcastInfoStrings {
+    static let singularHour = "hour"
+    static let pluralHour = "hours"
+    static let minute = "min"
+}
+
 enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"
 }
 
 let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss ZZ"
+
+let testRSSFeed = "https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastMadeup.xml"
 
 struct xmlKeyTags {
     static let episodeTag = "item"
@@ -50,7 +63,7 @@ struct xmlKeyTags {
     static let authorEpisodeTagTwo = "dc:creator"
     static let descriptionTagTwo = "description"
     static let duration = "itunes:duration"
-    static let unwantedStringInTag = ["<p>", "</p>", "\t"]
+    static let unwantedStringInTag = ["<p>", "</p>", "\t", "<span>", "</span>"]
 }
 
 let stringsToRemove = ["http://", "/", "."]
