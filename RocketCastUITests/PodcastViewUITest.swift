@@ -29,7 +29,7 @@ class PodcastViewUITest: XCTestCase {
         while i < 2 {
             let addButton = app.buttons[AddButtonFromPodcastView]
             addButton.tap()
-            
+            app.buttons["Add Url"].tap()
             let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
             addPodcastButton.tap()
             
@@ -60,6 +60,7 @@ class PodcastViewUITest: XCTestCase {
         let countBefore = tablesQuery.cells.count
         let addButton = app.buttons[AddButtonFromPodcastView]
         addButton.tap()
+        app.buttons["Add Url"].tap()
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         let countAfter = tablesQuery.cells.count
@@ -71,6 +72,7 @@ class PodcastViewUITest: XCTestCase {
     func testJumpToCurrentlyPlayingEpisodeFromPlayerVC() {
         let app = XCUIApplication()
         app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         
         let collectionQuery = app.collectionViews
@@ -105,6 +107,7 @@ class PodcastViewUITest: XCTestCase {
         XCTAssertEqual(1, podcastCells.count)
         
         app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         refreshButton.tap()
         

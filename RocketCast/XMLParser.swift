@@ -24,7 +24,7 @@ class XMLParser: NSObject {
         // in production this code will be uncommented
 //        guard url == testRSSFeed || url.lowercased().contains("rss") || url.lowercased().contains("feed") else {
 //            XMLParser.success = false
-//           return
+//            return
 //        }
         
         if let data = try? Data(contentsOf: URL(string: url)!) {
@@ -60,7 +60,7 @@ class XMLParser: NSObject {
         
         if (!samePodcast) {
             DatabaseController.saveContext()
-             XMLParser.success = true
+            XMLParser.success = true
         } else {
             DatabaseController.getContext().delete(podcast!)
             XMLParser.success = false
@@ -70,6 +70,7 @@ class XMLParser: NSObject {
     static func didItSucceed () -> Bool {
         return success
     }
+
 }
 extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
@@ -77,6 +78,7 @@ extension XMLParser: XMLParserDelegate {
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
             tmpEpisode = Episode(context: DatabaseController.getContext())
+            tmpEpisode?.summary = ""
             midElement = NSMutableString()
             midElement = ""
         }
@@ -97,7 +99,7 @@ extension XMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let information = string.trimmingCharacters(
             in: CharacterSet.whitespacesAndNewlines).stringByRemovingAll(xmlKeyTags.unwantedStringInTag)
-    
+        
         if (!information.isEmpty){
             midElement.append(information)
             let midElementAsString = midElement.description

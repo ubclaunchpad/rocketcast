@@ -24,7 +24,7 @@ UICollectionViewDataSource {
     }
     
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
-        viewDelegate?.segueToAddUrl()
+        viewDelegate?.segueToItuneWeb()
     }
     @IBAction func segueButton(_ sender: AnyObject) {
         viewDelegate?.segueToEpisode()

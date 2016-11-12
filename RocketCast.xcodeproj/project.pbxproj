@@ -48,6 +48,13 @@
 		D0075F5B1D938F2400DBAF58 /* DatabaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0075F5A1D938F2400DBAF58 /* DatabaseController.swift */; };
 		D0075F5F1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0075F5E1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift */; };
 		D007E3F61D8DDEE600070123 /* DefaultLibraryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D007E3F51D8DDEE600070123 /* DefaultLibraryExtensions.swift */; };
+		D00D44841DD5672000D2CD9B /* ItuneWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D44831DD5672000D2CD9B /* ItuneWebController.swift */; };
+		D00D44871DD5675100D2CD9B /* ItuneWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D44861DD5675100D2CD9B /* ItuneWebView.swift */; };
+		D00D44891DD567AE00D2CD9B /* ItuneWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00D44881DD567AE00D2CD9B /* ItuneWebView.xib */; };
+		D00D448B1DD567C800D2CD9B /* ItuneWebDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D448A1DD567C800D2CD9B /* ItuneWebDelegate.swift */; };
+		D00D448D1DD567D900D2CD9B /* ItuneWebTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */; };
+		D00D448F1DD567F500D2CD9B /* ItuneWebTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */; };
+		D00D44911DD5B70F00D2CD9B /* PodcastFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */; };
 		D03CB6EF1DC8680300819865 /* AudioEpisodeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */; };
 		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
 		D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */; };
@@ -133,6 +140,13 @@
 		D0075F5A1D938F2400DBAF58 /* DatabaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseController.swift; sourceTree = "<group>"; };
 		D0075F5E1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataXMLParserTest.swift; sourceTree = "<group>"; };
 		D007E3F51D8DDEE600070123 /* DefaultLibraryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultLibraryExtensions.swift; sourceTree = "<group>"; };
+		D00D44831DD5672000D2CD9B /* ItuneWebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebController.swift; sourceTree = "<group>"; };
+		D00D44861DD5675100D2CD9B /* ItuneWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebView.swift; sourceTree = "<group>"; };
+		D00D44881DD567AE00D2CD9B /* ItuneWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItuneWebView.xib; sourceTree = "<group>"; };
+		D00D448A1DD567C800D2CD9B /* ItuneWebDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebDelegate.swift; sourceTree = "<group>"; };
+		D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebTableViewCell.swift; sourceTree = "<group>"; };
+		D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItuneWebTableViewCell.xib; sourceTree = "<group>"; };
+		D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastFromAPI.swift; sourceTree = "<group>"; };
 		D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEpisodeTracker.swift; sourceTree = "<group>"; };
 		D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBridge.swift; sourceTree = "<group>"; };
 		D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadBridge.swift; sourceTree = "<group>"; };
@@ -183,6 +197,7 @@
 				C80FAE701D72376600C806C1 /* PodcastController.swift */,
 				C80DA3331D77E9280089A678 /* PlayerController.swift */,
 				D3B50AB21DC5672500A67DBA /* AddUrlController.swift */,
+				D00D44831DD5672000D2CD9B /* ItuneWebController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -190,6 +205,7 @@
 		C80DA31A1D77E1710089A678 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D00D44851DD5672F00D2CD9B /* ItuneWebView */,
 				D3B50AAB1DC5660F00A67DBA /* AddUrlView */,
 				C80DA32C1D77E84B0089A678 /* PlayerView */,
 				C80DA3251D77E6F40089A678 /* EpisodeView */,
@@ -201,11 +217,9 @@
 		C80DA31B1D77E1760089A678 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */,
 				D00F6C8E1DC8468C00C3B2A4 /* PodcastModel */,
 				D00F6C8F1DC8469500C3B2A4 /* EpisodeModel */,
-				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
-				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
-				C8D601A61D793E05003512FE /* Log.swift */,
 				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
 				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */,
@@ -283,12 +297,13 @@
 				C80DA31A1D77E1710089A678 /* View */,
 				C80DA3191D77E1650089A678 /* Controller */,
 				C80FAE6E1D72376600C806C1 /* AppDelegate.swift */,
+				D09AC5A41D77EA9900048C17 /* Constants.swift */,
+				C8D601A61D793E05003512FE /* Log.swift */,
 				C80FAE721D72376600C806C1 /* Main.storyboard */,
 				C80FAE781D72376600C806C1 /* Assets.xcassets */,
 				C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */,
 				C80FAE7D1D72376600C806C1 /* Info.plist */,
 				C80FAE751D72376600C806C1 /* RocketCast.xcdatamodeld */,
-				D09AC5A41D77EA9900048C17 /* Constants.swift */,
 			);
 			path = RocketCast;
 			sourceTree = "<group>";
@@ -316,6 +331,18 @@
 				D08995891DC6FDEA00917580 /* Constants.swift */,
 			);
 			path = RocketCastUITests;
+			sourceTree = "<group>";
+		};
+		D00D44851DD5672F00D2CD9B /* ItuneWebView */ = {
+			isa = PBXGroup;
+			children = (
+				D00D44861DD5675100D2CD9B /* ItuneWebView.swift */,
+				D00D44881DD567AE00D2CD9B /* ItuneWebView.xib */,
+				D00D448A1DD567C800D2CD9B /* ItuneWebDelegate.swift */,
+				D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */,
+				D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */,
+			);
+			name = ItuneWebView;
 			sourceTree = "<group>";
 		};
 		D00F6C8E1DC8468C00C3B2A4 /* PodcastModel */ = {
@@ -505,11 +532,13 @@
 				C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */,
 				526AF9411DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib in Resources */,
 				A797FF0D1D8DF42000D649EC /* PodcastViewTableViewCell.xib in Resources */,
+				D00D44891DD567AE00D2CD9B /* ItuneWebView.xib in Resources */,
 				C80FAE791D72376600C806C1 /* Assets.xcassets in Resources */,
 				C80DA3271D77E70B0089A678 /* EpisodeView.xib in Resources */,
 				C80FAE741D72376600C806C1 /* Main.storyboard in Resources */,
 				D3B50AAF1DC566D200A67DBA /* AddUrlView.xib in Resources */,
 				5234C50C1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.xib in Resources */,
+				D00D448F1DD567F500D2CD9B /* ItuneWebTableViewCell.xib in Resources */,
 				C80DA3321D77E8E90089A678 /* PlayerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,15 +573,19 @@
 				C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */,
 				A797FF0C1D8DF42000D649EC /* PodcastViewTableViewCell.swift in Sources */,
 				C80DA3301D77E88E0089A678 /* PlayerView.swift in Sources */,
+				D00D44841DD5672000D2CD9B /* ItuneWebController.swift in Sources */,
 				D0075F561D93815A00DBAF58 /* Podcast+CoreDataProperties.swift in Sources */,
 				D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */,
 				526AF93C1DD45C5D006EDC9D /* PodcastViewCollectionViewCell.swift in Sources */,
 				C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */,
 				D0075F571D93815A00DBAF58 /* Podcast.swift in Sources */,
+				D00D448D1DD567D900D2CD9B /* ItuneWebTableViewCell.swift in Sources */,
 				D3B50AB31DC5672500A67DBA /* AddUrlController.swift in Sources */,
 				C80DA32B1D77E7AE0089A678 /* EpisodeViewDelegate.swift in Sources */,
 				D3B50AB11DC566FB00A67DBA /* AddUrlViewDelegate.swift in Sources */,
 				84C603221D972E9E009C73A7 /* EpisodeViewTableViewCell.swift in Sources */,
+				D00D448B1DD567C800D2CD9B /* ItuneWebDelegate.swift in Sources */,
+				D00D44871DD5675100D2CD9B /* ItuneWebView.swift in Sources */,
 				D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */,
 				C8D601A71D793E05003512FE /* Log.swift in Sources */,
 				C8D601A51D79380B003512FE /* XMLParser.swift in Sources */,
@@ -568,6 +601,7 @@
 				D03CB6EF1DC8680300819865 /* AudioEpisodeTracker.swift in Sources */,
 				D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */,
 				D3B50AAD1DC5669D00A67DBA /* AddUrlView.swift in Sources */,
+				D00D44911DD5B70F00D2CD9B /* PodcastFromAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

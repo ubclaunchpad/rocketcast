@@ -27,6 +27,7 @@ class PlayerUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
         app.staticTexts[SamplePodcast.podcastTitle].tap()
@@ -79,6 +80,7 @@ class PlayerUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
         app.staticTexts[SamplePodcast.podcastTitle].tap()
@@ -112,6 +114,7 @@ class PlayerUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
         app.staticTexts[SamplePodcast.podcastTitle].tap()
@@ -152,6 +155,7 @@ class PlayerUITests: XCTestCase {
     func testSpeedRateButtonIsSaved() {
         let app = XCUIApplication()
         app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         

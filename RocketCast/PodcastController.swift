@@ -33,13 +33,12 @@ class PodcastController: UIViewController {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts     
         let updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
-        let addUrlButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToAddUrl))
+        let goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToItuneWeb))
 
-        navigationItem.leftBarButtonItems = [updatePodcastsButton,addUrlButton ]
+        navigationItem.leftBarButtonItems = [updatePodcastsButton, goToItuneWebButton]
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
-        print(listOfPodcasts.count)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,10 +57,6 @@ class PodcastController: UIViewController {
 }
 extension PodcastController:PodcastViewDelegate {
     
-    func segueToAddUrl() {
-        performSegue(withIdentifier: Segues.segueFromPodcastListToAddUrl, sender: self)
-    }
-    
     func segueToEpisode() {
         performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
     }
@@ -79,7 +74,6 @@ extension PodcastController:PodcastViewDelegate {
         while (!currentPodcasts.isEmpty) {
             if let podcast = currentPodcasts.popLast() {
                 if let rssFeedURL = podcast.rssFeedURL {
-                    
                     DatabaseController.deletePodcast(podcastTitle: podcast.title!)
                     XMLParser(url:rssFeedURL)
                 }
@@ -89,5 +83,10 @@ extension PodcastController:PodcastViewDelegate {
         let listOfPodcasts = DatabaseController.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         self.mainView?.podcastView.reloadData()
+    }
+    
+    func segueToItuneWeb() {
+        performSegue(withIdentifier: Segues.segueToItuneWeb, sender: self)
+
     }
 }

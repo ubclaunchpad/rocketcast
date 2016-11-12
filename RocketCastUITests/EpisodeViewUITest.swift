@@ -27,6 +27,7 @@ class EpisodeUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         app.staticTexts[SamplePodcast.podcastTitle].tap()
         let episodeCells = XCUIApplication().tables.cells
@@ -47,6 +48,7 @@ class EpisodeUITests: XCTestCase {
         let app = XCUIApplication()
 
         app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         
         let tablesQuery = app.tables

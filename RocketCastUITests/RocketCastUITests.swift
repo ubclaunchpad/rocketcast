@@ -30,6 +30,7 @@ class RocketCastUITests: XCTestCase {
         
         let app = XCUIApplication()
         app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         
         XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
