@@ -26,6 +26,9 @@ class AudioEpisodeTracker {
     }
     
     static func resetAudioTracker() {
+        if isPlaying {
+            audioPlayer.pause()
+        }
         audioPlayer = AVAudioPlayer()
         currentEpisodesInTrack = [Episode]()
         currentTimer.invalidate()
