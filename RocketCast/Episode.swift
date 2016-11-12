@@ -12,7 +12,6 @@ import CoreData
 
 class Episode: NSManagedObject {
 
-    static var isDownloading = false
 // Insert code here to add functionality to your managed object subclass
     func getDate() -> String {
         let dateFormatter = DateFormatter()

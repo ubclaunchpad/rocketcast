@@ -29,19 +29,17 @@ class RocketCastUITests: XCTestCase {
     func testVerifyTravisBySeguing() {
         
         let app = XCUIApplication()
-        app.navigationBars["Podcasts"].buttons["Add"].tap()
+        app.buttons["Add"].tap()
         app.buttons["Add Podcast"].tap()
-    
-        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
-        let cells = XCUIApplication().tables.cells
-        XCTAssertEqual(1, cells.count)
+        
         XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
-        launchpadPodcastTestingStaticText.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
 
         let episodeCells = XCUIApplication().tables.cells
-        let firstCell = episodeCells.element(boundBy: 0)
+        print(episodeCells.count)
+        let firstCell = episodeCells.element(boundBy: 1)
+        print(firstCell)
         sleep(1)
-        XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
         XCTAssert(firstCell.staticTexts[tapToDownload].exists)
         
         let downloadingLabel = firstCell.staticTexts[downloaded]

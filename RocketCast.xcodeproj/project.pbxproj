@@ -206,6 +206,8 @@
 				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
 				C8D601A61D793E05003512FE /* Log.swift */,
+				D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */,
+				D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */,
 				D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */,
 				C8D601A41D79380B003512FE /* XMLParser.swift */,
 				D007E3F51D8DDEE600070123 /* DefaultLibraryExtensions.swift */,

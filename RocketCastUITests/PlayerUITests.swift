@@ -26,14 +26,13 @@ class PlayerUITests: XCTestCase {
     func testSpeedRate () {
         
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddButtonFromPodcastView].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let tablesQuery = app.tables
-        
-        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         // please wait for awhile
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let tablesQuery = app.tables
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -46,7 +45,7 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
         if (runOnTravis) {
-            var normalSliderPositionValue =  app.sliders["1%"]
+            let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
             waitForExpectations(timeout: timeOut, handler: nil)
@@ -79,15 +78,16 @@ class PlayerUITests: XCTestCase {
     func testIfSliderIsMoving () {
         
         let app = XCUIApplication()
-        app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddButtonFromPodcastView].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let tablesQuery = app.tables
-        tablesQuery.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
+        
+        let tablesQuery = app.tables
         let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
         // please wait for awhile
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
@@ -111,18 +111,15 @@ class PlayerUITests: XCTestCase {
         }
         
         let app = XCUIApplication()
-        let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
-        addButton.tap()
-        let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
-        addPodcastButton.tap()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
-        launchpadPodcastTestingStaticText.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -140,7 +137,6 @@ class PlayerUITests: XCTestCase {
         app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
         let successAlert = app.alerts["Success"]
         XCTAssertFalse(successAlert.exists)
-        
         expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
         successAlert.buttons["Ok"].tap()
@@ -155,18 +151,16 @@ class PlayerUITests: XCTestCase {
     
     func testSpeedRateButtonIsSaved() {
         let app = XCUIApplication()
-        let addButton = app.navigationBars[PodcastButton].buttons[AddButtonFromPodcastView]
-        addButton.tap()
+        app.buttons[AddButtonFromPodcastView].tap()
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         
-        let launchpadPodcastTestingStaticText = app.tables.staticTexts[SamplePodcast.podcastTitle]
-        launchpadPodcastTestingStaticText.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 0).staticTexts[downloaded]
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -177,12 +171,12 @@ class PlayerUITests: XCTestCase {
         app.buttons[play2TimesButton].tap()
         XCTAssert(app.buttons[play3TimesButton].exists)
         
-        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
-        let playButton = app.navigationBars[EpisodeButton].buttons[PlayButtonFromNavigationBar]
+        app.buttons["Back"].tap()
+        let playButton = app.buttons[PlayButtonFromNavigationBar]
         playButton.tap()
         
         XCTAssert(app.buttons[play3TimesButton].exists)
         
-        app.navigationBars["RocketCast.Player"].buttons[EpisodeButton].tap()
+        app.buttons["Back"].tap()
     }
 }
