@@ -9,18 +9,15 @@
 import XCTest
 
 class RocketCastUITests: XCTestCase {
+    
+    let app = XCUIApplication()
         
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        let app = XCUIApplication()
+        app.launchArguments = ["MY_UI_TEST_MODE"]
+        app.launch()
     }
     
     override func tearDown() {
@@ -28,9 +25,34 @@ class RocketCastUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testVerifyTravisBySeguing() {
+        
+        let app = XCUIApplication()
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+
+        let episodeCells = XCUIApplication().tables.cells
+        print(episodeCells.count)
+        let firstCell = episodeCells.element(boundBy: 1)
+        print(firstCell)
+        sleep(1)
+        XCTAssert(firstCell.staticTexts[tapToDownload].exists)
+        
+        let downloadingLabel = firstCell.staticTexts[downloaded]
+     
+        let doesntExist = NSPredicate(format: "exists == true")
+        
+        expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
+        firstCell.tap()
+        
+        waitForExpectations(timeout: 50, handler: nil)
+        firstCell.tap()
+    
     }
     
 }

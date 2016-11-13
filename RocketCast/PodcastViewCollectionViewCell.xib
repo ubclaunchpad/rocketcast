@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="PodcastViewCollectionViewCell" customModule="RocketCast" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="225"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="187" height="225"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0Dl-r1-hrU">
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoQ-Qv-aGv">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="0et-Ee-Iw7"/>
+                                    <constraint firstAttribute="height" constant="140" id="usZ-qK-Wbq"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-80-KRs">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ve-Kn-Q2C">
+                                        <frame key="frameInset" width="140" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="textColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxA-GE-jAK">
+                                        <frame key="frameInset" minY="56" width="140" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.52549019607843139" green="0.52549019607843139" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="7Ve-Kn-Q2C" firstAttribute="width" secondItem="NoQ-Qv-aGv" secondAttribute="width" id="BNQ-nT-ZuR"/>
+                            <constraint firstItem="yxA-GE-jAK" firstAttribute="width" secondItem="NoQ-Qv-aGv" secondAttribute="width" id="tPT-fe-iZm"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0Dl-r1-hrU" secondAttribute="bottom" id="WOw-UB-Agb"/>
+                <constraint firstItem="0Dl-r1-hrU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="b7K-3p-f4Q"/>
+                <constraint firstItem="0Dl-r1-hrU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="lP0-z0-Tp1"/>
+            </constraints>
+            <size key="customSize" width="187" height="225"/>
+            <connections>
+                <outlet property="coverPhotoView" destination="NoQ-Qv-aGv" id="N3e-hv-jZS"/>
+                <outlet property="photoHeight" destination="usZ-qK-Wbq" id="sCo-bC-xCS"/>
+                <outlet property="photoWidth" destination="0et-Ee-Iw7" id="0AA-dC-JyH"/>
+                <outlet property="podcastAuthor" destination="yxA-GE-jAK" id="EUu-iF-zqn"/>
+                <outlet property="podcastTitle" destination="7Ve-Kn-Q2C" id="YtE-py-wra"/>
+            </connections>
+            <point key="canvasLocation" x="150.5" y="159.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
