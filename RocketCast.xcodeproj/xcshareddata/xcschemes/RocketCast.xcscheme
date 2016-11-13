@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C80FAE811D72376600C806C1"
+               BuildableName = "RocketCastTests.xctest"
+               BlueprintName = "RocketCastTests"
+               ReferencedContainer = "container:RocketCast.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C80FAE8C1D72376700C806C1"
+               BuildableName = "RocketCastUITests.xctest"
+               BlueprintName = "RocketCastUITests"
+               ReferencedContainer = "container:RocketCast.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
