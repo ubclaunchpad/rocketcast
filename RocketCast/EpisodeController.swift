@@ -71,8 +71,9 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
     }
     
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
-        AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
+    
         guard selectedEpisode.doucmentaudioURL == nil else {
+            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
             performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
             return
         }
