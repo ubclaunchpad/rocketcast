@@ -16,6 +16,11 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var coverPhotoView: UIView!
     var listOfEpisodes = [Episode]()
     
+    var podcast: Podcast! {
+        didSet {
+            setupPodcastInfo()
+        }
+    }
     
     func setupPodcastInfo() {
         let effectsLayer = coverPhotoView.layer
@@ -26,11 +31,11 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         effectsLayer.shadowOpacity = 0.4
         effectsLayer.shadowPath = UIBezierPath(roundedRect: coverPhotoView.bounds, cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
         
-        let podcastEpisode = listOfEpisodes.first
-        podcastTitle.text = podcastEpisode?.podcastTitle
-        podcastAuthor.text = podcastEpisode?.author
-        podcastSummary.text = podcastEpisode?.summary
-        let url = URL(string: (podcastEpisode?.imageURL)!)
+        podcastTitle.text = podcast.title
+        podcastAuthor.text = podcast.author
+        
+        podcastSummary.text = podcast.summary
+        let url = URL(string: (podcast.imageURL)!)
         DispatchQueue.global().async {
             do {
                 let data = try Data(contentsOf: url!)
