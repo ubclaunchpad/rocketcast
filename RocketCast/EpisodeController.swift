@@ -66,13 +66,15 @@ class EpisodeController: UIViewController {
 }
 
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
+  
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
-        AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
+    
         guard selectedEpisode.doucmentaudioURL == nil else {
+            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
             performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
             return
         }
