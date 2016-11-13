@@ -22,15 +22,14 @@ class ItuneWebController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     private func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = ItuneWebView.instancefromNib(viewSize)
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add Url", style: .plain, target: self, action: #selector(segueToAddUrl))
-        
     }
-    
 }
 
 extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
@@ -59,7 +58,6 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
             return
         }
         
-        
         let fetchPodcastURL =  "https://itunes.apple.com/search?term=" + cleanedString + "&country=us&entity=podcast&limit=25"
         
         let apiFormat = ItuneAPIJson()
@@ -80,7 +78,6 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
             Log.info("Successfuly made the rest call")
             
             do{
-                
                 guard  let jsonResult = try JSONSerialization
                     .jsonObject(with: data!,
                                 options: JSONSerialization.ReadingOptions.mutableContainers)
@@ -128,7 +125,6 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
             } catch {
                 Log.error("Error with Json: \(error)")
             }
-            
         }
         
         task.resume()

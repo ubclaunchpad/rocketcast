@@ -66,6 +66,7 @@ class EpisodeController: UIViewController {
 }
 
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
+  
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
