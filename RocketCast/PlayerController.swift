@@ -22,7 +22,6 @@ class PlayerController: UIViewController {
         setupView()
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
@@ -229,8 +228,7 @@ extension PlayerController: PlayerViewDelegate {
     }
 
     func segueBackToEpisodes() {
-        let shouldReloadNewEpisodeTrack = false
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
     }
     
     func segueBackToEpisodes(shouldReloadNewEpisodeTrack: Bool) {

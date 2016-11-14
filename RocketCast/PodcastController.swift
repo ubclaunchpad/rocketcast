@@ -50,16 +50,13 @@ class PodcastController: UIViewController {
             if let podcast = sender as? Podcast {
                 let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
                 destination.episodesInPodcast = episodes
-                destination.podcastTitle = podcast.title!
+                destination.selectedPodcast = podcast
             }
         }
     }
 }
 extension PodcastController:PodcastViewDelegate {
-    
-    func segueToEpisode() {
-        performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: self)
-    }
+
     func segueToPlayer() {
         performSegue(withIdentifier: Segues.segueFromPodcastListToPlayer, sender: self)
     }

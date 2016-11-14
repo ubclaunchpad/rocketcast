@@ -14,6 +14,13 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var podcastAuthor: UILabel!
     @IBOutlet weak var podcastSummary: UILabel!
     @IBOutlet weak var coverPhotoView: UIView!
+    var listOfEpisodes = [Episode]()
+    
+    var podcast: Podcast! {
+        didSet {
+            setupPodcastInfo()
+        }
+    }
     
     func setupPodcastInfo() {
         let effectsLayer = coverPhotoView.layer
@@ -31,7 +38,8 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         print("Title: ", podcastTitle?.text)
         print("Image URL: ", podcastEpisode?.imageURL)
         let url = URL(string: (podcastEpisode?.imageURL)!)
-        DispatchQueue.global().async {
+        
+	DispatchQueue.global().async {
             do {
                 let data = try Data(contentsOf: url!)
                 let coverPhoto = UIImageView()
