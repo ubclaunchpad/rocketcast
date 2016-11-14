@@ -48,6 +48,7 @@ class PlayerView: UIView {
     }
     
     @IBAction func openDeleteAlert(_ sender: AnyObject) {
+        print("Open Delete Alert")
         viewDelegate?.openDeleteModal()
     }
     
