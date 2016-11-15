@@ -27,6 +27,7 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
+        self.mainView?.EpisodeTable.reloadData()
         
     }
     

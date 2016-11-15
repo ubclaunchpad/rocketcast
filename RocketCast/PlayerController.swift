@@ -196,6 +196,7 @@ extension PlayerController: PlayerViewDelegate {
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 3) ) {
             AudioEpisodeTracker.audioPlayer.stop()
+            AudioEpisodeTracker.currentTimer.invalidate()
             playNextEpisode()
         }
     }
