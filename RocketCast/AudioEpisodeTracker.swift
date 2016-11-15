@@ -22,6 +22,8 @@ class AudioEpisodeTracker {
     static var currentRate = speedRates.single
     
     static func getCurrentEpisode() -> Episode {
+        print(episodeIndex)
+        print(currentEpisodesInTrack.count)
         return currentEpisodesInTrack[episodeIndex]
     }
     

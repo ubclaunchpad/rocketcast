@@ -45,7 +45,7 @@ class PlayerUITests: XCTestCase {
         expectation(for: doesItExist, evaluatedWith: slider, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
         // Verify if the slider is moving
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -54,7 +54,7 @@ class PlayerUITests: XCTestCase {
         
         // Verify if 2x speed is working (i.e the slider should move faster)
         app.buttons[play2TimesButton].tap()
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["3%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -63,7 +63,7 @@ class PlayerUITests: XCTestCase {
         
         // Verify if 3x speed is working (i.e the slider should move the fastest)
         app.buttons[play3TimesButton].tap()
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["5%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -96,7 +96,7 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         mondayMorningPodcast91216StaticText.tap()
         
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -108,7 +108,7 @@ class PlayerUITests: XCTestCase {
     
     func testVerifyIfNextEpisodeIsPlayedWhenSliderReachesNearMaxValue() {
         
-        guard runOnTravis else {
+        guard runForTravis else {
             return
         }
         
@@ -130,7 +130,7 @@ class PlayerUITests: XCTestCase {
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -144,7 +144,7 @@ class PlayerUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         successAlert.buttons["Ok"].tap()
         XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
-        if (runOnTravis) {
+        if (runForTravis) {
             let normalSliderPositionValue =  app.sliders["1%"]
             XCTAssertFalse(normalSliderPositionValue.exists)
             expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
@@ -167,9 +167,9 @@ class PlayerUITests: XCTestCase {
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")
         expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.staticTexts[SamplePodcast.firstEpisode].tap()
         waitForExpectations(timeout: timeOut, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        app.staticTexts[SamplePodcast.firstEpisode].tap()
         
         XCTAssert(app.buttons[play2TimesButton].exists)
         app.buttons[play2TimesButton].tap()
