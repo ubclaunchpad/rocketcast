@@ -22,10 +22,15 @@ class AudioEpisodeTracker {
     static var currentRate = speedRates.single
     
     static func getCurrentEpisode() -> Episode {
+        print(episodeIndex)
+        print(currentEpisodesInTrack.count)
         return currentEpisodesInTrack[episodeIndex]
     }
     
     static func resetAudioTracker() {
+        if isPlaying {
+            audioPlayer.pause()
+        }
         audioPlayer = AVAudioPlayer()
         currentEpisodesInTrack = [Episode]()
         currentTimer.invalidate()

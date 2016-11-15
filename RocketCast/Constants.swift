@@ -45,8 +45,7 @@ enum EpisodeViewConstants {
     static let cellViewNibName = "EpisodeViewTableViewCell"
     static let cellViewIdentifier = "episodeviewCell"
 }
-
-let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss ZZ"
+let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss zzz"
 
 let testRSSFeed = "https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastMadeup.xml"
 

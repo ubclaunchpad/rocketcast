@@ -94,7 +94,7 @@ class PodcastViewUITest: XCTestCase {
     
     func testReloadPodcast () {
         
-        guard runOnTravis else {
+        guard runForTravis else {
             return
         }
         
@@ -153,4 +153,6 @@ class PodcastViewUITest: XCTestCase {
         app.staticTexts["LaunchPad podcast testing"].tap()
     
     }
+    
+
 }

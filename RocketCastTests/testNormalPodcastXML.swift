@@ -21,7 +21,7 @@ let expectedEpisode1:[String:String] =
         [ "title" : "Quantum Superposition",
           "description": "exploring states of particles",
           "author" : "Jon Mercer",
-          "date": "2016-09-22 19:40:49 +0000",
+          "date": "2016-11-10 21:26:18 +0000",
           "duration" : "01:07:59",
           "image" : "JONMERCER.jpg",
           "audio" : "http://www.yourserver.com/podcast_fileONE.mp3"]

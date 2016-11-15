@@ -20,7 +20,6 @@ class PlayerController: UIViewController {
         setupView()
     }
     
-
     override func viewWillAppear(_ animated: Bool) {
         mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
@@ -103,18 +102,6 @@ class PlayerController: UIViewController {
         let alert = UIAlertController(title: "Success", message: "Downloaded the episode", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: false, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == Segues.segueToBackEpisodes  else {
-            return
-        }
-        
-        if let shouldReloadNewEpisodeTrackList = sender as? Bool {
-            if let destination = segue.destination as? EpisodeController {
-                destination.shouldReloadNewEpisodeTrack = shouldReloadNewEpisodeTrackList
-            }
-        }
     }
 }
 
@@ -214,8 +201,7 @@ extension PlayerController: PlayerViewDelegate {
     }
 
     func segueBackToEpisodes() {
-        let shouldReloadNewEpisodeTrack = false
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
     }
     
     func updateProgressView() {

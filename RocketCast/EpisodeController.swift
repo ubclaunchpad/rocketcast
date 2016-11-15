@@ -12,11 +12,11 @@ import CoreData
 class EpisodeController: UIViewController {
     
     var episodesInPodcast = [Episode]()
-    var podcastTitle = ""
-    var shouldReloadNewEpisodeTrack = true
+    var selectedPodcast: Podcast!
     var mainView: EpisodeView?
     
     override func viewDidLoad() {
+        setupView()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -27,17 +27,14 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
-         setupView()
+        
     }
     
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = EpisodeView.instancefromNib(viewSize)
-        if (shouldReloadNewEpisodeTrack) {
-            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
-        }
-        
-        mainView?.episodesToView = AudioEpisodeTracker.currentEpisodesInTrack
+        mainView?.podcast = selectedPodcast
+        mainView?.episodesToView = episodesInPodcast
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
@@ -51,11 +48,11 @@ class EpisodeController: UIViewController {
             if let sendIndex = sender as? NSInteger {
                 if (AudioEpisodeTracker.podcastTitle.isEmpty) {
                     AudioEpisodeTracker.episodeIndex = sendIndex
-                    AudioEpisodeTracker.podcastTitle = podcastTitle
+                    AudioEpisodeTracker.podcastTitle = selectedPodcast.title!
                     AudioEpisodeTracker.isPlaying = false
-                }  else if (AudioEpisodeTracker.podcastTitle != podcastTitle) {
+                }  else if (AudioEpisodeTracker.podcastTitle != selectedPodcast.title!) {
                     AudioEpisodeTracker.episodeIndex = sendIndex
-                    AudioEpisodeTracker.podcastTitle = podcastTitle
+                    AudioEpisodeTracker.podcastTitle = selectedPodcast.title!
                     AudioEpisodeTracker.isPlaying = false
                 } else if (AudioEpisodeTracker.episodeIndex != sendIndex) {
                     AudioEpisodeTracker.episodeIndex = sendIndex
@@ -69,12 +66,15 @@ class EpisodeController: UIViewController {
 }
 
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
+  
     func segueToPlayer () {
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
+    
         guard selectedEpisode.doucmentaudioURL == nil else {
+            AudioEpisodeTracker.currentEpisodesInTrack = episodesInPodcast
             performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: index)
             return
         }
