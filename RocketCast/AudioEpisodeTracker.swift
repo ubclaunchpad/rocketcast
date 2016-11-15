@@ -20,6 +20,7 @@ class AudioEpisodeTracker {
     static var podcastTitle = ""
     static var episodeTitle = ""
     static var currentRate = speedRates.single
+    static var isTheAudioEmpty = true
     
     static func getCurrentEpisode() -> Episode {
         print(episodeIndex)
@@ -39,5 +40,17 @@ class AudioEpisodeTracker {
         podcastIndex = -1
         episodeTitle = ""
         podcastTitle = ""
+    }
+    
+    static func resetAudioData() {
+        audioPlayer.stop()
+        currentTimer.invalidate()
+        audioPlayer.currentTime = 0
+        audioPlayer = AVAudioPlayer()
+        isTheAudioEmpty = true
+    }
+    
+    static func loadAudioData() {
+        
     }
 }

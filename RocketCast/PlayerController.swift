@@ -141,12 +141,14 @@ extension PlayerController: PlayerViewDelegate {
         let file = fileMgr.contents(atPath: path)
         do {
             AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: file!)
+            self.mainView?.slider.setValue(0.0, animated: false)
             self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
             
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
             AudioEpisodeTracker.audioPlayer.enableRate = true
             AudioEpisodeTracker.audioPlayer.play()
             AudioEpisodeTracker.isPlaying = true
+            AudioEpisodeTracker.isTheAudioEmpty = false
             AudioEpisodeTracker.currentRate = speedRates.single
             mainView?.isPlaying = true
             
@@ -192,11 +194,15 @@ extension PlayerController: PlayerViewDelegate {
         guard mainView?.sliderIsMoving == false else {
             return
         }
+
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
+        
         self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: true)
+        
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 3) ) {
-            AudioEpisodeTracker.audioPlayer.stop()
-            AudioEpisodeTracker.currentTimer.invalidate()
             playNextEpisode()
         }
     }
@@ -207,13 +213,9 @@ extension PlayerController: PlayerViewDelegate {
             return
         }
         AudioEpisodeTracker.episodeIndex += 1
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.resetAudioData()
         self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
         
-        AudioEpisodeTracker.audioPlayer.currentTime = 0
-        self.mainView?.slider.setValue(0.0, animated: false)
-        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
-        AudioEpisodeTracker.audioPlayer = AVAudioPlayer()
         self.loadUpAudioEpisode()
     }
  }
