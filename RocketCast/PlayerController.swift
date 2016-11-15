@@ -32,7 +32,7 @@ class PlayerController: UIViewController {
         self.mainView?.setStyling()
         self.mainView?.viewDelegate = self
         if (!AudioEpisodeTracker.isPlaying) {
-            self.loadUpAudioEpisode()
+            self.downloadAudioEpisode()
         } else {
             self.mainView?.slider.minimumValue = 0
             self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
@@ -41,7 +41,7 @@ class PlayerController: UIViewController {
         }
     }
     
-    func loadUpAudioEpisode() {
+    func downloadAudioEpisode() {
         guard  AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL == nil else  {
             self.setUpPlayer(webUrl: AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL!)
             return
@@ -139,27 +139,17 @@ extension PlayerController: PlayerViewDelegate {
         let fileMgr = FileManager.default
         let path = NSHomeDirectory() + webUrl
         let file = fileMgr.contents(atPath: path)
-        do {
-            AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: file!)
-            self.mainView?.slider.setValue(0.0, animated: false)
-            self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
-            
-            AudioEpisodeTracker.audioPlayer.prepareToPlay()
-            AudioEpisodeTracker.audioPlayer.enableRate = true
-            AudioEpisodeTracker.audioPlayer.play()
-            AudioEpisodeTracker.isPlaying = true
-            AudioEpisodeTracker.isTheAudioEmpty = false
-            AudioEpisodeTracker.currentRate = speedRates.single
-            mainView?.isPlaying = true
-            
-            let audioSession = AVAudioSession.sharedInstance()
-           AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            } catch let error as NSError {
-                Log.error(error.localizedDescription)
-            }
         
+        AudioEpisodeTracker.loadAudioDataToAudioPlayer(file!)
+        self.mainView?.slider.setValue(0.0, animated: false)
+        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
+        AudioEpisodeTracker.audioPlayer.play()
+        mainView?.isPlaying = true
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error as NSError {
             Log.error(error.localizedDescription)
         }
@@ -216,6 +206,6 @@ extension PlayerController: PlayerViewDelegate {
         AudioEpisodeTracker.resetAudioData()
         self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
         
-        self.loadUpAudioEpisode()
+        self.downloadAudioEpisode()
     }
  }

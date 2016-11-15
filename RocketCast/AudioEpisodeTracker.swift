@@ -23,8 +23,6 @@ class AudioEpisodeTracker {
     static var isTheAudioEmpty = true
     
     static func getCurrentEpisode() -> Episode {
-        print(episodeIndex)
-        print(currentEpisodesInTrack.count)
         return currentEpisodesInTrack[episodeIndex]
     }
     
@@ -50,7 +48,17 @@ class AudioEpisodeTracker {
         isTheAudioEmpty = true
     }
     
-    static func loadAudioData() {
-        
+    static func loadAudioDataToAudioPlayer(_ data:Data) {
+        do {
+            AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: data)
+            
+            AudioEpisodeTracker.audioPlayer.prepareToPlay()
+            AudioEpisodeTracker.audioPlayer.enableRate = true
+            AudioEpisodeTracker.isPlaying = true
+            AudioEpisodeTracker.isTheAudioEmpty = false
+            AudioEpisodeTracker.currentRate = speedRates.single
+        } catch let error as NSError {
+            Log.error(error.localizedDescription)
+        }
     }
 }
