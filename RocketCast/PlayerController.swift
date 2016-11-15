@@ -110,7 +110,16 @@ class PlayerController: UIViewController {
         let episode = AudioEpisodeTracker.getCurrentEpisode()
         DatabaseController.deleteEpisodeAudio(episodeTitle: episode.title!)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EpisodeController {
+            if let podcast = sender as? Podcast {
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                destination.episodesInPodcast = episodes
+                destination.selectedPodcast = podcast
+            }
+        }
+    }
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
@@ -120,7 +129,7 @@ extension PlayerController: PlayerViewDelegate {
         let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
             print("Deleted Episode")
             self.closeDeleteModal()
-            self.segueBackToEpisodes(shouldReloadNewEpisodeTrack: false)
+            self.segueBackToEpisodes()
             self.deleteEpisode()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
@@ -216,11 +225,10 @@ extension PlayerController: PlayerViewDelegate {
     }
 
     func segueBackToEpisodes() {
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
-    }
-    
-    func segueBackToEpisodes(shouldReloadNewEpisodeTrack: Bool) {
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: shouldReloadNewEpisodeTrack)
+        let currentPodcast = DatabaseController.getPodcast(byTitle: AudioEpisodeTracker.podcastTitle)
+        DatabaseController.saveContext()
+        print("\n\nPodcast Title: %@", currentPodcast.title)
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: currentPodcast)
     }
     
     func updateProgressView() {

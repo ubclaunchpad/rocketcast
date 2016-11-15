@@ -17,7 +17,6 @@ class EpisodeController: UIViewController {
     
     override func viewDidLoad() {
         setupView()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.title = ""
@@ -44,7 +43,7 @@ class EpisodeController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == Segues.segueFromEpisodeToPlayer || segue.identifier == Segues.segueToBackEpisodes) {
+        if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             if let sendIndex = sender as? NSInteger {
                 if (AudioEpisodeTracker.podcastTitle.isEmpty) {
                     AudioEpisodeTracker.episodeIndex = sendIndex
