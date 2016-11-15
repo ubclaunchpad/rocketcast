@@ -106,18 +106,6 @@ class PlayerController: UIViewController {
         self.present(alert, animated: false, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == Segues.segueToBackEpisodes  else {
-            return
-        }
-        
-        if let shouldReloadNewEpisodeTrackList = sender as? Bool {
-            if let destination = segue.destination as? EpisodeController {
-                destination.shouldReloadNewEpisodeTrack = shouldReloadNewEpisodeTrackList
-            }
-        }
-    }
-    
     func deleteEpisode(){
         let episode = AudioEpisodeTracker.getCurrentEpisode()
         DatabaseController.deleteEpisodeAudio(episodeTitle: episode.title!)
