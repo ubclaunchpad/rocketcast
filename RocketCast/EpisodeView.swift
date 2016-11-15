@@ -53,7 +53,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     // Iiterates over every episode and creates a respective TableViewCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->  UITableViewCell {
         
-        if indexPath.section == 0 {
+        /*if indexPath.section == 0 {
             let nib_name = UINib(nibName: "EpisodeHeaderTableViewCell", bundle:nil)
             tableView.register(nib_name, forCellReuseIdentifier: "EpisodeHeaderTableViewCell")
             let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: "EpisodeHeaderTableViewCell", for: indexPath) as! EpisodeHeaderTableViewCell
@@ -66,7 +66,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             cell.layoutMargins = UIEdgeInsets.zero
             return cell
             
-        } else {
+        } else {*/
             let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
             tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
             let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
@@ -93,7 +93,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero
             return cell
-        }
+       // }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
