@@ -1,0 +1,6 @@
+framework module LumberMill {
+  umbrella header "LumberMill-umbrella.h"
+
+  export *
+  module * { export * }
+}

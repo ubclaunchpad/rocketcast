@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 
+import LumberMill
+
 typealias PodcastWebURL = String
 typealias ImageWebURL = String
 typealias AudioWebURL = String
@@ -73,10 +75,4 @@ enum EntityName {
     static let Episode = "Episode"
 }
 
-/**
- A log level of debug will print out all levels above it.
- So a log level of WARN will print out WARN, ERROR, and TEST
- */
-enum LogLevel {
-    static let lvl = LogLevelChoices.DEBUG
-}
+let Log = LumberMill(minLogLevel: 1);
