@@ -69,6 +69,9 @@ class EpisodeController: UIViewController {
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
   
     func segueToPlayer () {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     

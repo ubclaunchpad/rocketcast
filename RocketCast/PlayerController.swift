@@ -177,7 +177,6 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.rate = speedRates.double
             AudioEpisodeTracker.currentRate = speedRates.double
             break
-
         case speedRates.double:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.triple
             AudioEpisodeTracker.currentRate = speedRates.triple

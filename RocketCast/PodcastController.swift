@@ -58,6 +58,9 @@ class PodcastController: UIViewController {
 extension PodcastController:PodcastViewDelegate {
 
     func segueToPlayer() {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromPodcastListToPlayer, sender: self)
     }
     
