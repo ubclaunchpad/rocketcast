@@ -16,6 +16,9 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photoWidth: NSLayoutConstraint!
     @IBOutlet weak var photoHeight: NSLayoutConstraint!
+    var viewDelegate: PodcastViewDelegate?
+    
+    @IBOutlet weak var deleteButton: UIButton!
     var podcast: Podcast! {
         didSet {
             podcastTitle.text = podcast.title
@@ -47,7 +50,7 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setStyling() {
+    func setStyling() {        
         let effectsLayer = coverPhotoView.layer
         effectsLayer.cornerRadius = 14
         effectsLayer.shadowColor = UIColor.black.cgColor
@@ -55,6 +58,21 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         effectsLayer.shadowRadius = 4
         effectsLayer.shadowOpacity = 0.4
         effectsLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x:coverPhotoView.frame.origin.x, y:coverPhotoView.frame.origin.y, width: photoWidth.constant, height:photoHeight.constant), cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
+        
+        self.bringSubview(toFront: self.deleteButton)
+    }
+    
+    func addDeleteButton() {
+        self.deleteButton.frame = self.coverPhotoView.bounds
+        self.deleteButton.isHidden = false
+    }
+    
+    func removeDeleteButton() {
+        self.deleteButton.isHidden = true
+    }
+    
+    @IBAction func deletePodcast() {
+        viewDelegate?.deletePodcast(Podcast: self.podcast)
     }
     
     override func awakeFromNib() {
