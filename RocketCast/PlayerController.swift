@@ -127,11 +127,27 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func goForward() {
-        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime+30)
+        var time: TimeInterval = AudioEpisodeTracker.audioPlayer.currentTime
+        time += 30.0 // Go forward by 30 seconds
+        if time > AudioEpisodeTracker.audioPlayer.duration{
+            AudioEpisodeTracker.audioPlayer.currentTime = AudioEpisodeTracker.audioPlayer.duration - 1
+            AudioEpisodeTracker.audioPlayer.play()
+        } else{
+            AudioEpisodeTracker.audioPlayer.currentTime = time
+            AudioEpisodeTracker.audioPlayer.play()
+        }
     }
     
     func goBack() {
-        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime-30)
+        var time: TimeInterval = AudioEpisodeTracker.audioPlayer.currentTime
+        time -= 30.0 // Go backward by 30 seconds
+        if time < 0.0{
+            AudioEpisodeTracker.audioPlayer.currentTime = 0.0
+            AudioEpisodeTracker.audioPlayer.play()
+        } else{
+            AudioEpisodeTracker.audioPlayer.currentTime = time
+            AudioEpisodeTracker.audioPlayer.play()
+        }
     }
     
     func setUpPlayer(webUrl:String) {
