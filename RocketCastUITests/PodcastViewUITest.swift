@@ -69,6 +69,7 @@ class PodcastViewUITest: XCTestCase {
         XCTAssert(countAfter == countBefore + 1)
     }
     
+    
     func testJumpToCurrentlyPlayingEpisodeFromPlayerVC() {
         let app = XCUIApplication()
         app.buttons["Add"].tap()
@@ -90,6 +91,34 @@ class PodcastViewUITest: XCTestCase {
         app.buttons["Play"].tap()
         let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
         XCTAssert(mondayMorningPodcast91216StaticText.exists)
+    }
+    
+    func testDeletePodcast() {
+        let app = XCUIApplication()
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let collectionQuery = app.collectionViews
+        let podcastTitleLabel = collectionQuery.staticTexts["LaunchPad podcast testing"]
+        
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: podcastTitleLabel, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        
+        app.navigationBars.buttons["Delete"].tap()
+        
+        let deleteButton = app.buttons["Delete"]
+        expectation(for: doesItExist, evaluatedWith: deleteButton, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+
+        deleteButton.tap()
+        
+        let podcastRemoved = NSPredicate(format: "count == 7")
+        expectation(for: podcastRemoved, evaluatedWith: app.collectionViews.cells, handler: nil)
+        print(app.collectionViews.staticTexts)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        
     }
     
     func testReloadPodcast () {
