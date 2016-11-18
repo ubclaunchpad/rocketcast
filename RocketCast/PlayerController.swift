@@ -37,7 +37,7 @@ class PlayerController: UIViewController {
             self.mainView?.slider.minimumValue = 0
             self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
             self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
-            AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+            AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
         }
     }
     
@@ -66,9 +66,9 @@ class PlayerController: UIViewController {
                 return
             }
             
-            let episode = DatabaseController.getEpisode(episodeTitle)
+            let episode = DatabaseUtil.getEpisode(episodeTitle)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-            DatabaseController.saveContext()
+            DatabaseUtil.saveContext()
             DispatchQueue.main.async {
                 loadingAlertScreen.dismiss(animated: true, completion: nil)
                 self.createSucessScreen()
@@ -111,19 +111,19 @@ extension PlayerController: PlayerViewDelegate {
         if !AudioEpisodeTracker.audioPlayer.isPlaying {
           print(AudioEpisodeTracker.audioPlayer.currentTime)
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
-            AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+            AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             AudioEpisodeTracker.audioPlayer.play()
         }
     }
     
     func pausePodcast() {
         AudioEpisodeTracker.audioPlayer.pause()
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.currentTimerForSlider.invalidate()
     }
     
     func stopPodcast() {
         AudioEpisodeTracker.audioPlayer.stop()
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.currentTimerForSlider.invalidate()
     }
     
     func goForward() {
@@ -163,7 +163,7 @@ extension PlayerController: PlayerViewDelegate {
         mainView?.isPlaying = true
         
         let audioSession = AVAudioSession.sharedInstance()
-        AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+        AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error as NSError {
