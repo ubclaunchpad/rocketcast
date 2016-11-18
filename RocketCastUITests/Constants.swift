@@ -34,4 +34,4 @@ let skipButton = "Skip30"
 
 let timeOut = TimeInterval(100)
 
-let runForTravis = true
+let runForTravis = false
