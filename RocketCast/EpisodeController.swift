@@ -27,6 +27,7 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
+        self.mainView?.EpisodeTable.reloadData()
         
     }
     
@@ -68,6 +69,9 @@ class EpisodeController: UIViewController {
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
   
     func segueToPlayer () {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
