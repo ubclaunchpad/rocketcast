@@ -54,7 +54,7 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         effectsLayer.shadowOffset = CGSize(width: 0, height: 0)
         effectsLayer.shadowRadius = 4
         effectsLayer.shadowOpacity = 0.4
-        effectsLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x:coverPhotoView.frame.origin.x, y:coverPhotoView.frame.origin.y, width: photoWidth.constant, height:photoHeight.constant), cornerRadius: coverPhotoView.layer.cornerRadius).cgPath
+        effectsLayer.shadowPath = UIBezierPath(roundedRect: CGRect(x:coverPhotoView.frame.origin.x, y:coverPhotoView.frame.origin.y, width: photoWidth.constant, height:photoHeight.constant), cornerRadius: coverPhotoView.layer.cornerRadius).cgPath // swiftlint:disable:this force_cast
     }
     
     override func awakeFromNib() {

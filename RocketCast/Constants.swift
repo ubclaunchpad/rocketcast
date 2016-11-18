@@ -29,7 +29,7 @@ enum  Segues {
   static let segueFromItuneWebToAddUrl = "segueFromItuneWebToAddUrl"
 }
 
-enum speedRates {
+enum SpeedRates { // swiftlint:disable:this force_cast
     static let single:Float = 1
     static let double:Float = 2
     static let triple:Float = 3
@@ -49,7 +49,7 @@ let dateFormatString = "EEE, dd MMM yyyy HH:mm:ss zzz"
 
 let testRSSFeed = "https://s3-us-west-2.amazonaws.com/podcastassets/Episodes/testPodcastMadeup.xml"
 
-struct xmlKeyTags {
+struct xmlKeyTags { // swiftlint:disable:this force_cast
     static let episodeTag = "item"
     static let podcastImage = "itunes:image"
     static let imageLink = "href"

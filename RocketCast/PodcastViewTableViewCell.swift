@@ -41,7 +41,7 @@ class PodcastViewTableViewCell: UITableViewCell {
 
     }
     
-    func updateUI(Podcast: Podcast) {
+    func updateUI(Podcast: Podcast) { // swiftlint:disable:this force_cast
         //TODO: set image from url
         self.podcastName.text = Podcast.title!
         self.podcastDescription.text = Podcast.summary!

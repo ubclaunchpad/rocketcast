@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ItuneWebDelegate {
-    func getPodcastsFromItuneAPI(_inputString:String)
-    func savePodcastToCoreDataFromItuneAPI(_rssFeed: String)
+    func getPodcastsFromItuneAPI(_inputString:String) // swiftlint:disable:this force_cast
+    func savePodcastToCoreDataFromItuneAPI(_rssFeed: String) // swiftlint:disable:this force_cast
     func segueToAddUrl()
 }

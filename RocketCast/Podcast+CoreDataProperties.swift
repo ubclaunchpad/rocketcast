@@ -37,10 +37,10 @@ extension Podcast {
     
     
     @objc(addEpisode:)
-    @NSManaged public func addToEpisode(_values: NSSet)
+    @NSManaged public func addToEpisode(_values: NSSet) // swiftlint:disable:this force_cast
     
     
     @objc(removeEpisode:)
-    @NSManaged public func removeFromEpisode(_values: NSSet)
+    @NSManaged public func removeFromEpisode(_values: NSSet) // swiftlint:disable:this force_cast
     
 }

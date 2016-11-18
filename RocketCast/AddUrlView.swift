@@ -16,7 +16,7 @@ class AddUrlView: UIView {
 
     class func instancefromNib(_ frame: CGRect) -> AddUrlView {
         let view = UINib(nibName: "AddUrlView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-            as! AddUrlView
+            as! AddUrlView // swiftlint:disable:this force_cast
         view.frame = frame
         return view
     }

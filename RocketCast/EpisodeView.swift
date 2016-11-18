@@ -16,14 +16,14 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     
     var podcast: Podcast!
     
-    @IBOutlet weak var EpisodeTable: UITableView!
+    @IBOutlet weak var EpisodeTable: UITableView! // swiftlint:disable:this force_cast
     
     @IBAction func segueToPlayer(_ sender: AnyObject) {
         viewDelegate?.segueToPlayer()
     }
     class func instancefromNib(_ frame: CGRect) -> EpisodeView {
         let view = UINib(nibName: "EpisodeView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-            as! EpisodeView
+            as! EpisodeView // swiftlint:disable:this force_cast
         view.frame = frame
         view.EpisodeTable.delegate = view
         view.EpisodeTable.dataSource = view
@@ -56,7 +56,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         if indexPath.section == 0 {
             let nib_name = UINib(nibName: "EpisodeHeaderTableViewCell", bundle:nil)
             tableView.register(nib_name, forCellReuseIdentifier: "EpisodeHeaderTableViewCell")
-            let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: "EpisodeHeaderTableViewCell", for: indexPath) as! EpisodeHeaderTableViewCell
+            let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: "EpisodeHeaderTableViewCell", for: indexPath) as! EpisodeHeaderTableViewCell // swiftlint:disable:this force_cast
             cell.listOfEpisodes = episodesToView
             cell.podcast = podcast
             cell.setupPodcastInfo()
@@ -69,7 +69,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         } else {
             let nib_name = UINib(nibName: EpisodeViewConstants.cellViewNibName, bundle:nil)
             tableView.register(nib_name, forCellReuseIdentifier: EpisodeViewConstants.cellViewIdentifier)
-            let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell
+            let cell = self.EpisodeTable.dequeueReusableCell(withIdentifier: EpisodeViewConstants.cellViewIdentifier, for: indexPath) as! EpisodeViewTableViewCell // swiftlint:disable:this force_cast
             
             let episode = episodesToView[indexPath.row]
             
