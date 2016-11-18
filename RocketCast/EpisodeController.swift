@@ -106,9 +106,9 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
                 return
             }
             
-            let episode = DatabaseController.getEpisode(episodeTitle as String)
+            let episode = DatabaseUtil.getEpisode(episodeTitle as String)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-            DatabaseController.saveContext()
+            DatabaseUtil.saveContext()
             Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()

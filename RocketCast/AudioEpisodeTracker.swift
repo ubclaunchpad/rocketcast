@@ -12,7 +12,7 @@ import AVFoundation
 class AudioEpisodeTracker {
     
     static var audioPlayer = AVAudioPlayer()
-    static var currentTimer = Timer()
+    static var currentTimerForSlider = Timer()
     static var isPlaying = false
     static var currentEpisodesInTrack = [Episode]()
     static var episodeIndex = -1
@@ -32,17 +32,18 @@ class AudioEpisodeTracker {
         }
         audioPlayer = AVAudioPlayer()
         currentEpisodesInTrack = [Episode]()
-        currentTimer.invalidate()
+        currentTimerForSlider.invalidate()
         isPlaying = false
         episodeIndex = -1
         podcastIndex = -1
         episodeTitle = ""
         podcastTitle = ""
+        isTheAudioEmpty = true
     }
     
     static func resetAudioData() {
         audioPlayer.stop()
-        currentTimer.invalidate()
+        currentTimerForSlider.invalidate()
         audioPlayer.currentTime = 0
         audioPlayer = AVAudioPlayer()
         isTheAudioEmpty = true
