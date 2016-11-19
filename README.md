@@ -1,12 +1,6 @@
 # RocketCast
 A podcasting application made by UBC Launch Pad Members
 
-####Dev branch build status: 
-![](https://api.travis-ci.org/ubclaunchpad/RocketCast.svg?branch=dev)
-
-####Master branch build status: 
-![](https://api.travis-ci.org/ubclaunchpad/RocketCast.svg?branch=master)
-
 ## Installation
 
 **Note: Please have XCode >7.3 installed before starting**
@@ -28,10 +22,17 @@ When using make sure you have a working internet connection.
 
 ## Credits
 [David Baldwynn](https://github.com/whitef0x0)
+
 [Jon Mercer](https://github.com/JonMercer)
+
 [James Park](https://github.com/QuantumSpark)
+
 [Tanha Kabir](https://github.com/tanhakabir)
+
 [Xenia Chiru](https://github.com/xenia1)
+
 [Milton Leung](https://github.com/miltonleung)
+
 [Ali Haghani](https://github.com/AliHaghani)
+
 [Mohammed Ali](https://github.com/mohamedali92)
