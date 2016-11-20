@@ -1,7 +1,7 @@
 # RocketCast
 A podcasting application made by the UBC Launch Pad iOS team.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1024px-Download_on_the_App_Store_Badge.svg.png" alt="Download on the App Store" height="50">
+<a href="https://itunes.apple.com/ca/app/rocketcast-podcast-player/id1176388695?mt=8" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1024px-Download_on_the_App_Store_Badge.svg.png" alt="Download on the App Store" height="50"></a>
 
 ## Installation
 
