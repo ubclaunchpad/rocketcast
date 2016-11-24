@@ -182,4 +182,53 @@ class PlayerUITests: XCTestCase {
         
         app.buttons["Back"].tap()
     }
+    
+    func testSkipAndRevertButton() {
+        
+        guard runForTravis else {
+            return
+        }
+
+        let app = XCUIApplication()
+        let tablesQuery = app.tables
+        
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        waitForExpectations(timeout: timeOut, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        
+        let beforeSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        app.buttons[skipButton].tap()
+        let afterSkipSliderPos = app.sliders.element.normalizedSliderPosition
+        XCTAssertTrue(beforeSkipSliderPos < afterSkipSliderPos)
+        
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.40)
+        let beforeRevertSliderPos = app.sliders.element.normalizedSliderPosition
+        app.buttons[backButton].tap()
+        app.buttons[backButton].tap()
+        app.buttons[backButton].tap()
+        let afterRevertSliderPos = app.sliders.element.normalizedSliderPosition
+        XCTAssertTrue(beforeRevertSliderPos > afterRevertSliderPos)
+
+        // Go to near the end
+        
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.98)
+        app.buttons[skipButton].tap()
+        
+        let successAlert = app.alerts["Success"]
+        XCTAssertFalse(successAlert.exists)
+        expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        successAlert.buttons["Ok"].tap()
+
+    }
+    
 }
