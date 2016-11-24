@@ -183,5 +183,33 @@ class PodcastViewUITest: XCTestCase {
     
     }
     
+    
+    func testReloadPodcastsWhilePlayingPodcast () {
+        
+        guard runForTravis else {
+            return
+        }
+        
+        let app = XCUIApplication()
+        app.buttons[AddButtonFromPodcastView].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons[AddPodcastButtonOnAddURLView].tap()
+        
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        // please wait for awhile
+        let tablesQuery = app.tables
+        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        waitForExpectations(timeout: timeOut, handler: nil)
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        
+        app.buttons["Back"].tap()
+        app.buttons["Back"].tap()
+        
+        app.buttons["Refresh"].tap()
+        
+    }
 
 }

@@ -50,7 +50,7 @@ class RocketCastUITests: XCTestCase {
         expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
         firstCell.tap()
         
-        waitForExpectations(timeout: 50, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
         firstCell.tap()
     
     }

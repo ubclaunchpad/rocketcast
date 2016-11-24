@@ -32,16 +32,16 @@ class PlayerController: UIViewController {
         self.mainView?.setStyling()
         self.mainView?.viewDelegate = self
         if (!AudioEpisodeTracker.isPlaying) {
-            self.loadUpAudioEpisode()
+            self.downloadAudioEpisode()
         } else {
             self.mainView?.slider.minimumValue = 0
             self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
             self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
-            AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+            AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
         }
     }
     
-    func loadUpAudioEpisode() {
+    func downloadAudioEpisode() {
         guard  AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL == nil else  {
             self.setUpPlayer(webUrl: AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL!)
             return
@@ -66,9 +66,9 @@ class PlayerController: UIViewController {
                 return
             }
             
-            let episode = DatabaseController.getEpisode(episodeTitle)
+            let episode = DatabaseUtil.getEpisode(episodeTitle)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-            DatabaseController.saveContext()
+            DatabaseUtil.saveContext()
             DispatchQueue.main.async {
                 loadingAlertScreen.dismiss(animated: true, completion: nil)
                 self.createSucessScreen()
@@ -111,19 +111,19 @@ extension PlayerController: PlayerViewDelegate {
         if !AudioEpisodeTracker.audioPlayer.isPlaying {
           print(AudioEpisodeTracker.audioPlayer.currentTime)
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
-            AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+            AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             AudioEpisodeTracker.audioPlayer.play()
         }
     }
     
     func pausePodcast() {
         AudioEpisodeTracker.audioPlayer.pause()
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.currentTimerForSlider.invalidate()
     }
     
     func stopPodcast() {
         AudioEpisodeTracker.audioPlayer.stop()
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.currentTimerForSlider.invalidate()
     }
     
     func goForward() {
@@ -155,25 +155,17 @@ extension PlayerController: PlayerViewDelegate {
         let fileMgr = FileManager.default
         let path = NSHomeDirectory() + webUrl
         let file = fileMgr.contents(atPath: path)
-        do {
-            AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: file!)
-            self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
-            
-            AudioEpisodeTracker.audioPlayer.prepareToPlay()
-            AudioEpisodeTracker.audioPlayer.enableRate = true
-            AudioEpisodeTracker.audioPlayer.play()
-            AudioEpisodeTracker.isPlaying = true
-            AudioEpisodeTracker.currentRate = speedRates.single
-            mainView?.isPlaying = true
-            
-            let audioSession = AVAudioSession.sharedInstance()
-           AudioEpisodeTracker.currentTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-            } catch let error as NSError {
-                Log.error(error.localizedDescription)
-            }
         
+        AudioEpisodeTracker.loadAudioDataToAudioPlayer(file!)
+        self.mainView?.slider.setValue(0.0, animated: false)
+        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
+        AudioEpisodeTracker.audioPlayer.play()
+        mainView?.isPlaying = true
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayback)
         } catch let error as NSError {
             Log.error(error.localizedDescription)
         }
@@ -185,7 +177,6 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.rate = speedRates.double
             AudioEpisodeTracker.currentRate = speedRates.double
             break
-
         case speedRates.double:
             AudioEpisodeTracker.audioPlayer.rate = speedRates.triple
             AudioEpisodeTracker.currentRate = speedRates.triple
@@ -208,10 +199,15 @@ extension PlayerController: PlayerViewDelegate {
         guard mainView?.sliderIsMoving == false else {
             return
         }
+
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
+        
         self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: true)
+        
         if ((self.mainView?.slider.value)! < (self.mainView?.slider.maximumValue)!  &&
             (self.mainView?.slider.value)! > ((self.mainView?.slider.maximumValue)! - 3) ) {
-            AudioEpisodeTracker.audioPlayer.stop()
             playNextEpisode()
         }
     }
@@ -222,13 +218,9 @@ extension PlayerController: PlayerViewDelegate {
             return
         }
         AudioEpisodeTracker.episodeIndex += 1
-        AudioEpisodeTracker.currentTimer.invalidate()
+        AudioEpisodeTracker.resetAudioData()
         self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
         
-        AudioEpisodeTracker.audioPlayer.currentTime = 0
-        self.mainView?.slider.setValue(0.0, animated: false)
-        self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
-        AudioEpisodeTracker.audioPlayer = AVAudioPlayer()
-        self.loadUpAudioEpisode()
+        self.downloadAudioEpisode()
     }
  }

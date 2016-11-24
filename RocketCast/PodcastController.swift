@@ -52,7 +52,7 @@ class PodcastController: UIViewController {
     fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
-        let listOfPodcasts = DatabaseController.getAllPodcasts()
+        let listOfPodcasts = DatabaseUtil.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         mainView?.inDeleteMode = self.inDeleteMode
         
@@ -70,7 +70,7 @@ class PodcastController: UIViewController {
     fileprivate func refreshView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = PodcastView.instancefromNib(viewSize)
-        let listOfPodcasts = DatabaseController.getAllPodcasts()
+        let listOfPodcasts = DatabaseUtil.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         mainView?.inDeleteMode = self.inDeleteMode
         
@@ -95,6 +95,9 @@ class PodcastController: UIViewController {
 extension PodcastController:PodcastViewDelegate {
 
     func segueToPlayer() {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromPodcastListToPlayer, sender: self)
     }
     
@@ -107,25 +110,25 @@ extension PodcastController:PodcastViewDelegate {
     }
     
     func deletePodcast(Podcast: Podcast){
-        DatabaseController.deletePodcast(podcastTitle: Podcast.title!)
+        DatabaseUtil.deletePodcast(podcastTitle: Podcast.title!)
         refreshView()
     }
     
     func updateAllPodcasts() {
         
         AudioEpisodeTracker.resetAudioTracker()
-        var currentPodcasts =  DatabaseController.getAllPodcasts()
+        var currentPodcasts =  DatabaseUtil.getAllPodcasts()
         while (!currentPodcasts.isEmpty) {
             if let podcast = currentPodcasts.popLast() {
                 if let rssFeedURL = podcast.rssFeedURL {
-                    DatabaseController.deletePodcast(podcastTitle: podcast.title!)
-                    XMLParser(url:rssFeedURL)
+                    DatabaseUtil.deletePodcast(podcastTitle: podcast.title!)
+                    CoreDataXMLParser(url:rssFeedURL)
                 }
             }
         }
         navigationItem.rightBarButtonItems = [self.enterDeleteModeButton]
         
-        let listOfPodcasts = DatabaseController.getAllPodcasts()
+        let listOfPodcasts = DatabaseUtil.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
         self.mainView?.podcastView.reloadData()
     }
