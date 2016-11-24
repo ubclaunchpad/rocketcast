@@ -47,6 +47,11 @@ class PlayerView: UIView {
         viewDelegate?.goForward()
     }
     
+    @IBAction func openDeleteAlert(_ sender: AnyObject) {
+        print("Open Delete Alert")
+        viewDelegate?.openDeleteModal()
+    }
+    
     @IBAction func changeAudio(_ sender: AnyObject) {
         // Smooths slider by reducing logic performed during each continuous slide
         if sliderIsMoving {

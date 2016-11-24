@@ -36,6 +36,7 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         
         podcastSummary.text = podcast.summary
         let url = URL(string: (podcast.imageURL)!)
+
         DispatchQueue.global().async {
             do {
                 let data = try Data(contentsOf: url!)

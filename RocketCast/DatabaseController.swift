@@ -149,6 +149,32 @@ class DatabaseController {
         return episode
     }
     
+    static func deleteEpisodeAudio (episodeTitle: String) {
+        
+        let fileManager = FileManager.default
+        
+        do {
+            
+            let episode = self.getEpisode(episodeTitle)
+            let episodeUrl = episode?.doucmentaudioURL
+            print(episodeUrl)
+            print(episode?.imageURL)
+            episode?.setValue(nil, forKey: "doucmentaudioURL")
+            self.saveContext()
+            
+            let filePath = NSHomeDirectory() + episodeUrl!
+            
+            try fileManager.removeItem(atPath: filePath)
+            
+            Log.info("Deleted the episode audio")
+            
+        } catch let error as NSError {
+            Log.error("Failed deleting episode: " + error.localizedDescription);
+        }
+        print("File still Exists: ",  fileManager.fileExists(atPath: episodeTitle))
+
+    }
+    
     // MARK: - Core Data Method for Test
     static func getPodcastCount () -> NSInteger {
         let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()

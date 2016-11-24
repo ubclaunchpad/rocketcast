@@ -13,6 +13,8 @@ class PlayerController: UIViewController {
     
     var mainView: PlayerView?
     
+    var alertController: UIAlertController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
@@ -103,10 +105,49 @@ class PlayerController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: false, completion: nil)
     }
+    
+    func deleteEpisode(){
+        let episode = AudioEpisodeTracker.getCurrentEpisode()
+        AudioEpisodeTracker.resetAudioTracker();
+        DatabaseController.deleteEpisodeAudio(episodeTitle: episode.title!)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EpisodeController {
+            if let podcast = sender as? Podcast {
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                destination.episodesInPodcast = episodes
+                destination.selectedPodcast = podcast
+            }
+        }
+    }
 }
 
 // reference to https://github.com/maranathApp/Music-Player-App-Final-Project/blob/master/PlayerViewController.swift
 extension PlayerController: PlayerViewDelegate {
+    func openDeleteModal() {
+        self.alertController = UIAlertController(title: "Delete Episode", message: "Are you sure you want to delete this Episode?", preferredStyle: UIAlertControllerStyle.alert)
+        let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+            print("Deleted Episode")
+            self.closeDeleteModal()
+            self.segueBackToEpisodes()
+            self.deleteEpisode()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+            print("Did not Delete Episode")
+            self.closeDeleteModal()
+        }
+        self.alertController?.addAction(DestructiveAction)
+        self.alertController?.addAction(cancelAction)
+        self.present(self.alertController!, animated: true, completion: nil)
+    }
+    
+    func closeDeleteModal() {
+        if (self.alertController != nil) {
+            self.alertController?.dismiss(animated: true)
+        }
+    }
+    
     func playPodcast() {
         if !AudioEpisodeTracker.audioPlayer.isPlaying {
           print(AudioEpisodeTracker.audioPlayer.currentTime)
@@ -127,11 +168,27 @@ extension PlayerController: PlayerViewDelegate {
     }
     
     func goForward() {
-        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime+30)
+        var time: TimeInterval = AudioEpisodeTracker.audioPlayer.currentTime
+        time += 30.0 // Go forward by 30 seconds
+        if time > AudioEpisodeTracker.audioPlayer.duration{
+            AudioEpisodeTracker.audioPlayer.currentTime = AudioEpisodeTracker.audioPlayer.duration - 1
+            AudioEpisodeTracker.audioPlayer.play()
+        } else{
+            AudioEpisodeTracker.audioPlayer.currentTime = time
+            AudioEpisodeTracker.audioPlayer.play()
+        }
     }
     
     func goBack() {
-        AudioEpisodeTracker.audioPlayer.play(atTime: AudioEpisodeTracker.audioPlayer.currentTime-30)
+        var time: TimeInterval = AudioEpisodeTracker.audioPlayer.currentTime
+        time -= 30.0 // Go backward by 30 seconds
+        if time < 0.0{
+            AudioEpisodeTracker.audioPlayer.currentTime = 0.0
+            AudioEpisodeTracker.audioPlayer.play()
+        } else{
+            AudioEpisodeTracker.audioPlayer.currentTime = time
+            AudioEpisodeTracker.audioPlayer.play()
+        }
     }
     
     func setUpPlayer(webUrl:String) {
@@ -185,7 +242,10 @@ extension PlayerController: PlayerViewDelegate {
     }
 
     func segueBackToEpisodes() {
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: self)
+        let currentPodcast = DatabaseController.getPodcast(byTitle: AudioEpisodeTracker.podcastTitle)
+        DatabaseController.saveContext()
+        print("\n\nPodcast Title: %@", currentPodcast.title)
+        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: currentPodcast)
     }
     
     func updateProgressView() {
