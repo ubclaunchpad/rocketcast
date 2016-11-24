@@ -108,6 +108,7 @@ class PlayerController: UIViewController {
     
     func deleteEpisode(){
         let episode = AudioEpisodeTracker.getCurrentEpisode()
+        AudioEpisodeTracker.resetAudioTracker();
         DatabaseController.deleteEpisodeAudio(episodeTitle: episode.title!)
     }
     
