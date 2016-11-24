@@ -35,9 +35,10 @@ class PodcastViewUITest: XCTestCase {
             
             let launchpadPodcastTestingStaticText = app.collectionViews.staticTexts[SamplePodcast.podcastTitle]
             var cells = XCUIApplication().collectionViews.cells
-            XCTAssertEqual(2, cells.count)
+            XCTAssertEqual(4, cells.count)
             XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
-            launchpadPodcastTestingStaticText.tap()
+            app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
+
             let episodeTable = app.tables
             cells = XCUIApplication().tables.cells
             XCTAssertEqual(3, cells.count)
@@ -66,7 +67,7 @@ class PodcastViewUITest: XCTestCase {
         let countAfter = tablesQuery.cells.count
         print(countBefore)
         print(countAfter)
-        XCTAssert(countAfter == countBefore + 1)
+        XCTAssert(countAfter == countBefore + 2)
     }
     
     
@@ -76,8 +77,7 @@ class PodcastViewUITest: XCTestCase {
         app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         
-        let collectionQuery = app.collectionViews
-        collectionQuery.staticTexts["LaunchPad podcast testing"].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         
         let downloadingLabel = app.staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")

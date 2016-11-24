@@ -30,7 +30,7 @@ class PlayerUITests: XCTestCase {
         app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         // please wait for awhile
         let tablesQuery = app.tables
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
@@ -83,8 +83,7 @@ class PlayerUITests: XCTestCase {
         app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
-        
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         
         let tablesQuery = app.tables
         let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
@@ -117,7 +116,7 @@ class PlayerUITests: XCTestCase {
         app.buttons["Add Url"].tap()
         app.buttons[AddPodcastButtonOnAddURLView].tap()
         
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
@@ -159,7 +158,7 @@ class PlayerUITests: XCTestCase {
         let addPodcastButton = app.buttons[AddPodcastButtonOnAddURLView]
         addPodcastButton.tap()
         
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         
         let tablesQuery = app.tables
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
