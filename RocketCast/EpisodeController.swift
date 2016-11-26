@@ -26,6 +26,7 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
+        self.mainView?.EpisodeTable.reloadData()
         
     }
     
@@ -67,6 +68,9 @@ class EpisodeController: UIViewController {
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
   
     func segueToPlayer () {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
@@ -101,9 +105,9 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
                 return
             }
             
-            let episode = DatabaseController.getEpisode(episodeTitle as String)
+            let episode = DatabaseUtil.getEpisode(episodeTitle as String)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-            DatabaseController.saveContext()
+            DatabaseUtil.saveContext()
             Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()

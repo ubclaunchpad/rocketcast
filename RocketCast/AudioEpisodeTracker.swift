@@ -12,7 +12,7 @@ import AVFoundation
 class AudioEpisodeTracker {
     
     static var audioPlayer = AVAudioPlayer()
-    static var currentTimer = Timer()
+    static var currentTimerForSlider = Timer()
     static var isPlaying = false
     static var currentEpisodesInTrack = [Episode]()
     static var episodeIndex = -1
@@ -20,10 +20,9 @@ class AudioEpisodeTracker {
     static var podcastTitle = ""
     static var episodeTitle = ""
     static var currentRate = speedRates.single
+    static var isTheAudioEmpty = true
     
     static func getCurrentEpisode() -> Episode {
-        print(episodeIndex)
-        print(currentEpisodesInTrack.count)
         return currentEpisodesInTrack[episodeIndex]
     }
     
@@ -33,11 +32,34 @@ class AudioEpisodeTracker {
         }
         audioPlayer = AVAudioPlayer()
         currentEpisodesInTrack = [Episode]()
-        currentTimer.invalidate()
+        currentTimerForSlider.invalidate()
         isPlaying = false
         episodeIndex = -1
         podcastIndex = -1
         episodeTitle = ""
         podcastTitle = ""
+        isTheAudioEmpty = true
+    }
+    
+    static func resetAudioData() {
+        audioPlayer.stop()
+        currentTimerForSlider.invalidate()
+        audioPlayer.currentTime = 0
+        audioPlayer = AVAudioPlayer()
+        isTheAudioEmpty = true
+    }
+    
+    static func loadAudioDataToAudioPlayer(_ data:Data) {
+        do {
+            AudioEpisodeTracker.audioPlayer = try AVAudioPlayer(data: data)
+            
+            AudioEpisodeTracker.audioPlayer.prepareToPlay()
+            AudioEpisodeTracker.audioPlayer.enableRate = true
+            AudioEpisodeTracker.isPlaying = true
+            AudioEpisodeTracker.isTheAudioEmpty = false
+            AudioEpisodeTracker.currentRate = speedRates.single
+        } catch let error as NSError {
+            Log.error(error.localizedDescription)
+        }
     }
 }

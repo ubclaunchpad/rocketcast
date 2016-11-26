@@ -19,15 +19,15 @@ class CoreDataXMLParserTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        DatabaseController.deleteAllManagedObjects()
+        DatabaseUtil.deleteAllManagedObjects()
     }
     
     func testParseNormalXML() {
         let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url:  stringPath)
-        let currentSize =  DatabaseController.getPodcastCount()
-        let podcast = DatabaseController.getPodcast(byTitle: normalPodcastXML.title)
+        _ = RocketCast.CoreDataXMLParser(url:  stringPath)
+        let currentSize =  DatabaseUtil.getPodcastCount()
+        let podcast = DatabaseUtil.getPodcast(byTitle: normalPodcastXML.title)
         let expectedEpisodes = normalPodcastXML.expectedEpisodes
         XCTAssertEqual(self.normalPodcastXML.title,  podcast.title)
         XCTAssertEqual(self.normalPodcastXML.description, podcast.summary)
@@ -39,16 +39,16 @@ class CoreDataXMLParserTest: XCTestCase {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
             index  = index + 1
         }
-        _ = RocketCast.XMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseController.getPodcastCount())
+        _ = RocketCast.CoreDataXMLParser(url: stringPath)
+        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
     }
     
     func testParseXMLNoAuthorsForEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noAuthorForEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url:  stringPath)
-        let currentSize =  DatabaseController.getPodcastCount()
-        let podcast = DatabaseController.getPodcast(byTitle: noAuthorForEpisodesPodcastXML.title)
+        _ = RocketCast.CoreDataXMLParser(url:  stringPath)
+        let currentSize =  DatabaseUtil.getPodcastCount()
+        let podcast = DatabaseUtil.getPodcast(byTitle: noAuthorForEpisodesPodcastXML.title)
         let expectedEpisodes = noAuthorForEpisodesPodcastXML.expectedEpisodes
         
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.title,  podcast.title)
@@ -62,30 +62,30 @@ class CoreDataXMLParserTest: XCTestCase {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
             index  = index + 1
         }
-        _ = RocketCast.XMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseController.getPodcastCount())
+        _ = RocketCast.CoreDataXMLParser(url: stringPath)
+        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
     }
     
     func testParseXMLWithNoEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
-        _ = RocketCast.XMLParser(url: stringPath)
-        let currentSize =  DatabaseController.getPodcastCount()
-        let podcast = DatabaseController.getPodcast(byTitle: noEpisodesPodcastXML.title)
+        _ = RocketCast.CoreDataXMLParser(url: stringPath)
+        let currentSize =  DatabaseUtil.getPodcastCount()
+        let podcast = DatabaseUtil.getPodcast(byTitle: noEpisodesPodcastXML.title)
         XCTAssertEqual(noEpisodesPodcastXML.title,  podcast.title)
         XCTAssertEqual(noEpisodesPodcastXML.description, podcast.summary)
         XCTAssertEqual(noEpisodesPodcastXML.imageURL, podcast.imageURL)
         XCTAssertEqual(0, podcast.episodes!.count)
         
-        _ = RocketCast.XMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseController.getPodcastCount())
+        _ = RocketCast.CoreDataXMLParser(url: stringPath)
+        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         // Delete Everything
         super.tearDown()
-        DatabaseController.deleteAllManagedObjects()
+        DatabaseUtil.deleteAllManagedObjects()
     }
     
     func compareValues(_ episode: Episode,expectedEpisode:[String:String]) {
