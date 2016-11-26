@@ -196,7 +196,7 @@ class PlayerUITests: XCTestCase {
         app.buttons["Add Url"].tap()
         app.buttons["Add Podcast"].tap()
         app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.tap()
-        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        app.collectionViews.children(matching: .any).element(boundBy: 1).tap()
         
         let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
         let doesItExist = NSPredicate(format: "exists == true")

@@ -130,7 +130,7 @@ class PodcastViewUITest: XCTestCase {
         let app = XCUIApplication()
     
         let podcastCells = XCUIApplication().collectionViews.cells
-        XCTAssertEqual(1, podcastCells.count)
+        XCTAssertEqual(2, podcastCells.count)
         let refreshButton = app.buttons["Refresh"]
         refreshButton.tap()
         XCTAssertEqual(1, podcastCells.count)
