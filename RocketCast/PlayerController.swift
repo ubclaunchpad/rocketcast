@@ -23,6 +23,11 @@ class PlayerController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        guard AudioEpisodeTracker.episodeIndex != -1 else {
+            return
+        }
+        
         mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
     
@@ -110,6 +115,7 @@ class PlayerController: UIViewController {
         let episode = AudioEpisodeTracker.getCurrentEpisode()
         AudioEpisodeTracker.resetAudioTracker();
         DatabaseUtil.deleteEpisodeAudio(episodeTitle: episode.title!)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -130,7 +136,7 @@ extension PlayerController: PlayerViewDelegate {
         let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
             print("Deleted Episode")
             self.closeDeleteModal()
-            self.segueBackToEpisodes()
+            self.navigationController?.popViewController(animated: true)
             self.deleteEpisode()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
