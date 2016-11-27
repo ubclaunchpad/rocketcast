@@ -51,7 +51,7 @@ class PlayerView: UIView {
         print("Open Delete Alert")
         viewDelegate?.openDeleteModal()
     }
-    
+    //TODO this should be in controller
     @IBAction func changeAudio(_ sender: AnyObject) {
         // Smooths slider by reducing logic performed during each continuous slide
         if sliderIsMoving {
@@ -102,6 +102,7 @@ class PlayerView: UIView {
         descriptionView.text = "Test Description"
     }
     
+    // TODO: Should be in controller
     func updateUI (episode: Episode) {
         speedButton.setTitle("\(Int(AudioEpisodeTracker.currentRate))x", for: .normal)
         isPlaying = AudioEpisodeTracker.isPlaying
