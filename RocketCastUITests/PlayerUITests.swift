@@ -269,12 +269,12 @@ class PlayerUITests: XCTestCase {
         
         //Verify that episodes have been deleted
         let firstCell = episodeCells.element(boundBy: 1)
-        XCTAssert(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
-        XCTAssert(firstCell.staticTexts[tapToDownload].exists)
+        XCTAssertTrue(firstCell.staticTexts[SamplePodcast.firstEpisode].exists)
+        XCTAssertFalse(firstCell.staticTexts[tapToDownload].exists)
         
         let secondCell = episodeCells.element(boundBy: 2)
-        XCTAssert(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
-        XCTAssert(secondCell.staticTexts[tapToDownload].exists)
+        XCTAssertTrue(secondCell.staticTexts[SamplePodcast.secondEpisode].exists)
+        XCTAssertTrue(secondCell.staticTexts[tapToDownload].exists)
     }
     
 }

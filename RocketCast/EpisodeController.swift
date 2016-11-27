@@ -27,7 +27,6 @@ class EpisodeController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
         self.mainView?.EpisodeTable.reloadData()
-        
     }
     
     fileprivate func setupView() {
@@ -111,8 +110,8 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
             Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()
-                episodeCell.downloadStatus.text = "Downloaded"
                 episodeCell.downloadAnimation.isHidden = true
+                episodeCell.downloadStatus.text = "Tap To Download"
                 episodeCell.downloadStatus.isHidden = true
                 episodeCell.accessoryType = .checkmark
             }
