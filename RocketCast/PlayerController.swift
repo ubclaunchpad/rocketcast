@@ -112,7 +112,7 @@ class PlayerController: UIViewController {
         DatabaseUtil.deleteEpisodeAudio(episodeTitle: episode.title!)
         
     }
-    
+    // TODO use Guard
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EpisodeController {
             if let podcast = sender as? Podcast {
@@ -129,13 +129,13 @@ extension PlayerController: PlayerViewDelegate {
     func openDeleteModal() {
         self.alertController = UIAlertController(title: "Delete Episode", message: "Are you sure you want to delete this Episode?", preferredStyle: UIAlertControllerStyle.alert)
         let DestructiveAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-            print("Deleted Episode")
+            Log.info("Deleted Episode")
             self.closeDeleteModal()
             self.navigationController?.popViewController(animated: true)
             self.deleteEpisode()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            print("Did not Delete Episode")
+            Log.info("Did not Delete Episode")
             self.closeDeleteModal()
         }
         self.alertController?.addAction(DestructiveAction)
@@ -236,7 +236,6 @@ extension PlayerController: PlayerViewDelegate {
     func segueBackToEpisodes() {
         let currentPodcast = DatabaseUtil.getPodcast(byTitle: AudioEpisodeTracker.podcastTitle)
         DatabaseUtil.saveContext()
-        print("\n\nPodcast Title: %@", currentPodcast.title)
         performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: currentPodcast)
     }
     
