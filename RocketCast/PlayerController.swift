@@ -23,11 +23,6 @@ class PlayerController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        guard AudioEpisodeTracker.episodeIndex != -1 else {
-            return
-        }
-        
         mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())
     }
     
