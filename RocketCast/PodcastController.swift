@@ -34,17 +34,19 @@ class PodcastController: UIViewController {
         mainView?.podcastsToView = listOfPodcasts     
         let updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
         let goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToItuneWeb))
-
+        
         navigationItem.leftBarButtonItems = [updatePodcastsButton, goToItuneWebButton]
 
         view.addSubview(mainView!)
         self.mainView?.viewDelegate = self
     }
-    
+    // TODO - Delete this and other useless crap
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // TODO - Save the image from the web url and pass it along
+    // TODO - Use Guard 
+    // TODO - no need to pass the episodes because podcast has all the episodes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EpisodeController {
             if let podcast = sender as? Podcast {

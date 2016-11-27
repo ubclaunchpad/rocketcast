@@ -42,7 +42,7 @@ class EpisodeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // TODO : Refactor
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             if let sendIndex = sender as? NSInteger {
