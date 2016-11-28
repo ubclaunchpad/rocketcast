@@ -20,7 +20,7 @@ class AddUrlView: UIView {
         view.frame = frame
         return view
     }
-    
+
     @IBAction func addPodcastBtnPressed(_ sender: AnyObject) {
         if let url = inputUrl.text {
             viewDelegate?.addPodcast(webUrl: url)

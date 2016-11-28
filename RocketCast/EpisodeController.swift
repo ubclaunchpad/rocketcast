@@ -17,7 +17,6 @@ class EpisodeController: UIViewController {
     
     override func viewDidLoad() {
         setupView()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.title = ""
@@ -28,7 +27,6 @@ class EpisodeController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
         self.mainView?.EpisodeTable.reloadData()
-        
     }
     
     fileprivate func setupView() {
@@ -43,7 +41,7 @@ class EpisodeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // TODO : Refactor
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             if let sendIndex = sender as? NSInteger {
@@ -112,8 +110,8 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
             Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()
-                episodeCell.downloadStatus.text = "Downloaded"
                 episodeCell.downloadAnimation.isHidden = true
+                episodeCell.downloadStatus.text = "Tap To Download"
                 episodeCell.downloadStatus.isHidden = true
                 episodeCell.accessoryType = .checkmark
             }

@@ -11,6 +11,7 @@ import AVFoundation
 
 class AudioEpisodeTracker {
     
+    // TODO: Connect to ModelBridge
     static var audioPlayer = AVAudioPlayer()
     static var currentTimerForSlider = Timer()
     static var isPlaying = false

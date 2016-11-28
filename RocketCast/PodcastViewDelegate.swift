@@ -14,5 +14,4 @@ protocol PodcastViewDelegate {
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
     func updateAllPodcasts()
     func toggleDeleteMode()
-    func deletePodcast(Podcast: Podcast)
 }

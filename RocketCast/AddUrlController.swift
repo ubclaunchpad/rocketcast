@@ -23,7 +23,7 @@ class AddUrlController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupView() {
+    fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = AddUrlView.instancefromNib(viewSize)
         view.addSubview(mainView!)

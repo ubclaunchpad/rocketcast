@@ -29,7 +29,7 @@ class PodcastController: UIViewController {
                 navigationItem.leftBarButtonItems = [self.updatePodcastsButton, self.goToItuneWebButton]
                 navigationItem.rightBarButtonItems = [self.enterDeleteModeButton]
             }
-            refreshView()
+            self.mainView?.podcastView.reloadData()
         }
     }
     
@@ -54,7 +54,6 @@ class PodcastController: UIViewController {
         mainView = PodcastView.instancefromNib(viewSize)
         let listOfPodcasts = DatabaseUtil.getAllPodcasts()
         mainView?.podcastsToView = listOfPodcasts
-        mainView?.inDeleteMode = self.inDeleteMode
         
         self.updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
         self.goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToItuneWeb))
@@ -67,21 +66,13 @@ class PodcastController: UIViewController {
         self.mainView?.viewDelegate = self
     }
     
-    fileprivate func refreshView() {
-        let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        mainView = PodcastView.instancefromNib(viewSize)
-        let listOfPodcasts = DatabaseUtil.getAllPodcasts()
-        mainView?.podcastsToView = listOfPodcasts
-        mainView?.inDeleteMode = self.inDeleteMode
-        
-        view.addSubview(mainView!)
-        self.mainView?.viewDelegate = self
-    }
-    
+    // TODO - Delete this and other useless crap
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // TODO - Save the image from the web url and pass it along
+    // TODO - Use Guard 
+    // TODO - no need to pass the episodes because podcast has all the episodes
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EpisodeController {
             if let podcast = sender as? Podcast {
@@ -102,16 +93,20 @@ extension PodcastController:PodcastViewDelegate {
     }
     
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast) {
-        performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: selectedPodcast)
+        if inDeleteMode {
+            print(selectedPodcast.title!)
+            DatabaseUtil.deletePodcast(podcastTitle: selectedPodcast.title!)
+            DatabaseUtil.saveContext()
+            let listOfPodcasts = DatabaseUtil.getAllPodcasts()
+            mainView?.podcastsToView = listOfPodcasts
+            self.mainView?.podcastView.reloadData()
+        } else {
+            performSegue(withIdentifier: Segues.segueFromPodcastToEpisode, sender: selectedPodcast)
+        }
     }
     
     func toggleDeleteMode() {
         self.inDeleteMode = !self.inDeleteMode
-    }
-    
-    func deletePodcast(Podcast: Podcast){
-        DatabaseUtil.deletePodcast(podcastTitle: Podcast.title!)
-        refreshView()
     }
     
     func updateAllPodcasts() {

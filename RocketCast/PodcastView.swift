@@ -22,13 +22,7 @@ UICollectionViewDataSource {
             podcastView.reloadData()
         }
     }
-    
-    var inDeleteMode: Bool = false {
-        didSet {
-            podcastView.reloadData()
-        }
-    }
-    
+        
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
         viewDelegate?.segueToItuneWeb()
     }
@@ -75,13 +69,6 @@ UICollectionViewDataSource {
                 }
                 cell.size = width
                 cell.setStyling()
-                if self.inDeleteMode {
-                    cell.addDeleteButton()
-                    cell.viewDelegate = self.viewDelegate
-                } else {
-                    cell.removeDeleteButton()
-                }
-                
                 cell.podcast = podcastsToView[indexPath.row]
                 return cell
             }

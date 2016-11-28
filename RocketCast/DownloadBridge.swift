@@ -64,7 +64,7 @@ extension ModelBridge: DownloadBridgeProtocol {
         let urlString = String(url)
         let url = URL(string: urlString!)
         var destinationPath = " "
-        
+        // TODO- Refactor this line
         DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
             if let data = try? Data(contentsOf: url!) {//make sure your image in this url does exist, otherwise unwrap in a if let check
                 DispatchQueue.main.async(execute: {
