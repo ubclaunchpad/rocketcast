@@ -13,4 +13,5 @@ protocol PodcastViewDelegate {
     func segueToItuneWeb()
     func setSelectedPodcastAndSegue(selectedPodcast: Podcast)
     func updateAllPodcasts()
+    func toggleDeleteMode()
 }

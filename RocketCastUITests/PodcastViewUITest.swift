@@ -92,6 +92,29 @@ class PodcastViewUITest: XCTestCase {
         XCTAssert(mondayMorningPodcast91216StaticText.exists)
     }
     
+    func testDeletePodcast() {
+        let app = XCUIApplication()
+        app.buttons["Add"].tap()
+        app.buttons["Add Url"].tap()
+        app.buttons["Add Podcast"].tap()
+        
+        let collectionQuery = app.collectionViews
+        let podcastTitleLabel = collectionQuery.staticTexts["LaunchPad podcast testing"]
+        
+        let doesItExist = NSPredicate(format: "exists == true")
+        expectation(for: doesItExist, evaluatedWith: podcastTitleLabel, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        
+        app.navigationBars.buttons["Delete"].tap()
+    
+        podcastTitleLabel.tap()
+        
+        app.navigationBars.buttons["Cancel"].tap()
+        
+        XCTAssertEqual(1, app.collectionViews.count)
+        
+    }
+    
     func testReloadPodcast () {
         
         guard runForTravis else {
