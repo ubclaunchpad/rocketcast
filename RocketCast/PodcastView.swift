@@ -29,7 +29,7 @@ UICollectionViewDataSource {
 
     class func instancefromNib(_ frame: CGRect) -> PodcastView {
         let view = UINib(nibName: "PodcastView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-            as! PodcastView
+            as! PodcastView // swiftlint:disable:this force_cast
         view.frame = frame
         
         view.podcastView.delegate = view

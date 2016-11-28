@@ -17,7 +17,7 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
     @IBOutlet weak var searchBar: UISearchBar!
     class func instancefromNib(_ frame: CGRect) -> ItuneWebView {
         let view = UINib(nibName: "ItuneWebView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-            as! ItuneWebView
+            as! ItuneWebView // swiftlint:disable:this force_cast
         view.frame = frame
         view.podcastTable.delegate = view
         view.podcastTable.dataSource = view
@@ -53,7 +53,7 @@ class ItuneWebView: UIView, UITableViewDelegate,UITableViewDataSource,UISearchBa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let nib_name = UINib(nibName:"ItuneWebTableViewCell", bundle:nil)
         tableView.register(nib_name, forCellReuseIdentifier: "podcastCell")
-        let cell = self.podcastTable.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! ItuneWebTableViewCell
+        let cell = self.podcastTable.dequeueReusableCell(withIdentifier: "podcastCell", for: indexPath) as! ItuneWebTableViewCell // swiftlint:disable:this force_cast
         
         cell.updateUI(podcast: discoveredPodcasts[indexPath.row])
         

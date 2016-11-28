@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct testPodcastXMLWithNoEpisodes {
+struct testPodcastXMLWithNoEpisodes { // swiftlint:disable:this force_cast
     
     let fileName = "testPodcastXMLWithNoEpisodes"
     

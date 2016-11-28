@@ -44,8 +44,8 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
         }
     }
     
-    func getPodcastsFromItuneAPI(_inputString:String) {
-        guard !_inputString.isEmpty else {
+    func getPodcastsFromItuneAPI(_inputString inputString:String) {
+        guard !inputString.isEmpty else {
             DispatchQueue.main.async {
                 self.mainView?.discoveredPodcasts = []
                 self.mainView?.podcastTable.reloadData()
@@ -54,7 +54,7 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
             return
         }
         
-        guard let cleanedString = _inputString.replacingOccurrences(of: " ", with: "+").addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else {
+        guard let cleanedString = inputString.replacingOccurrences(of: " ", with: "+").addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else {
             return
         }
         
@@ -68,7 +68,7 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
         let task = session.dataTask(with: urlRequest as URLRequest) {
             (data, response, error) -> Void in
             
-            let httpResponse = response as! HTTPURLResponse
+            let httpResponse = response as! HTTPURLResponse // swiftlint:disable:this force_cast
             let statusCode = httpResponse.statusCode
             
             guard  (statusCode == 200) else  {
@@ -92,10 +92,10 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
                 }
                 var podcastsAPI = [PodcastFromAPI]()
                 for json in jsonArray {
-                    let podcastData = json as! [String: AnyObject]
+                    let podcastData = json as! [String: AnyObject] // swiftlint:disable:this force_cast
                     
                     
-                    if (podcastData["collectionName"] as! String == (podcastData["artistName"] as! String)) {
+                    if (podcastData["collectionName"] as! String == (podcastData["artistName"] as! String)) { // swiftlint:disable:this force_cast
                         continue
                     }
                     
@@ -130,8 +130,8 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
         task.resume()
     }
     
-    func savePodcastToCoreDataFromItuneAPI (_rssFeed: String) {
-        XMLParser(url: _rssFeed)
+    func savePodcastToCoreDataFromItuneAPI (_rssFeed rssFeed: String) { // swiftlint:disable
+        CoreDataXMLParser(url: rssFeed)
         self.performSegue(withIdentifier: Segues.segueFromItuneAPIToPodcast, sender: self)
     }
     

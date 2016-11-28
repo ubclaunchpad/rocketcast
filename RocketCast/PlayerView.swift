@@ -77,7 +77,7 @@ class PlayerView: UIView {
     }
     class func instancefromNib(_ frame: CGRect) -> PlayerView {
         let view = UINib(nibName: "PlayerView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-            as! PlayerView
+            as! PlayerView // swiftlint:disable:this force_cast
         view.frame = frame
         return view
     }
