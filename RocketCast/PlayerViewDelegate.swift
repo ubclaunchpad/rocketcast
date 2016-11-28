@@ -15,7 +15,10 @@ protocol PlayerViewDelegate {
     func goBack()
     func stopPodcast()
     func setUpPlayer(webUrl:String)
-
+    
+    func openDeleteModal()
+    func closeDeleteModal()
+    
     func changeSpeed() -> String
     func segueBackToEpisodes()
     

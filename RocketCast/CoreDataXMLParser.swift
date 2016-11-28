@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class XMLParser: NSObject {
+class CoreDataXMLParser: NSObject {
     
     var element = String()
     var midElement = NSMutableString()
@@ -28,13 +28,13 @@ class XMLParser: NSObject {
 //        }
         
         if let data = try? Data(contentsOf: URL(string: url)!) {
-            podcast = Podcast(context: DatabaseController.getContext())
+            podcast = Podcast(context: DatabaseUtil.getContext())
             podcast?.rssFeedURL = url
             podcast?.addedDate = Date()
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
-            XMLParser.success = false
+            CoreDataXMLParser.success = false
         }
     }
     
@@ -43,27 +43,27 @@ class XMLParser: NSObject {
         parser.delegate = self
         guard parser.parse() else {
             Log.error("Oh shit something went wrong. OS parser failed")
-            XMLParser.success = false
+            CoreDataXMLParser.success = false
             return
         }
         guard (podcast?.title != nil && !(podcast?.title?.isEmpty)!) else {
-            DatabaseController.getContext().delete(podcast!)
-            XMLParser.success = false
+            DatabaseUtil.getContext().delete(podcast!)
+            CoreDataXMLParser.success = false
             return
         }
         
         guard (podcast?.description != nil && !(podcast?.description.isEmpty)!) else {
-            DatabaseController.getContext().delete(podcast!)
-            XMLParser.success = false
+            DatabaseUtil.getContext().delete(podcast!)
+            CoreDataXMLParser.success = false
             return
         }
         
         if (!samePodcast) {
-            DatabaseController.saveContext()
-            XMLParser.success = true
+            DatabaseUtil.saveContext()
+            CoreDataXMLParser.success = true
         } else {
-            DatabaseController.getContext().delete(podcast!)
-            XMLParser.success = false
+            DatabaseUtil.getContext().delete(podcast!)
+            CoreDataXMLParser.success = false
         }
     }
     
@@ -72,12 +72,12 @@ class XMLParser: NSObject {
     }
 
 }
-extension XMLParser: XMLParserDelegate {
+extension CoreDataXMLParser: XMLParserDelegate {
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]){
         element = elementName
         
         if (elementName as NSString).isEqual(to: xmlKeyTags.episodeTag) {
-            tmpEpisode = Episode(context: DatabaseController.getContext())
+            tmpEpisode = Episode(context: DatabaseUtil.getContext())
             tmpEpisode?.summary = ""
             midElement = NSMutableString()
             midElement = ""
@@ -110,7 +110,7 @@ extension XMLParser: XMLParserDelegate {
                         tmpEpisode!.title = midElementAsString
                     }
                 } else  {
-                    if (DatabaseController.doesThisPodcastAlreadyExist(podcastTitle: information)) {
+                    if (DatabaseUtil.doesThisPodcastAlreadyExist(podcastTitle: information)) {
                         samePodcast = true
                     }
                     podcast!.title = midElementAsString
