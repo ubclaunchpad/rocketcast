@@ -86,26 +86,17 @@ extension CoreDataXMLParser: XMLParserDelegate {
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
             if (podcast!.imageURL == nil) {
                 podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
-                do {
-                    let data = try Data(contentsOf: URL(string: self.podcast!.imageURL!)!)
-                    self.podcast!.imageData = data as NSData?
-                    
-                } catch let error as NSError{
-                    Log.error("Error: " + error.debugDescription)
-                }
 
-                
-//                DispatchQueue.global().async {
-//                    do {
-//                        let data = try Data(contentsOf: URL(string: self.podcast!.imageURL!)!)
-//                        self.podcast!.imageData = data as NSData?
-//                        
-//                    } catch let error as NSError{
-//                        Log.error("Error: " + error.debugDescription)
-//                    }
-//                }
             } else  {
                 tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                
+//                do {
+//                    let data = try Data(contentsOf: URL(string: self.tmpEpisode!.imageURL!)!)
+//                    self.tmpEpisode!.imageData = data as NSData?
+//                    
+//                } catch let error as NSError{
+//                    Log.error("Error: " + error.debugDescription)
+//                }
             }
         }
         
@@ -148,7 +139,7 @@ extension CoreDataXMLParser: XMLParserDelegate {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = dateFormatString
                     let date = dateFormatter.date(from: midElementAsString)
-                    tmpEpisode!.date = date
+                    tmpEpisode!.date = date as NSDate?
                 }
             case xmlKeyTags.authorEpisodeTagTwo:
                 if tmpEpisode != nil {

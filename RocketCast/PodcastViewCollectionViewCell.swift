@@ -24,29 +24,31 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
             coverPhoto.frame = self.coverPhotoView.bounds
             coverPhoto.layer.cornerRadius = 18
             coverPhoto.layer.masksToBounds = true
+
+            //Check if the podcast image has been downloaded. If it hasn't then download and save it to core data. Otherwise, we have already downloaded this image and we can display it right away.
+            guard let imageData = podcast.imageData else {
+                let url = URL(string: (podcast.imageURL)!)
+                DispatchQueue.global().async {
+                    do {
+                        let data = try Data(contentsOf: url!)
+                        self.podcast.imageData = data as NSData?
+                        DispatchQueue.main.async {
+                            coverPhoto.image = UIImage(data: data)
+                            self.coverPhotoView.addSubview(coverPhoto)
+                        }
+                        
+                    } catch let error as NSError{
+                        Log.error("Error: " + error.debugDescription)
+                    }
+                }
+                    return
+            }
             coverPhoto.image = UIImage(data: (podcast.imageData as? Data)!)
             self.coverPhotoView.addSubview(coverPhoto)
             
             
             
-//            let url = URL(string: (podcast.imageURL)!)
-//            
-//            DispatchQueue.global().async {
-//                do {
-//                    let data = try Data(contentsOf: url!)
-//                    let coverPhoto = UIImageView()
-//                    coverPhoto.frame = self.coverPhotoView.bounds
-//                    coverPhoto.layer.cornerRadius = 18
-//                    coverPhoto.layer.masksToBounds = true
-//                    DispatchQueue.main.async {
-//                        coverPhoto.image = UIImage(data: data)
-//                        self.coverPhotoView.addSubview(coverPhoto)
-//                    }
-//                    
-//                } catch let error as NSError{
-//                    Log.error("Error: " + error.debugDescription)
-//                }
-//            }
+
         }
     }
     

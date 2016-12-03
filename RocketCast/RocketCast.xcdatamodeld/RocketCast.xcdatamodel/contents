@@ -6,6 +6,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="doucmentaudioURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="podcastTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,7 +31,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Episode" positionX="-405" positionY="170" width="128" height="180"/>
+        <element name="Episode" positionX="-405" positionY="170" width="128" height="195"/>
         <element name="Podcast" positionX="-162" positionY="-63" width="128" height="165"/>
     </elements>
 </model>
