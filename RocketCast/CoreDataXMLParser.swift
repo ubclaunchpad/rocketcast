@@ -30,7 +30,7 @@ class CoreDataXMLParser: NSObject {
         if let data = try? Data(contentsOf: URL(string: url)!) {
             podcast = Podcast(context: DatabaseUtil.getContext())
             podcast?.rssFeedURL = url
-            podcast?.addedDate = Date()
+            podcast?.addedDate = Date() as NSDate?
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -86,6 +86,24 @@ extension CoreDataXMLParser: XMLParserDelegate {
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
             if (podcast!.imageURL == nil) {
                 podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
+                do {
+                    let data = try Data(contentsOf: URL(string: self.podcast!.imageURL!)!)
+                    self.podcast!.imageData = data as NSData?
+                    
+                } catch let error as NSError{
+                    Log.error("Error: " + error.debugDescription)
+                }
+
+                
+//                DispatchQueue.global().async {
+//                    do {
+//                        let data = try Data(contentsOf: URL(string: self.podcast!.imageURL!)!)
+//                        self.podcast!.imageData = data as NSData?
+//                        
+//                    } catch let error as NSError{
+//                        Log.error("Error: " + error.debugDescription)
+//                    }
+//                }
             } else  {
                 tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
             }
