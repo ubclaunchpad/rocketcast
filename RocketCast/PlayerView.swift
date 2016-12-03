@@ -109,12 +109,57 @@ class PlayerView: UIView {
         self.titleLabel.text = episode.title!
         self.podcastTitleLabel.text = episode.podcastTitle
         self.descriptionView.text = "Simple description of Podcast"
-        let coverPhoto = UIImageView()
-        coverPhoto.frame = self.coverPhotoView.bounds
-        coverPhoto.layer.cornerRadius = 14
-        coverPhoto.layer.masksToBounds = true
-        coverPhoto.image = UIImage(data: (episode.imageData as? Data)!)
-        self.coverPhotoView.addSubview(coverPhoto)
+        let url = URL(string: (episode.imageURL)!)
+        if episode.imageData == nil {
+            DispatchQueue.global().async {
+                do {
+                    let data = try Data(contentsOf: url!)
+                    let coverPhoto = UIImageView()
+                    coverPhoto.frame = self.coverPhotoView.bounds
+                    coverPhoto.layer.cornerRadius = 18
+                    coverPhoto.layer.masksToBounds = true
+                    episode.imageData = data as NSData?
+                    DatabaseUtil.saveContext()
+                    DispatchQueue.main.async {
+                        coverPhoto.image = UIImage(data: data)
+                        self.coverPhotoView.addSubview(coverPhoto)
+                        
+                    }
+                    
+                } catch let error as NSError{
+                    Log.error("Error: " + error.debugDescription)
+                }
+            }
+        } else {
+            DispatchQueue.global().async {
+                do {
+                    let coverPhoto = UIImageView()
+                    coverPhoto.frame = self.coverPhotoView.bounds
+                    coverPhoto.layer.cornerRadius = 18
+                    coverPhoto.layer.masksToBounds = true
+                    DispatchQueue.main.async {
+                        coverPhoto.image = UIImage(data: episode.imageData as! Data)
+                        self.coverPhotoView.addSubview(coverPhoto)
+                        
+                    }
+                    
+                } catch let error as NSError{
+                    Log.error("Error: " + error.debugDescription)
+                }
+            }
+            
+            
+            
+        }
+        
+        
+        
+//        let coverPhoto = UIImageView()
+//        coverPhoto.frame = self.coverPhotoView.bounds
+//        coverPhoto.layer.cornerRadius = 14
+//        coverPhoto.layer.masksToBounds = true
+//        coverPhoto.image = UIImage(data: (episode.imageData as? Data)!)
+//        self.coverPhotoView.addSubview(coverPhoto)
 //        let url = URL(string: episode.imageURL!)
 //        DispatchQueue.global().async {
 //            do {
