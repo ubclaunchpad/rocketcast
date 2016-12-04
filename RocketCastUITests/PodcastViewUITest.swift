@@ -7,7 +7,7 @@
 //
 
 import XCTest
-class PodcastViewUITest: XCTestCase {
+class PodcastViewUITest: BaseUITest {
     
     override func setUp() {
         super.setUp()
@@ -25,8 +25,8 @@ class PodcastViewUITest: XCTestCase {
     func testForDuplicatePodcastsAndEpisodes() {
         
         let app = XCUIApplication()
-        var i = 0
-        while i < 2 {
+        
+        for _ in 0...2 {
             let addButton = app.buttons[AddButtonFromPodcastView]
             addButton.tap()
             app.buttons["Add Url"].tap()
@@ -50,7 +50,6 @@ class PodcastViewUITest: XCTestCase {
             XCTAssert(secondCell.staticTexts[tapToDownload].exists)
             
             app.buttons["Back"].tap()
-            i+=1
         }
     }
     
@@ -70,43 +69,30 @@ class PodcastViewUITest: XCTestCase {
     }
     
     func testJumpToCurrentlyPlayingEpisodeFromPlayerVC() {
+        getPodcastBySeguingToUrl()
         let app = XCUIApplication()
-        app.buttons["Add"].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons["Add Podcast"].tap()
+        XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
-        let collectionQuery = app.collectionViews
-        collectionQuery.staticTexts["LaunchPad podcast testing"].tap()
-        
-        let downloadingLabel = app.staticTexts[downloaded]
-        let doesItExist = NSPredicate(format: "exists == true")
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
         let episodeTable = app.tables
-        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        episodeTable.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        waitForExpectations(timeout: timeOut, handler: nil)
-        episodeTable.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        episodeTable.staticTexts[ SamplePodcast.firstEpisode].tap()
         app.buttons["Back"].tap()
         app.buttons["Back"].tap()
         app.buttons["Play"].tap()
-        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
-        XCTAssert(mondayMorningPodcast91216StaticText.exists)
+        XCTAssert( app.staticTexts[SamplePodcast.firstEpisode].exists)
     }
     
     func testDeletePodcast() {
+        getPodcastBySeguingToUrl()
+        
         let app = XCUIApplication()
-        app.buttons["Add"].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons["Add Podcast"].tap()
         
         let collectionQuery = app.collectionViews
-        let podcastTitleLabel = collectionQuery.staticTexts["LaunchPad podcast testing"]
-        
-        let doesItExist = NSPredicate(format: "exists == true")
-        expectation(for: doesItExist, evaluatedWith: podcastTitleLabel, handler: nil)
-        waitForExpectations(timeout: timeOut, handler: nil)
+        let podcastTitleLabel = collectionQuery.staticTexts[SamplePodcast.podcastTitle]
         
         app.navigationBars.buttons["Delete"].tap()
-    
+        
         podcastTitleLabel.tap()
         
         app.navigationBars.buttons["Cancel"].tap()
@@ -117,87 +103,64 @@ class PodcastViewUITest: XCTestCase {
     
     func testReloadPodcast () {
         
-        guard runForTravis else {
-            return
-        }
-        
         let app = XCUIApplication()
-    
+        
         let podcastCells = XCUIApplication().collectionViews.cells
         XCTAssertEqual(1, podcastCells.count)
         let refreshButton = app.buttons["Refresh"]
+        let backButton = app.buttons["Back"]
         refreshButton.tap()
         XCTAssertEqual(1, podcastCells.count)
-        
-        app.buttons["Add"].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons["Add Podcast"].tap()
+        getPodcastBySeguingToUrl()
         refreshButton.tap()
+    
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
         
-        app.staticTexts["LaunchPad podcast testing"].tap()
-        
-        let downloadingLabel = app.staticTexts[downloaded]
-        let doesItExist = NSPredicate(format: "exists == true")
-        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        app.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        waitForExpectations(timeout: timeOut, handler: nil)
-        
-        app.buttons["Back"].tap()
+        backButton.tap()
         
         refreshButton.tap()
         XCTAssertEqual(2 , podcastCells.count)
         
-        app.staticTexts["LaunchPad podcast testing"].tap()
-        var tablesQuery = app.tables
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        let tablesQuery = app.tables
         XCTAssertTrue(tablesQuery.cells.element(boundBy: 1).staticTexts["Tap to Download"].exists)
         XCTAssertTrue(tablesQuery.cells.element(boundBy: 2).staticTexts["Tap to Download"].exists)
         
-        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         XCTAssertTrue(tablesQuery.cells.element(boundBy: 1).staticTexts["Downloading ..."].exists)
         
-        app.buttons["Back"].tap()
+        backButton.tap()
         
         refreshButton.tap()
         
-        app.staticTexts["LaunchPad podcast testing"].tap()
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         
-        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        app.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        waitForExpectations(timeout: timeOut, handler: nil)
-        app.staticTexts["Monday Morning Podcast 9-12-16"].tap()
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
         
-        app.buttons["Back"].tap()
-        app.buttons["Back"].tap()
+        app.staticTexts[SamplePodcast.firstEpisode].tap()
+        
+        backButton.tap()
+        backButton.tap()
         
         refreshButton.tap()
         XCTAssertEqual(2 , podcastCells.count)
         
-        app.staticTexts["LaunchPad podcast testing"].tap()
-    
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        
     }
     
     
     func testReloadPodcastsWhilePlayingPodcast () {
         
-        guard runForTravis else {
-            return
-        }
-        
+        getPodcastBySeguingToUrl()
         let app = XCUIApplication()
-        app.buttons[AddButtonFromPodcastView].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons[AddPodcastButtonOnAddURLView].tap()
         
         app.staticTexts[SamplePodcast.podcastTitle].tap()
         // please wait for awhile
-        let tablesQuery = app.tables
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
-        let doesItExist = NSPredicate(format: "exists == true")
-        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
-        waitForExpectations(timeout: timeOut, handler: nil)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
+        app.tables.staticTexts[SamplePodcast.firstEpisode].tap()
         
         app.buttons["Back"].tap()
         app.buttons["Back"].tap()
@@ -205,5 +168,5 @@ class PodcastViewUITest: XCTestCase {
         app.buttons["Refresh"].tap()
         
     }
-
+    
 }

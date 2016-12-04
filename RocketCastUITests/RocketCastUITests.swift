@@ -8,7 +8,7 @@
 
 import XCTest
 
-class RocketCastUITests: XCTestCase {
+class RocketCastUITests: BaseUITest {
     
     let app = XCUIApplication()
         
@@ -27,30 +27,14 @@ class RocketCastUITests: XCTestCase {
     
     
     func testVerifyTravisBySeguing() {
-        
-        let app = XCUIApplication()
-        app.buttons["Add"].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons["Add Podcast"].tap()
-        
+        getPodcastBySeguingToUrl()
         XCTAssert(app.staticTexts[SamplePodcast.podcastTitle].exists)
         app.staticTexts[SamplePodcast.podcastTitle].tap()
-
         let episodeCells = XCUIApplication().tables.cells
-        print(episodeCells.count)
         let firstCell = episodeCells.element(boundBy: 1)
-        print(firstCell)
         sleep(1)
         XCTAssert(firstCell.staticTexts[tapToDownload].exists)
-        
-        let downloadingLabel = firstCell.staticTexts[downloaded]
-     
-        let doesntExist = NSPredicate(format: "exists == true")
-        
-        expectation(for: doesntExist, evaluatedWith: downloadingLabel, handler: nil)
-        firstCell.tap()
-        
-        waitForExpectations(timeout: timeOut, handler: nil)
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
         firstCell.tap()
     
     }
