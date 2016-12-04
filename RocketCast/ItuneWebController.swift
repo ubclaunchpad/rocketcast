@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 class ItuneWebController: UIViewController {
     
@@ -62,52 +64,35 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
         
         let apiFormat = ItuneAPIJson()
         
-        let requestURL: NSURL = NSURL(string: fetchPodcastURL)!
-        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(url: requestURL as URL)
-        let session = URLSession.shared
-        let task = session.dataTask(with: urlRequest as URLRequest) {
-            (data, response, error) -> Void in
-            
-            let httpResponse = response as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            guard  (statusCode == 200) else  {
-                Log.error("Unable to make the rest call")
-                return
-            }
-            Log.info("Successfuly made the rest call")
-            
-            do{
-                guard  let jsonResult = try JSONSerialization
-                    .jsonObject(with: data!,
-                                options: JSONSerialization.ReadingOptions.mutableContainers)
-                    as? NSDictionary else {
-                        Log.debug("Failed to get the Json Result")
-                        return
-                }
-                
-                guard let jsonArray = jsonResult.value(forKey: apiFormat.key) as? NSArray else {
-                    Log.debug("Failed to get the Json Array")
+        Alamofire.request(fetchPodcastURL)
+            .responseJSON(completionHandler: { response in
+                guard response.result.error == nil else {
+                    Log.error("Unable to make rest call due to \(response.result.error.debugDescription)")
                     return
                 }
+                
+                guard let value = response.result.value else {
+                    Log.error("Rest call returned invalid response.")
+                    return
+                }
+                
+                let podcastsResults = JSON(value)[apiFormat.key].arrayValue
                 var podcastsAPI = [PodcastFromAPI]()
-                for json in jsonArray {
-                    let podcastData = json as! [String: AnyObject]
+                for podcast in podcastsResults {
                     
-                    
-                    if (podcastData["collectionName"] as! String == (podcastData["artistName"] as! String)) {
+                    if podcast["collectionName"].stringValue == podcast["artistName"].stringValue {
                         continue
                     }
                     
-                    guard let podcastTitle = podcastData[apiFormat.podcastTitle] as? String else {
+                    guard let podcastTitle = podcast[apiFormat.podcastTitle].string else {
                         return
                     }
                     
-                    guard let podcasrUrl =  podcastData[apiFormat.feedUrl] as? String else {
+                    guard let podcasrUrl =  podcast[apiFormat.feedUrl].string else {
                         return
                     }
                     
-                    guard let podcastImage =  podcastData[apiFormat.podcastImage] as?String else {
+                    guard let podcastImage =  podcast[apiFormat.podcastImage].string else {
                         return
                     }
                     
@@ -121,13 +106,7 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
                     self.mainView?.discoveredPodcasts = podcastsAPI
                     self.mainView?.podcastTable.reloadData()
                 }
-                
-            } catch {
-                Log.error("Error with Json: \(error)")
-            }
-        }
-        
-        task.resume()
+            })
     }
     
     func savePodcastToCoreDataFromItuneAPI (_rssFeed: String) {
