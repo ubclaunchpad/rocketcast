@@ -39,7 +39,7 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         coverPhoto.frame = self.coverPhotoView.bounds
         coverPhoto.layer.cornerRadius = 18
         coverPhoto.layer.masksToBounds = true
-        coverPhoto.image = UIImage(data: (podcast.imageData as? Data)!)
+        coverPhoto.image = UIImage(data: (podcast.imageData)!)
         self.coverPhotoView.addSubview(coverPhoto)
 
     }

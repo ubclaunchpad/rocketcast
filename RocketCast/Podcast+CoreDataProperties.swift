@@ -22,7 +22,7 @@ extension Podcast {
     @NSManaged public var rssFeedURL: String?
     @NSManaged public var summary: String?
     @NSManaged public var title: String?
-    @NSManaged public var imageData: NSData?
+    @NSManaged public var imageData: Data?
     @NSManaged public var episodes: NSSet?
 
 }

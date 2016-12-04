@@ -25,6 +25,6 @@ extension Episode {
     @NSManaged public var podcastTitle: String?
     @NSManaged public var summary: String?
     @NSManaged public var title: String?
-    @NSManaged public var imageData: NSData?
+    @NSManaged public var imageData: Data?
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class PodcastViewCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var coverPhotoView: UIView!
     @IBOutlet weak var podcastTitle: UILabel!
     @IBOutlet weak var podcastAuthor: UILabel!
@@ -21,20 +21,21 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
             podcastTitle.text = podcast.title
             podcastAuthor.text = podcast.author
             let url = URL(string: (podcast.imageURL)!)
+            
+            //Check if the podcast image has been downloaded. If it hasn't then download and save it to core data. Otherwise, we have already downloaded this image and we can display it right away.
+            let coverPhoto = UIImageView()
+            coverPhoto.frame = self.coverPhotoView.bounds
+            coverPhoto.layer.cornerRadius = 18
+            coverPhoto.layer.masksToBounds = true
             if podcast.imageData == nil {
                 DispatchQueue.global().async {
                     do {
                         let data = try Data(contentsOf: url!)
-                        let coverPhoto = UIImageView()
-                        coverPhoto.frame = self.coverPhotoView.bounds
-                        coverPhoto.layer.cornerRadius = 18
-                        coverPhoto.layer.masksToBounds = true
-                        self.podcast.imageData = data as NSData?
+                        self.podcast.imageData = data
                         DatabaseUtil.saveContext()
                         DispatchQueue.main.async {
                             coverPhoto.image = UIImage(data: data)
                             self.coverPhotoView.addSubview(coverPhoto)
-                            
                         }
                         
                     } catch let error as NSError{
@@ -42,63 +43,10 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
                     }
                 }
             } else {
-                DispatchQueue.global().async {
-                    do {
-                        let data = try Data(contentsOf: url!)
-                        let coverPhoto = UIImageView()
-                        coverPhoto.frame = self.coverPhotoView.bounds
-                        coverPhoto.layer.cornerRadius = 18
-                        coverPhoto.layer.masksToBounds = true
-                        DispatchQueue.main.async {
-                            coverPhoto.image = UIImage(data: self.podcast.imageData as! Data)
-                            self.coverPhotoView.addSubview(coverPhoto)
-                            
-                        }
-                        
-                    } catch let error as NSError{
-                        Log.error("Error: " + error.debugDescription)
-                    }
-                }
-                    
-    
-                
+                coverPhoto.image = UIImage(data: self.podcast.imageData!)
+                self.coverPhotoView.addSubview(coverPhoto)
             }
             
-
-            //Check if the podcast image has been downloaded. If it hasn't then download and save it to core data. Otherwise, we have already downloaded this image and we can display it right away.
-//            guard let imageData = podcast.imageData else {
-//                let url = URL(string: (podcast.imageURL)!)
-//               
-//                DispatchQueue.global().async {
-//                    do {
-//                        let coverPhoto = UIImageView()
-//                        coverPhoto.frame = self.coverPhotoView.bounds
-//                        coverPhoto.layer.cornerRadius = 18
-//                        coverPhoto.layer.masksToBounds = true
-//                        let data = try Data(contentsOf: url!)
-//                        self.podcast.imageData = data as NSData?
-//                        DispatchQueue.main.async {
-//                            coverPhoto.image = UIImage(data: data)
-//                            self.coverPhotoView.addSubview(coverPhoto)
-//                        }
-//                        
-//                    } catch let error as NSError{
-//                        Log.error("Error: " + error.debugDescription)
-//                    }
-//                }
-//                    return
-//            }
-//            
-//            let coverPhoto = UIImageView()
-//            coverPhoto.frame = self.coverPhotoView.bounds
-//            coverPhoto.layer.cornerRadius = 18
-//            coverPhoto.layer.masksToBounds = true
-//            coverPhoto.image = UIImage(data: (podcast.imageData as? Data)!)
-//            self.coverPhotoView.addSubview(coverPhoto)
-//            
-            
-            
-
         }
     }
     
@@ -123,5 +71,5 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
 }
