@@ -20,14 +20,15 @@ class CoreDataXMLParserTest: XCTestCase {
     override func setUp() {
         super.setUp()
         DatabaseUtil.deleteAllManagedObjects()
+        DatabaseUtil.saveContext()
     }
     
     func testParseNormalXML() {
         let xmlfilePath = Bundle.main.url(forResource: normalPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
         _ = RocketCast.CoreDataXMLParser(url:  stringPath)
-        let currentSize =  DatabaseUtil.getPodcastCount()
-        let podcast = DatabaseUtil.getPodcast(byTitle: normalPodcastXML.title)
+        let currentSize = getPodcastCount()
+        let podcast = getPodcast(byTitle: normalPodcastXML.title)
         let expectedEpisodes = normalPodcastXML.expectedEpisodes
         XCTAssertEqual(self.normalPodcastXML.title,  podcast.title)
         XCTAssertEqual(self.normalPodcastXML.description, podcast.summary)
@@ -40,15 +41,15 @@ class CoreDataXMLParserTest: XCTestCase {
             index  = index + 1
         }
         _ = RocketCast.CoreDataXMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
+        XCTAssert(currentSize == getPodcastCount())
     }
     
     func testParseXMLNoAuthorsForEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noAuthorForEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
         _ = RocketCast.CoreDataXMLParser(url:  stringPath)
-        let currentSize =  DatabaseUtil.getPodcastCount()
-        let podcast = DatabaseUtil.getPodcast(byTitle: noAuthorForEpisodesPodcastXML.title)
+        let currentSize = getPodcastCount()
+        let podcast = getPodcast(byTitle: noAuthorForEpisodesPodcastXML.title)
         let expectedEpisodes = noAuthorForEpisodesPodcastXML.expectedEpisodes
         
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.title,  podcast.title)
@@ -63,22 +64,22 @@ class CoreDataXMLParserTest: XCTestCase {
             index  = index + 1
         }
         _ = RocketCast.CoreDataXMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
+        XCTAssert(currentSize == getPodcastCount())
     }
     
     func testParseXMLWithNoEpisodes() {
         let xmlfilePath = Bundle.main.url(forResource: noEpisodesPodcastXML.fileName, withExtension: "xml")!
         let stringPath = xmlfilePath.absoluteString
         _ = RocketCast.CoreDataXMLParser(url: stringPath)
-        let currentSize =  DatabaseUtil.getPodcastCount()
-        let podcast = DatabaseUtil.getPodcast(byTitle: noEpisodesPodcastXML.title)
+        let currentSize = getPodcastCount()
+        let podcast = getPodcast(byTitle: noEpisodesPodcastXML.title)
         XCTAssertEqual(noEpisodesPodcastXML.title,  podcast.title)
         XCTAssertEqual(noEpisodesPodcastXML.description, podcast.summary)
         XCTAssertEqual(noEpisodesPodcastXML.imageURL, podcast.imageURL)
         XCTAssertEqual(0, podcast.episodes!.count)
         
         _ = RocketCast.CoreDataXMLParser(url: stringPath)
-        XCTAssert(currentSize == DatabaseUtil.getPodcastCount())
+        XCTAssert(currentSize == getPodcastCount())
     }
     
     override func tearDown() {
@@ -97,4 +98,34 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(expectedEpisode["audio"], episode.audioURL)
     }
     
+    func getPodcast (byTitle: String)  -> Podcast {
+        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        var podcast:Podcast?
+        podcastRequest.predicate = NSPredicate(format:"title = %@", (byTitle as CVarArg))
+        
+        do {
+            let podcasts = try DatabaseUtil.getContext().fetch(podcastRequest)
+            podcast = podcasts.first
+            
+        }
+        catch let error as NSError {
+            Log.error("Error in getting podcasts: " + error.localizedDescription)
+        }
+        
+        return podcast!
+    }
+    
+    func getPodcastCount () -> NSInteger {
+        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        do {
+            let count = try DatabaseUtil.getContext().count(for: request)
+            return count
+            
+        } catch let error as NSError {
+            Log.error("Error in getting count from podcasts: " + error.localizedDescription)
+        }
+        
+        return -1
+    }
+
 }

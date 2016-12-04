@@ -20,7 +20,6 @@ protocol PlayerViewDelegate {
     func closeDeleteModal()
     
     func changeSpeed() -> String
-    func segueBackToEpisodes()
     
     func updateProgressView()
     func playNextEpisode()
