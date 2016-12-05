@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,7 +34,7 @@
         <!--Add New Url-->
         <scene sceneID="3PE-v1-6iD">
             <objects>
-                <viewController title="Add New Url" id="qYa-7O-Oef" customClass="AddUrlController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="urlVC" title="Add New Url" id="qYa-7O-Oef" customClass="AddUrlController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="czQ-Ao-fWw"/>
                         <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
@@ -55,7 +55,7 @@
         <!--Podcast-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Podcast" customClass="PodcastController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="podcastcontroller" id="BYZ-38-t0r" userLabel="Podcast" customClass="PodcastController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -123,7 +123,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NNq-21-0oV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="KMJ-qL-At8">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="KMJ-qL-At8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -140,6 +140,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="BXj-pR-ThK"/>
         <segue reference="7qt-w5-QPL"/>
-        <segue reference="5Dc-yA-muE"/>
+        <segue reference="sPe-Yf-iBH"/>
     </inferredMetricsTieBreakers>
 </document>

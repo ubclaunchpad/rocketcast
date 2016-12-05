@@ -69,6 +69,8 @@
 		D0B6914E1D85D7CC00C3366D /* testNormalPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */; };
 		D0B6F5FF1DEAC96200B9AA63 /* ItuneWebUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */; };
 		D0C36C151DF354810030377E /* BaseUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C141DF354810030377E /* BaseUITest.swift */; };
+		D0C36C201DF4CAE80030377E /* PodcastViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */; };
+		D0C36C221DF4D0480030377E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C211DF4D0480030377E /* Constants.swift */; };
 		D3B50AAD1DC5669D00A67DBA /* AddUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */; };
 		D3B50AAF1DC566D200A67DBA /* AddUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */; };
 		D3B50AB11DC566FB00A67DBA /* AddUrlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */; };
@@ -159,6 +161,8 @@
 		D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testNormalPodcastXML.xml; path = ../RocketCast/testNormalPodcastXML.xml; sourceTree = "<group>"; };
 		D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebUITests.swift; sourceTree = "<group>"; };
 		D0C36C141DF354810030377E /* BaseUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITest.swift; sourceTree = "<group>"; };
+		D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewControllerTest.swift; sourceTree = "<group>"; };
+		D0C36C211DF4D0480030377E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlView.swift; sourceTree = "<group>"; };
 		D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUrlView.xib; sourceTree = "<group>"; };
 		D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlViewDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 				5246CF081D84A6FF00ABF027 /* DownloadTests.swift */,
 				C80FAE881D72376700C806C1 /* Info.plist */,
 				D0075F5E1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift */,
+				D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */,
+				D0C36C211DF4D0480030377E /* Constants.swift */,
 			);
 			path = RocketCastTests;
 			sourceTree = "<group>";
@@ -610,7 +616,9 @@
 				D095AAF21D884C6600AD1FD8 /* testPodcastNoAuthorsForEpisodes.swift in Sources */,
 				D095AAF01D8849FB00AD1FD8 /* testPodcastXMLWithNoEpisodes.swift in Sources */,
 				D095AAEE1D878AC700AD1FD8 /* testNormalPodcastXML.swift in Sources */,
+				D0C36C221DF4D0480030377E /* Constants.swift in Sources */,
 				D0075F5F1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift in Sources */,
+				D0C36C201DF4CAE80030377E /* PodcastViewControllerTest.swift in Sources */,
 				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
 				5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */,
 			);
@@ -755,6 +763,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AX2D84BZ47;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -774,6 +783,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AX2D84BZ47;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
