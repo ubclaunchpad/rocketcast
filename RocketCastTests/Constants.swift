@@ -11,6 +11,7 @@ import Foundation
 enum viewControllerIdentifier {
     static let podcastVC = "podcastcontroller"
     static let urlVC = "urlVC"
+    static let episodeVC = "episodeVC"
 }
 
 
@@ -19,4 +20,10 @@ struct SamplePodcast {
     static let firstEpisode = "Monday Morning Podcast 9-12-16"
     static let secondEpisode = "Thursday Afternoon Monday Morning Podcast 9-8-16"
     static let author = "Bill Burr"
+    
+    static let listOfEpisodes = [firstEpisode, secondEpisode]
 }
+
+
+let tapToDownload = "Tap to Download"
+let downloading = "Downloading ..."

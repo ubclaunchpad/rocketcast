@@ -79,7 +79,7 @@
         <!--Episodes-->
         <scene sceneID="PGm-wl-ceH">
             <objects>
-                <viewController title="Episodes" id="mE7-6p-V3x" customClass="EpisodeController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="episodeVC" title="Episodes" id="mE7-6p-V3x" customClass="EpisodeController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kAC-sE-Lv8"/>
                         <viewControllerLayoutGuide type="bottom" id="BTS-D8-Xcc"/>
@@ -139,7 +139,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="BXj-pR-ThK"/>
-        <segue reference="7qt-w5-QPL"/>
         <segue reference="sPe-Yf-iBH"/>
+        <segue reference="Es6-NR-SR3"/>
     </inferredMetricsTieBreakers>
 </document>
