@@ -12,6 +12,7 @@ enum viewControllerIdentifier {
     static let podcastVC = "podcastcontroller"
     static let urlVC = "urlVC"
     static let episodeVC = "episodeVC"
+    static let ituneVC = "ituneVC"
 }
 
 

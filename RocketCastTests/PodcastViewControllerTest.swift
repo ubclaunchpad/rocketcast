@@ -43,7 +43,7 @@ class PodcastViewControllerTest: XCTestCase {
         
         // Section 2 shows you the podcasts
          sleep(8)
-        if   let firstPodcastCollectionView =  podcastVC.mainView?.collectionView(podcastCollectionView!, cellForItemAt: IndexPath(item: 0, section: 1)) as? PodcastViewCollectionViewCell {
+        if let firstPodcastCollectionView =  podcastVC.mainView?.collectionView(podcastCollectionView!, cellForItemAt: IndexPath(item: 0, section: 1)) as? PodcastViewCollectionViewCell {
             XCTAssertEqual(SamplePodcast.podcastTitle, firstPodcastCollectionView.podcastTitle.text)
             XCTAssertEqual(SamplePodcast.author, firstPodcastCollectionView.podcastAuthor.text)
 
@@ -64,9 +64,10 @@ class PodcastViewControllerTest: XCTestCase {
         
         podcastVC.viewDidLoad()
         let episodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.episodeVC) as! EpisodeController
-        
         for _ in 0...1{
+            
             let podcast = DatabaseUtil.getPodcast(byTitle: SamplePodcast.podcastTitle)
+            podcastVC.setSelectedPodcastAndSegue(selectedPodcast: podcast)
             episodeVC.selectedPodcast = podcast
             episodeVC.episodesInPodcast = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
             
@@ -106,7 +107,20 @@ class PodcastViewControllerTest: XCTestCase {
             
             podcastVC.updateAllPodcasts()
         }
-
+    }
+    
+    func testDeletePodcast () {
+        let podcastVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.podcastVC) as! PodcastController
+        
+        podcastVC.viewDidLoad()
+        
+        podcastVC.toggleDeleteMode()
+        let podcastCollectionView = podcastVC.mainView?.podcastView
+        podcastVC.mainView?.collectionView(podcastCollectionView!, didSelectItemAt: IndexPath(item: 0, section: 1))
+        podcastCollectionView?.reloadData()
+        XCTAssertEqual(0, DatabaseUtil.getAllPodcasts().count)
+        XCTAssertEqual(0, podcastCollectionView?.numberOfItems(inSection: 1))
+        
     }
     
 }
