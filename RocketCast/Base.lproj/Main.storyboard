@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="epU-ZG-lJC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ZZU-R5-duL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bdq-8e-kyp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -40,7 +40,7 @@
                         <viewControllerLayoutGuide type="bottom" id="q3a-cG-jzi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="u1R-PH-iaT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -61,7 +61,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -85,7 +85,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BTS-D8-Xcc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qun-52-uhC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -100,13 +100,13 @@
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
             <objects>
-                <viewController storyboardIdentifier="playerVC" title="Player" id="8h2-9e-1cc" customClass="PlayerController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Player" id="8h2-9e-1cc" customClass="PlayerController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SJB-wA-l40"/>
                         <viewControllerLayoutGuide type="bottom" id="qJ3-4x-sGR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Qud-HQ-3KO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -157,7 +157,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="BXj-pR-ThK"/>
-        <segue reference="5Dc-yA-muE"/>
+        <segue reference="sPe-Yf-iBH"/>
         <segue reference="Es6-NR-SR3"/>
     </inferredMetricsTieBreakers>
 </document>

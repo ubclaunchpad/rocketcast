@@ -53,7 +53,6 @@
 		D00D448D1DD567D900D2CD9B /* ItuneWebTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */; };
 		D00D448F1DD567F500D2CD9B /* ItuneWebTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */; };
 		D00D44911DD5B70F00D2CD9B /* PodcastFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */; };
-		D028906D1DF91C1900C7AD89 /* PlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028906C1DF91C1900C7AD89 /* PlayerVC.swift */; };
 		D03CB6EF1DC8680300819865 /* AudioEpisodeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */; };
 		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
 		D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */; };
@@ -149,7 +148,6 @@
 		D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebTableViewCell.swift; sourceTree = "<group>"; };
 		D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItuneWebTableViewCell.xib; sourceTree = "<group>"; };
 		D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastFromAPI.swift; sourceTree = "<group>"; };
-		D028906C1DF91C1900C7AD89 /* PlayerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVC.swift; sourceTree = "<group>"; };
 		D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEpisodeTracker.swift; sourceTree = "<group>"; };
 		D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBridge.swift; sourceTree = "<group>"; };
 		D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadBridge.swift; sourceTree = "<group>"; };
@@ -325,7 +323,6 @@
 				D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */,
 				D0C36C251DF67B660030377E /* ItuneWebVCTest.swift */,
 				D0C36C211DF4D0480030377E /* Constants.swift */,
-				D028906C1DF91C1900C7AD89 /* PlayerVC.swift */,
 			);
 			path = RocketCastTests;
 			sourceTree = "<group>";
@@ -628,7 +625,6 @@
 				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
 				D0C36C261DF67B660030377E /* ItuneWebVCTest.swift in Sources */,
 				5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */,
-				D028906D1DF91C1900C7AD89 /* PlayerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
