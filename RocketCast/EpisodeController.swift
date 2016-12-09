@@ -17,6 +17,7 @@ class EpisodeController: UIViewController {
     
     override func viewDidLoad() {
         setupView()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.title = ""

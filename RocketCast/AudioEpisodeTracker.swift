@@ -24,6 +24,8 @@ class AudioEpisodeTracker {
     static var isTheAudioEmpty = true
     
     static func getCurrentEpisode() -> Episode {
+        Log.debug("The episode index is \(episodeIndex)")
+        Log.debug("The size of the episode list is \(currentEpisodesInTrack.count)")
         return currentEpisodesInTrack[episodeIndex]
     }
     
