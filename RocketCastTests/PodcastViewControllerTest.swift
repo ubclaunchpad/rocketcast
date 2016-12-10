@@ -13,13 +13,20 @@ import CoreData
 class PodcastViewControllerTest: XCTestCase {
     
     
-    var urlVC: AddUrlController!
+    var podcastVC: PodcastController!
     override func setUp() {
         super.setUp()
-        urlVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.urlVC) as! AddUrlController
-        urlVC.viewDidLoad()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+               let urlVC = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier.urlVC) as! AddUrlController
+
+        let _ = urlVC.view
         urlVC.mainView?.addPodcastBtnPressed(UIControlEvents.touchUpInside as AnyObject)
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        podcastVC = storyboard.instantiateViewController(withIdentifier: viewControllerIdentifier.podcastVC) as! PodcastController
+    
+        let _ = podcastVC.view
+
     }
     
     override func tearDown() {
@@ -28,11 +35,6 @@ class PodcastViewControllerTest: XCTestCase {
     }
     
     func testAddPodcastViaURL() {
-        sleep(3)
-        let podcastVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.podcastVC) as! PodcastController
-        
-        podcastVC.viewDidLoad()
-        
         let podcastCollectionView = podcastVC.mainView?.podcastView
         XCTAssertEqual(2, podcastCollectionView?.numberOfSections)
         XCTAssertEqual(1, podcastCollectionView?.numberOfItems(inSection: 1))
@@ -50,70 +52,23 @@ class PodcastViewControllerTest: XCTestCase {
         }
     }
     
-    func testAddTheSamePodcast() {
-        XCTAssertEqual(1, DatabaseUtil.getAllPodcasts().count)
-        
-        urlVC.mainView?.addPodcastBtnPressed(UIControlEvents.touchUpInside as AnyObject)
-        XCTAssertEqual(1, DatabaseUtil.getAllPodcasts().count)
-        
-    }
-    
     func testReloadPodcast () {
+    
+        var podcastCollectionView = podcastVC.mainView?.podcastView
+        XCTAssertEqual(2, podcastCollectionView?.numberOfSections)
+        XCTAssertEqual(1, podcastCollectionView?.numberOfItems(inSection: 1))
+
+        podcastVC.mainView?.podcastView.reloadData()
+        podcastVC.updateAllPodcasts()
         
-        let podcastVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.podcastVC) as! PodcastController
-        
-        podcastVC.viewDidLoad()
-        let episodeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.episodeVC) as! EpisodeController
-        for _ in 0...1{
-            
-            let podcast = DatabaseUtil.getPodcast(byTitle: SamplePodcast.podcastTitle)
-            podcastVC.setSelectedPodcastAndSegue(selectedPodcast: podcast)
-            episodeVC.selectedPodcast = podcast
-            episodeVC.episodesInPodcast = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
-            
-            episodeVC.viewDidLoad()
-            episodeVC.viewDidAppear(true)
-            
-            let episodeTables = episodeVC.mainView?.EpisodeTable
-            
-            XCTAssertEqual(2, episodeTables?.numberOfSections)
-            XCTAssertEqual(2, episodeTables?.numberOfRows(inSection: 1))
-            
-            let headerEpisodeTable = episodeVC.mainView?.tableView(episodeTables!, cellForRowAt: IndexPath(item: 0, section: 0)) as! EpisodeHeaderTableViewCell
-            
-            XCTAssertEqual(SamplePodcast.podcastTitle, headerEpisodeTable.podcastTitle.text)
-            XCTAssertEqual(SamplePodcast.author, headerEpisodeTable.podcastAuthor.text)
-            
-            
-            for i in 0...1 {
-                let cellEpisodeTable = episodeVC.mainView?.tableView(episodeTables!, cellForRowAt: IndexPath(item: i, section: 1)) as! EpisodeViewTableViewCell
-                
-                XCTAssertEqual(tapToDownload, cellEpisodeTable.downloadStatus.text)
-                XCTAssertEqual(SamplePodcast.listOfEpisodes[i], cellEpisodeTable.episodeHeader.text)
-            }
-            
-            episodeVC.mainView?.tableView(episodeTables!, didSelectRowAt: IndexPath(item: 0, section: 1))
-            episodeTables?.reloadData()
-            var cellEpisodeTable = episodeVC.mainView?.tableView(episodeTables!, cellForRowAt: IndexPath(item: 0, section: 1)) as! EpisodeViewTableViewCell
-            XCTAssertEqual(downloading, cellEpisodeTable.downloadStatus.text)
-            var firstEpisode = DatabaseUtil.getEpisode(SamplePodcast.firstEpisode)
-            while (firstEpisode?.doucmentaudioURL == nil) {
-                firstEpisode = DatabaseUtil.getEpisode(SamplePodcast.firstEpisode)
-            }
-            cellEpisodeTable = episodeVC.mainView?.tableView(episodeTables!, cellForRowAt: IndexPath(item: 0, section: 1)) as! EpisodeViewTableViewCell
-            episodeTables?.reloadData()
-            XCTAssertEqual(tapToDownload, cellEpisodeTable.downloadStatus.text )
-            
-            
-            podcastVC.updateAllPodcasts()
-        }
+        podcastCollectionView = podcastVC.mainView?.podcastView
+        XCTAssertEqual(2, podcastCollectionView?.numberOfSections)
+        XCTAssertEqual(1, podcastCollectionView?.numberOfItems(inSection: 1))
+    
     }
     
     func testDeletePodcast () {
-        let podcastVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:viewControllerIdentifier.podcastVC) as! PodcastController
-        
-        podcastVC.viewDidLoad()
-        
+    
         podcastVC.toggleDeleteMode()
         let podcastCollectionView = podcastVC.mainView?.podcastView
         podcastVC.mainView?.collectionView(podcastCollectionView!, didSelectItemAt: IndexPath(item: 0, section: 1))
@@ -122,5 +77,6 @@ class PodcastViewControllerTest: XCTestCase {
         XCTAssertEqual(0, podcastCollectionView?.numberOfItems(inSection: 1))
         
     }
+
     
 }
