@@ -53,6 +53,9 @@
 		D00D448D1DD567D900D2CD9B /* ItuneWebTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */; };
 		D00D448F1DD567F500D2CD9B /* ItuneWebTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */; };
 		D00D44911DD5B70F00D2CD9B /* PodcastFromAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */; };
+		D028906F1DFA723700C7AD89 /* PlayerVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D028906E1DFA723700C7AD89 /* PlayerVCTest.swift */; };
+		D02890711DFC6A4C00C7AD89 /* EpisodeVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02890701DFC6A4C00C7AD89 /* EpisodeVCTest.swift */; };
+		D02890731DFC6BF200C7AD89 /* UrlVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D02890721DFC6BF200C7AD89 /* UrlVCTest.swift */; };
 		D03CB6EF1DC8680300819865 /* AudioEpisodeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */; };
 		D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */; };
 		D05CC4D41D791F92009C4B19 /* DownloadBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */; };
@@ -69,6 +72,9 @@
 		D0B6914E1D85D7CC00C3366D /* testNormalPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */; };
 		D0B6F5FF1DEAC96200B9AA63 /* ItuneWebUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */; };
 		D0C36C151DF354810030377E /* BaseUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C141DF354810030377E /* BaseUITest.swift */; };
+		D0C36C201DF4CAE80030377E /* PodcastViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */; };
+		D0C36C221DF4D0480030377E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C211DF4D0480030377E /* Constants.swift */; };
+		D0C36C261DF67B660030377E /* ItuneWebVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C251DF67B660030377E /* ItuneWebVCTest.swift */; };
 		D3B50AAD1DC5669D00A67DBA /* AddUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */; };
 		D3B50AAF1DC566D200A67DBA /* AddUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */; };
 		D3B50AB11DC566FB00A67DBA /* AddUrlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */; };
@@ -145,6 +151,9 @@
 		D00D448C1DD567D900D2CD9B /* ItuneWebTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebTableViewCell.swift; sourceTree = "<group>"; };
 		D00D448E1DD567F500D2CD9B /* ItuneWebTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItuneWebTableViewCell.xib; sourceTree = "<group>"; };
 		D00D44901DD5B70F00D2CD9B /* PodcastFromAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastFromAPI.swift; sourceTree = "<group>"; };
+		D028906E1DFA723700C7AD89 /* PlayerVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerVCTest.swift; sourceTree = "<group>"; };
+		D02890701DFC6A4C00C7AD89 /* EpisodeVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeVCTest.swift; sourceTree = "<group>"; };
+		D02890721DFC6BF200C7AD89 /* UrlVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlVCTest.swift; sourceTree = "<group>"; };
 		D03CB6ED1DC8680300819865 /* AudioEpisodeTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioEpisodeTracker.swift; sourceTree = "<group>"; };
 		D05CC4D11D791D2F009C4B19 /* ModelBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelBridge.swift; sourceTree = "<group>"; };
 		D05CC4D31D791F92009C4B19 /* DownloadBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadBridge.swift; sourceTree = "<group>"; };
@@ -159,6 +168,9 @@
 		D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testNormalPodcastXML.xml; path = ../RocketCast/testNormalPodcastXML.xml; sourceTree = "<group>"; };
 		D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebUITests.swift; sourceTree = "<group>"; };
 		D0C36C141DF354810030377E /* BaseUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITest.swift; sourceTree = "<group>"; };
+		D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewControllerTest.swift; sourceTree = "<group>"; };
+		D0C36C211DF4D0480030377E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D0C36C251DF67B660030377E /* ItuneWebVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebVCTest.swift; sourceTree = "<group>"; };
 		D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlView.swift; sourceTree = "<group>"; };
 		D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUrlView.xib; sourceTree = "<group>"; };
 		D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlViewDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +326,12 @@
 				5246CF081D84A6FF00ABF027 /* DownloadTests.swift */,
 				C80FAE881D72376700C806C1 /* Info.plist */,
 				D0075F5E1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift */,
+				D0C36C1F1DF4CAE80030377E /* PodcastViewControllerTest.swift */,
+				D0C36C251DF67B660030377E /* ItuneWebVCTest.swift */,
+				D0C36C211DF4D0480030377E /* Constants.swift */,
+				D028906E1DFA723700C7AD89 /* PlayerVCTest.swift */,
+				D02890701DFC6A4C00C7AD89 /* EpisodeVCTest.swift */,
+				D02890721DFC6BF200C7AD89 /* UrlVCTest.swift */,
 			);
 			path = RocketCastTests;
 			sourceTree = "<group>";
@@ -609,9 +627,15 @@
 			files = (
 				D095AAF21D884C6600AD1FD8 /* testPodcastNoAuthorsForEpisodes.swift in Sources */,
 				D095AAF01D8849FB00AD1FD8 /* testPodcastXMLWithNoEpisodes.swift in Sources */,
+				D02890711DFC6A4C00C7AD89 /* EpisodeVCTest.swift in Sources */,
 				D095AAEE1D878AC700AD1FD8 /* testNormalPodcastXML.swift in Sources */,
+				D028906F1DFA723700C7AD89 /* PlayerVCTest.swift in Sources */,
+				D0C36C221DF4D0480030377E /* Constants.swift in Sources */,
+				D02890731DFC6BF200C7AD89 /* UrlVCTest.swift in Sources */,
 				D0075F5F1D96F4E300DBAF58 /* CoreDataXMLParserTest.swift in Sources */,
+				D0C36C201DF4CAE80030377E /* PodcastViewControllerTest.swift in Sources */,
 				C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */,
+				D0C36C261DF67B660030377E /* ItuneWebVCTest.swift in Sources */,
 				5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,6 +779,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AX2D84BZ47;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -774,6 +799,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = AX2D84BZ47;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

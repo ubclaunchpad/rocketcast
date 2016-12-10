@@ -24,6 +24,7 @@ class AudioEpisodeTracker {
     static var isTheAudioEmpty = true
     
     static func getCurrentEpisode() -> Episode {
+        Log.error("Episode Index = ")
         return currentEpisodesInTrack[episodeIndex]
     }
     

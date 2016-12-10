@@ -11,7 +11,7 @@ import CoreData
 class PodcastController: UIViewController {
     
     var mainView: PodcastView?
-    
+
     var updatePodcastsButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(updateAllPodcasts))
     var goToItuneWebButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(segueToItuneWeb))
     var enterDeleteModeButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(toggleDeleteMode))

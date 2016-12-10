@@ -156,4 +156,23 @@ class DatabaseUtil {
         print("File still Exists: ",  fileManager.fileExists(atPath: episodeTitle))
 
     }
+    
+   static func getPodcast (byTitle: String)  -> Podcast {
+        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
+        var podcast:Podcast?
+        podcastRequest.predicate = NSPredicate(format:"title = %@", (byTitle as CVarArg))
+        
+        do {
+            let podcasts = try DatabaseUtil.getContext().fetch(podcastRequest)
+            podcast = podcasts.first
+            
+        }
+        catch let error as NSError {
+            Log.error("Error in getting podcasts: " + error.localizedDescription)
+        }
+        
+        return podcast!
+    }
+    
+
 }
