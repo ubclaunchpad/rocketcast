@@ -233,11 +233,6 @@ extension PlayerController: PlayerViewDelegate {
         return String(Int(AudioEpisodeTracker.currentRate))
     }
 
-    func segueBackToEpisodes() {
-        let currentPodcast = DatabaseUtil.getPodcast(byTitle: AudioEpisodeTracker.podcastTitle)
-        DatabaseUtil.saveContext()
-        performSegue(withIdentifier: Segues.segueToBackEpisodes, sender: currentPodcast)
-    }
     
     func updateProgressView() {
         guard mainView?.sliderIsMoving == false else {

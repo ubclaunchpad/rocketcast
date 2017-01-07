@@ -60,24 +60,6 @@ class DatabaseUtil {
     }
     
     // MARK: - Core Data Podcast functionailty
-    static func getPodcast (byTitle: String)  -> Podcast {
-        let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        var podcast:Podcast?
-        podcastRequest.predicate = NSPredicate(format:"title = %@", (byTitle as CVarArg))
-        
-        do {
-            let podcasts = try DatabaseUtil.getContext().fetch(podcastRequest)
-            podcast = podcasts.first
-            
-        }
-        catch let error as NSError {
-            Log.error("Error in getting podcasts: " + error.localizedDescription)
-        }
-        
-        return podcast!
-        
-    }
-    
     static func getAllPodcasts() -> [Podcast] {
         let podcastRequest: NSFetchRequest<Podcast> = Podcast.fetchRequest()
         do {
@@ -157,8 +139,8 @@ class DatabaseUtil {
             
             let episode = self.getEpisode(episodeTitle)
             let episodeUrl = episode?.doucmentaudioURL
-            print(episodeUrl)
-            print(episode?.imageURL)
+            Log.info(episodeUrl!)
+            Log.info((episode?.imageURL)!)
             episode?.setValue(nil, forKey: "doucmentaudioURL")
             self.saveContext()
             
@@ -173,31 +155,5 @@ class DatabaseUtil {
         }
         print("File still Exists: ",  fileManager.fileExists(atPath: episodeTitle))
 
-    }
-    
-    // MARK: - Core Data Method for Test
-    static func getPodcastCount () -> NSInteger {
-        let request:NSFetchRequest<Podcast> = Podcast.fetchRequest()
-        do {
-            let count = try DatabaseUtil.getContext().count(for: request)
-            return count
-            
-        } catch let error as NSError {
-            Log.error("Error in getting count from podcasts: " + error.localizedDescription)
-        }
-        
-        return -1
-    }
-    
-    static func getEpisodesByPodcastTitle (_podcastTitle: String?) -> [Episode?] {
-        let episodeRequest: NSFetchRequest<Episode> = Episode.fetchRequest()
-        episodeRequest.predicate = NSPredicate(format:"title = %@", _podcastTitle as! CVarArg)
-        do {
-            let episodes = try DatabaseUtil.getContext().fetch(episodeRequest)
-            return episodes
-        }
-        catch {
-            fatalError("Error in getting podcasts")
-        }
     }
 }
