@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		285A24BDBA528D591318E092 /* Pods_RocketCast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAB8DA4A8FC88D793C44C10 /* Pods_RocketCast.framework */; };
 		5234C50B1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234C5091DD305CE006D1E0F /* EpisodeHeaderTableViewCell.swift */; };
 		5234C50C1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5234C50A1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.xib */; };
 		5246CF091D84A6FF00ABF027 /* DownloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246CF081D84A6FF00ABF027 /* DownloadTests.swift */; };
@@ -18,6 +19,9 @@
 		84C603201D972E5A009C73A7 /* EpisodeViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */; };
 		84C603221D972E9E009C73A7 /* EpisodeViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */; };
 		84C603241D9735F1009C73A7 /* EpisodeViewUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C603231D9735F1009C73A7 /* EpisodeViewUITest.swift */; };
+		A2052EDE260B3DB36DF0A96A /* Pods_RocketCastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D583E30019BA61B94B8DD0A3 /* Pods_RocketCastUITests.framework */; };
+		A797FF0C1D8DF42000D649EC /* PodcastViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A797FF0A1D8DF42000D649EC /* PodcastViewTableViewCell.swift */; };
+		A797FF0D1D8DF42000D649EC /* PodcastViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A797FF0B1D8DF42000D649EC /* PodcastViewTableViewCell.xib */; };
 		C80DA31D1D77E1AA0089A678 /* PodcastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80DA31C1D77E1AA0089A678 /* PodcastView.xib */; };
 		C80DA31F1D77E1C10089A678 /* PodcastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA31E1D77E1C10089A678 /* PodcastView.swift */; };
 		C80DA3211D77E3300089A678 /* PodcastViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */; };
@@ -37,8 +41,7 @@
 		C80FAE7C1D72376600C806C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */; };
 		C80FAE871D72376700C806C1 /* RocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE861D72376700C806C1 /* RocketCastTests.swift */; };
 		C80FAE921D72376700C806C1 /* RocketCastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80FAE911D72376700C806C1 /* RocketCastUITests.swift */; };
-		C8D601A51D79380B003512FE /* CoreDataXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D601A41D79380B003512FE /* CoreDataXMLParser.swift */; };
-		C8D601A71D793E05003512FE /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D601A61D793E05003512FE /* Log.swift */; };
+		C8D601A51D79380B003512FE /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D601A41D79380B003512FE /* XMLParser.swift */; };
 		D0075F561D93815A00DBAF58 /* Podcast+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0075F521D93815A00DBAF58 /* Podcast+CoreDataProperties.swift */; };
 		D0075F571D93815A00DBAF58 /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0075F531D93815A00DBAF58 /* Podcast.swift */; };
 		D0075F581D93815A00DBAF58 /* Episode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0075F541D93815A00DBAF58 /* Episode+CoreDataProperties.swift */; };
@@ -73,6 +76,7 @@
 		D3B50AAF1DC566D200A67DBA /* AddUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */; };
 		D3B50AB11DC566FB00A67DBA /* AddUrlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */; };
 		D3B50AB31DC5672500A67DBA /* AddUrlController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AB21DC5672500A67DBA /* AddUrlController.swift */; };
+		E0E736E5C7F54132BB1567E9 /* Pods_RocketCastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C1715276CE8A84010D04 /* Pods_RocketCastTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3CA6DA4E75A6EACD27E9CF09 /* Pods-RocketCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5234C5091DD305CE006D1E0F /* EpisodeHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		5234C50A1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		5246CF081D84A6FF00ABF027 /* DownloadTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadTests.swift; sourceTree = "<group>"; };
@@ -101,9 +106,18 @@
 		526AF93E1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastsTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		526AF93F1DD65B9A006EDC9D /* PodcastsTitleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastsTitleCollectionViewCell.xib; sourceTree = "<group>"; };
 		527876261DB2DC790001EDFB /* PlayerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerUITests.swift; sourceTree = "<group>"; };
+		7D1C84C01825B03836057DEE /* Pods-RocketCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCast/Pods-RocketCast.debug.xcconfig"; sourceTree = "<group>"; };
 		84C6031F1D972E5A009C73A7 /* EpisodeViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeViewTableViewCell.xib; sourceTree = "<group>"; };
 		84C603211D972E9E009C73A7 /* EpisodeViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewTableViewCell.swift; sourceTree = "<group>"; };
 		84C603231D9735F1009C73A7 /* EpisodeViewUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeViewUITest.swift; sourceTree = "<group>"; };
+		86945D5BAD8B101A219C3F8C /* Pods-RocketCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCast.release.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCast/Pods-RocketCast.release.xcconfig"; sourceTree = "<group>"; };
+		8BAB8DA4A8FC88D793C44C10 /* Pods_RocketCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketCast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F02BECFCA15A8F7B7214E14 /* Pods-RocketCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A797FF0A1D8DF42000D649EC /* PodcastViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewTableViewCell.swift; sourceTree = "<group>"; };
+		A797FF0B1D8DF42000D649EC /* PodcastViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastViewTableViewCell.xib; sourceTree = "<group>"; };
+		B79CF3D9F0B34781CA005644 /* Pods-RocketCastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCastUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C04037E4FCE0D8A5BC15CB92 /* Pods-RocketCastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketCastUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C384C1715276CE8A84010D04 /* Pods_RocketCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketCastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80DA31C1D77E1AA0089A678 /* PodcastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PodcastView.xib; sourceTree = "<group>"; };
 		C80DA31E1D77E1C10089A678 /* PodcastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastView.swift; sourceTree = "<group>"; };
 		C80DA3201D77E3300089A678 /* PodcastViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastViewDelegate.swift; sourceTree = "<group>"; };
@@ -129,8 +143,7 @@
 		C80FAE8D1D72376700C806C1 /* RocketCastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RocketCastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80FAE911D72376700C806C1 /* RocketCastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketCastUITests.swift; sourceTree = "<group>"; };
 		C80FAE931D72376700C806C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8D601A41D79380B003512FE /* CoreDataXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataXMLParser.swift; sourceTree = "<group>"; };
-		C8D601A61D793E05003512FE /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		C8D601A41D79380B003512FE /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
 		D0075F521D93815A00DBAF58 /* Podcast+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Podcast+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D0075F531D93815A00DBAF58 /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		D0075F541D93815A00DBAF58 /* Episode+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Episode+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -163,6 +176,7 @@
 		D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUrlView.xib; sourceTree = "<group>"; };
 		D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlViewDelegate.swift; sourceTree = "<group>"; };
 		D3B50AB21DC5672500A67DBA /* AddUrlController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlController.swift; sourceTree = "<group>"; };
+		D583E30019BA61B94B8DD0A3 /* Pods_RocketCastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketCastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285A24BDBA528D591318E092 /* Pods_RocketCast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0E736E5C7F54132BB1567E9 /* Pods_RocketCastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,12 +200,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2052EDE260B3DB36DF0A96A /* Pods_RocketCastUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A56B18C09C9432B4C236F85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D1C84C01825B03836057DEE /* Pods-RocketCast.debug.xcconfig */,
+				86945D5BAD8B101A219C3F8C /* Pods-RocketCast.release.xcconfig */,
+				8F02BECFCA15A8F7B7214E14 /* Pods-RocketCastTests.debug.xcconfig */,
+				3CA6DA4E75A6EACD27E9CF09 /* Pods-RocketCastTests.release.xcconfig */,
+				B79CF3D9F0B34781CA005644 /* Pods-RocketCastUITests.debug.xcconfig */,
+				C04037E4FCE0D8A5BC15CB92 /* Pods-RocketCastUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		93B265BC03BC3FA723702B43 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8BAB8DA4A8FC88D793C44C10 /* Pods_RocketCast.framework */,
+				C384C1715276CE8A84010D04 /* Pods_RocketCastTests.framework */,
+				D583E30019BA61B94B8DD0A3 /* Pods_RocketCastUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C80DA3191D77E1650089A678 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +315,8 @@
 				C80FAE851D72376700C806C1 /* RocketCastTests */,
 				C80FAE901D72376700C806C1 /* RocketCastUITests */,
 				C80FAE6C1D72376600C806C1 /* Products */,
+				2A56B18C09C9432B4C236F85 /* Pods */,
+				93B265BC03BC3FA723702B43 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,7 +338,6 @@
 				C80DA3191D77E1650089A678 /* Controller */,
 				C80FAE6E1D72376600C806C1 /* AppDelegate.swift */,
 				D09AC5A41D77EA9900048C17 /* Constants.swift */,
-				C8D601A61D793E05003512FE /* Log.swift */,
 				C80FAE721D72376600C806C1 /* Main.storyboard */,
 				C80FAE781D72376600C806C1 /* Assets.xcassets */,
 				C80FAE7A1D72376600C806C1 /* LaunchScreen.storyboard */,
@@ -417,9 +458,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C80FAE961D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCast" */;
 			buildPhases = (
+				21F82CF4EFC67567011E328C /* [CP] Check Pods Manifest.lock */,
 				C80FAE671D72376600C806C1 /* Sources */,
 				C80FAE681D72376600C806C1 /* Frameworks */,
 				C80FAE691D72376600C806C1 /* Resources */,
+				D2576F98CC8CBDD83DC91905 /* [CP] Embed Pods Frameworks */,
+				E809AD31EEE0985BF3716996 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,9 +478,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C80FAE991D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastTests" */;
 			buildPhases = (
+				7FE398F14B66C3D9CC45DFBC /* [CP] Check Pods Manifest.lock */,
 				C80FAE7E1D72376600C806C1 /* Sources */,
 				C80FAE7F1D72376600C806C1 /* Frameworks */,
 				C80FAE801D72376600C806C1 /* Resources */,
+				107888C363599369D8DA9FCC /* [CP] Embed Pods Frameworks */,
+				17B75652E91AEA5E823DD08F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -452,9 +499,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C80FAE9C1D72376700C806C1 /* Build configuration list for PBXNativeTarget "RocketCastUITests" */;
 			buildPhases = (
+				027C915F3FD0AA45E698C702 /* [CP] Check Pods Manifest.lock */,
 				C80FAE891D72376700C806C1 /* Sources */,
 				C80FAE8A1D72376700C806C1 /* Frameworks */,
 				C80FAE8B1D72376700C806C1 /* Resources */,
+				F014217D2B1FBC8DCD32F8FE /* [CP] Embed Pods Frameworks */,
+				C2DA5C962D286434E1F58937 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -560,6 +610,144 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		027C915F3FD0AA45E698C702 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		107888C363599369D8DA9FCC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		17B75652E91AEA5E823DD08F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21F82CF4EFC67567011E328C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7FE398F14B66C3D9CC45DFBC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2DA5C962D286434E1F58937 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D2576F98CC8CBDD83DC91905 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCast/Pods-RocketCast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E809AD31EEE0985BF3716996 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCast/Pods-RocketCast-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F014217D2B1FBC8DCD32F8FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C80FAE671D72376600C806C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -585,8 +773,7 @@
 				D00D448B1DD567C800D2CD9B /* ItuneWebDelegate.swift in Sources */,
 				D00D44871DD5675100D2CD9B /* ItuneWebView.swift in Sources */,
 				D05CC4D21D791D2F009C4B19 /* ModelBridge.swift in Sources */,
-				C8D601A71D793E05003512FE /* Log.swift in Sources */,
-				C8D601A51D79380B003512FE /* CoreDataXMLParser.swift in Sources */,
+				C8D601A51D79380B003512FE /* XMLParser.swift in Sources */,
 				D0075F591D93815A00DBAF58 /* Episode.swift in Sources */,
 				C80DA3231D77E69E0089A678 /* EpisodeController.swift in Sources */,
 				5234C50B1DD305CE006D1E0F /* EpisodeHeaderTableViewCell.swift in Sources */,
@@ -750,6 +937,7 @@
 		};
 		C80FAE971D72376700C806C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D1C84C01825B03836057DEE /* Pods-RocketCast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -769,6 +957,7 @@
 		};
 		C80FAE981D72376700C806C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86945D5BAD8B101A219C3F8C /* Pods-RocketCast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -787,6 +976,7 @@
 		};
 		C80FAE9A1D72376700C806C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F02BECFCA15A8F7B7214E14 /* Pods-RocketCastTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RocketCastTests/Info.plist;
@@ -800,6 +990,7 @@
 		};
 		C80FAE9B1D72376700C806C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CA6DA4E75A6EACD27E9CF09 /* Pods-RocketCastTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = RocketCastTests/Info.plist;
@@ -813,6 +1004,7 @@
 		};
 		C80FAE9D1D72376700C806C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B79CF3D9F0B34781CA005644 /* Pods-RocketCastUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RocketCastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -825,6 +1017,7 @@
 		};
 		C80FAE9E1D72376700C806C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C04037E4FCE0D8A5BC15CB92 /* Pods-RocketCastUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = RocketCastUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

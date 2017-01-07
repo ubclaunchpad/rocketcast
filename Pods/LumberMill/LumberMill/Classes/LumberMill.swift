@@ -8,9 +8,92 @@
 
 import Foundation
 
-//RC-16
-
-class Log {
+open class LumberMill {
+    
+    open static let version = "1.0.0"
+    
+    fileprivate class URLUtil {
+        
+        static func getNameFromStringPath(_ stringPath: String) -> String {
+            //URL sees that "+" is a " "
+            let stringPath = stringPath.replacingOccurrences(of: " ", with: "+")
+            let url = URL(string: stringPath)
+            return url!.lastPathComponent
+        }
+        
+        static func getNameFromURL(_ url: URL) -> String {
+            return url.lastPathComponent
+        }
+    }
+    
+    public struct LevelColor {
+        public var verbose = "💜 "      // silver
+        public var debug = "💚 "       // green
+        public var info = "💙 "         // blue
+        public var warning = "💛 "     // yellow
+        public var error = "❤️ "       // red
+    }
+    
+    public enum LogLevelChoices {
+        static let DEBUG = 1
+        static let INFO = 2
+        static let WARN = 3
+        static let ERROR = 4
+        static let TEST = 5
+    }
+    
+    /// returns color string for level
+    func colorForLevel(_ level: Int) -> String {
+        var color = ""
+        
+        switch level {
+        case 1:
+            color = levelColor.debug
+            
+        case 2:
+            color = levelColor.info
+            
+        case 3:
+            color = levelColor.warning
+            
+        case 4:
+            color = levelColor.error
+            
+        default:
+            color = levelColor.verbose
+        }
+        return color
+    }
+    
+    fileprivate var levelColor = LevelColor()
+    fileprivate var minLogLevel: Int
+    
+    public init() {
+        levelColor.verbose = "💜 "     // silver
+        levelColor.debug = "💚 "        // green
+        levelColor.info = "💙 "         // blue
+        levelColor.warning = "💛 "     // yellow
+        levelColor.error = "❤️ "       // red
+        
+        minLogLevel = 1
+    }
+    
+    public init(minLogLevel: Int) {
+        levelColor.verbose = "💜 "     // silver
+        levelColor.debug = "💚 "        // green
+        levelColor.info = "💙 "         // blue
+        levelColor.warning = "💛 "     // yellow
+        levelColor.error = "❤️ "       // red
+        
+        self.minLogLevel = minLogLevel
+    }
+    
+    open func setMinLogLevel(_ logLevel: Int) {
+        minLogLevel = logLevel
+    }
+    
+    fileprivate var escape = ""
+    
     
     /**
      Used for when you're doing tests. Testing log should be removed before commiting
@@ -25,10 +108,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func test(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    open func test(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
-        if LogLevel.lvl <= LogLevelChoices.TEST {
-            print("\(Date().timeStamp()) TEST  @@@@ in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+        if minLogLevel <= LogLevelChoices.TEST {
+            print("\(Date().timeStamp()) " + escape + colorForLevel(LogLevelChoices.DEBUG) + "TEST in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -45,10 +128,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func error(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    open func error(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
-        if LogLevel.lvl <= LogLevelChoices.ERROR {
-            print("\(Date().timeStamp()) ERROR #### in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+        if minLogLevel <= LogLevelChoices.ERROR {
+            print("\(Date().timeStamp()) " + escape + colorForLevel(LogLevelChoices.DEBUG) + "ERROR in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -65,10 +148,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func warn(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    open func warn(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
-        if LogLevel.lvl <= LogLevelChoices.WARN {
-            print("\(Date().timeStamp()) WARN  ###  in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+        if minLogLevel <= LogLevelChoices.WARN {
+            print("\(Date().timeStamp()) " + escape + colorForLevel(LogLevelChoices.DEBUG) + "WARN in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -85,10 +168,10 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func info(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    open func info(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
-        if LogLevel.lvl <= LogLevelChoices.INFO {
-            print("\(Date().timeStamp()) INFO  ##   in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+        if minLogLevel <= LogLevelChoices.INFO {
+            print("\(Date().timeStamp())" + escape + colorForLevel(LogLevelChoices.DEBUG) + "INFO in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
     
@@ -105,47 +188,13 @@ class Log {
      - Parameter functionName: automatically generated based on the function that called this function
      - Parameter lineNumber: automatically generated based on the line that called this function
      */
-    static func debug(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
+    open func debug(_ logMessage: String, classPath: String = #file, functionName: String = #function, lineNumber: Int = #line) {
         let fileName = URLUtil.getNameFromStringPath(classPath)
-        if LogLevel.lvl <= LogLevelChoices.DEBUG {
-            print("\(Date().timeStamp()) DEBUG #    in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
+        if minLogLevel <= LogLevelChoices.DEBUG {
+            print( "\(Date().timeStamp())" + escape + colorForLevel(LogLevelChoices.DEBUG) + "DEBUG in \(fileName):\(functionName):\(lineNumber):: \(logMessage)")
         }
     }
-    
-    
 }
-
-enum LogLevelChoices {
-    static let DEBUG = 1
-    static let INFO = 2
-    static let WARN = 3
-    static let ERROR = 4
-    static let TEST = 5
-}
-
-
-class URLUtil {
-    
-    static func getNameFromStringPath(_ stringPath: String) -> String {
-        //URL sees that "+" is a " "
-        let stringPath = stringPath.replacingOccurrences(of: " ", with: "+")
-        let url = URL(string: stringPath)
-        return url!.lastPathComponent
-    }
-    
-    static func getNameFromURL(_ url: URL) -> String {
-        return url.lastPathComponent
-    }
-}
-
-// I moved this to Constants
-///**
-// A log level of debug will print out all levels above it.
-// So a log level of WARN will print out WARN, ERROR, and TEST
-// */
-//enum LogLevel {
-//    static let lvl = LogLevelChoices.DEBUG
-//}
 
 
 extension Date {

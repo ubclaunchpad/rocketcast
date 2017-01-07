@@ -1,0 +1,844 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		117E5360A42595816DA8E0E48C3008A2 /* Pods-RocketCastTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F31E2D54B33058BB640A28F09C5D28B /* Pods-RocketCastTests-dummy.m */; };
+		1B30183592DE34E3F2EC6A1690A0D964 /* Pods-RocketCast-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADCF34026170D82AA08A416A25CA0DA /* Pods-RocketCast-dummy.m */; };
+		58D5CB49FD15A1AD9611A62F364559CE /* Pods-RocketCastTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D0E5FEA99507784ED5B60ADA5EAFDD0 /* Pods-RocketCastTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69E95C0A6EF9F4B3B5D1C378126A42AB /* LumberMill-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E125D8D99E211EB352C61E5DE1D804BE /* LumberMill-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		719416A73C581394B1B391551628894F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		7419887B712BD4D4A2872912519AB236 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		911F1828074298291355424129E9BD77 /* Pods-RocketCastUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 031AB4BEED55F6100E4473926E62DE0F /* Pods-RocketCastUITests-dummy.m */; };
+		925A7457B99FA5FEEBD390B7FFC4A918 /* LumberMill-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FD22DE278E7356ED3436ED39CC9C471 /* LumberMill-dummy.m */; };
+		A502D15D9B5D7D291645FC125A47A8AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		C079B73EDBBDF7D5A87D2F6BA6C6011A /* Pods-RocketCast-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 15629A5E7635E18892A65AE1DB1C8A53 /* Pods-RocketCast-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E9FE818A2A2187942A729B12E6AE93F2 /* LumberMill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FA4F78FD7AFAF79F1BA869EC92432 /* LumberMill.swift */; };
+		EC5307B335749621DC260599049559A7 /* Pods-RocketCastUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F1C22B1313FBDA6066EBCB6FFEC4EAE /* Pods-RocketCastUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EE1E4979FE14EF19FA8278339BEE4F60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6365372B35A3588650D33BA0042ED617 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3560355A9CBD908230D00520111F82BD;
+			remoteInfo = LumberMill;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		031AB4BEED55F6100E4473926E62DE0F /* Pods-RocketCastUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RocketCastUITests-dummy.m"; sourceTree = "<group>"; };
+		15629A5E7635E18892A65AE1DB1C8A53 /* Pods-RocketCast-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RocketCast-umbrella.h"; sourceTree = "<group>"; };
+		195FA4F78FD7AFAF79F1BA869EC92432 /* LumberMill.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LumberMill.swift; path = LumberMill/Classes/LumberMill.swift; sourceTree = "<group>"; };
+		256DECC5BD0D86F9ED28E44CA64A0F14 /* Pods_RocketCastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RocketCastUITests.framework; path = "Pods-RocketCastUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ECA9D60C67C3D21AC815E3D7CBE3626 /* Pods-RocketCast.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RocketCast.modulemap"; sourceTree = "<group>"; };
+		2FD22DE278E7356ED3436ED39CC9C471 /* LumberMill-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LumberMill-dummy.m"; sourceTree = "<group>"; };
+		32D4867D51EB27C0DEC76A47729A6D30 /* Pods-RocketCastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		39C33AA3B79DCC82D9BE317438F6BB1C /* Pods-RocketCastUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RocketCastUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3E8694B0A37228A4A9BA272B2A662532 /* Pods-RocketCast-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RocketCast-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3F1C22B1313FBDA6066EBCB6FFEC4EAE /* Pods-RocketCastUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RocketCastUITests-umbrella.h"; sourceTree = "<group>"; };
+		45D8FC10C2836DF549501F7A146D65C5 /* Pods-RocketCast-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCast-resources.sh"; sourceTree = "<group>"; };
+		49F9EFCE8AC0915DDBC4461D6F90047F /* Pods-RocketCastUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RocketCastUITests.modulemap"; sourceTree = "<group>"; };
+		4CCDD88BB1893CA5E2879E1FA2CF7C8B /* Pods-RocketCast-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCast-frameworks.sh"; sourceTree = "<group>"; };
+		5834ABE9900493602074C8CC1D839AA8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5ED5E702D6B476912F1DCD0F419E5A7D /* Pods-RocketCast-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RocketCast-acknowledgements.plist"; sourceTree = "<group>"; };
+		65876551E1C58D015EDD3F8AB27C7FDC /* Pods_RocketCast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RocketCast.framework; path = "Pods-RocketCast.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6631E980823F82D961B6978DE10CE202 /* Pods_RocketCastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RocketCastTests.framework; path = "Pods-RocketCastTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ADCF34026170D82AA08A416A25CA0DA /* Pods-RocketCast-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RocketCast-dummy.m"; sourceTree = "<group>"; };
+		6F0E5417160AC964F5D289F115A2FDFB /* Pods-RocketCastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCastUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6FC9825E1F2751D384793FE1B045FAF8 /* Pods-RocketCastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCastUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		72A668E101B77A48A0D38A2957A2356B /* LumberMill.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = LumberMill.modulemap; sourceTree = "<group>"; };
+		739BF58B9FD9A3EEFF614AB9E216C28A /* Pods-RocketCastTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RocketCastTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		79BBFBDE5972D39AF13DBA404805007B /* Pods-RocketCastTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCastTests-frameworks.sh"; sourceTree = "<group>"; };
+		7D8501DE589ECB6B5A6A18A1B3294365 /* Pods-RocketCast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCast.release.xcconfig"; sourceTree = "<group>"; };
+		8C848D661FC3358D671B12A4E5E291F7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D0E5FEA99507784ED5B60ADA5EAFDD0 /* Pods-RocketCastTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RocketCastTests-umbrella.h"; sourceTree = "<group>"; };
+		8F31E2D54B33058BB640A28F09C5D28B /* Pods-RocketCastTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RocketCastTests-dummy.m"; sourceTree = "<group>"; };
+		912843EDA6932933697F23DEAC60F34F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BB58F29E5D459369FA120B8FAB6BB633 /* Pods-RocketCastUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCastUITests-frameworks.sh"; sourceTree = "<group>"; };
+		C3EE7C987C6717CEF5ACC7606093FCCD /* LumberMill.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LumberMill.xcconfig; sourceTree = "<group>"; };
+		C73E9F4C5873EA9B6E59F9B6E1E16434 /* Pods-RocketCastTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCastTests-resources.sh"; sourceTree = "<group>"; };
+		CAAD8D47FEC6CCB4AD110737C65E6830 /* Pods-RocketCastUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RocketCastUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D1220CF766DBFC1657252E2BEBC12F22 /* Pods-RocketCastTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RocketCastTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E125D8D99E211EB352C61E5DE1D804BE /* LumberMill-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LumberMill-umbrella.h"; sourceTree = "<group>"; };
+		E5045B2D4E47A23739EEF0A90F64A08F /* Pods-RocketCastUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RocketCastUITests-resources.sh"; sourceTree = "<group>"; };
+		ED539F516E6B4D0C1C8423921004BB5F /* Pods-RocketCastTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RocketCastTests.modulemap"; sourceTree = "<group>"; };
+		F0585F81D5353AF5B7EABE77FEE08FA1 /* LumberMill-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LumberMill-prefix.pch"; sourceTree = "<group>"; };
+		F3726D843881BC52186BBD2000C7E87A /* Pods-RocketCastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCastTests.release.xcconfig"; sourceTree = "<group>"; };
+		F898ACCD4A3251CA1924D6984E7599C5 /* Pods-RocketCast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RocketCast.debug.xcconfig"; sourceTree = "<group>"; };
+		FAADEFF803FA4E4EE18C259741E85088 /* LumberMill.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = LumberMill.framework; path = LumberMill.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFDAB2F67350E9AD885A2A7080EF2F96 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3365610D3C090698BD6D7BED59A623D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				719416A73C581394B1B391551628894F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B6B20D7ACEB9F7F0B0FAF34B15C64A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE1E4979FE14EF19FA8278339BEE4F60 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A47D3D0969F06CA97A17112755BEC802 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7419887B712BD4D4A2872912519AB236 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EA4A93AF26C9C291EAD5471FAA4972CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A502D15D9B5D7D291645FC125A47A8AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		137D775EF97FA7DFFC40B3D0FF2D25E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B40278A52BA2BDB2FD8B1B678D794A95 /* LumberMill */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		31C14783C4CD5FE9DA3C2131D2FDBB09 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				659E86F7EE1420FEF395EBA1E8D90771 /* Pods-RocketCast */,
+				6608F10038A524D63F6A7C6DCB9988D6 /* Pods-RocketCastTests */,
+				8C8784FE5420BAA077077E9596260334 /* Pods-RocketCastUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		37A18CFE9ECD76C62D48218689125799 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAADEFF803FA4E4EE18C259741E85088 /* LumberMill.framework */,
+				65876551E1C58D015EDD3F8AB27C7FDC /* Pods_RocketCast.framework */,
+				6631E980823F82D961B6978DE10CE202 /* Pods_RocketCastTests.framework */,
+				256DECC5BD0D86F9ED28E44CA64A0F14 /* Pods_RocketCastUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		659E86F7EE1420FEF395EBA1E8D90771 /* Pods-RocketCast */ = {
+			isa = PBXGroup;
+			children = (
+				912843EDA6932933697F23DEAC60F34F /* Info.plist */,
+				2ECA9D60C67C3D21AC815E3D7CBE3626 /* Pods-RocketCast.modulemap */,
+				3E8694B0A37228A4A9BA272B2A662532 /* Pods-RocketCast-acknowledgements.markdown */,
+				5ED5E702D6B476912F1DCD0F419E5A7D /* Pods-RocketCast-acknowledgements.plist */,
+				6ADCF34026170D82AA08A416A25CA0DA /* Pods-RocketCast-dummy.m */,
+				4CCDD88BB1893CA5E2879E1FA2CF7C8B /* Pods-RocketCast-frameworks.sh */,
+				45D8FC10C2836DF549501F7A146D65C5 /* Pods-RocketCast-resources.sh */,
+				15629A5E7635E18892A65AE1DB1C8A53 /* Pods-RocketCast-umbrella.h */,
+				F898ACCD4A3251CA1924D6984E7599C5 /* Pods-RocketCast.debug.xcconfig */,
+				7D8501DE589ECB6B5A6A18A1B3294365 /* Pods-RocketCast.release.xcconfig */,
+			);
+			name = "Pods-RocketCast";
+			path = "Target Support Files/Pods-RocketCast";
+			sourceTree = "<group>";
+		};
+		6608F10038A524D63F6A7C6DCB9988D6 /* Pods-RocketCastTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C848D661FC3358D671B12A4E5E291F7 /* Info.plist */,
+				ED539F516E6B4D0C1C8423921004BB5F /* Pods-RocketCastTests.modulemap */,
+				739BF58B9FD9A3EEFF614AB9E216C28A /* Pods-RocketCastTests-acknowledgements.markdown */,
+				D1220CF766DBFC1657252E2BEBC12F22 /* Pods-RocketCastTests-acknowledgements.plist */,
+				8F31E2D54B33058BB640A28F09C5D28B /* Pods-RocketCastTests-dummy.m */,
+				79BBFBDE5972D39AF13DBA404805007B /* Pods-RocketCastTests-frameworks.sh */,
+				C73E9F4C5873EA9B6E59F9B6E1E16434 /* Pods-RocketCastTests-resources.sh */,
+				8D0E5FEA99507784ED5B60ADA5EAFDD0 /* Pods-RocketCastTests-umbrella.h */,
+				32D4867D51EB27C0DEC76A47729A6D30 /* Pods-RocketCastTests.debug.xcconfig */,
+				F3726D843881BC52186BBD2000C7E87A /* Pods-RocketCastTests.release.xcconfig */,
+			);
+			name = "Pods-RocketCastTests";
+			path = "Target Support Files/Pods-RocketCastTests";
+			sourceTree = "<group>";
+		};
+		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				137D775EF97FA7DFFC40B3D0FF2D25E6 /* Pods */,
+				37A18CFE9ECD76C62D48218689125799 /* Products */,
+				31C14783C4CD5FE9DA3C2131D2FDBB09 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8C8784FE5420BAA077077E9596260334 /* Pods-RocketCastUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FFDAB2F67350E9AD885A2A7080EF2F96 /* Info.plist */,
+				49F9EFCE8AC0915DDBC4461D6F90047F /* Pods-RocketCastUITests.modulemap */,
+				39C33AA3B79DCC82D9BE317438F6BB1C /* Pods-RocketCastUITests-acknowledgements.markdown */,
+				CAAD8D47FEC6CCB4AD110737C65E6830 /* Pods-RocketCastUITests-acknowledgements.plist */,
+				031AB4BEED55F6100E4473926E62DE0F /* Pods-RocketCastUITests-dummy.m */,
+				BB58F29E5D459369FA120B8FAB6BB633 /* Pods-RocketCastUITests-frameworks.sh */,
+				E5045B2D4E47A23739EEF0A90F64A08F /* Pods-RocketCastUITests-resources.sh */,
+				3F1C22B1313FBDA6066EBCB6FFEC4EAE /* Pods-RocketCastUITests-umbrella.h */,
+				6FC9825E1F2751D384793FE1B045FAF8 /* Pods-RocketCastUITests.debug.xcconfig */,
+				6F0E5417160AC964F5D289F115A2FDFB /* Pods-RocketCastUITests.release.xcconfig */,
+			);
+			name = "Pods-RocketCastUITests";
+			path = "Target Support Files/Pods-RocketCastUITests";
+			sourceTree = "<group>";
+		};
+		B40278A52BA2BDB2FD8B1B678D794A95 /* LumberMill */ = {
+			isa = PBXGroup;
+			children = (
+				195FA4F78FD7AFAF79F1BA869EC92432 /* LumberMill.swift */,
+				F70DCAE6D34D7C615957C7BA503F7200 /* Support Files */,
+			);
+			name = LumberMill;
+			path = LumberMill;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F70DCAE6D34D7C615957C7BA503F7200 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5834ABE9900493602074C8CC1D839AA8 /* Info.plist */,
+				72A668E101B77A48A0D38A2957A2356B /* LumberMill.modulemap */,
+				C3EE7C987C6717CEF5ACC7606093FCCD /* LumberMill.xcconfig */,
+				2FD22DE278E7356ED3436ED39CC9C471 /* LumberMill-dummy.m */,
+				F0585F81D5353AF5B7EABE77FEE08FA1 /* LumberMill-prefix.pch */,
+				E125D8D99E211EB352C61E5DE1D804BE /* LumberMill-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/LumberMill";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		03A1DCD0FB0C731639DF6062FD10410F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5307B335749621DC260599049559A7 /* Pods-RocketCastUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE022B0F7C82B42AB1C6CC2203DBECC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58D5CB49FD15A1AD9611A62F364559CE /* Pods-RocketCastTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EF7E489E38FDA44BC36FB4DB3700052 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C079B73EDBBDF7D5A87D2F6BA6C6011A /* Pods-RocketCast-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B019018B716F4F9771F1690140252CB8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69E95C0A6EF9F4B3B5D1C378126A42AB /* LumberMill-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0E2CE192C7A8E1A6C0439A5F183D17A1 /* Pods-RocketCastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 465CBBB282F507CBF32D340E619DEE2E /* Build configuration list for PBXNativeTarget "Pods-RocketCastTests" */;
+			buildPhases = (
+				66D5B7DFAB75D0888728875596683DAB /* Sources */,
+				EA4A93AF26C9C291EAD5471FAA4972CD /* Frameworks */,
+				2CE022B0F7C82B42AB1C6CC2203DBECC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-RocketCastTests";
+			productName = "Pods-RocketCastTests";
+			productReference = 6631E980823F82D961B6978DE10CE202 /* Pods_RocketCastTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3560355A9CBD908230D00520111F82BD /* LumberMill */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3184609576BC96C042045298DFF29FB0 /* Build configuration list for PBXNativeTarget "LumberMill" */;
+			buildPhases = (
+				0D18FD1C86A062B9A6F45F50993A435B /* Sources */,
+				3365610D3C090698BD6D7BED59A623D1 /* Frameworks */,
+				B019018B716F4F9771F1690140252CB8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LumberMill;
+			productName = LumberMill;
+			productReference = FAADEFF803FA4E4EE18C259741E85088 /* LumberMill.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		50DB4091BDB9F5BADF30BA762E156723 /* Pods-RocketCast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF57440A7A4562A6D2C3AD3C82771F36 /* Build configuration list for PBXNativeTarget "Pods-RocketCast" */;
+			buildPhases = (
+				72CA6919F53FFDAD79FCD4DE2B62DFF8 /* Sources */,
+				A47D3D0969F06CA97A17112755BEC802 /* Frameworks */,
+				7EF7E489E38FDA44BC36FB4DB3700052 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A22A6A58BFC8348442096325E2521907 /* PBXTargetDependency */,
+			);
+			name = "Pods-RocketCast";
+			productName = "Pods-RocketCast";
+			productReference = 65876551E1C58D015EDD3F8AB27C7FDC /* Pods_RocketCast.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AE93F7F3C8F2CB3D98BC81D5686E034F /* Pods-RocketCastUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA8881E93133DEE59B062E54239E283D /* Build configuration list for PBXNativeTarget "Pods-RocketCastUITests" */;
+			buildPhases = (
+				6A74B90874B56650CA21AA1666F30D9C /* Sources */,
+				6B6B20D7ACEB9F7F0B0FAF34B15C64A4 /* Frameworks */,
+				03A1DCD0FB0C731639DF6062FD10410F /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-RocketCastUITests";
+			productName = "Pods-RocketCastUITests";
+			productReference = 256DECC5BD0D86F9ED28E44CA64A0F14 /* Pods_RocketCastUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 37A18CFE9ECD76C62D48218689125799 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3560355A9CBD908230D00520111F82BD /* LumberMill */,
+				50DB4091BDB9F5BADF30BA762E156723 /* Pods-RocketCast */,
+				0E2CE192C7A8E1A6C0439A5F183D17A1 /* Pods-RocketCastTests */,
+				AE93F7F3C8F2CB3D98BC81D5686E034F /* Pods-RocketCastUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D18FD1C86A062B9A6F45F50993A435B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				925A7457B99FA5FEEBD390B7FFC4A918 /* LumberMill-dummy.m in Sources */,
+				E9FE818A2A2187942A729B12E6AE93F2 /* LumberMill.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66D5B7DFAB75D0888728875596683DAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				117E5360A42595816DA8E0E48C3008A2 /* Pods-RocketCastTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A74B90874B56650CA21AA1666F30D9C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				911F1828074298291355424129E9BD77 /* Pods-RocketCastUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72CA6919F53FFDAD79FCD4DE2B62DFF8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B30183592DE34E3F2EC6A1690A0D964 /* Pods-RocketCast-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A22A6A58BFC8348442096325E2521907 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LumberMill;
+			target = 3560355A9CBD908230D00520111F82BD /* LumberMill */;
+			targetProxy = 6365372B35A3588650D33BA0042ED617 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		104403C44004E1F8B3E0C0DB160646DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F0E5417160AC964F5D289F115A2FDFB /* Pods-RocketCastUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCastUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCastUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		12914D756594D15C6F2CA12FE5F89F1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		3E54650BE1EC5DC7541443FE60E05A10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F898ACCD4A3251CA1924D6984E7599C5 /* Pods-RocketCast.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCast/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCast/Pods-RocketCast.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3FBF0A886F3DD2476B74CB53266FB340 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3EE7C987C6717CEF5ACC7606093FCCD /* LumberMill.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LumberMill/LumberMill-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LumberMill/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LumberMill/LumberMill.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = LumberMill;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		485DFE460A71BD6721E6E0042E1FF47C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3EE7C987C6717CEF5ACC7606093FCCD /* LumberMill.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/LumberMill/LumberMill-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/LumberMill/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/LumberMill/LumberMill.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = LumberMill;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4A22B5B31C38899DA649A6F9CBDE230E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32D4867D51EB27C0DEC76A47729A6D30 /* Pods-RocketCastTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCastTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCastTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		78937B9F1235AB7A16712D6977914530 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FC9825E1F2751D384793FE1B045FAF8 /* Pods-RocketCastUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCastUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCastUITests/Pods-RocketCastUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCastUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E72E7977875C2D251FC62736BBDDC389 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB4969FC53138CEA6DD5D3165595636E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D8501DE589ECB6B5A6A18A1B3294365 /* Pods-RocketCast.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCast/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCast/Pods-RocketCast.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA5887EF5C926BEC21279EF52EEA25D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3726D843881BC52186BBD2000C7E87A /* Pods-RocketCastTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RocketCastTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RocketCastTests/Pods-RocketCastTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RocketCastTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12914D756594D15C6F2CA12FE5F89F1B /* Debug */,
+				E72E7977875C2D251FC62736BBDDC389 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3184609576BC96C042045298DFF29FB0 /* Build configuration list for PBXNativeTarget "LumberMill" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				485DFE460A71BD6721E6E0042E1FF47C /* Debug */,
+				3FBF0A886F3DD2476B74CB53266FB340 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		465CBBB282F507CBF32D340E619DEE2E /* Build configuration list for PBXNativeTarget "Pods-RocketCastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A22B5B31C38899DA649A6F9CBDE230E /* Debug */,
+				FA5887EF5C926BEC21279EF52EEA25D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA8881E93133DEE59B062E54239E283D /* Build configuration list for PBXNativeTarget "Pods-RocketCastUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78937B9F1235AB7A16712D6977914530 /* Debug */,
+				104403C44004E1F8B3E0C0DB160646DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF57440A7A4562A6D2C3AD3C82771F36 /* Build configuration list for PBXNativeTarget "Pods-RocketCast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E54650BE1EC5DC7541443FE60E05A10 /* Debug */,
+				EB4969FC53138CEA6DD5D3165595636E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
