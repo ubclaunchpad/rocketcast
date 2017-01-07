@@ -46,14 +46,7 @@ class EpisodeUITests: BaseUITest {
         let app = XCUIApplication()
 
         app.staticTexts[SamplePodcast.podcastTitle].tap()
-
-        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
-        app.tables.staticTexts[SamplePodcast.firstEpisode].tap()
-        
         app.buttons["Back"].tap()
-        app.buttons["Play"].tap()
-    
-        XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
     }
     
 }

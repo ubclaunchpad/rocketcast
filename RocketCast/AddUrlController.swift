@@ -35,7 +35,7 @@ class AddUrlController: UIViewController {
 extension AddUrlController:AddUrlViewDelegate{
     func addPodcast(webUrl: String) {
         print(webUrl)
-        CoreDataXMLParser(url:webUrl)
+        RssXMLParser(url:webUrl)
         self.performSegue(withIdentifier: Segues.segueFromAddUrlToPodcastList, sender: self)
     }
 }

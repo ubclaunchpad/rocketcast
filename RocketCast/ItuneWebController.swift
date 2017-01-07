@@ -131,7 +131,7 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
     }
     
     func savePodcastToCoreDataFromItuneAPI (_rssFeed: String) {
-        CoreDataXMLParser(url: _rssFeed)
+        RssXMLParser(url: _rssFeed)
         self.performSegue(withIdentifier: Segues.segueFromItuneAPIToPodcast, sender: self)
     }
     
