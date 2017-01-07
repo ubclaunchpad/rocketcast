@@ -67,7 +67,7 @@ class PlayerView: UIView {
             AudioEpisodeTracker.audioPlayer.currentTime = TimeInterval(slider.value)
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
             AudioEpisodeTracker.audioPlayer.play()
-
+            
         } else {
             // Initial slide value
             sliderIsMoving = true
@@ -109,23 +109,37 @@ class PlayerView: UIView {
         self.titleLabel.text = episode.title!
         self.podcastTitleLabel.text = episode.podcastTitle
         self.descriptionView.text = "Simple description of Podcast"
-        let url = URL(string: episode.imageURL!)
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf: url!)
-                let coverPhoto = UIImageView()
-                coverPhoto.frame = self.coverPhotoView.bounds
-                coverPhoto.layer.cornerRadius = 14
-                coverPhoto.layer.masksToBounds = true
-                DispatchQueue.main.async {
-                    coverPhoto.image = UIImage(data: data)
-                    self.coverPhotoView.addSubview(coverPhoto)
+        let url = URL(string: (episode.imageURL)!)
+        
+        let coverPhoto = UIImageView()
+        coverPhoto.frame = self.coverPhotoView.bounds
+        coverPhoto.layer.cornerRadius = 18
+        coverPhoto.layer.masksToBounds = true
+        
+        
+        if episode.imageData == nil {
+            DispatchQueue.global().async {
+                do {
+                    let data = try Data(contentsOf: url!)
+                    episode.imageData = data
+                    DatabaseUtil.saveContext()
+                    DispatchQueue.main.async {
+                        coverPhoto.image = UIImage(data: data)
+                        self.coverPhotoView.addSubview(coverPhoto)
+                    }
+                    
+                } catch let error as NSError{
+                    Log.error("Error: " + error.debugDescription)
                 }
-                
-            } catch let error as NSError{
-                Log.error("Error: " + error.debugDescription)
             }
+        } else {
+            
+            coverPhoto.image = UIImage(data: episode.imageData!)
+            self.coverPhotoView.addSubview(coverPhoto)
+            
+            
         }
+        
     }
     
 }

@@ -35,23 +35,12 @@ class EpisodeHeaderTableViewCell: UITableViewCell {
         podcastAuthor.text = podcast.author
         
         podcastSummary.text = podcast.summary
-        let url = URL(string: (podcast.imageURL)!)
+        let coverPhoto = UIImageView()
+        coverPhoto.frame = self.coverPhotoView.bounds
+        coverPhoto.layer.cornerRadius = 18
+        coverPhoto.layer.masksToBounds = true
+        coverPhoto.image = UIImage(data: (podcast.imageData)!)
+        self.coverPhotoView.addSubview(coverPhoto)
 
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf: url!)
-                let coverPhoto = UIImageView()
-                coverPhoto.frame = self.coverPhotoView.bounds
-                coverPhoto.layer.cornerRadius = 18
-                coverPhoto.layer.masksToBounds = true
-                DispatchQueue.main.async {
-                    coverPhoto.image = UIImage(data: data)
-                    self.coverPhotoView.addSubview(coverPhoto)
-                }
-                
-            } catch let error as NSError{
-                Log.error("Error: " + error.debugDescription)
-            }
-        }
     }
 }
