@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import CoreData
+import MediaPlayer
+
 class PlayerController: UIViewController {
     
     var mainView: PlayerView?
@@ -20,6 +22,7 @@ class PlayerController: UIViewController {
         self.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         setupView()
+        setupMPRemote()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +44,34 @@ class PlayerController: UIViewController {
             self.mainView?.slider.setValue(Float(AudioEpisodeTracker.audioPlayer.currentTime), animated: false)
             AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
         }
+    }
+    
+    func setupMPRemote() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget(self, action: #selector(PlayerController.playPodcast))
+        
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget(self, action: #selector(PlayerController.pausePodcast))
+        
+        commandCenter.skipBackwardCommand.isEnabled = true
+        commandCenter.skipBackwardCommand.preferredIntervals = [30]
+        commandCenter.skipBackwardCommand.addTarget(self, action: #selector(PlayerController.goBack))
+        
+        commandCenter.skipForwardCommand.isEnabled = true
+        commandCenter.skipForwardCommand.preferredIntervals = [30]
+        commandCenter.skipForwardCommand.addTarget(self, action: #selector(PlayerController.goForward))
+        
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle: AudioEpisodeTracker.episodeTitle,
+            MPMediaItemPropertyAlbumTitle: AudioEpisodeTracker.podcastTitle,
+            MPMediaItemPropertyArtist: AudioEpisodeTracker.getCurrentEpisode().author ?? ""
+//            MPMediaItemPropertyPlaybackDuration: AudioEpisodeTracker.audioPlayer.duration.,
+//            MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.progress
+//            MPMediaItemArtwork: mainView?.coverPhotoView.subviews.last
+        ]
     }
     
     func downloadAudioEpisode() {
