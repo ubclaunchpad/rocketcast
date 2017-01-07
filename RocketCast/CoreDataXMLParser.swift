@@ -86,17 +86,8 @@ extension CoreDataXMLParser: XMLParserDelegate {
         if (elementName as NSString).isEqual(xmlKeyTags.podcastImage) {
             if (podcast!.imageURL == nil) {
                 podcast!.imageURL = attributeDict[xmlKeyTags.imageLink]!
-
             } else  {
                 tmpEpisode!.imageURL = attributeDict[xmlKeyTags.imageLink]!
-                
-//                do {
-//                    let data = try Data(contentsOf: URL(string: self.tmpEpisode!.imageURL!)!)
-//                    self.tmpEpisode!.imageData = data as NSData?
-//                    
-//                } catch let error as NSError{
-//                    Log.error("Error: " + error.debugDescription)
-//                }
             }
         }
         
