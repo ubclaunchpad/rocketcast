@@ -478,7 +478,7 @@
 				TargetAttributes = {
 					C80FAE6A1D72376600C806C1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = AX2D84BZ47;
+						DevelopmentTeam = 69C5F6WEA5;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -755,7 +755,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = AX2D84BZ47;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -774,7 +774,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = AX2D84BZ47;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

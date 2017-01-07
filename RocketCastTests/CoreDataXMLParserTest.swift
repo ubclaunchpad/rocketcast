@@ -34,7 +34,7 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(self.normalPodcastXML.description, podcast.summary)
         XCTAssertEqual(self.normalPodcastXML.imageURL, podcast.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast.episodes?.count)
-        let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+        let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date! as Date) == ComparisonResult.orderedDescending })
         var index = 0
         for episode in episodes {
             self.compareValues(episode, expectedEpisode: expectedEpisodes[index])
@@ -56,7 +56,7 @@ class CoreDataXMLParserTest: XCTestCase {
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.description, podcast.summary)
         XCTAssertEqual(self.noAuthorForEpisodesPodcastXML.imageURL, podcast.imageURL)
         XCTAssertEqual(expectedEpisodes.count, podcast.episodes?.count)
-        let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+        let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date! as Date) == ComparisonResult.orderedDescending })
         
         var index = 0
         for episode in episodes {

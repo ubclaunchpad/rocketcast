@@ -76,7 +76,7 @@ class PodcastController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EpisodeController {
             if let podcast = sender as? Podcast {
-                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date! as Date) == ComparisonResult.orderedDescending })
                 destination.episodesInPodcast = episodes
                 destination.selectedPodcast = podcast
             }
