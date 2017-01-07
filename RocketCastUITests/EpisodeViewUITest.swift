@@ -61,7 +61,6 @@ class EpisodeUITests: XCTestCase {
         waitForExpectations(timeout: timeOut, handler: nil)
         tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
 
-    
         app.buttons["Back"].tap()
         app.buttons["Play"].tap()
         
