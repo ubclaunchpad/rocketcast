@@ -22,7 +22,7 @@ UICollectionViewDataSource {
             podcastView.reloadData()
         }
     }
-    
+        
     @IBAction func addNewPodcastBtnPressed(_ sender: AnyObject) {
         viewDelegate?.segueToItuneWeb()
     }

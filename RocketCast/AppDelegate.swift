@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let args = ProcessInfo.processInfo.arguments
         if args.contains("MY_UI_TEST_MODE") {
-            DatabaseController.deleteAllManagedObjects()
+            DatabaseUtil.deleteAllManagedObjects()
         }
         
         UINavigationBar.appearance().backgroundColor = .clear
@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        DatabaseUtil.saveContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -48,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        DatabaseController.saveContext()
+        DatabaseUtil.saveContext()
     }
 
 }

@@ -11,10 +11,6 @@ import Foundation
 
 //from stackoverflow:  http://stackoverflow.com/questions/28059543/swift-replace-multiple-characters-in-string
 extension String {
-    func stringByRemovingAll(_ characters: [Character]) -> String {
-        return String(self.characters.filter({ !characters.contains($0) }))
-    }
-    
     func stringByRemovingAll(_ subStrings: [String]) -> String {
         var resultString = self
         subStrings.map { resultString = resultString.replacingOccurrences(of: $0, with: "") }
