@@ -17,6 +17,8 @@ class PlayerController: UIViewController {
     
     var alertController: UIAlertController?
     
+    var albumArtwork: MPMediaItemArtwork?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = ""
@@ -62,16 +64,48 @@ class PlayerController: UIViewController {
         commandCenter.skipForwardCommand.preferredIntervals = [30]
         commandCenter.skipForwardCommand.addTarget(self, action: #selector(PlayerController.goForward))
         
+        commandCenter.changePlaybackPositionCommand.isEnabled = true
+        commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(PlayerController.nowPlayingSlider(_:)))
+        updateMPRemote(changeArtwork: true)
+    }
+    
+    func updateMPRemote(changeArtwork: Bool) {
+        if changeArtwork {
+            if albumArtwork == nil {
+                DispatchQueue.global().async {
+                    do {
+                        let data = try Data(contentsOf: URL(string: (AudioEpisodeTracker.getCurrentEpisode().imageURL)!)!)
+                        AudioEpisodeTracker.getCurrentEpisode().imageData = data
+                        DatabaseUtil.saveContext()
+                        DispatchQueue.main.async {
+                            let image: UIImage = UIImage(data: AudioEpisodeTracker.getCurrentEpisode().imageData!)!
+                            
+                            self.albumArtwork = MPMediaItemArtwork.init(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+                                return image
+                            })
+                            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArtwork
+                        }
+                        
+                    } catch let error as NSError{
+                        Log.error("Error: " + error.debugDescription)
+                    }
+                }
+            }
+        }
         
+        let currentEpisode = AudioEpisodeTracker.getCurrentEpisode()
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: AudioEpisodeTracker.episodeTitle,
-            MPMediaItemPropertyAlbumTitle: AudioEpisodeTracker.podcastTitle,
-            MPMediaItemPropertyArtist: AudioEpisodeTracker.getCurrentEpisode().author ?? ""
-//            MPMediaItemPropertyPlaybackDuration: AudioEpisodeTracker.audioPlayer.duration.,
-//            MPNowPlayingInfoPropertyElapsedPlaybackTime: audioPlayer.progress
-//            MPMediaItemArtwork: mainView?.coverPhotoView.subviews.last
+            MPMediaItemPropertyAlbumTitle: currentEpisode.podcastTitle ?? "",
+            MPMediaItemPropertyTitle: currentEpisode.title ?? "",
+            MPMediaItemPropertyArtist: AudioEpisodeTracker.getCurrentEpisode().author ?? "",
+            MPMediaItemPropertyPlaybackDuration: AudioEpisodeTracker.audioPlayer.duration,
+            MPNowPlayingInfoPropertyPlaybackRate: AudioEpisodeTracker.currentRate,
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: AudioEpisodeTracker.audioPlayer.currentTime
         ]
+        
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArtwork
     }
     
     func downloadAudioEpisode() {
@@ -143,11 +177,21 @@ class PlayerController: UIViewController {
         DatabaseUtil.deleteEpisodeAudio(episodeTitle: episode.title!)
         
     }
+    
+    func nowPlayingSlider(_ event: MPChangePlaybackPositionCommandEvent) {
+        AudioEpisodeTracker.audioPlayer.stop()
+        AudioEpisodeTracker.audioPlayer.currentTime = event.positionTime
+        AudioEpisodeTracker.audioPlayer.prepareToPlay()
+        AudioEpisodeTracker.audioPlayer.play()
+        
+        updateMPRemote(changeArtwork: false)
+    }
+    
     // TODO use Guard
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? EpisodeController {
             if let podcast = sender as? Podcast {
-                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date!) == ComparisonResult.orderedDescending })
+                let episodes = (podcast.episodes?.allObjects as! [Episode]).sorted(by: { $0.date!.compare($1.date! as Date) == ComparisonResult.orderedDescending })
                 destination.episodesInPodcast = episodes
                 destination.selectedPodcast = podcast
             }
@@ -187,16 +231,22 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             AudioEpisodeTracker.audioPlayer.play()
         }
+        updateMPRemote(changeArtwork: false)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = AudioEpisodeTracker.currentRate
+
     }
     
     func pausePodcast() {
         AudioEpisodeTracker.audioPlayer.pause()
         AudioEpisodeTracker.currentTimerForSlider.invalidate()
+        updateMPRemote(changeArtwork: false)
+//        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
     }
     
     func stopPodcast() {
         AudioEpisodeTracker.audioPlayer.stop()
         AudioEpisodeTracker.currentTimerForSlider.invalidate()
+        updateMPRemote(changeArtwork: false)
     }
     
     func goForward() {
@@ -209,6 +259,7 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.currentTime = time
             AudioEpisodeTracker.audioPlayer.play()
         }
+        updateMPRemote(changeArtwork: false)
     }
     
     func goBack() {
@@ -221,6 +272,7 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.audioPlayer.currentTime = time
             AudioEpisodeTracker.audioPlayer.play()
         }
+        updateMPRemote(changeArtwork: false)
     }
     
     func setUpPlayer(webUrl:String) {
@@ -261,6 +313,7 @@ extension PlayerController: PlayerViewDelegate {
         default:
             break
         }
+        updateMPRemote(changeArtwork: false)
         return String(Int(AudioEpisodeTracker.currentRate))
     }
 
@@ -292,5 +345,10 @@ extension PlayerController: PlayerViewDelegate {
         self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
         
         self.downloadAudioEpisode()
+        updateMPRemote(changeArtwork: true)
+    }
+    
+    func moveSlider() {
+       updateMPRemote(changeArtwork: false)
     }
  }

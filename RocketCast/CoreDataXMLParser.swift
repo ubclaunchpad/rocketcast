@@ -30,7 +30,7 @@ class CoreDataXMLParser: NSObject {
         if let data = try? Data(contentsOf: URL(string: url)!) {
             podcast = Podcast(context: DatabaseUtil.getContext())
             podcast?.rssFeedURL = url
-            podcast?.addedDate = Date()
+            podcast?.addedDate = Date() as NSDate?
             parseData(data)
         } else {
             Log.error("There's nothing in the data from url:\(url)")
@@ -130,7 +130,7 @@ extension CoreDataXMLParser: XMLParserDelegate {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = dateFormatString
                     let date = dateFormatter.date(from: midElementAsString)
-                    tmpEpisode!.date = date
+                    tmpEpisode!.date = date as NSDate?
                 }
             case xmlKeyTags.authorEpisodeTagTwo:
                 if tmpEpisode != nil {
