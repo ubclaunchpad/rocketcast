@@ -117,7 +117,7 @@ extension PodcastController:PodcastViewDelegate {
             if let podcast = currentPodcasts.popLast() {
                 if let rssFeedURL = podcast.rssFeedURL {
                     DatabaseUtil.deletePodcast(podcastTitle: podcast.title!)
-                    CoreDataXMLParser(url:rssFeedURL)
+                    RssXMLParser(url:rssFeedURL)
                 }
             }
         }
