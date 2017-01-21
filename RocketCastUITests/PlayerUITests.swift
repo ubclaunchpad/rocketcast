@@ -102,7 +102,6 @@ class PlayerUITests: BaseUITest {
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
         clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
-        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
         let doesItExist = NSPredicate(format: "exists == true")
