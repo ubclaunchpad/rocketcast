@@ -66,6 +66,7 @@ class PlayerController: UIViewController {
         
         commandCenter.changePlaybackPositionCommand.isEnabled = true
         commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(PlayerController.nowPlayingSlider(_:)))
+        
         updateMPRemote(changeArtwork: true)
     }
     
@@ -94,6 +95,8 @@ class PlayerController: UIViewController {
         }
         
         let currentEpisode = AudioEpisodeTracker.getCurrentEpisode()
+        
+        guard AudioEpisodeTracker.isTheAudioEmpty == false else { return }
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyAlbumTitle: currentEpisode.podcastTitle ?? "",
@@ -231,22 +234,28 @@ extension PlayerController: PlayerViewDelegate {
             AudioEpisodeTracker.currentTimerForSlider = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateProgressView), userInfo: nil, repeats: true)
             AudioEpisodeTracker.audioPlayer.play()
         }
-        updateMPRemote(changeArtwork: false)
+//        updateMPRemote(changeArtwork: false)
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = AudioEpisodeTracker.currentRate
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = AudioEpisodeTracker.audioPlayer.currentTime
 
     }
     
     func pausePodcast() {
         AudioEpisodeTracker.audioPlayer.pause()
         AudioEpisodeTracker.currentTimerForSlider.invalidate()
-        updateMPRemote(changeArtwork: false)
-//        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+//        updateMPRemote(changeArtwork: false)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = AudioEpisodeTracker.audioPlayer.currentTime
+
     }
     
     func stopPodcast() {
         AudioEpisodeTracker.audioPlayer.stop()
         AudioEpisodeTracker.currentTimerForSlider.invalidate()
-        updateMPRemote(changeArtwork: false)
+//        updateMPRemote(changeArtwork: false)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = AudioEpisodeTracker.audioPlayer.currentTime
+    
     }
     
     func goForward() {
