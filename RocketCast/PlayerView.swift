@@ -68,6 +68,8 @@ class PlayerView: UIView {
             AudioEpisodeTracker.audioPlayer.prepareToPlay()
             AudioEpisodeTracker.audioPlayer.play()
             
+            viewDelegate?.moveSlider()
+            
         } else {
             // Initial slide value
             sliderIsMoving = true
