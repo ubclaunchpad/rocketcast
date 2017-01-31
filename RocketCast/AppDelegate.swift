@@ -20,12 +20,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DatabaseUtil.deleteAllManagedObjects()
         }
         
+        //Set Background Fetch Task Time
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         UINavigationBar.appearance().backgroundColor = .clear
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Override point for customization after application launch.
         return true
+    }
+    
+    //Adding Support for Background Fetch
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let navigationController = window?.rootViewController as? UINavigationController
+        let viewControllers = navigationController?.viewControllers
+        if (viewControllers != nil)
+        {
+            for viewController in viewControllers! {
+                if let podcastController = viewController as? PodcastController {
+                    podcastController.updateAllPodcastsWithCallback {
+                        completionHandler(.newData)
+                    }
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
