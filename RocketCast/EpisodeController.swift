@@ -86,7 +86,7 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         }
         episodeCell.downloadAnimation.isHidden = false
         episodeCell.downloadAnimation.startAnimating()
-        Log.info("Starting to downloading")
+        Log.info("Downloading has started")
         episodeCell.downloadStatus.text = "Downloading ..."
         ModelBridge.sharedInstance.downloadAudio((selectedEpisode.audioURL)!, result: { (downloadedPodcast) in
             
