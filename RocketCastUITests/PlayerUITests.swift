@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreGraphics
 
 class PlayerUITests: BaseUITest {
     
@@ -32,7 +33,6 @@ class PlayerUITests: BaseUITest {
     
         clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
         app.tables.staticTexts[SamplePodcast.firstEpisode].tap()
-        
         
         let doesItExist = NSPredicate(format: "exists == true")
         let slider = app.sliders["0%"]

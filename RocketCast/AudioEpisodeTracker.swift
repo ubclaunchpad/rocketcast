@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 
-class AudioEpisodeTracker {
+class AudioEpisodeTracker: NSObject {
     
     // TODO: Connect to ModelBridge
     static var audioPlayer = AVAudioPlayer()
