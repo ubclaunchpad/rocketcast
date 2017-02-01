@@ -111,7 +111,7 @@ class PlayerController: UIViewController {
     MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArtwork
   }
   
-  func downloadAudioEpisode() {
+  func downloadAudioEpisode(completion: ((Bool) -> Void)? = nil) {
     guard  AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL == nil else  {
       self.setUpPlayer(webUrl: AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL!)
       self.updateMPRemote(changeArtwork: true)
@@ -122,29 +122,46 @@ class PlayerController: UIViewController {
     ModelBridge.sharedInstance.downloadAudio((AudioEpisodeTracker.getCurrentEpisode().audioURL)!, result: { (downloadedPodcast) in
       
       guard downloadedPodcast != nil else {
-        // TODO- Fix bug here
-        DispatchQueue.main.async {
-          loadingAlertScreen.dismiss(animated: true, completion: nil)
-        }
-        return
+        return loadingAlertScreen.dismiss(animated: false, completion: {
+            self.createFailedDownloaded()
+            if completion != nil {
+                return completion!(true)
+            } else {
+                return
+            }
+        })
       }
       
       guard AudioEpisodeTracker.episodeIndex != -1 else {
-        return
+        if completion != nil {
+            return completion!(true)
+        } else {
+            return
+        }
       }
       
       guard let episodeTitle = AudioEpisodeTracker.getCurrentEpisode().title else {
-        return
+        if completion != nil {
+            return completion!(true)
+        } else {
+            return
+        }
       }
-      
-      let episode = DatabaseUtil.getEpisode(episodeTitle)
-      episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-      DatabaseUtil.saveContext()
-      DispatchQueue.main.async {
-        loadingAlertScreen.dismiss(animated: true, completion: nil)
-        self.createSucessScreen()
-        self.setUpPlayer(webUrl:downloadedPodcast!)
-        self.updateMPRemote(changeArtwork: true)
+      if( downloadedPodcast != nil) {
+        let episode = DatabaseUtil.getEpisode(episodeTitle)
+        episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+        DatabaseUtil.saveContext()
+        DispatchQueue.main.async {
+          loadingAlertScreen.dismiss(animated: true, completion: nil)
+          self.createSucessScreen()
+          self.setUpPlayer(webUrl:downloadedPodcast!)
+          self.updateMPRemote(changeArtwork: true)
+        }
+        if completion != nil {
+            return completion!(false)
+        } else {
+            return
+        }
       }
     })
   }
@@ -349,10 +366,16 @@ extension PlayerController: PlayerViewDelegate {
         return
     }
     AudioEpisodeTracker.episodeIndex += 1
-    AudioEpisodeTracker.resetAudioData()
-    self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
     
-    self.downloadAudioEpisode()
+    //If we encounter an error, go back to previous episode
+    self.downloadAudioEpisode(completion: { error in
+        if(error){
+            AudioEpisodeTracker.episodeIndex -= 1
+        } else {
+            AudioEpisodeTracker.resetAudioData()
+            self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
+        }
+    })
   }
   
   func moveSlider() {
