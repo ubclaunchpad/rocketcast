@@ -26,6 +26,31 @@ class PlayerController: UIViewController {
     setupView()
     setupMPRemote()
   }
+    
+    
+    override var canBecomeFirstResponder : Bool {
+        return false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.becomeFirstResponder()
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+    }
+    
+    override func remoteControlReceived(with event: UIEvent?) {
+        let rc = event!.subtype
+        let p = AudioEpisodeTracker.audioPlayer
+        switch rc {
+            case .remoteControlTogglePlayPause:
+                if p.isPlaying { mainView?.isPlaying = false } else { mainView?.isPlaying = true }
+            case .remoteControlPlay:
+                mainView?.isPlaying = true
+            case .remoteControlPause:
+                mainView?.isPlaying = false
+            default:break
+        }
+    }
   
   override func viewWillAppear(_ animated: Bool) {
     mainView?.updateUI(episode: AudioEpisodeTracker.getCurrentEpisode())

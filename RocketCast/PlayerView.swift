@@ -51,6 +51,7 @@ class PlayerView: UIView {
         print("Open Delete Alert")
         viewDelegate?.openDeleteModal()
     }
+    
     //TODO this should be in controller
     @IBAction func changeAudio(_ sender: AnyObject) {
         // Smooths slider by reducing logic performed during each continuous slide
@@ -118,7 +119,6 @@ class PlayerView: UIView {
         coverPhoto.layer.cornerRadius = 18
         coverPhoto.layer.masksToBounds = true
         
-        
         if episode.imageData == nil {
             DispatchQueue.global().async {
                 do {
@@ -135,11 +135,8 @@ class PlayerView: UIView {
                 }
             }
         } else {
-            
             coverPhoto.image = UIImage(data: episode.imageData!)
             self.coverPhotoView.addSubview(coverPhoto)
-            
-            
         }
         
     }
