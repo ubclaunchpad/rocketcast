@@ -287,12 +287,18 @@ extension PlayerController: PlayerViewDelegate {
     let fileMgr = FileManager.default
     let path = NSHomeDirectory() + webUrl
     let file = fileMgr.contents(atPath: path)
+    let oldRate = AudioEpisodeTracker.currentRate;
     
     AudioEpisodeTracker.loadAudioDataToAudioPlayer(file!)
     albumArtwork = nil
     self.mainView?.slider.setValue(0.0, animated: false)
     self.mainView?.slider.maximumValue = Float(AudioEpisodeTracker.audioPlayer.duration)
     AudioEpisodeTracker.audioPlayer.play()
+    
+    //Reset to old rate
+    AudioEpisodeTracker.currentRate = oldRate
+    AudioEpisodeTracker.audioPlayer.rate = oldRate
+    
     mainView?.isPlaying = true
     
     let audioSession = AVAudioSession.sharedInstance()
@@ -350,6 +356,7 @@ extension PlayerController: PlayerViewDelegate {
     }
     AudioEpisodeTracker.episodeIndex += 1
     AudioEpisodeTracker.resetAudioData()
+
     self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
     
     self.downloadAudioEpisode()
