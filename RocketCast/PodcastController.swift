@@ -128,28 +128,6 @@ extension PodcastController:PodcastViewDelegate {
         self.mainView?.podcastView.reloadData()
     }
     
-    func updateAllPodcastsWithCallback(_ completion: () -> Void) {
-        
-        AudioEpisodeTracker.resetAudioTracker()
-        var currentPodcasts =  DatabaseUtil.getAllPodcasts()
-        while (!currentPodcasts.isEmpty) {
-            if let podcast = currentPodcasts.popLast() {
-                if let rssFeedURL = podcast.rssFeedURL {
-                    DatabaseUtil.deletePodcast(podcastTitle: podcast.title!)
-                    RssXMLParser(url:rssFeedURL)
-                }
-            }
-        }
-        navigationItem.rightBarButtonItems = [self.enterDeleteModeButton]
-        
-        let listOfPodcasts = DatabaseUtil.getAllPodcasts()
-        mainView?.podcastsToView = listOfPodcasts
-        self.mainView?.podcastView.reloadData()
-        completion();
-    }
-    
-    
-    
     func segueToItuneWeb() {
         performSegue(withIdentifier: Segues.segueToItuneWeb, sender: self)
 

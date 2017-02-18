@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="R6Z-gS-02B">
-                    <rect key="frame" x="0.0" y="69.5" width="375" height="528"/>
+                    <rect key="frame" x="0.0" y="70" width="375" height="528"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMS-ms-C2h">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
@@ -56,13 +56,50 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="idQ-e5-LkE">
                             <rect key="frame" x="0.0" y="300" width="375" height="228"/>
                             <subviews>
-                                <slider opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-7x-GJL" customClass="MediaSlider" customModule="RocketCast" customModuleProvider="target">
-                                    <rect key="frame" x="17" y="0.0" width="341" height="31"/>
-                                    <color key="minimumTrackTintColor" red="1" green="0.16078431372549018" blue="0.32941176470588235" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <connections>
-                                        <action selector="changeAudio:" destination="iN0-l3-epB" eventType="valueChanged" id="tbq-BQ-bIJ"/>
-                                    </connections>
-                                </slider>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-14" translatesAutoresizingMaskIntoConstraints="NO" id="XDF-Mi-q2l">
+                                    <rect key="frame" x="19" y="0.0" width="337.5" height="30"/>
+                                    <subviews>
+                                        <slider opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-7x-GJL" customClass="MediaSlider" customModule="RocketCast" customModuleProvider="target">
+                                            <rect key="frame" x="-2" y="0.0" width="341.5" height="31"/>
+                                            <color key="minimumTrackTintColor" red="1" green="0.16078431372549018" blue="0.32941176470588235" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="changeAudio:" destination="iN0-l3-epB" eventType="valueChanged" id="tbq-BQ-bIJ"/>
+                                            </connections>
+                                        </slider>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLT-E9-Omb">
+                                            <rect key="frame" x="0.0" y="16" width="337.5" height="14"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDi-vk-jAs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="lmW-T6-2H0"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.49803921568627452" green="0.50196078431372548" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YiS-gl-dVo">
+                                                    <rect key="frame" x="337.5" y="0.0" width="0.0" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="pI3-Zw-l0g"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.49803921568627452" green="0.50196078431372548" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="MDi-vk-jAs" firstAttribute="leading" secondItem="LLT-E9-Omb" secondAttribute="leading" id="0hR-3p-iiJ"/>
+                                                <constraint firstItem="YiS-gl-dVo" firstAttribute="top" secondItem="LLT-E9-Omb" secondAttribute="top" id="FTk-wK-cgV"/>
+                                                <constraint firstAttribute="trailing" secondItem="YiS-gl-dVo" secondAttribute="trailing" id="UmI-J1-Iqh"/>
+                                                <constraint firstItem="MDi-vk-jAs" firstAttribute="top" secondItem="LLT-E9-Omb" secondAttribute="top" id="YKy-ip-aiR"/>
+                                                <constraint firstAttribute="bottom" secondItem="YiS-gl-dVo" secondAttribute="bottom" id="uUQ-q9-nwv"/>
+                                                <constraint firstAttribute="bottom" secondItem="MDi-vk-jAs" secondAttribute="bottom" id="uo1-bE-giR"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="MrO-tv-2Lu">
                                     <rect key="frame" x="18.5" y="42" width="338" height="186"/>
                                     <subviews>
@@ -72,14 +109,14 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JX3-IC-v4M">
                                                     <rect key="frame" x="0.0" y="0.0" width="337" height="52"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Podcast Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-m1-IHm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="337" height="28"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Podcast Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-m1-IHm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="337" height="27.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                                             <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Podcast Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-RA-26H">
-                                                            <rect key="frame" x="0.0" y="28" width="337" height="24"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcast Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0d-RA-26H">
+                                                            <rect key="frame" x="0.0" y="27.5" width="337" height="24.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                             <color key="textColor" red="0.98039215686274506" green="0.20784313725490194" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -142,7 +179,7 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="jmj-7x-GJL" firstAttribute="width" secondItem="idQ-e5-LkE" secondAttribute="width" multiplier="0.9" id="2Cr-Yu-CNG"/>
+                                <constraint firstItem="XDF-Mi-q2l" firstAttribute="width" secondItem="idQ-e5-LkE" secondAttribute="width" multiplier="0.9" id="Gvj-Bf-0aO"/>
                             </constraints>
                         </stackView>
                     </subviews>
@@ -186,11 +223,13 @@
             <connections>
                 <outlet property="coverPhotoView" destination="wWw-9U-js0" id="vpd-XZ-0rM"/>
                 <outlet property="descriptionView" destination="gqI-aa-uCa" id="kwR-OA-AA0"/>
+                <outlet property="elapsedTime" destination="MDi-vk-jAs" id="z3K-KF-Jgx"/>
                 <outlet property="playButton" destination="eVf-Az-tdd" id="Mkd-ky-nq0"/>
                 <outlet property="podcastTitleLabel" destination="h0d-RA-26H" id="m8m-VJ-gSz"/>
                 <outlet property="slider" destination="jmj-7x-GJL" id="Fnp-Ra-baH"/>
                 <outlet property="speedButton" destination="8mI-51-oQX" id="WO7-zt-Nat"/>
                 <outlet property="statusLabel" destination="4iL-Ez-y4v" id="R4r-rE-kQ5"/>
+                <outlet property="timeLeft" destination="YiS-gl-dVo" id="aLU-Xm-Q9u"/>
                 <outlet property="titleLabel" destination="XFf-m1-IHm" id="2AQ-Ws-S5P"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="49.5"/>
