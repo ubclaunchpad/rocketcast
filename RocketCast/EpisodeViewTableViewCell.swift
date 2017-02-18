@@ -10,6 +10,7 @@ import UIKit
 
 protocol EpisodeViewTableViewCellDelegate{
  //   func updateAnimation()
+    func callSegueFromCell(myData dataobject: AnyObject)
 }
 
 class EpisodeViewTableViewCell: UITableViewCell {
@@ -18,8 +19,11 @@ class EpisodeViewTableViewCell: UITableViewCell {
     @IBOutlet weak var episodeInformation: UILabel!
     @IBOutlet weak var episodeSummary: UILabel!
     
+    
     @IBOutlet weak var downloadStatus: UILabel!
     var delegate: EpisodeViewTableViewCellDelegate?
+    var episode: Episode!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +33,17 @@ class EpisodeViewTableViewCell: UITableViewCell {
     func setEpisodeHeaderText(_ setHeader: NSMutableString) {
         episodeHeader.text = setHeader as String
     }
+    
+    
+    @IBAction func showMoreInformation(_ sender: Any) {
+        
+        if(self.delegate != nil){ //Just to be safe.
+            self.delegate?.callSegueFromCell(myData: episode)
+        }
+        
+    }
+    
+    
 }
 
 

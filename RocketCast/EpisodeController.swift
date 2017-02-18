@@ -71,6 +71,11 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
+    func callSegueFromCell(myData dataobject: AnyObject){
+        performSegue(withIdentifier: Segues.segueFromEpisodeToPopUp, sender: self)
+
+    }
+    
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
     
         guard selectedEpisode.doucmentaudioURL == nil else {
@@ -115,4 +120,8 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
             }
         })
     }
+    
+    
 }
+
+

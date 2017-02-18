@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -91,11 +92,71 @@
                     </view>
                     <connections>
                         <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromEpisodeToPlayer" id="Es6-NR-SR3"/>
+                        <segue destination="qJT-aT-1Kx" kind="presentation" identifier="segueFromEpisodetoPopUp" id="HZ7-FQ-jCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1959" y="386"/>
+        </scene>
+        <!--Episode Pop Up Controller-->
+        <scene sceneID="3BH-x7-aCe">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="qJT-aT-1Kx" customClass="EpisodePopUpController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B0s-VD-cHC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Evy-o6-HD7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qro-26-dnd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aaq-Ql-5J3">
+                                <rect key="frame" x="67" y="100" width="240" height="466"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="13" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STX-Cg-OSe">
+                                        <rect key="frame" x="0.0" y="64" width="240" height="340"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-xA-Ynt">
+                                        <rect key="frame" x="0.0" y="412" width="240" height="54"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="closePopup:" destination="qJT-aT-1Kx" eventType="touchUpInside" id="OFl-iy-qHm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="STX-Cg-OSe" secondAttribute="bottom" constant="62" id="HlL-VW-aZ1"/>
+                                    <constraint firstAttribute="trailing" secondItem="STX-Cg-OSe" secondAttribute="trailing" id="TJE-rE-OvR"/>
+                                    <constraint firstItem="STX-Cg-OSe" firstAttribute="leading" secondItem="Aaq-Ql-5J3" secondAttribute="leading" id="bLW-A5-p4K"/>
+                                    <constraint firstItem="gOa-xA-Ynt" firstAttribute="top" secondItem="STX-Cg-OSe" secondAttribute="bottom" constant="8" id="edf-US-YN0"/>
+                                    <constraint firstAttribute="bottom" secondItem="gOa-xA-Ynt" secondAttribute="bottom" id="kaN-IJ-SGX"/>
+                                    <constraint firstAttribute="trailing" secondItem="gOa-xA-Ynt" secondAttribute="trailing" id="rOJ-Vz-mTD"/>
+                                    <constraint firstItem="STX-Cg-OSe" firstAttribute="top" secondItem="Aaq-Ql-5J3" secondAttribute="top" constant="64" id="tcf-Y7-Wem"/>
+                                    <constraint firstItem="gOa-xA-Ynt" firstAttribute="leading" secondItem="Aaq-Ql-5J3" secondAttribute="leading" id="yuO-7t-7cG"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Aaq-Ql-5J3" firstAttribute="top" secondItem="B0s-VD-cHC" secondAttribute="bottom" constant="80" id="0BR-e9-dJb"/>
+                            <constraint firstItem="Aaq-Ql-5J3" firstAttribute="leading" secondItem="Qro-26-dnd" secondAttribute="leadingMargin" constant="51" id="Flj-P6-Iix"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Aaq-Ql-5J3" secondAttribute="trailing" constant="52" id="X8R-Ia-fSD"/>
+                            <constraint firstItem="Evy-o6-HD7" firstAttribute="top" secondItem="Aaq-Ql-5J3" secondAttribute="bottom" constant="101" id="qwa-R8-6sB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLbl" destination="STX-Cg-OSe" id="c2f-Yo-CvN"/>
+                        <outlet property="popUpView" destination="Aaq-Ql-5J3" id="yOD-bb-6kg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHr-Nr-eBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.5999999999999" y="1272.4137931034484"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -138,8 +199,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7qt-w5-QPL"/>
         <segue reference="BXj-pR-ThK"/>
-        <segue reference="sPe-Yf-iBH"/>
+        <segue reference="7qt-w5-QPL"/>
+        <segue reference="5Dc-yA-muE"/>
     </inferredMetricsTieBreakers>
 </document>

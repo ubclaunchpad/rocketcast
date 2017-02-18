@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
+class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     var viewDelegate: EpisodeViewDelegate?
     
     lazy var episodesToView = [Episode]()
@@ -21,6 +21,9 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
     @IBAction func segueToPlayer(_ sender: AnyObject) {
         viewDelegate?.segueToPlayer()
     }
+    
+    
+
     class func instancefromNib(_ frame: CGRect) -> EpisodeView {
         let view = UINib(nibName: "EpisodeView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
             as! EpisodeView
@@ -64,6 +67,7 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero
+            
             return cell
             
         } else {
@@ -92,6 +96,9 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero
+            cell.delegate = self
+            cell.episode = episode
+            
             return cell
         }
     }
@@ -115,4 +122,11 @@ class EpisodeView: UIView, UITableViewDelegate,  UITableViewDataSource {
         
     }
 }
+
+extension EpisodeView: EpisodeViewTableViewCellDelegate {
+    func callSegueFromCell(myData dataobject: AnyObject) {
+        viewDelegate?.callSegueFromCell(myData: dataobject as! Episode)
+    }
+}
+
 
