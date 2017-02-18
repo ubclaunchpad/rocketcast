@@ -70,4 +70,9 @@ class PodcastViewCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
+    override func prepareForReuse() {
+        for subviews in coverPhotoView.subviews {
+            subviews.removeFromSuperview()
+        }
+    }
 }
