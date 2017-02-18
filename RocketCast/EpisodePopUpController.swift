@@ -11,6 +11,8 @@ import UIKit
 
 class EpisodePopUpController: UIViewController {
     
+    var someText = "Test"
+    
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var descriptionLbl: UILabel!
     
@@ -30,6 +32,8 @@ class EpisodePopUpController: UIViewController {
     
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        descriptionLbl.text = someText
+        Log.test(descriptionLbl.text!)
     }
     
     

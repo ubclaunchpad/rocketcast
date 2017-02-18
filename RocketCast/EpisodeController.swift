@@ -62,6 +62,11 @@ class EpisodeController: UIViewController {
                 }
             }
         }
+        if (segue.identifier == Segues.segueFromEpisodeToPopUp) {
+            let nextSegue = (segue.destination as! EpisodePopUpController)
+            nextSegue.someText = "this is a test"
+            
+        }
     }
 }
 
@@ -72,6 +77,7 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
     }
     
     func callSegueFromCell(myData dataobject: AnyObject){
+        
         performSegue(withIdentifier: Segues.segueFromEpisodeToPopUp, sender: self)
 
     }
