@@ -64,7 +64,11 @@ class EpisodeController: UIViewController {
         }
         if (segue.identifier == Segues.segueFromEpisodeToPopUp) {
             let nextSegue = (segue.destination as! EpisodePopUpController)
-            nextSegue.someText = "this is a test"
+            
+            
+            
+            
+            nextSegue.someText = ""
             
         }
     }
