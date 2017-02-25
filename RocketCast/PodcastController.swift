@@ -110,7 +110,7 @@ extension PodcastController:PodcastViewDelegate {
     }
     
     func updateAllPodcasts() {
-        
+
         AudioEpisodeTracker.resetAudioTracker()
         var currentPodcasts =  DatabaseUtil.getAllPodcasts()
         while (!currentPodcasts.isEmpty) {
