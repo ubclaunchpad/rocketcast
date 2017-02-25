@@ -240,7 +240,7 @@ extension PlayerController: PlayerViewDelegate {
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = AudioEpisodeTracker.currentRate
         
     }
-    
+ 
     func pausePodcast() {
         AudioEpisodeTracker.audioPlayer.pause()
         AudioEpisodeTracker.currentTimerForSlider.invalidate()

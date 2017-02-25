@@ -99,9 +99,11 @@ class PlayerUITests: BaseUITest {
         app.staticTexts[SamplePodcast.podcastTitle].tap()
         
         let tablesQuery = app.tables
+        let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
         tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
         // Go to the first episode
         clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
+        mondayMorningPodcast91216StaticText.tap()
         
         XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
         let doesItExist = NSPredicate(format: "exists == true")
@@ -121,6 +123,51 @@ class PlayerUITests: BaseUITest {
         XCTAssertFalse(normalSliderPositionValue.exists)
         expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
         waitForExpectations(timeout: timeOut, handler: nil)
+        
+    }
+    
+    
+    func testSpeedRateSavedInNextEpisode() {
+        
+        getPodcastBySeguingToUrl()
+        let app = XCUIApplication()
+        
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
+        
+        let tablesQuery = app.tables
+        let mondayMorningPodcast91216StaticText = tablesQuery.staticTexts[SamplePodcast.firstEpisode]
+        tablesQuery.staticTexts[SamplePodcast.firstEpisode].tap()
+        // Go to the first episode
+        clickAndDownloadEpisode(episodeTitle: SamplePodcast.firstEpisode)
+        mondayMorningPodcast91216StaticText.tap()
+        
+        XCTAssert(app.staticTexts[SamplePodcast.firstEpisode].exists)
+        let doesItExist = NSPredicate(format: "exists == true")
+        let normalSliderPositionValue =  app.sliders["1%"]
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        
+        XCTAssert(app.buttons[play2TimesButton].exists)
+        app.buttons[play2TimesButton].tap()
+        let playingAt2xStaticText = app.staticTexts["Playing at 2x"]
+        XCTAssert(playingAt2xStaticText.exists)
+        
+        // move the slider to the end, which should go to the next episode
+        app.sliders.element.adjust(toNormalizedSliderPosition: 0.99)
+        let successAlert = app.alerts["Success"]
+        XCTAssertFalse(successAlert.exists)
+        
+        expectation(for: doesItExist, evaluatedWith: successAlert, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        successAlert.buttons["Ok"].tap()
+        XCTAssert(app.staticTexts[SamplePodcast.secondEpisode].exists)
+        XCTAssertFalse(normalSliderPositionValue.exists)
+        expectation(for: doesItExist, evaluatedWith: normalSliderPositionValue, handler: nil)
+        waitForExpectations(timeout: timeOut, handler: nil)
+        
+        //Check to see if rate has been preserved
+        XCTAssert(playingAt2xStaticText.exists)
         
     }
     

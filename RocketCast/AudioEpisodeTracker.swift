@@ -42,6 +42,7 @@ class AudioEpisodeTracker {
         isTheAudioEmpty = true
     }
     
+    
     static func resetAudioData() {
         audioPlayer.stop()
         currentTimerForSlider.invalidate()
