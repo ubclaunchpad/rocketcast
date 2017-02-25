@@ -80,7 +80,7 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor.clear
             cell.episodeHeader.text = episode.title
             cell.episodeInformation.text = "\(episode.getDate()) - \(episode.getDuration())"
-            cell.episodeSummary.text = episode.summary
+            cell.episodeSummary.text = stringFromHtml(string: episode.summary!)?.string
             cell.tag = (indexPath as NSIndexPath).row
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
@@ -102,6 +102,22 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
+    // http://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
+    private func stringFromHtml(string: String) -> NSAttributedString? {
+        do {
+            let data = string.data(using: String.Encoding.unicode, allowLossyConversion: true)
+            if let d = data {
+                let str = try NSAttributedString(data: d,
+                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+                                                 documentAttributes: nil)
+                return str
+            }
+        } catch {
+        }
+        return nil
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
@@ -116,8 +132,8 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
-            viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row, indexPathForEpisode: indexPath)
+        if indexPath.section == 1 && (episodesToView[indexPath.row].imageURL != nil) {
+            self.viewDelegate?.setSelectedEpisode(selectedEpisode: episodesToView[indexPath.row], index: indexPath.row, indexPathForEpisode: indexPath)
         }
         
     }

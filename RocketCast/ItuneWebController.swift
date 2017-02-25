@@ -23,7 +23,7 @@ class ItuneWebController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupView() {
+    fileprivate func setupView() {
         let viewSize = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         mainView = ItuneWebView.instancefromNib(viewSize)
         view.addSubview(mainView!)
@@ -53,12 +53,12 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
             
             return
         }
-        
+        // TODO remove replacingOccurrences
         guard let cleanedString = _inputString.replacingOccurrences(of: " ", with: "+").addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) else {
             return
         }
         
-        let fetchPodcastURL =  "https://itunes.apple.com/search?term=" + cleanedString + "&country=us&entity=podcast&limit=25"
+        let fetchPodcastURL = "https://itunes.apple.com/search?term=" + cleanedString + "&country=us&entity=podcast&limit=25"
         
         let apiFormat = ItuneAPIJson()
         
@@ -131,7 +131,7 @@ extension ItuneWebController:ItuneWebDelegate,ItuneWebTableViewCellDelegate {
     }
     
     func savePodcastToCoreDataFromItuneAPI (_rssFeed: String) {
-        XMLParser(url: _rssFeed)
+        RssXMLParser(url: _rssFeed)
         self.performSegue(withIdentifier: Segues.segueFromItuneAPIToPodcast, sender: self)
     }
     

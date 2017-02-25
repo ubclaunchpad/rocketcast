@@ -18,7 +18,7 @@ class Episode: NSManagedObject {
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateFormat = "MMM d"
         if let episodeDate = self.date  {
-            return dateFormatter.string(from: episodeDate)
+            return dateFormatter.string(from: episodeDate as Date)
         }
         return dateFormatter.string(from: Date())
     }

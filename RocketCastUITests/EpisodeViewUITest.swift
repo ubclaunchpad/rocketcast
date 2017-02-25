@@ -8,7 +8,7 @@
 
 import XCTest
 
-class EpisodeUITests: XCTestCase {
+class EpisodeUITests: BaseUITest {
 
     override func setUp() {
         super.setUp()
@@ -24,11 +24,8 @@ class EpisodeUITests: XCTestCase {
     }
     
     func testTableViewCellsInEpisodeTable() {
-        
+        getPodcastBySeguingToUrl()
         let app = XCUIApplication()
-        app.buttons[AddButtonFromPodcastView].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons[AddPodcastButtonOnAddURLView].tap()
         app.staticTexts[SamplePodcast.podcastTitle].tap()
         let episodeCells = XCUIApplication().tables.cells
         
@@ -45,28 +42,11 @@ class EpisodeUITests: XCTestCase {
     }
     
     func testJumpToCurrentlyPlayingEpisodeFromEpisodeVC() {
+        getPodcastBySeguingToUrl()
         let app = XCUIApplication()
 
-        app.buttons["Add"].tap()
-        app.buttons["Add Url"].tap()
-        app.buttons["Add Podcast"].tap()
-        
-        let tablesQuery = app.tables
-        app.staticTexts["LaunchPad podcast testing"].tap()
-
-        let downloadingLabel = tablesQuery.cells.element(boundBy: 1).staticTexts[downloaded]
-        let doesItExist = NSPredicate(format: "exists == true")
-        expectation(for: doesItExist, evaluatedWith: downloadingLabel, handler: nil)
-        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-        waitForExpectations(timeout: timeOut, handler: nil)
-        tablesQuery.staticTexts["Monday Morning Podcast 9-12-16"].tap()
-
-    
+        app.staticTexts[SamplePodcast.podcastTitle].tap()
         app.buttons["Back"].tap()
-        app.buttons["Play"].tap()
-        
-        let mondayMorningPodcast91216StaticText = app.staticTexts["Monday Morning Podcast 9-12-16"]
-        XCTAssert(mondayMorningPodcast91216StaticText.exists)
     }
     
 }

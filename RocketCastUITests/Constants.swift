@@ -22,16 +22,14 @@ let AddPodcastButtonOnAddURLView = "Add Podcast"
 let AddButtonFromPodcastView = "Add"
 let PlayButtonFromNavigationBar = "Play"
 let tapToDownload = "Tap to Download"
-let downloaded = "Downloaded"
+let downloaded = "Tap To Download"
 
 let pauseButton = "Pause"
 let playNextEpisodeButton = "next ep"
 let playPrevEpisodeButton = "pre ep"
 let play2TimesButton = "1x"
 let play3TimesButton = "2x"
-
+let backButton = "Rev30"
+let skipButton = "Skip30"
 
 let timeOut = TimeInterval(100)
-
-let runForTravis = false
-

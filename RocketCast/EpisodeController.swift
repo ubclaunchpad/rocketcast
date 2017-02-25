@@ -18,7 +18,6 @@ class EpisodeController: UIViewController {
     
     override func viewDidLoad() {
         setupView()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.title = ""
@@ -28,7 +27,7 @@ class EpisodeController: UIViewController {
         if AudioEpisodeTracker.isPlaying {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(segueToPlayer) )
         }
-        
+        self.mainView?.EpisodeTable.reloadData()
     }
     
     fileprivate func setupView() {
@@ -43,7 +42,7 @@ class EpisodeController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // TODO : Refactor
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == Segues.segueFromEpisodeToPlayer) {
             if let sendIndex = sender as? NSInteger {
@@ -75,6 +74,9 @@ class EpisodeController: UIViewController {
 extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelegate{
   
     func segueToPlayer () {
+        guard !AudioEpisodeTracker.isTheAudioEmpty else {
+            return
+        }
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
@@ -121,14 +123,14 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
                 return
             }
             
-            let episode = DatabaseController.getEpisode(episodeTitle as String)
+            let episode = DatabaseUtil.getEpisode(episodeTitle as String)
             episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
-            DatabaseController.saveContext()
+            DatabaseUtil.saveContext()
             Log.info("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             DispatchQueue.main.async {
                 episodeCell.downloadAnimation.stopAnimating()
-                episodeCell.downloadStatus.text = "Downloaded"
                 episodeCell.downloadAnimation.isHidden = true
+                episodeCell.downloadStatus.text = "Tap To Download"
                 episodeCell.downloadStatus.isHidden = true
                 episodeCell.accessoryType = .checkmark
             }
