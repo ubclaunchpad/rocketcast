@@ -79,11 +79,10 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EpisodePopUpController") as! EpisodePopUpController
         let data = dataobject as! Episode
         let title = data.title
-        let description = data.summary
+        let description = data.summary?.stringFromHtml(string: data.summary!)?.string
         vc.episodeDescription = description!
         vc.episodeTitle = title!
         self.present(vc, animated: true, completion: nil)
-//        performSegue(withIdentifier: Segues.segueFromEpisodeToPopUp, sender: self)
 
     }
     

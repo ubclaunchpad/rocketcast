@@ -80,7 +80,8 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor.clear
             cell.episodeHeader.text = episode.title
             cell.episodeInformation.text = "\(episode.getDate()) - \(episode.getDuration())"
-            cell.episodeSummary.text = stringFromHtml(string: episode.summary!)?.string
+            cell.episodeSummary.text = episode.summary!.stringFromHtml(string: episode.summary!)?.string
+            //stringFromHtml(string: episode.summary!)?.string
             cell.tag = (indexPath as NSIndexPath).row
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
@@ -102,20 +103,20 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    // http://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
-    private func stringFromHtml(string: String) -> NSAttributedString? {
-        do {
-            let data = string.data(using: String.Encoding.unicode, allowLossyConversion: true)
-            if let d = data {
-                let str = try NSAttributedString(data: d,
-                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-                                                 documentAttributes: nil)
-                return str
-            }
-        } catch {
-        }
-        return nil
-    }
+//    // http://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
+//    private func stringFromHtml(string: String) -> NSAttributedString? {
+//        do {
+//            let data = string.data(using: String.Encoding.unicode, allowLossyConversion: true)
+//            if let d = data {
+//                let str = try NSAttributedString(data: d,
+//                                                 options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+//                                                 documentAttributes: nil)
+//                return str
+//            }
+//        } catch {
+//        }
+//        return nil
+//    }
     
     
     
