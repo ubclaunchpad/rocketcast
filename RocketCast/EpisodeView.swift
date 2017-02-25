@@ -125,6 +125,9 @@ class EpisodeView: UIView, UITableViewDelegate, UITableViewDataSource {
 
 extension EpisodeView: EpisodeViewTableViewCellDelegate {
     func callSegueFromCell(myData dataobject: AnyObject) {
+//        var data = dataobject as! Episode
+//        var title = data.title
+//        var summary = data.summary
         viewDelegate?.callSegueFromCell(myData: dataobject as! Episode)
     }
 }

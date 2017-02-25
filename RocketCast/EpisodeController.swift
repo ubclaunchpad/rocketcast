@@ -14,6 +14,7 @@ class EpisodeController: UIViewController {
     var episodesInPodcast = [Episode]()
     var selectedPodcast: Podcast!
     var mainView: EpisodeView?
+    var dataToPassToPopUpController: Episode!
     
     override func viewDidLoad() {
         setupView()
@@ -64,11 +65,8 @@ class EpisodeController: UIViewController {
         }
         if (segue.identifier == Segues.segueFromEpisodeToPopUp) {
             let nextSegue = (segue.destination as! EpisodePopUpController)
-            
-            
-            
-            
-            nextSegue.someText = ""
+            var temp = dataToPassToPopUpController.description
+            nextSegue.someText = dataToPassToPopUpController.description
             
         }
     }
@@ -81,8 +79,14 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
     }
     
     func callSegueFromCell(myData dataobject: AnyObject){
-        
-        performSegue(withIdentifier: Segues.segueFromEpisodeToPopUp, sender: self)
+        dataToPassToPopUpController = dataobject as! Episode
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EpisodePopUpController") as! EpisodePopUpController
+        let data = dataobject as! Episode
+        let title = data.title
+        let description = data.summary
+        vc.someText = description!
+        self.present(vc, animated: true, completion: nil)
+//        performSegue(withIdentifier: Segues.segueFromEpisodeToPopUp, sender: self)
 
     }
     

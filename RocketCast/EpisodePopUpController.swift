@@ -24,6 +24,7 @@ class EpisodePopUpController: UIViewController {
         
         popUpView.layer.cornerRadius = 10
         popUpView.layer.masksToBounds = true
+        descriptionLbl.text = someText
         
         
     
@@ -32,7 +33,7 @@ class EpisodePopUpController: UIViewController {
     
     @IBAction func closePopup(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        descriptionLbl.text = someText
+       
         Log.test(descriptionLbl.text!)
     }
     
