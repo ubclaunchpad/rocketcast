@@ -351,7 +351,7 @@ extension PlayerController: PlayerViewDelegate {
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
         let hours = (interval / 3600)
-        return hours > 1 ? String(format: "%02d:%02d:%02d", hours, minutes, seconds) : String(format: "%02d:%02d", minutes, seconds)
+        return hours > 0 ? String(format: "%02d:%02d:%02d", hours, minutes, seconds) : String(format: "%02d:%02d", minutes, seconds)
     }
     
     func playNextEpisode() {
