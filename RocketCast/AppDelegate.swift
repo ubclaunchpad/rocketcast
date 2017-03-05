@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DatabaseUtil.deleteAllManagedObjects()
         }
         
+        //Set Background Fetch Task Time
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
         UINavigationBar.appearance().backgroundColor = .clear
         UINavigationBar.appearance().tintColor = #colorLiteral(red: 1, green: 0.1607843137, blue: 0.3294117647, alpha: 1)
         UINavigationBar.appearance().shadowImage = UIImage()
@@ -27,6 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    //Adding Support for Background Fetch
+//    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        let navigationController = window?.rootViewController as? UINavigationController
+//        let viewControllers = navigationController?.viewControllers
+//        if (viewControllers != nil)
+//        {
+//            for viewController in viewControllers! {
+//                if let podcastController = viewController as? PodcastController {
+//                    podcastController.updateAllPodcastsWithCallback {
+//                        completionHandler(.newData)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

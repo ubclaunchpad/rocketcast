@@ -20,6 +20,9 @@ class PlayerView: UIView {
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     
+    @IBOutlet weak var elapsedTime: UILabel!
+    @IBOutlet weak var timeLeft: UILabel!
+    
     @IBAction func playButton(_ sender: AnyObject) {
         isPlaying = !isPlaying
     }
