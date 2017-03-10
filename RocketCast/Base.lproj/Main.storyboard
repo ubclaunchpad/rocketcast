@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NNq-21-0oV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -91,11 +91,86 @@
                     </view>
                     <connections>
                         <segue destination="8h2-9e-1cc" kind="show" identifier="segueFromEpisodeToPlayer" id="Es6-NR-SR3"/>
+                        <segue destination="qJT-aT-1Kx" kind="presentation" identifier="segueFromEpisodetoPopUp" id="HZ7-FQ-jCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xiD-Kp-hFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1959" y="386"/>
+        </scene>
+        <!--Episode Pop Up Controller-->
+        <scene sceneID="3BH-x7-aCe">
+            <objects>
+                <viewController storyboardIdentifier="EpisodePopUpController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qJT-aT-1Kx" customClass="EpisodePopUpController" customModule="RocketCast" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B0s-VD-cHC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Evy-o6-HD7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Qro-26-dnd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aaq-Ql-5J3">
+                                <rect key="frame" x="37" y="133" width="300" height="400"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="LsW-IH-dNO">
+                                        <rect key="frame" x="10" y="10" width="280" height="380"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xau-cf-Ev0">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Hello World" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xVr-VC-BN7">
+                                                <rect key="frame" x="0.0" y="30.5" width="280" height="300"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOa-xA-Ynt">
+                                                <rect key="frame" x="0.0" y="340.5" width="280" height="39.5"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="closePopup:" destination="qJT-aT-1Kx" eventType="touchUpInside" id="OFl-iy-qHm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="xVr-VC-BN7" firstAttribute="leading" secondItem="LsW-IH-dNO" secondAttribute="leading" id="Fcg-Sp-Lpa"/>
+                                            <constraint firstItem="gOa-xA-Ynt" firstAttribute="centerX" secondItem="LsW-IH-dNO" secondAttribute="centerX" id="Iq7-T7-FDe"/>
+                                            <constraint firstItem="xau-cf-Ev0" firstAttribute="centerX" secondItem="LsW-IH-dNO" secondAttribute="centerX" id="O9B-sf-9Ck"/>
+                                            <constraint firstAttribute="trailing" secondItem="xVr-VC-BN7" secondAttribute="trailing" id="u1m-J5-c11"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="QaY-H2-waN"/>
+                                    <constraint firstAttribute="trailing" secondItem="LsW-IH-dNO" secondAttribute="trailing" constant="10" id="baL-ip-qTl"/>
+                                    <constraint firstAttribute="width" constant="300" id="g4y-aQ-efN"/>
+                                    <constraint firstItem="LsW-IH-dNO" firstAttribute="leading" secondItem="Aaq-Ql-5J3" secondAttribute="leading" constant="10" id="pXe-iF-FIG"/>
+                                    <constraint firstAttribute="bottom" secondItem="LsW-IH-dNO" secondAttribute="bottom" constant="10" id="vU1-Jn-6QK"/>
+                                    <constraint firstItem="LsW-IH-dNO" firstAttribute="top" secondItem="Aaq-Ql-5J3" secondAttribute="top" constant="10" id="zjp-Ow-1bl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="0.25" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Aaq-Ql-5J3" firstAttribute="centerY" secondItem="Qro-26-dnd" secondAttribute="centerY" id="7XA-uh-sQk"/>
+                            <constraint firstItem="Aaq-Ql-5J3" firstAttribute="centerX" secondItem="Qro-26-dnd" secondAttribute="centerX" id="qW4-rs-uez"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="xVr-VC-BN7" id="FMh-gc-SDe"/>
+                        <outlet property="popUpView" destination="Aaq-Ql-5J3" id="yOD-bb-6kg"/>
+                        <outlet property="titleLabel" destination="xau-cf-Ev0" id="i2E-hZ-HEN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHr-Nr-eBM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957.5999999999999" y="1272.4137931034484"/>
         </scene>
         <!--Player-->
         <scene sceneID="kRq-P8-ljN">
@@ -138,8 +213,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="7qt-w5-QPL"/>
         <segue reference="fa8-7n-4kV"/>
+        <segue reference="7qt-w5-QPL"/>
         <segue reference="5Dc-yA-muE"/>
     </inferredMetricsTieBreakers>
 </document>

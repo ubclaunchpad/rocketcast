@@ -9,14 +9,43 @@
 import UIKit
 import CoreData
 
-class EpisodeController: UIViewController {
+class EpisodeController: UIViewController, UIViewControllerPreviewingDelegate {
     
     var episodesInPodcast = [Episode]()
     var selectedPodcast: Podcast!
     var mainView: EpisodeView?
+    var dataToPassToPopUpController: Episode!
+    var currentEpisodeNumber: Int!
     
     override func viewDidLoad() {
         setupView()
+        
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available
+        {
+            registerForPreviewing(with: self, sourceView: (self.mainView?.EpisodeTable)!)
+        } else {
+            print("Not Compatiable with this iPhone")
+        }
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let preview = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier:"EpisodePopUpController") as! EpisodePopUpController
+        if let IndexPath = self.mainView?.EpisodeTable.indexPathForRow(at: location) {
+            currentEpisodeNumber = IndexPath.row
+            let tempEpisode = episodesInPodcast[IndexPath.row]
+            preview.episodeTitle = tempEpisode.title
+            preview.episodeDescription = tempEpisode.summary?.stringFromHtml(string: tempEpisode.summary!)?.string
+            return preview
+        }
+        return preview
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        let preview = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EpisodePopUpController") as! EpisodePopUpController
+        let tempEpisode = episodesInPodcast[currentEpisodeNumber]
+        preview.episodeTitle = tempEpisode.title
+        preview.episodeDescription = tempEpisode.summary?.stringFromHtml(string: tempEpisode.summary!)?.string
+        present(preview, animated: true, completion: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.title = ""
@@ -73,6 +102,23 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
         performSegue(withIdentifier: Segues.segueFromEpisodeToPlayer, sender: self)
     }
     
+    //3D touch 
+    //checking for support
+
+    
+    func callSegueFromCell(myData dataobject: AnyObject){
+        
+        dataToPassToPopUpController = dataobject as! Episode
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EpisodePopUpController") as! EpisodePopUpController
+        let data = dataobject as! Episode
+        let title = data.title
+        let description = data.summary?.stringFromHtml(string: data.summary!)?.string
+        vc.episodeDescription = description!
+        vc.episodeTitle = title!
+        self.present(vc, animated: true, completion: nil)
+
+    }
+    
     func setSelectedEpisode(selectedEpisode: Episode, index: Int, indexPathForEpisode: IndexPath) {
     
         guard selectedEpisode.doucmentaudioURL == nil else {
@@ -117,4 +163,8 @@ extension EpisodeController: EpisodeViewDelegate, EpisodeViewTableViewCellDelega
             }
         })
     }
+    
+    
 }
+
+
