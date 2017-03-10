@@ -67,14 +67,13 @@
 		D095AAF31D884EE600AD1FD8 /* testPodcastNoAuthorsForEpisodes.xml in Resources */ = {isa = PBXBuildFile; fileRef = D095AAEB1D867E3900AD1FD8 /* testPodcastNoAuthorsForEpisodes.xml */; };
 		D09AC5A51D77EA9900048C17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AC5A41D77EA9900048C17 /* Constants.swift */; };
 		D0B6914E1D85D7CC00C3366D /* testNormalPodcastXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */; };
-
-		D2CF473C1E4EC68D000D2DCF /* EpisodePopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF473A1E4EC68D000D2DCF /* EpisodePopUpController.swift */; };
 		D0B6F5FF1DEAC96200B9AA63 /* ItuneWebUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */; };
 		D0C36C151DF354810030377E /* BaseUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C141DF354810030377E /* BaseUITest.swift */; };
 		D0C36C171DF3B0880030377E /* OPMLXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C161DF3B0880030377E /* OPMLXMLParser.swift */; };
 		D0C36C191DF3B6A50030377E /* OPMLXMLParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C36C181DF3B6A50030377E /* OPMLXMLParserTest.swift */; };
 		D0C36C1C1DF3B7190030377E /* sampleOPMLdata.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0C36C1B1DF3B7190030377E /* sampleOPMLdata.xml */; };
 		D0C36C1E1DF3BC8D0030377E /* sampleOPMLdata.xml in Resources */ = {isa = PBXBuildFile; fileRef = D0C36C1B1DF3B7190030377E /* sampleOPMLdata.xml */; };
+		D2CF473C1E4EC68D000D2DCF /* EpisodePopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CF473A1E4EC68D000D2DCF /* EpisodePopUpController.swift */; };
 		D3B50AAD1DC5669D00A67DBA /* AddUrlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */; };
 		D3B50AAF1DC566D200A67DBA /* AddUrlView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */; };
 		D3B50AB11DC566FB00A67DBA /* AddUrlViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */; };
@@ -163,12 +162,12 @@
 		D095AAF11D884C6600AD1FD8 /* testPodcastNoAuthorsForEpisodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testPodcastNoAuthorsForEpisodes.swift; sourceTree = "<group>"; };
 		D09AC5A41D77EA9900048C17 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D0B6914D1D85D7CC00C3366D /* testNormalPodcastXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = testNormalPodcastXML.xml; path = ../RocketCast/testNormalPodcastXML.xml; sourceTree = "<group>"; };
-		D2CF473A1E4EC68D000D2DCF /* EpisodePopUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePopUpController.swift; sourceTree = "<group>"; };
 		D0B6F5FE1DEAC96200B9AA63 /* ItuneWebUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItuneWebUITests.swift; sourceTree = "<group>"; };
 		D0C36C141DF354810030377E /* BaseUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUITest.swift; sourceTree = "<group>"; };
 		D0C36C161DF3B0880030377E /* OPMLXMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLXMLParser.swift; sourceTree = "<group>"; };
 		D0C36C181DF3B6A50030377E /* OPMLXMLParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLXMLParserTest.swift; sourceTree = "<group>"; };
 		D0C36C1B1DF3B7190030377E /* sampleOPMLdata.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = sampleOPMLdata.xml; sourceTree = "<group>"; };
+		D2CF473A1E4EC68D000D2DCF /* EpisodePopUpController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePopUpController.swift; sourceTree = "<group>"; };
 		D3B50AAC1DC5669D00A67DBA /* AddUrlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlView.swift; sourceTree = "<group>"; };
 		D3B50AAE1DC566D200A67DBA /* AddUrlView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddUrlView.xib; sourceTree = "<group>"; };
 		D3B50AB01DC566FB00A67DBA /* AddUrlViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUrlViewDelegate.swift; sourceTree = "<group>"; };
@@ -500,7 +499,7 @@
 				TargetAttributes = {
 					C80FAE6A1D72376600C806C1 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = AX2D84BZ47;
+						DevelopmentTeam = 69C5F6WEA5;
 						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -782,7 +781,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = AX2D84BZ47;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -801,7 +800,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = AX2D84BZ47;
+				DEVELOPMENT_TEAM = 69C5F6WEA5;
 				INFOPLIST_FILE = RocketCast/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
