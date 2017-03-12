@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,25 +30,10 @@
                                         <constraint firstAttribute="width" constant="250" id="bO8-HW-h7F"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AHc-up-cIh">
-                                    <rect key="frame" x="337" y="0.0" width="30" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="0qT-cF-PrV"/>
-                                        <constraint firstAttribute="width" constant="30" id="uFt-to-ubR"/>
-                                    </constraints>
-                                    <state key="normal" image="Trash">
-                                        <color key="titleColor" red="0.31425883510000002" green="0.31425883510000002" blue="0.31425883510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="openDeleteAlert:" destination="iN0-l3-epB" eventType="touchUpInside" id="fjQ-aT-Gb3"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="AHc-up-cIh" firstAttribute="top" secondItem="CMS-ms-C2h" secondAttribute="top" id="0Kl-rY-i53"/>
                                 <constraint firstAttribute="height" constant="275" id="5LU-il-btj"/>
-                                <constraint firstAttribute="trailing" secondItem="AHc-up-cIh" secondAttribute="trailing" constant="8" id="Ltb-22-IIv"/>
                                 <constraint firstItem="wWw-9U-js0" firstAttribute="centerY" secondItem="CMS-ms-C2h" secondAttribute="centerY" id="Mxh-dR-jeg"/>
                                 <constraint firstItem="wWw-9U-js0" firstAttribute="centerX" secondItem="CMS-ms-C2h" secondAttribute="centerX" id="pve-sW-ntc"/>
                             </constraints>
@@ -188,7 +173,7 @@
                         <constraint firstItem="CMS-ms-C2h" firstAttribute="width" secondItem="R6Z-gS-02B" secondAttribute="width" id="orm-zJ-xln"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-Ez-y4v">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4iL-Ez-y4v">
                     <rect key="frame" x="109" y="646.5" width="158" height="20.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="158" id="OAh-YP-MLE"/>
@@ -239,6 +224,5 @@
         <image name="Play" width="34" height="38"/>
         <image name="Rev30" width="31" height="39"/>
         <image name="Skip30" width="31" height="39"/>
-        <image name="Trash" width="233" height="233"/>
     </resources>
 </document>

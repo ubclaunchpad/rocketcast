@@ -23,6 +23,8 @@ class PlayerController: UIViewController {
         super.viewDidLoad()
         self.title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        let enterDeleteModeButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(openDeleteModal))
+        navigationItem.rightBarButtonItems = [enterDeleteModeButton]
         setupView()
         setupMPRemote()
     }

@@ -49,11 +49,6 @@ class PlayerView: UIView {
     @IBAction func skipButton(_ sender: AnyObject) {
         viewDelegate?.goForward()
     }
-    
-    @IBAction func openDeleteAlert(_ sender: AnyObject) {
-        print("Open Delete Alert")
-        viewDelegate?.openDeleteModal()
-    }
     //TODO this should be in controller
     @IBAction func changeAudio(_ sender: AnyObject) {
         // Smooths slider by reducing logic performed during each continuous slide
