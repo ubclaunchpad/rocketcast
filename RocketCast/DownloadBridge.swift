@@ -11,8 +11,6 @@ import Foundation
 import UIKit
 import AVFoundation
 
-
-
 protocol DownloadBridgeProtocol {
    
     func downloadPodcastXML(_ url:PodcastWebURL, result:@escaping (_ url: PodcastStorageURL?) -> ())
@@ -31,7 +29,13 @@ extension ModelBridge: DownloadBridgeProtocol {
                 result(nil)
                 return
             }
-            guard let XMLString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) else {
+            guard let data = data else {
+                Log.error("error was nil, but no data. This should never happen")
+                result(nil)
+                return
+            }
+            
+            guard let XMLString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) else {
                 result(nil)
                 return
             }
@@ -50,13 +54,11 @@ extension ModelBridge: DownloadBridgeProtocol {
         }) 
         task.resume()
         
-        
-    
         //download it
         //pass the rss data to another object
-        // get the authrfrom that object
+        //get the author from that object
         //get other info from that object (list of episodes, title of podcast)
-        //put the title, episodes, and author into the POdcastModel
+        //put the title, episodes, and author into the PodcastModel
         
     }
     
@@ -81,7 +83,16 @@ extension ModelBridge: DownloadBridgeProtocol {
     func downloadAudio(_ url: AudioWebURL, result:@escaping (_ url: AudioStorageURL?) -> ()) {
         let audioURL = URL(string: url)
         let audioAsset = AVAsset(url: audioURL!)
+        let status = Reach().connectionStatus()
+        switch status {
+            case .unknown, .offline:
+                Log.error("No Active Internet Connection. Can't download any assets");
+                result(nil)
+                return
+            default: break;
+        }
         
+
         guard audioAsset.isPlayable && audioAsset.isReadable else {
             Log.error("File at given URL cannot be read or played")
             result(nil)
@@ -96,11 +107,17 @@ extension ModelBridge: DownloadBridgeProtocol {
                 return
             }
             
+            guard let data = data else {
+                Log.error("error was nil, but no data. This should never happen")
+                result(nil)
+                return
+            }
+
             let filePathAppend = "/Documents/\(url.stringByRemovingAll(stringsToRemove))"
             let filePath = NSHomeDirectory() + filePathAppend
             
             do {
-                try data!.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
+                try data.write(to: URL(fileURLWithPath: filePath), options: [.atomic])
                 result(filePathAppend)
             } catch let error as NSError {
                 Log.error(error.debugDescription)

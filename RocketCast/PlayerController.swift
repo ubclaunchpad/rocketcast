@@ -172,19 +172,96 @@ class PlayerController: UIViewController {
         self.present(alert, animated: false, completion: nil)
     }
     
-    private func createSucessScreen () {
-        let alert = UIAlertController(title: "Success", message: "Downloaded the episode", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: false, completion: nil)
+    MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = self.albumArtwork
+  }
+  
+  func downloadAudioEpisode(completion: ((Bool) -> Void)? = nil) {
+    guard  AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL == nil else  {
+      self.setUpPlayer(webUrl: AudioEpisodeTracker.getCurrentEpisode().doucmentaudioURL!)
+      self.updateMPRemote(changeArtwork: true)
+      return
     }
     
-    func deleteEpisode(){
-        let episode = AudioEpisodeTracker.getCurrentEpisode()
-        AudioEpisodeTracker.resetAudioTracker();
-        DatabaseUtil.deleteEpisodeAudio(episodeTitle: episode.title!)
-        
-    }
-    
+    let loadingAlertScreen = createLoadingScreen()
+    ModelBridge.sharedInstance.downloadAudio((AudioEpisodeTracker.getCurrentEpisode().audioURL)!, result: { (downloadedPodcast) in
+      
+      guard downloadedPodcast != nil else {
+        return loadingAlertScreen.dismiss(animated: false, completion: {
+            self.createFailedDownloaded()
+            if completion != nil {
+                return completion!(true)
+            } else {
+                return
+            }
+        })
+      }
+      
+      guard AudioEpisodeTracker.episodeIndex != -1 else {
+        if completion != nil {
+            return completion!(true)
+        } else {
+            return
+        }
+      }
+      
+      guard let episodeTitle = AudioEpisodeTracker.getCurrentEpisode().title else {
+        if completion != nil {
+            return completion!(true)
+        } else {
+            return
+        }
+      }
+      if( downloadedPodcast != nil) {
+        let episode = DatabaseUtil.getEpisode(episodeTitle)
+        episode?.setValue(downloadedPodcast!, forKey: "doucmentaudioURL")
+        DatabaseUtil.saveContext()
+        DispatchQueue.main.async {
+          loadingAlertScreen.dismiss(animated: true, completion: nil)
+          self.createSucessScreen()
+          self.setUpPlayer(webUrl:downloadedPodcast!)
+          self.updateMPRemote(changeArtwork: true)
+        }
+        if completion != nil {
+            return completion!(false)
+        } else {
+            return
+        }
+      }
+    })
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+  private func createLoadingScreen () -> UIAlertController {
+    let alert = UIAlertController(title: nil, message: "Loading the next episode\n\n\n", preferredStyle: .alert)
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    spinner.center = CGPoint(x: 130.5, y: 65.5)
+    spinner.color = UIColor.black
+    spinner.startAnimating()
+    alert.view.addSubview(spinner)
+    self.present(alert, animated: false, completion: nil)
+    return alert
+  }
+  
+  private func createFailedDownloaded () {
+    let alert = UIAlertController(title: "Failed", message: "Failed to download episode", preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+    self.present(alert, animated: false, completion: nil)
+  }
+  
+  private func createSucessScreen () {
+    let alert = UIAlertController(title: "Success", message: "Downloaded the episode", preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+    self.present(alert, animated: false, completion: nil)
+  }
+  
+  func deleteEpisode(){
+    let episode = AudioEpisodeTracker.getCurrentEpisode()
+    AudioEpisodeTracker.resetAudioTracker();
+    DatabaseUtil.deleteEpisodeAudio(episodeTitle: episode.title!)
+  }
     func nowPlayingSlider(_ event: MPChangePlaybackPositionCommandEvent) {
         AudioEpisodeTracker.audioPlayer.stop()
         AudioEpisodeTracker.audioPlayer.currentTime = event.positionTime
@@ -367,8 +444,21 @@ extension PlayerController: PlayerViewDelegate {
         
         self.downloadAudioEpisode()
     }
+    AudioEpisodeTracker.episodeIndex += 1
     
-    func moveSlider() {
-        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = AudioEpisodeTracker.audioPlayer.currentTime
-    }
+    //If we encounter an error, go back to previous episode
+    self.downloadAudioEpisode(completion: { error in
+        if(error){
+            AudioEpisodeTracker.episodeIndex -= 1
+        } else {
+            AudioEpisodeTracker.resetAudioData()
+            self.mainView?.titleLabel.text = AudioEpisodeTracker.getCurrentEpisode().title
+        }
+    })
+  }
+  
+  func moveSlider() {
+    MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = AudioEpisodeTracker.audioPlayer.currentTime
+  }
+
 }
